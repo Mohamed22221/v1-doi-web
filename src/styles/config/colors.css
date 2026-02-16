@@ -1,0 +1,70 @@
+@theme {
+    /* ===== PRIMARY COLORS (Blue) ===== */
+    --color-primary-50: #EDF1F7;
+    --color-primary-100: #DCE3EF;
+    --color-primary-200: #B9C7DF;
+    --color-primary-300: #96ABCF;
+    --color-primary-400: #728FC0;
+    --color-primary-500: #2A3D5D;
+    --color-primary-600: #3F5C8D;
+    --color-primary-700: #304569;
+    --color-primary-800: #202E46;
+    --color-primary-900: #101723;
+
+    /* ===== SECONDARY COLORS (Gold/Brown) ===== */
+    --color-secondary-50: #F7F2EE;
+    --color-secondary-100: #EFE6DC;
+    --color-secondary-200: #DECCBA;
+    --color-secondary-300: #CEB397;
+    --color-secondary-400: #BE9974;
+    --color-secondary-500: #D4BCA4;
+    --color-secondary-600: #8B6641;
+    --color-secondary-700: #684D31;
+    --color-secondary-800: #453321;
+
+    /* ===== TERTIARY COLORS (Rose/Skin) ===== */
+    --color-tertiary-50: #FBF1ED;
+    --color-tertiary-100: #F1E2DA;
+    --color-tertiary-200: #E2C5B6;
+    --color-tertiary-300: #D4A891;
+    --color-tertiary-400: #C58C6D;
+    --color-tertiary-500: #F4E9E3;
+    --color-tertiary-600: #92593A;
+    --color-tertiary-700: #6E422B;
+    --color-tertiary-800: #492C1D;
+
+    /* ===== NEUTRAL COLORS ===== */
+    --color-neutral-10: #FEFEFE;
+    --color-neutral-50: #F2F2F2;
+    --color-neutral-100: #E6E6E5;
+    --color-neutral-200: #CDCDCB;
+    --color-neutral-300: #B3B3B2;
+    --color-neutral-400: #9A9A98;
+    --color-neutral-500: #292928;
+    --color-neutral-600: #676765;
+    --color-neutral-800: #343432;
+    --color-neutral-950: #0D0D0D;
+
+    /* ===== SUCCESS COLORS (Green) ===== */
+    --color-success-100: #ECF9F2;
+    --color-success-200: #B2E6CA;
+    --color-success-300: #66CC96;
+    --color-success-400: #3BB273;
+    --color-success-500: #339963;
+
+    /* ===== WARNING COLORS (Yellow) ===== */
+    --color-warning-100: #FDF8E7;
+    --color-warning-200: #F8E2A0;
+    --color-warning-300: #F5D470;
+    --color-warning-400: #F1C541;
+    --color-warning-500: #F2C94C;
+
+    /* ===== DANGER COLORS (Red) ===== */
+    --color-danger-100: #FBE9E9;
+    --color-danger-200: #F1A7A7;
+    --color-danger-300: #E34F4F;
+    --color-danger-400: #E24B4B;
+    --color-danger-500: #B01C1C;
+
+
+}

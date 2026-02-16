@@ -1,0 +1,20 @@
+{
+    "hello": "Hello",
+    "welcome": "Welcome",
+    "goodbye": "Goodbye",
+    "language": "Language",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "nav": {
+        "home": "Home",
+        "search": "Discover",
+        "sell": "Sell",
+        "pidding": "My Bids",
+        "list": "My List",
+        "notifications": "Notifications",
+        "products": "My Products",
+        "buy": "Buy",
+        "ratings": "Ratings"
+    }
+}

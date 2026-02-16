@@ -1,0 +1,18 @@
+@theme {
+    /* Fonts - LTR (English) uses Montserrat | RTL (Arabic) uses Cairo */
+    --font-sans: var(--font-montserrat), var(--font-inter), sans-serif;
+    --font-arabic: var(--font-cairo), sans-serif;
+
+    /* ===== TYPOGRAPHY SCALE ===== */
+    /* Usage: text-display, text-h1, text-body, etc. */
+    --text-display: 56px;
+    --text-h1: 40px;
+    --text-h2: 32px;
+    --text-h3: 24px;
+    --text-h4: 20px;
+    --text-h5: 18px;
+    --text-body: 16px;
+    --text-caption: 14px;
+    --text-label: 14px;
+    --text-tag: 12px;
+}

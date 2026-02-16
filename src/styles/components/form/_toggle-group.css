@@ -1,0 +1,66 @@
+@layer components {
+    .toggle-button-group {
+        @apply flex w-fit items-center bg-transparent p-0;
+    }
+
+    .toggle-button-group .toggle-button-item {
+        @apply flex items-center justify-center transition-all font-bold cursor-pointer;
+        @apply border-none shadow-none;
+
+        /* State: Off */
+        @apply bg-primary-100 text-primary hover:bg-primary-200;
+        @apply dark:bg-primary-800 dark:text-neutral-200 hover:dark:bg-primary-700;
+
+        /* State: On */
+        @apply data-[state=on]:bg-primary data-[state=on]:text-primary-foreground;
+        @apply data-[state=on]:hover:bg-primary/90;
+
+        /* Focus & Invalid */
+        @apply focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
+        @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
+
+        @apply disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    /* Size Mappings */
+    .toggle-button-group .toggle-button-item[data-size="sm"] {
+        @apply h-8 px-5 text-sm;
+    }
+
+    .toggle-button-group .toggle-button-item[data-size="md"] {
+        @apply h-9 px-7 text-base;
+    }
+
+    .toggle-button-group .toggle-button-item[data-size="lg"] {
+        @apply h-11 px-9 text-base;
+    }
+
+    /* Rounded Mappings */
+    .toggle-button-group .toggle-button-item[data-rounded="none"] {
+        @apply rounded-none;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="xs"] {
+        @apply rounded-xs;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="sm"] {
+        @apply rounded-sm;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="md"] {
+        @apply rounded-md;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="lg"] {
+        @apply rounded-lg;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="xl"] {
+        @apply rounded-xl;
+    }
+
+    .toggle-button-group .toggle-button-item[data-rounded="full"] {
+        @apply rounded-full;
+    }
+}

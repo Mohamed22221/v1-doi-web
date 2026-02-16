@@ -1,0 +1,67 @@
+/* ===== DARK MODE VARIANT (class-based) ===== */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant rtl (&:where([dir="rtl"], [dir="rtl"] *));
+
+
+/* ===== BASE LAYER ===== */
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+
+    }
+
+    /* Direction-based Font Switching */
+    :root[dir="ltr"],
+    body[dir="ltr"],
+    html[dir="ltr"] {
+        --font-sans: var(--font-montserrat), sans-serif;
+    }
+
+    :root[dir="rtl"],
+    body[dir="rtl"],
+    html[dir="rtl"] {
+        --font-sans: var(--font-cairo), sans-serif;
+    }
+
+    /* Apply fonts directly to ensure switching works */
+    html[dir="rtl"] body,
+    body[dir="rtl"] {
+        font-family: var(--font-cairo), sans-serif !important;
+    }
+
+    html[dir="ltr"] body,
+    body[dir="ltr"] {
+        font-family: var(--font-montserrat), sans-serif !important;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* ===== TYPOGRAPHY PROSE STYLES ===== */
+.prose {
+    color: var(--color-neutral-600);
+}
+
+.dark .prose {
+    color: var(--color-neutral-300);
+}
+
+/* =========================
+   Autofill (Chrome/Edge/Safari)
+   ========================= */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    /* text color */
+    -webkit-text-fill-color: var(--foreground) !important;
+
+    /* remove the weird autofill overlay by painting our bg */
+    -webkit-box-shadow: 0 0 0px 1000px var(--background) inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    caret-color: var(--foreground) !important;
+    /* prevent "flash" */
+    transition: background-color 999999s ease-in-out 0s !important;
+}

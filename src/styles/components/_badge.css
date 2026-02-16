@@ -1,0 +1,50 @@
+@layer components {
+    .badge {
+        @apply inline-flex items-center justify-center rounded-full border border-transparent px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 gap-1 transition-all overflow-hidden outline-none;
+        @apply [&>svg]:pointer-events-none [&>svg]:size-3;
+        @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
+        @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
+    }
+
+    /* Variants */
+    .badge-default {
+        @apply bg-primary text-primary-foreground;
+        @apply [a&]:hover:bg-primary/90;
+    }
+
+    .badge-secondary {
+        @apply border-border border-[2px];
+        @apply bg-secondary text-secondary-foreground;
+        @apply [a&]:hover:bg-secondary/90;
+    }
+
+    .badge-destructive {
+        @apply bg-destructive text-white;
+        @apply [a&]:hover:bg-destructive/90;
+        @apply focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60;
+    }
+
+    .badge-outline {
+        @apply border-border text-foreground border-[2px];
+        @apply [a&]:hover:bg-accent [a&]:hover:text-accent-foreground;
+    }
+
+    .badge-ghost {
+        @apply [a&]:hover:bg-accent [a&]:hover:text-accent-foreground;
+    }
+
+    .badge-link {
+        @apply text-primary underline-offset-4;
+        @apply [a&]:hover:underline;
+    }
+
+    .badge-success {
+        @apply bg-success text-success-foreground;
+        @apply [a&]:hover:bg-success/90;
+    }
+
+    .badge-warning {
+        @apply bg-warning text-warning-foreground;
+        @apply [a&]:hover:bg-warning/90;
+    }
+}

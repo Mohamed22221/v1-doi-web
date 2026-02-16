@@ -1,0 +1,20 @@
+{
+    "hello": "مرحبا",
+    "welcome": "أهلا بك",
+    "goodbye": "وداعا",
+    "language": "اللغة",
+    "home": "الرئيسية",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "nav": {
+        "home": "الرئيسية",
+        "search": "أكتشف",
+        "sell": "بيع",
+        "pidding": "مزايداتي",
+        "list": "القائمة",
+        "notifications": "التنبيهات",
+        "products": "منتجاتي",
+        "buy": "شراء",
+        "ratings": "التقييمات"
+    }
+}

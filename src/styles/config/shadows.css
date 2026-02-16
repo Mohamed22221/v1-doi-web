@@ -1,0 +1,21 @@
+:root {
+    --shadow-small-value: 0px 1px 2px 0px rgba(42, 61, 93, 0.1);
+    --shadow-medium-value: 0px 4px 8px 0px rgba(42, 61, 93, 0.1);
+    --shadow-large-value: 0px 6px 15px 0px rgba(42, 61, 93, 0.1);
+    --shadow-xlarge-value: 0px 25px 50px 0px rgba(42, 61, 93, 0.15);
+}
+
+.dark {
+    --shadow-small-value: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+    --shadow-medium-value: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+    --shadow-large-value: 0px 6px 15px 0px rgba(0, 0, 0, 0.4);
+    --shadow-xlarge-value: 0px 25px 50px 0px rgba(0, 0, 0, 0.6);
+}
+
+@theme {
+    --shadow-sm: var(--shadow-small-value);
+    --shadow-md: var(--shadow-medium-value);
+    --shadow-lg: var(--shadow-large-value);
+    --shadow-xl: var(--shadow-xlarge-value);
+
+}

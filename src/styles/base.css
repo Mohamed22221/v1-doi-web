@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Modular Styles */
+@import "./config/config.css";
+@import "./config/shadcn.css";
+@import "./config/theme.css";
+@import "./config/colors.css";
+@import "./config/typography.css";
+@import "./config/breakpoints.css";
+@import "./config/shadows.css";
+@import "./config/border.css";
+@import "./config/radius.css";
+/* Components */
+@import "./components/_button.css";
+@import "./components/_card.css";
+@import "./components/_badge.css";
+
+/* Form Components */
+@import "./components/form/_input.css";
+@import "./components/form/_label.css";
+@import "./components/form/_textarea.css";
+@import "./components/form/_checkbox.css";
+@import "./components/form/_radio-group.css";
+@import "./components/form/_toggle-group.css";
+@import "./components/form/_switch.css";
+@import "./components/form/_select.css";
+@import "./components/form/_form.css";
+@import "./components/form/_input-otp.css";
+@import "./components/form/_calendar.css";
+@import "./components/form/_combobox.css";
+@import "./components/form/_popover.css";

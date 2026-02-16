@@ -1,0 +1,90 @@
+:root {
+    /* shadcn Core Colors - Using Primary Brand */
+    --background: var(--color-primary-50);
+    --foreground: var(--color-neutral-500);
+    --card: var(--color-neutral-10);
+    --card-foreground: var(--color-neutral-500);
+    --popover: var(--color-neutral-10);
+    --popover-foreground: var(--color-neutral-500);
+    --primary: var(--color-primary-500);
+    --primary-foreground: var(--color-neutral-10);
+    --secondary: var(--color-primary-50);
+    --secondary-foreground: var(--color-primary-800);
+    --muted: var(--color-neutral-50);
+    --muted-foreground: var(--color-neutral-600);
+    --accent: var(--color-primary-50);
+    --accent-foreground: var(--color-neutral-500);
+    --destructive: var(--color-danger-500);
+    --destructive-foreground: var(--color-neutral-10);
+    --success: var(--color-success-500);
+    --success-foreground: var(--color-neutral-10);
+    --warning: var(--color-warning-500);
+    --warning-foreground: var(--color-neutral-500);
+    --border: var(--color-border-100);
+
+    /* Input Colors */
+    --input: var(--color-primary-100);
+    --ring: var(--color-primary-300);
+
+    /* Chart Colors */
+    --chart-1: var(--color-primary-500);
+    --chart-2: var(--color-primary-600);
+    --chart-3: var(--color-secondary-500);
+    --chart-4: var(--color-success-500);
+    --chart-5: var(--color-warning-500);
+
+    /* Sidebar Colors */
+    --sidebar: var(--color-neutral-10);
+    --sidebar-foreground: var(--color-neutral-500);
+    --sidebar-primary: var(--color-primary-500);
+    --sidebar-primary-foreground: var(--color-neutral-10);
+    --sidebar-accent: var(--color-primary-50);
+    --sidebar-accent-foreground: var(--color-primary-500);
+    --sidebar-border: var(--color-neutral-100);
+    --sidebar-ring: var(--color-primary-400);
+}
+
+.dark {
+    --background: var(--color-primary-900);
+    --foreground: var(--color-neutral-50);
+    --card: var(--color-primary-800);
+    --card-foreground: var(--color-neutral-50);
+    --popover: var(--color-primary-800);
+    --popover-foreground: var(--color-neutral-50);
+    --primary: var(--color-primary-400);
+    --primary-foreground: var(--color-primary-900);
+    --secondary: var(--color-primary-700);
+    --secondary-foreground: var(--color-neutral-50);
+    --muted: var(--color-primary-700);
+    --muted-foreground: var(--color-neutral-300);
+    --accent: var(--color-primary-700);
+    --accent-foreground: var(--color-neutral-50);
+    --destructive: var(--color-danger-300);
+    --destructive-foreground: var(--color-neutral-10);
+    --success: var(--color-success-400);
+    --success-foreground: var(--color-primary-900);
+    --warning: var(--color-warning-400);
+    --warning-foreground: var(--color-primary-900);
+    --border: var(--color-border-800);
+
+    /* Input Colors (Dark) */
+    --input: var(--color-primary-800);
+    --ring: var(--color-primary-800);
+
+    /* Chart Colors (Dark) */
+    --chart-1: var(--color-primary-400);
+    --chart-2: var(--color-primary-300);
+    --chart-3: var(--color-secondary-400);
+    --chart-4: var(--color-success-300);
+    --chart-5: var(--color-warning-300);
+
+    /* Sidebar Colors (Dark) */
+    --sidebar: var(--color-primary-900);
+    --sidebar-foreground: var(--color-neutral-50);
+    --sidebar-primary: var(--color-primary-400);
+    --sidebar-primary-foreground: var(--color-primary-900);
+    --sidebar-accent: var(--color-primary-800);
+    --sidebar-accent-foreground: var(--color-neutral-50);
+    --sidebar-border: var(--color-neutral-800);
+    --sidebar-ring: var(--color-primary-300);
+}

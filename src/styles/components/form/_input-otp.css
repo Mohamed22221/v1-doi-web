@@ -1,0 +1,42 @@
+@layer components {
+    .input-otp-container {
+        @apply flex items-center gap-2 has-disabled:opacity-50;
+    }
+
+    .input-otp {
+        @apply disabled:cursor-not-allowed;
+    }
+
+    .input-otp-group {
+        @apply flex items-center gap-3;
+    }
+
+    .input-otp-slot {
+        @apply relative flex h-9 w-9 items-center justify-center border rounded-[16px] text-sm shadow-xs transition-all outline-none;
+        @apply border-input;
+        @apply dark:bg-input/30;
+
+        /* Small Size */
+        .input-otp-sm & {
+            @apply h-8 w-8 text-xs;
+        }
+
+        /* Large Size */
+        .input-otp-lg & {
+            @apply h-14 w-14 text-lg;
+        }
+
+        @apply data-[active=true]:z-10 data-[active=true]:ring-[3px];
+        @apply data-[active=true]:border-ring data-[active=true]:ring-ring/50;
+        @apply data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40;
+        @apply aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive;
+    }
+
+    .input-otp-caret-container {
+        @apply pointer-events-none absolute inset-0 flex items-center justify-center;
+    }
+
+    .input-otp-caret {
+        @apply animate-caret-blink h-4 w-px duration-1000 bg-foreground;
+    }
+}

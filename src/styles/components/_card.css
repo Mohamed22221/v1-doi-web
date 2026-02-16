@@ -1,0 +1,41 @@
+@layer components {
+
+    /* Base Card */
+    .card {
+        @apply flex flex-col gap-6 rounded-xl border py-6 shadow-sm;
+        @apply bg-card text-card-foreground;
+    }
+
+    /* Card Header */
+    .card-header {
+        @apply grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6;
+        @apply has-[.card-action]:grid-cols-[1fr_auto];
+        @apply [.border-b]:pb-6;
+    }
+
+    /* Card Title */
+    .card-title {
+        @apply leading-none font-semibold;
+    }
+
+    /* Card Description */
+    .card-description {
+        @apply text-sm text-muted-foreground;
+    }
+
+    /* Card Action */
+    .card-action {
+        @apply col-start-2 row-span-2 row-start-1 self-start justify-self-end;
+    }
+
+    /* Card Content */
+    .card-content {
+        @apply px-6;
+    }
+
+    /* Card Footer */
+    .card-footer {
+        @apply flex items-center px-6;
+        @apply [.border-t]:pt-6;
+    }
+}

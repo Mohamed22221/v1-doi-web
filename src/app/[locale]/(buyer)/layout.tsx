@@ -1,0 +1,29 @@
+import { Header } from "@components/layout/headers/header";
+import { BuyerNav } from "@components/layout/nav/buyer-nav";
+import { MobileNav } from "@components/layout/nav/mobile-nav";
+import { PageContainer } from "@components/template/container/page-container";
+import { Locale } from "@lib/i18n/config";
+
+export default async function NavLayout({
+    children,
+    params,
+}: Readonly<{
+    children: React.ReactNode;
+    params: Promise<{ locale: string }>;
+}>) {
+    const { locale: rawLocale } = await params;
+    const locale = rawLocale as Locale;
+
+    return (
+        <>
+            <Header role="buyer" />
+            <BuyerNav roles={["buyer"]} locale={locale} />
+            <main>
+                <PageContainer variant="full" className="pt-22 pb-22 md:pt-9 md:pb-10">
+                    {children}
+                </PageContainer>
+            </main>
+            <MobileNav roles={["buyer"]} locale={locale} />
+        </>
+    );
+}

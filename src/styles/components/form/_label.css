@@ -1,0 +1,17 @@
+@layer components {
+    .label {
+        @apply flex items-center gap-2 leading-none font-medium select-none;
+
+        @apply peer-disabled:cursor-not-allowed peer-disabled:opacity-50;
+    }
+
+    .form-item[data-layout="floating"] .label-floating {
+        @apply absolute ltr:left-4 rtl:right-4 top-[18px] transition-all duration-200 pointer-events-none origin-[0_0] rtl:origin-[100%_0];
+        @apply text-caption text-neutral-600 dark:text-neutral-400;
+    }
+
+    .form-item[data-layout="floating"]:focus-within .label-floating,
+    .form-item[data-layout="floating"][data-has-value="true"] .label-floating {
+        @apply top-2 text-tag text-neutral-600 dark:text-neutral-400;
+    }
+}
