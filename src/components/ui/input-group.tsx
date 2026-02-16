@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 const inputGroupVariants = cva(
-  "group/input-group border-input dark:bg-input/30 relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none has-[>textarea]:h-auto focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "group/input-group border-input dark:border-neutral-700 dark:bg-transparent relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none has-[>textarea]:h-auto focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] dark:focus-within:border-primary-400 dark:focus-within:ring-primary-400/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       size: {
@@ -130,7 +130,7 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       className={cn(
-        "text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "text-muted-foreground dark:text-neutral-300 flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -147,7 +147,7 @@ const InputGroupInput = React.forwardRef<
       ref={ref}
       data-slot="input-group-control"
       className={cn(
-        "flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent",
+        "flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent dark:text-neutral-50",
         className
       )}
       {...props}

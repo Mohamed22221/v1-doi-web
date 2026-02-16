@@ -5,7 +5,6 @@ import type { Role } from "@defs/nav"
 import { shouldShowNavItem } from "@lib/nav/utils"
 import type { Locale } from "@lib/i18n/config"
 import Icon from "@components/shared/Icon"
-import { getTranslation } from "@lib/i18n/server"
 
 interface NavLinksContainerProps {
     roles: Role[]
@@ -13,9 +12,7 @@ interface NavLinksContainerProps {
     variant: "desktop" | "mobile"
 }
 
-export async function NavLinksContainer({ roles, locale, variant }: NavLinksContainerProps) {
-    const { t } = await getTranslation(locale, "common")
-
+export function NavLinksContainer({ roles, locale, variant }: NavLinksContainerProps) {
     return (
         <>
             {NAV_ITEMS.map((item) => {
@@ -31,8 +28,9 @@ export async function NavLinksContainer({ roles, locale, variant }: NavLinksCont
                                 icon={item.icon}
                             />
                         }
-                        label={t(item.translationKey)}
+                        label={item.translationKey}
                         variant={variant}
+                        locale={locale}
                     />
                 )
             })}

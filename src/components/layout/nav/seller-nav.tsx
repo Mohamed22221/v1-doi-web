@@ -1,7 +1,6 @@
 import type { Role } from "@defs/nav"
 import type { Locale } from "@lib/i18n/config"
 import { NavLinksContainer } from "./nav-links-container"
-
 import { BellIcon } from "@components/shared/Icon/constant"
 import Icon from "@components/shared/Icon"
 import Logo from "@components/template/nav/logo"
@@ -14,7 +13,8 @@ interface SellerNavProps {
     locale: Locale
 }
 
-export function SellerNav({ roles, locale }: SellerNavProps) {
+export async function SellerNav({ roles, locale }: SellerNavProps) {
+
     return (
         <header className="fixed top-0 inset-x-0 z-40 h-[85px] border-b bg-neutral-10 dark:bg-card transition-colors hidden md:block">
             <PageContainer variant="full" className="h-full flex items-center justify-between">
@@ -24,7 +24,9 @@ export function SellerNav({ roles, locale }: SellerNavProps) {
                 </div>
 
                 <nav className="flex items-center gap-2">
+
                     <NavLinksContainer roles={roles} locale={locale} variant="desktop" />
+
                 </nav>
                 <div className="flex items-center gap-4">
 

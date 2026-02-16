@@ -4,6 +4,8 @@ import Link from "next/link";
 import { cn } from "@utils/cn";
 import { useNavStore } from "@lib/store/nav-store";
 import { isNavItemActive } from "@lib/nav/utils";
+import { useTranslation } from "@/lib/i18n/client";
+import { Locale } from "@/lib/i18n/config";
 
 interface NavItemProps {
   href: string;
@@ -13,6 +15,7 @@ interface NavItemProps {
   variant?: "desktop" | "mobile";
   badge?: number | string;
   exact?: boolean;
+  locale: Locale
 }
 
 export function NavItem({
@@ -23,12 +26,13 @@ export function NavItem({
   variant = "desktop",
   badge,
   exact,
+  locale
 }: NavItemProps) {
 
   const activeHref = useNavStore((state) => state.activeHref);
   const isDesktop = variant === "desktop";
   const isActive = propIsActive ?? isNavItemActive(href, activeHref, exact);
-
+  const { t } = useTranslation(locale, "common")
   return (
     <Link
       href={href}
@@ -61,7 +65,7 @@ export function NavItem({
           isDesktop ? "text-body" : "text-[12px]",
         )}
       >
-        {label}
+        {t(label)}
       </span>
 
       {/* Indicator for active state in Mobile Nav */}

@@ -49,7 +49,7 @@ export function PageContainer({
                 // Variant-specific max-width and centering
                 {
                     // Dashboard: wide layout for data-heavy pages
-                    "mx-auto max-w-[1500px]": variant === "dashboard",
+                    "mx-auto max-w-[1400px]": variant === "dashboard",
 
                     // Auth: narrow centered layout for forms
                     "mx-auto max-w-[480px]": variant === "auth",

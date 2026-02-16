@@ -49,6 +49,12 @@ const floatingFormSchema = z.object({
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
   const [dir, setDir] = useState<"ltr" | "rtl">("ltr")
+  const [isMounted, setIsMounted] = useState(false)
+
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const form = useForm({
     defaultValues: {
       username: "",
@@ -58,7 +64,7 @@ export default function Home() {
       type: "all",
       category: "",
       otp: "",
-      date: new Date(),
+      date: isMounted ? new Date() : undefined,
       radioSm: "opt1",
       radioMd: "opt1",
       radioLg: "opt1",
@@ -194,7 +200,7 @@ export default function Home() {
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar mode="single" selected={new Date()} />
+                      <Calendar mode="single" selected={isMounted ? new Date() : undefined} />
                     </PopoverContent>
                   </Popover>
                 </div>
