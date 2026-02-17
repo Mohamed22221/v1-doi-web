@@ -6,8 +6,8 @@ import { I18nProvider } from "@components/providers/i18n-provider";
 import { LanguageSwitcher } from "@components/shared/language/language-switcher";
 import { NavSync } from "@components/layout/nav/nav-sync";
 import { Suspense } from "react";
-import { ThemeProvider } from "@components/providers/theme-provider";
 import { ThemeToggle } from "@/components/shared/theme/theme-toggle";
+import { THEME_INIT_CODE } from "@/components/shared/scripts/theme-init-code";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -47,24 +47,31 @@ export default async function LocaleLayout({
     const direction = getDirection(locale);
 
     return (
-        <html lang={locale} dir={direction}>
+        <html lang={locale} dir={direction} suppressHydrationWarning>
+            <head>
+                {/* Inline blocking script for zero FOUC - executes before first paint */}
+                <script dangerouslySetInnerHTML={{ __html: THEME_INIT_CODE }} />
+            </head>
             <body className={`${montserrat.variable} ${cairo.variable} antialiased font-sans`}>
+                {/* ThemeScript component for Next.js best practices */}
+
                 <I18nProvider>
-                    <ThemeProvider>
+
+                    <Suspense fallback={null}>
+                        <NavSync />
+                    </Suspense>
+                    <main>
+                        {children}
+                    </main>
+                    <div className="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2 scale-75 md:scale-100 origin-bottom-left">
                         <Suspense fallback={null}>
-                            <NavSync />
+                            <ThemeToggle />
+                            <LanguageSwitcher />
                         </Suspense>
-                        <main>
-                            {children}
-                        </main>
-                        <div className="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2 scale-75 md:scale-100 origin-bottom-left">
-                            <Suspense fallback={null}>
-                                <ThemeToggle />
-                                <LanguageSwitcher />
-                            </Suspense>
-                        </div>
-                    </ThemeProvider>
+                    </div>
+
                 </I18nProvider>
+
             </body>
         </html>
     );

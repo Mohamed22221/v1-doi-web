@@ -62,7 +62,11 @@ export function RHFPhoneInput<
                                 layout === "floating" && !!field.value && "opacity-100"
                             )}
                         >
-                            <InputGroupText className={cn("font-mono", layout === "floating" ? "mt-[14px]" : "")}>
+                            <InputGroupText className={cn(
+                                "ltr:dir-ltr",
+                                size === "lg" ? "text-[15px]" : "text-sm",
+                                layout === "floating" ? "mt-[13px]" : ""
+                            )}>
                                 {prefix}
                             </InputGroupText>
                         </InputGroupAddon>

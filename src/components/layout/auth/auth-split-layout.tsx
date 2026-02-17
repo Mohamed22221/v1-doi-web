@@ -32,7 +32,7 @@ export function AuthSplitLayout({
         >
             <div
                 className={cn(
-                    "w-full flex flex-col tablet:flex-row justify-center items-center gap-12",
+                    "w-full flex flex-col tablet:flex-row justify-center items-center gap-12 md:justify-between",
                     // Reverse layout direction on tablet+ screens if reverse prop is true
                     reverse && "tablet:flex-row-reverse"
                 )}
@@ -59,7 +59,7 @@ function AuthSidebarContent({ children }: ChildernLayoutProps) {
     return (
         <div
             className={cn(
-                "flex-1 text-center tablet:text-start hidden tablet:flex"
+                "text-center tablet:text-start hidden tablet:flex"
             )}
         >
             <div className="w-full h-full">{children}</div>
@@ -74,7 +74,7 @@ function AuthSidebarContent({ children }: ChildernLayoutProps) {
  */
 function AuthSplitFormArea({ children }: ChildernLayoutProps) {
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full tablet:w-[550px] xl:w-[600px] xl:max-w-[600px] tablet:max-w-[550px]">
             <div className="w-full">{children}</div>
         </div>
     )

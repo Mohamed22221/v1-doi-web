@@ -21,18 +21,18 @@ import { ArrowIcon } from "@/components/shared/Icon/constant"
 // Auth Components
 import Logo from "@/components/template/nav/logo"
 import HeaderSidebar from "../../components/header-sidebar"
-
 import BuyerLoginSocial from "./BuyerLoginSocial"
 
 // i18n
 import { useTranslation } from "@/lib/i18n/client"
 import type { Locale } from "@/lib/i18n/config"
+import TitleForm from "../../components/title-form"
 
 export default function BuyerLoginPasswordForm() {
     const router = useRouter()
     const params = useParams()
-    const locale = params.locale as string
-    const { t } = useTranslation(locale as Locale, "auth")
+    const locale = params.locale as Locale
+    const { t } = useTranslation(locale, "auth")
 
     // Memoize schema
     const loginSchema = useMemo(() => getLoginPasswordSchema(t), [t])
@@ -67,9 +67,7 @@ export default function BuyerLoginPasswordForm() {
                     />
                 </div>
 
-                <h2 className="hidden tablet:block text-2xl font-bold text-center text-neutral-950 dark:text-neutral-50 mb-6">
-                    {t("buyer-login.form.loginWithPassword")}
-                </h2>
+                <TitleForm title={t("buyer-login.form.loginWithPassword")} className="mb-6" />
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">

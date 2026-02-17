@@ -34,7 +34,7 @@ export default async function BuyerSidebar({ locale, variant }: BuyerSidebarProp
     const points = t(`${variant}.sidebar.points`, { returnObjects: true }) as string[]
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 ">
             {/* Brand Logo - Auto-switches based on theme */}
             <Logo imgClass="w-[100px] h-[56px]" />
 

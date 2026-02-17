@@ -56,6 +56,7 @@ export function RHFInputOTP<
                         field.onChange(value)
                         otpProps?.onChange?.(value)
                     }}
+
                 >
                     <InputOTPGroup {...groupProps}>
                         {Array.from({ length: maxLength }).map((_, i) => (

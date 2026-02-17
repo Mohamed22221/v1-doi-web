@@ -157,7 +157,7 @@ export function RHFField<
                             )
                         )}
 
-                        <div className="flex-1 flex flex-col min-w-0 w-full">
+                        <div className={cn("flex-1 flex flex-col min-w-0 w-full", floating ? className : "")} >
                             <FormControl>{children(field)}</FormControl>
 
                             {/* Removed duplicate extraLabel for floating layout as it's now inside the label */}

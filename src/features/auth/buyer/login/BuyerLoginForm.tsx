@@ -25,6 +25,7 @@ import BuyerLoginSocial from "./BuyerLoginSocial"
 // i18n
 import { useTranslation } from "@/lib/i18n/client"
 import type { Locale } from "@/lib/i18n/config"
+import TitleForm from "../../components/title-form"
 
 export default function BuyerLoginForm() {
     const router = useRouter()
@@ -50,7 +51,7 @@ export default function BuyerLoginForm() {
     return (
         <div className="flex flex-col tablet:gap-6 gap-4">
             {/* Main Login Card */}
-            <Card className="p-6 tablet:max-w-[550px] xl:max-w-[600px] w-full">
+            <Card className="p-6 w-full">
                 {/* Back Navigation */}
                 <Button variant="outline" rounded="sm" size="icon" onClick={() => router.back()}>
                     <Icon icon={ArrowIcon} className="text-neutral-300 dark:text-neutral-50 ltr:rotate-180" />
@@ -65,9 +66,7 @@ export default function BuyerLoginForm() {
                     />
                 </div>
 
-                <h2 className="hidden tablet:block text-2xl font-bold text-center text-neutral-950 dark:text-neutral-50">
-                    {t("buyer-login.form.title")}
-                </h2>
+                <TitleForm title={t("buyer-login.form.title")} />
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">

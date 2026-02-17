@@ -38,7 +38,7 @@ export default function BuyerLoginSocial() {
                     className="tablet:min-w-[240px] min-w-full h-[48px] tablet:h-[50px] xl:h-[56px] tablet:text-body xl:text-h5 text-label"
                     rounded="xl"
                 >
-                    <Icon icon={AppleIcon} />
+                    <Icon icon={AppleIcon} className="text-neutral-950 dark:text-neutral-50" />
                     <span className="font-semibold text-primary-800 dark:text-neutral-50">Apple</span>
                 </Button>
             </div>
