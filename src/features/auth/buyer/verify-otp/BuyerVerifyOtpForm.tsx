@@ -14,7 +14,7 @@ import { Card } from "@/components/ui/card"
 import { Form } from "@/components/ui/form"
 import { RHFInputOTP } from "@/components/forms/rhf-otp"
 import Icon from "@/components/shared/Icon"
-import { ArrowIcon, XIcon } from "@/components/shared/Icon/constant"
+import { ArrowIcon } from "@/components/shared/Icon/constant"
 
 // Auth Components
 import Logo from "@/components/template/nav/logo"
