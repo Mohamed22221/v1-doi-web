@@ -19,6 +19,23 @@ const initI18next = cache(async (lng: Locale, ns?: string) => {
     return i18nInstance;
 });
 
+export async function getResources(lng: Locale, ns: string | string[] = ["common"]) {
+    'use cache';
+    const namespaces = Array.isArray(ns) ? ns : [ns];
+    const resources: Record<string, any> = {};
+
+    for (const n of namespaces) {
+        const i18nInstance = await initI18next(lng, n);
+        const bundle = i18nInstance.getResourceBundle(lng, n);
+        if (bundle) {
+            // CRITICAL: Ensure it's a plain object to avoid Next.js serialization errors
+            resources[n] = JSON.parse(JSON.stringify(bundle));
+        }
+    }
+
+    return resources;
+}
+
 export async function getTranslation(
     lng: Locale,
     ns?: string,

@@ -3,7 +3,18 @@ export const THEME_INIT_CODE = `(function () {
   try {
     var root = document.documentElement;
 
-    // لو SSR حاطط class خلاص، اخرج
+    // 1. Sync Locale & Direction from URL immediately to prevent flash
+    var path = window.location.pathname;
+    var segments = path.split('/');
+    var locale = segments[1];
+    if (locale && (locale.length === 2 || locale.length === 3)) {
+        root.lang = locale;
+        var rtlLocales = ['ar', 'fa', 'ur'];
+        var isRTL = rtlLocales.indexOf(locale) !== -1;
+        root.dir = isRTL ? 'rtl' : 'ltr';
+    }
+
+    // 2. Sync Theme
     if (root.classList.contains('dark')) return;
 
     var theme = null;
