@@ -41,7 +41,7 @@ export function PageContainer({
         <div
             className={cn(
                 // Base responsive padding
-                "px-4 sm:px-6 lg:px-8",
+                "px-4 sm:px-1 lg:px-1",
 
                 // Top spacing for fixed headers
                 withTopSpacing && "pt-27 md:pt-32",

@@ -16,7 +16,7 @@ interface PropsHeader {
 export default function HeaderSidebar({ title, subtitle, className, classHeader }: PropsHeader) {
     return (
         <div className={cn("space-y-2 md:pt-7 pt-5", className)}>
-            <h1 className={cn("md:text-h2 text-h3 font-[700] tracking-[0.03em] text-neutral-900 dark:text-neutral-50", classHeader)}>
+            <h1 className={cn("text-[24px] md:text-[32px] font-[700] text-neutral-900 dark:text-neutral-50", classHeader)}>
                 {title}
             </h1>
             <p className="md:text-lg text-caption text-neutral-600 dark:text-neutral-300 max-w-[600px]">

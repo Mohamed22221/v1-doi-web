@@ -10,19 +10,19 @@ import Logo from '@/components/template/nav/logo'
 import HeaderSidebar from '@/features/auth/components/header-sidebar'
 import { Button } from '@/components/ui/button'
 
-interface ResetSuccessContentProps {
+interface RegisterSuccessProps {
     locale: Locale
 }
 
 /**
- * ResetSuccessContent
+ * RegisterSuccess
  * 
- * Displays a success message after a user successfully resets their password.
+ * Displays a success message after a user successfully registers.
  * Includes a celebratory illustration and a link to return to the login page.
  * 
  * Note: This component is a Server Component and uses 'use cache'.
  */
-export default async function ResetSuccessContent({ locale }: ResetSuccessContentProps) {
+export default async function RegisterSuccess({ locale }: RegisterSuccessProps) {
     'use cache'
     cacheLife("days")
 
@@ -36,20 +36,20 @@ export default async function ResetSuccessContent({ locale }: ResetSuccessConten
             {/* Illustration */}
             <div className="relative w-full max-w-[375px] max-h-[375px] aspect-square">
                 <Image
-                    src="/img/authentication-bro.png"
+                    src="/img/Confirmed-bro.png"
                     alt="Success illustration"
                     fill
                     className="object-contain"
-                    priority
                 />
             </div>
 
             {/* Success Message */}
             <HeaderSidebar
-                title={t('buyer-reset-password-success.title')}
-                subtitle={t('buyer-reset-password-success.subtitle')}
-                className='mt-0 space-y-1 !pt-1 md:!pt-2' classHeader="!text-primary-500 dark:!text-primary-400 text-h3 md:text-h2" />
-
+                title={t('buyer-register-success.title')}
+                subtitle={t('buyer-register-success.subtitle')}
+                className='mt-0 space-y-2 !pt-0'
+                classHeader="!text-primary-500 dark:!text-primary-400 text-[24px] md:text-[32px]"
+            />
         </div>
     )
 }
