@@ -2,8 +2,8 @@ import type { Locale } from "@/lib/i18n/config"
 
 // Layouts & Components
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout"
-import BuyerSidebar from "@/features/auth/buyer/BuyerSidebar"
-import BuyerLoginForm from "@/features/auth/buyer/login/BuyerLoginForm"
+import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar"
+import BuyerLoginForm from "@/features/auth/buyer/login/buyer-login-form"
 
 interface PageProps {
     params: Promise<{ locale: string }>

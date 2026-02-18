@@ -52,7 +52,7 @@ export function PageContainer({
                     "mx-auto max-w-[1400px]": variant === "dashboard",
 
                     // Auth: narrow centered layout for forms
-                    "mx-auto max-w-[480px]": variant === "auth",
+                    "mx-auto max-w-[600px]": variant === "auth",
 
                     // Narrow: content-focused centered layout
                     "mx-auto max-w-[800px]": variant === "narrow",

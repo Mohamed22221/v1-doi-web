@@ -2,6 +2,7 @@ export interface AuthLayoutProps {
     formContent: React.ReactNode;
     sidebarContent: React.ReactNode;
     className?: string;
+    classType?: boolean
 }
 
 export interface ChildernLayoutProps {

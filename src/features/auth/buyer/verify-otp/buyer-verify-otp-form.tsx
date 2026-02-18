@@ -20,11 +20,11 @@ import { ArrowIcon } from "@/components/shared/Icon/constant"
 import Logo from "@/components/template/nav/logo"
 import HeaderSidebar from "../../components/header-sidebar"
 import TitleForm from "../../components/title-form"
-import BuyerVerifyOtpActions from "./BuyerVerifyOtpActions"
 
 // i18n
 import { useTranslation } from "@/lib/i18n/client"
 import type { Locale } from "@/lib/i18n/config"
+import BuyerVerifyOtpActions from "./buyer-verify-otp-actions"
 
 export default function BuyerVerifyOtpForm() {
     const router = useRouter()

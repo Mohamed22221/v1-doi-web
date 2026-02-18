@@ -21,18 +21,19 @@ export function AuthSplitLayout({
     sidebarContent,
     reverse = false,
     className,
+    classType = false
 }: AuthSplitLayoutProps) {
     return (
         <PageContainer
             variant="dashboard"
             className={cn(
-                "p-4 sm:p-6 lg:p-5 pb-10",
+                "pb-10 px-3 pt-6 sm:p-6  lg:pt-10",
                 className
             )}
         >
             <div
                 className={cn(
-                    "w-full flex flex-col tablet:flex-row justify-center items-center gap-12 md:justify-between",
+                    `w-full flex flex-col tablet:flex-row ${classType ? "justify-start items-start" : "justify-center items-center"} gap-12 md:justify-between`,
                     // Reverse layout direction on tablet+ screens if reverse prop is true
                     reverse && "tablet:flex-row-reverse"
                 )}

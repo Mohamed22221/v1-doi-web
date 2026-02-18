@@ -12,7 +12,7 @@ import PointsSidebar from '@/features/auth/components/points-sidebar'
 
 interface BuyerSidebarProps {
     locale: Locale
-    variant: 'buyer-login'
+    variant: 'buyer-login' | 'buyer-register'
 }
 
 /**
@@ -33,14 +33,17 @@ export default async function BuyerSidebar({ locale, variant }: BuyerSidebarProp
     // Ensure casting as string[] since t() can return objects
     const points = t(`${variant}.sidebar.points`, { returnObjects: true }) as string[]
 
+    const title = t(`${variant}.sidebar.title`, { defaultValue: t(`${variant}.title`) })
+    const subtitle = t(`${variant}.sidebar.subtitle`, { defaultValue: t(`${variant}.subtitle`) })
+
     return (
         <div className="flex flex-col gap-6 ">
             {/* Brand Logo - Auto-switches based on theme */}
             <Logo imgClass="w-[100px] h-[56px]" />
 
             <HeaderSidebar
-                title={t(`${variant}.title`)}
-                subtitle={t(`${variant}.subtitle`)}
+                title={title}
+                subtitle={subtitle}
             />
 
             <PointsSidebar

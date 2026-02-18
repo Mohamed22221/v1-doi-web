@@ -19,7 +19,7 @@ import { ArrowIcon } from "@/components/shared/Icon/constant"
 // Auth Components
 import Logo from "@/components/template/nav/logo"
 import HeaderSidebar from "../../components/header-sidebar"
-import { PasswordRulesChecklist } from "../../components/PasswordRulesChecklist"
+import { PasswordRulesChecklist } from "../../components/password-rules-checklist"
 
 // i18n
 import { useTranslation } from "@/lib/i18n/client"
@@ -47,7 +47,7 @@ export default function BuyerResetPasswordForm() {
 
     function onSubmit(values: ResetPasswordValues) {
         console.log("Form submitted successfully:", values)
-        // No API call or navigation for now as per instructions
+        router.push(`/${locale}/buyer/reset-password-success`)
     }
 
     return (

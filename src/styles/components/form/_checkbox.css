@@ -1,11 +1,12 @@
 @layer components {
     .checkbox {
         @apply size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none;
-        @apply border-input;
+        @apply border-input dark:border-neutral-700;
         @apply dark:bg-input/30;
         @apply data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary;
         @apply dark:data-[state=checked]:bg-primary;
         @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
+        @apply dark:focus-visible:border-primary-400 dark:focus-visible:ring-primary-400/50;
         @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
         @apply disabled:cursor-not-allowed disabled:opacity-50;
     }

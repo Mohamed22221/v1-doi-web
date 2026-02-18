@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Check, X } from "lucide-react"
 import { cn } from "@/lib/utils/cn"
@@ -57,6 +57,7 @@ export function PasswordRulesChecklist({
     ]
 
     return (
+
         <div className={cn("p-6 rounded-[20px] bg-background  space-y-4", className)}>
             <h3 className="font-100 md:font-bold text-neutral-950 dark:text-neutral-50 text-label md:text-h5">
                 {title}
