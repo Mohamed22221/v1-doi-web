@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function TitleForm({ title, className }: { title: string, className?: string }) {
     return (

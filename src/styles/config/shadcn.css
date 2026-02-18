@@ -2,6 +2,7 @@
     /* shadcn Core Colors - Using Primary Brand */
     --background: var(--color-primary-50);
     --foreground: var(--color-neutral-500);
+    --natural-text: var(--color-neutral-400);
     --card: var(--color-neutral-10);
     --card-foreground: var(--color-neutral-500);
     --popover: var(--color-neutral-10);
@@ -47,6 +48,7 @@
 .dark {
     --background: var(--color-primary-900);
     --foreground: var(--color-neutral-50);
+    --natural-text: var(--color-neutral-300);
     --card: var(--color-primary-800);
     --card-foreground: var(--color-neutral-50);
     --popover: var(--color-primary-800);
