@@ -3,7 +3,11 @@
 import * as React from "react"
 import { FieldPath, FieldValues } from "react-hook-form"
 import { RHFField } from "./rhf-field"
-import { Calendar } from "@components/ui/calendar"
+import dynamic from "next/dynamic"
+const Calendar = dynamic(() => import("@components/ui/calendar").then((mod) => mod.Calendar), {
+    loading: () => <div className="h-[300px] w-[280px] animate-pulse bg-muted rounded-md" />,
+    ssr: false,
+})
 import { Popover, PopoverContent, PopoverTrigger } from "@components/ui/popover"
 import { Button } from "@components/ui/button"
 import { CalendarIcon } from "@components/shared/Icon/constant"

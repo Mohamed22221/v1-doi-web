@@ -65,6 +65,8 @@ function DrawerContent({
         )}
         {...props}
       >
+        <DrawerPrimitive.Title className="sr-only">Drawer</DrawerPrimitive.Title>
+        <DrawerPrimitive.Description className="sr-only">Drawer description</DrawerPrimitive.Description>
         <DrawerPrimitive.Handle style={{ width: "100px", height: "10px" }} className="fixed top-[-20px] left-[1/2] bg-primary-50 rounded-full shadow-lg  cursor-grab active:cursor-grabbing -translate-x-[1/2] -translate-y-[1/2] z-50 focus:outline-none " />
         {children}
       </DrawerPrimitive.Content>

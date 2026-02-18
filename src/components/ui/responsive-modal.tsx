@@ -12,16 +12,16 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer"
+import dynamic from "next/dynamic"
+
+const Drawer = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.Drawer), { ssr: false })
+const DrawerClose = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerClose), { ssr: false })
+const DrawerContent = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerContent), { ssr: false })
+const DrawerDescription = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerDescription), { ssr: false })
+const DrawerFooter = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerFooter), { ssr: false })
+const DrawerHeader = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerHeader), { ssr: false })
+const DrawerTitle = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerTitle), { ssr: false })
+const DrawerTrigger = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerTrigger), { ssr: false })
 import { cn } from "@/lib/utils/cn"
 
 type ResponsiveModalProps = React.ComponentProps<typeof Dialog> & {

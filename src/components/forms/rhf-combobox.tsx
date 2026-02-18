@@ -6,10 +6,6 @@ import { RHFField } from "./rhf-field"
 import {
     Combobox,
     ComboboxInput,
-    ComboboxContent,
-    ComboboxList,
-    ComboboxItem,
-    ComboboxEmpty,
     ComboboxChips,
     ComboboxChip,
     ComboboxChipsInput,
@@ -17,6 +13,12 @@ import {
     useComboboxAnchor,
     ComboboxTrigger,
 } from "@components/ui/combobox"
+import dynamic from "next/dynamic"
+
+const ComboboxContent = dynamic(() => import("@components/ui/combobox").then((mod) => mod.ComboboxContent), { ssr: false })
+const ComboboxList = dynamic(() => import("@components/ui/combobox").then((mod) => mod.ComboboxList), { ssr: false })
+const ComboboxItem = dynamic(() => import("@components/ui/combobox").then((mod) => mod.ComboboxItem), { ssr: false })
+const ComboboxEmpty = dynamic(() => import("@components/ui/combobox").then((mod) => mod.ComboboxEmpty), { ssr: false })
 import { BaseRHFProps } from "./rhf-types"
 import { InputGroupAddon, InputGroupButton } from "../ui/input-group"
 
