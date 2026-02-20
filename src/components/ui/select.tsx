@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@components/shared/Icon/constant";
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@components/shared/icon/constant";
 import { Select as SelectPrimitive } from "radix-ui";
 
 import { cn } from "@utils/cn";

@@ -8,7 +8,7 @@ import {
   ListNavIcon,
   BuyNavIcon,
   RatingsNavIcon,
-} from "@components/shared/Icon/constant";
+} from "@components/shared/icon/constant";
 
 export const NAV_VISIBILITY: NavVisibilityRules = {
   hideNavbarOn: ["/auth", "/login", "/register", "/checkout", "/notifications"],

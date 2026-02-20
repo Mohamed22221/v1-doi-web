@@ -1,8 +1,8 @@
 import type { Role } from "@defs/nav";
 import type { Locale } from "@lib/i18n/config";
 import { NavLinksContainer } from "./nav-links-container";
-import { BellIcon } from "@components/shared/Icon/constant";
-import Icon from "@components/shared/Icon";
+import { BellIcon } from "@components/shared/icon/constant";
+import Icon from "@components/shared/icon";
 import Logo from "@components/template/nav/logo";
 import { Button } from "@components/ui/button";
 import { UserAvatar } from "@components/template/nav/user-avatar";

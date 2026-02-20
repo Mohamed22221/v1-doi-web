@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
-import { MinusIcon } from "@components/shared/Icon/constant";
+import { MinusIcon } from "@components/shared/icon/constant";
 
 import { cn } from "@/lib/utils/cn";
 

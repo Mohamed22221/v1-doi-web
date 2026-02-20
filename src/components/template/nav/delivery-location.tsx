@@ -1,7 +1,7 @@
 "use client";
 
-import { LocationIcon, ChevronDownIcon } from "@components/shared/Icon/constant";
-import Icon from "@/components/shared/Icon";
+import { LocationIcon, ChevronDownIcon } from "@components/shared/icon/constant";
+import Icon from "@/components/shared/icon";
 
 export function DeliveryLocation() {
   return (

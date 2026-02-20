@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
-import { CheckIcon, ChevronDownIcon, XIcon } from "@components/shared/Icon/constant";
+import { CheckIcon, ChevronDownIcon, XIcon } from "@components/shared/icon/constant";
 
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";

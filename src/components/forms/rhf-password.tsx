@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import type { FieldPath, FieldValues } from "react-hook-form";
-import { EyeIcon, EyeOffIcon } from "@components/shared/Icon/constant";
-import Icon from "@components/shared/Icon";
+import { EyeIcon, EyeOffIcon } from "@components/shared/icon/constant";
+import Icon from "@components/shared/icon";
 import { RHFField } from "./rhf-field";
 import {
   InputGroup,
