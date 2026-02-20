@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface ThemeSyncProps {
-    theme: string;
+  theme: string;
 }
 
 /**
@@ -11,14 +11,14 @@ interface ThemeSyncProps {
  * This runs after the initial static shell hydrates, locking the theme without blocking SSR.
  */
 export function ThemeSync({ theme }: ThemeSyncProps) {
-    useEffect(() => {
-        const root = document.documentElement;
-        if (theme === 'dark') {
-            root.classList.add('dark');
-        } else {
-            root.classList.remove('dark');
-        }
-    }, [theme]);
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  }, [theme]);
 
-    return null;
+  return null;
 }

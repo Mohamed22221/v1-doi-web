@@ -1,20 +1,20 @@
 @layer components {
-    .textarea {
-        @apply flex w-full min-w-0 rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-all outline-none;
-        @apply min-h-20 border-input;
-        @apply placeholder:text-muted-foreground;
-        @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
-        @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
-        @apply disabled:cursor-not-allowed disabled:opacity-50;
-    }
+  .textarea {
+    @apply flex w-full min-w-0 rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-all outline-none;
+    @apply min-h-20 border-input;
+    @apply placeholder:text-muted-foreground;
+    @apply focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50;
+    @apply aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+  }
 
-    .form-item[data-layout="floating"] .textarea {
-        @apply pt-7 pb-2 mx-1 min-h-28;
+  .form-item[data-layout="floating"] .textarea {
+    @apply mx-1 min-h-28 pt-7 pb-2;
+  }
 
-    }
-
-    /* Hide placeholder when label is floating and not focused/has-value */
-    .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"]) .textarea::placeholder {
-        @apply text-transparent;
-    }
+  /* Hide placeholder when label is floating and not focused/has-value */
+  .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"])
+    .textarea::placeholder {
+    @apply text-transparent;
+  }
 }

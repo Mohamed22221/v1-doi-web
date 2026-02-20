@@ -1,9 +1,9 @@
 {
-    "hello": "سلام",
-    "welcome": "خوش آمدید",
-    "goodbye": "خداحافظ",
-    "language": "زبان",
-    "home": "خانه",
-    "about": "درباره",
-    "contact": "تماس"
+  "hello": "سلام",
+  "welcome": "خوش آمدید",
+  "goodbye": "خداحافظ",
+  "language": "زبان",
+  "home": "خانه",
+  "about": "درباره",
+  "contact": "تماس"
 }

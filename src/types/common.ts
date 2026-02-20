@@ -1,7 +1,7 @@
-import type { ReactNode, CSSProperties } from 'react'
+import type { ReactNode, CSSProperties } from "react";
 
 export interface CommonProps {
-    className?: string
-    children?: ReactNode
-    style?: CSSProperties
+  className?: string;
+  children?: ReactNode;
+  style?: CSSProperties;
 }

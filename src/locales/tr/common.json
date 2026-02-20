@@ -1,9 +1,9 @@
 {
-    "hello": "Merhaba",
-    "welcome": "Hoş geldiniz",
-    "goodbye": "Güle güle",
-    "language": "Dil",
-    "home": "Ana sayfa",
-    "about": "Hakkında",
-    "contact": "İletişim"
+  "hello": "Merhaba",
+  "welcome": "Hoş geldiniz",
+  "goodbye": "Güle güle",
+  "language": "Dil",
+  "home": "Ana sayfa",
+  "about": "Hakkında",
+  "contact": "İletişim"
 }

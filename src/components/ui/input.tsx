@@ -1,23 +1,20 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@utils/cn"
+import { cn } from "@utils/cn";
 
-const inputVariants = cva(
-  "input",
-  {
-    variants: {
-      size: {
-        default: "h-10 text-sm",
-        sm: "h-8 text-xs",
-        lg: "h-14 text-base px-4",
-      },
+const inputVariants = cva("input", {
+  variants: {
+    size: {
+      default: "h-10 text-sm",
+      sm: "h-8 text-xs",
+      lg: "h-14 px-4 text-base",
     },
-    defaultVariants: {
-      size: "default",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    size: "default",
+  },
+});
 
 const Input = React.forwardRef<
   HTMLInputElement,
@@ -31,9 +28,8 @@ const Input = React.forwardRef<
       className={cn(inputVariants({ size, className }))}
       {...props}
     />
-  )
-})
-Input.displayName = "Input"
+  );
+});
+Input.displayName = "Input";
 
-
-export { Input, inputVariants }
+export { Input, inputVariants };

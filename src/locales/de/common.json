@@ -1,9 +1,9 @@
 {
-    "hello": "Hallo",
-    "welcome": "Willkommen",
-    "goodbye": "Auf Wiedersehen",
-    "language": "Sprache",
-    "home": "Startseite",
-    "about": "Über",
-    "contact": "Kontakt"
+  "hello": "Hallo",
+  "welcome": "Willkommen",
+  "goodbye": "Auf Wiedersehen",
+  "language": "Sprache",
+  "home": "Startseite",
+  "about": "Über",
+  "contact": "Kontakt"
 }

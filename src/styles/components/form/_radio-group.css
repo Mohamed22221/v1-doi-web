@@ -1,55 +1,55 @@
 @layer components {
-    .radio-group {
-        @apply grid gap-3;
-    }
+  .radio-group {
+    @apply grid gap-3;
+  }
 
-    .radio-group-item {
-        @apply shrink-0 rounded-full border shadow-xs transition-all outline-none;
-        @apply border-primary text-primary bg-background;
-        @apply dark:bg-input/30;
-        @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
-        @apply aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
-        @apply disabled:cursor-not-allowed disabled:opacity-50;
-        @apply w-8 h-8;
-    }
+  .radio-group-item {
+    @apply shrink-0 rounded-full border shadow-xs transition-all outline-none;
+    @apply border-primary bg-background text-primary;
+    @apply dark:bg-input/30;
+    @apply focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50;
+    @apply aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+    @apply h-8 w-8;
+  }
 
-    .radio-group-item[data-size="sm"] {
-        @apply w-6 h-6;
-    }
+  .radio-group-item[data-size="sm"] {
+    @apply h-6 w-6;
+  }
 
-    .radio-group-item[data-size="md"] {
-        @apply w-8 h-8;
-    }
+  .radio-group-item[data-size="md"] {
+    @apply h-8 w-8;
+  }
 
-    .radio-group-item[data-size="lg"] {
-        @apply w-10 h-10;
-    }
+  .radio-group-item[data-size="lg"] {
+    @apply h-10 w-10;
+  }
 
-    .radio-group-item[data-size="xl"] {
-        @apply w-12 h-12;
-    }
+  .radio-group-item[data-size="xl"] {
+    @apply h-12 w-12;
+  }
 
-    .radio-group-indicator {
-        @apply relative flex items-center justify-center;
-    }
+  .radio-group-indicator {
+    @apply relative flex items-center justify-center;
+  }
 
-    .radio-group-indicator-icon {
-        @apply fill-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-    }
+  .radio-group-indicator-icon {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-primary;
+  }
 
-    .radio-group-item[data-size="sm"] .radio-group-indicator-icon {
-        @apply w-4 h-4;
-    }
+  .radio-group-item[data-size="sm"] .radio-group-indicator-icon {
+    @apply h-4 w-4;
+  }
 
-    .radio-group-item[data-size="md"] .radio-group-indicator-icon {
-        @apply w-5 h-5;
-    }
+  .radio-group-item[data-size="md"] .radio-group-indicator-icon {
+    @apply h-5 w-5;
+  }
 
-    .radio-group-item[data-size="lg"] .radio-group-indicator-icon {
-        @apply w-6 h-6;
-    }
+  .radio-group-item[data-size="lg"] .radio-group-indicator-icon {
+    @apply h-6 w-6;
+  }
 
-    .radio-group-item[data-size="xl"] .radio-group-indicator-icon {
-        @apply w-8 h-8;
-    }
+  .radio-group-item[data-size="xl"] .radio-group-indicator-icon {
+    @apply h-8 w-8;
+  }
 }

@@ -134,3 +134,4 @@ src/
   hooks/
   styles/
   middleware.ts
+```

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { cn } from "@utils/cn";
@@ -15,7 +15,7 @@ interface NavItemProps {
   variant?: "desktop" | "mobile";
   badge?: number | string;
   exact?: boolean;
-  locale: Locale
+  locale: Locale;
 }
 
 export function NavItem({
@@ -26,30 +26,24 @@ export function NavItem({
   variant = "desktop",
   badge,
   exact,
-  locale
+  locale,
 }: NavItemProps) {
-
   const activeHref = useNavStore((state) => state.activeHref);
   const isDesktop = variant === "desktop";
   const isActive = propIsActive ?? isNavItemActive(href, activeHref, exact);
-  const { t } = useTranslation(locale, "common")
+  const { t } = useTranslation(locale, "common");
   return (
     <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
         "relative flex flex-col items-center gap-1 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-        isDesktop ? "px-2 py-1 rounded-md" : "flex-1 py-1",
-        isActive
-          ? "text-primary-400"
-          : "text-neutral-400 hover:text-primary-400",
+        isDesktop ? "rounded-md px-2 py-1" : "flex-1 py-1",
+        isActive ? "text-primary-400" : "text-neutral-400 hover:text-primary-400",
       )}
     >
       <div
-        className={cn(
-          "relative size-6 transition-transform",
-          isActive ? "scale-110" : "scale-100",
-        )}
+        className={cn("relative size-6 transition-transform", isActive ? "scale-110" : "scale-100")}
       >
         <div className="flex items-center justify-center md:h-[16px]">{icon}</div>
 
@@ -60,17 +54,14 @@ export function NavItem({
         )}
       </div>
       <span
-        className={cn(
-          "font-medium whitespace-nowrap",
-          isDesktop ? "text-body" : "text-[12px]",
-        )}
+        className={cn("font-medium whitespace-nowrap", isDesktop ? "text-body" : "text-[12px]")}
       >
         {t(label)}
       </span>
 
       {/* Indicator for active state in Mobile Nav */}
       {!isDesktop && isActive && (
-        <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-10 h-1 rounded-b-[3px]  bg-primary-400" />
+        <div className="absolute -top-1.5 left-1/2 h-1 w-10 -translate-x-1/2 rounded-b-[3px] bg-primary-400" />
       )}
     </Link>
   );

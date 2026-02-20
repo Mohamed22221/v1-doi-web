@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "analyze": "cross-env ANALYZE=true next build --webpack",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint",
-    "analyze": "cross-env ANALYZE=true next build --webpack"
+    "start": "next start"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
@@ -48,6 +50,8 @@
     "eslint-plugin-sonarjs": "^4.0.0",
     "eslint-plugin-unicorn": "^63.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
+    "prettier": "^3.8.1",
+    "prettier-plugin-packagejson": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "shadcn": "^3.8.4",
     "tailwindcss": "^4",

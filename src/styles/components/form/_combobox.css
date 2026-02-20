@@ -1,18 +1,20 @@
 @layer components {
+  /* Scoped height for InputGroup in floating layout */
+  .form-item[data-layout="floating"] [data-slot="input-group"] {
+    @apply !h-auto !min-h-4 !pt-2;
+  }
 
-    /* Scoped height for InputGroup in floating layout */
-    .form-item[data-layout="floating"] [data-slot="input-group"] {
-        @apply !min-h-4 !h-auto !pt-2;
-    }
+  /* Floating layout adjustments for Chips (Multi-select) */
+  .form-item[data-layout="floating"] .combobox-chips {
+    @apply !h-auto !min-h-10 px-3 !pt-7;
+  }
 
-    /* Floating layout adjustments for Chips (Multi-select) */
-    .form-item[data-layout="floating"] .combobox-chips {
-        @apply !min-h-10 !h-auto !pt-7 px-3;
-    }
-
-    /* Hide placeholder when label is floating and not focused/has-value */
-    .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"]) .combobox-input [data-slot="input-group-control"]::placeholder,
-    .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"]) [data-slot="combobox-chip-input"]::placeholder {
-        @apply text-transparent;
-    }
+  /* Hide placeholder when label is floating and not focused/has-value */
+  .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"])
+    .combobox-input
+    [data-slot="input-group-control"]::placeholder,
+  .form-item[data-layout="floating"]:not(:focus-within):not([data-has-value="true"])
+    [data-slot="combobox-chip-input"]::placeholder {
+    @apply text-transparent;
+  }
 }

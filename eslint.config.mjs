@@ -6,7 +6,7 @@ import importPlugin from "eslint-plugin-import";
 import unusedImports from "eslint-plugin-unused-imports";
 import sonarjs from "eslint-plugin-sonarjs";
 import security from "eslint-plugin-security";
-import prettier from 'eslint-config-prettier/flat'
+import prettier from "eslint-config-prettier/flat";
 import unicorn from "eslint-plugin-unicorn";
 
 const eslintConfig = defineConfig([
@@ -46,13 +46,7 @@ const eslintConfig = defineConfig([
           cases: {
             kebabCase: true,
           },
-          ignore: [
-            "page.tsx",
-            "layout.tsx",
-            "loading.tsx",
-            "error.tsx",
-            "route.ts"
-          ],
+          ignore: ["page.tsx", "layout.tsx", "loading.tsx", "error.tsx", "route.ts"],
         },
       ],
       "react/jsx-pascal-case": [
@@ -74,7 +68,7 @@ const eslintConfig = defineConfig([
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-      '@typescript-eslint/consistent-type-imports': 'warn',
+      "@typescript-eslint/consistent-type-imports": "warn",
       "react/react-in-jsx-scope": "off",
       "react-hooks/exhaustive-deps": "warn",
       "@next/next/no-img-element": "error",
@@ -99,7 +93,7 @@ const eslintConfig = defineConfig([
       "no-console": ["warn", { allow: ["warn", "error", "info"] }],
       "prefer-const": "error",
       "no-var": "error",
-      "eqeqeq": ["error", "always"],
+      eqeqeq: ["error", "always"],
       "no-debugger": "error",
       "no-eval": "error",
     },
@@ -120,7 +114,6 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-misused-promises": "off",
     },
   },
-
 ]);
 
 export default eslintConfig;

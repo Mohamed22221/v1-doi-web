@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Switch as SwitchPrimitive } from "radix-ui"
+import * as React from "react";
+import { Switch as SwitchPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils/cn"
+import { cn } from "@/lib/utils/cn";
 
 function Switch({
   className,
   size = "default",
   ...props
 }: React.ComponentProps<typeof SwitchPrimitive.Root> & {
-  size?: "sm" | "default" | "lg"
+  size?: "sm" | "default" | "lg";
 }) {
   return (
     <SwitchPrimitive.Root
@@ -21,7 +21,7 @@ function Switch({
         size === "default" && "switch-size-default",
         size === "sm" && "switch-size-sm",
         size === "lg" && "h-7 w-12",
-        className
+        className,
       )}
       {...props}
     >
@@ -31,11 +31,11 @@ function Switch({
           "switch-thumb",
           size === "default" && "group-data-[size=default]/switch:size-4",
           size === "sm" && "group-data-[size=sm]/switch:size-3",
-          size === "lg" && "size-6 data-[state=checked]:translate-x-5"
+          size === "lg" && "size-6 data-[state=checked]:translate-x-5",
         )}
       />
     </SwitchPrimitive.Root>
-  )
+  );
 }
 
-export { Switch }
+export { Switch };

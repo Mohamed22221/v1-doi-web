@@ -27,10 +27,10 @@ export default function RootLayout({
         {/* Inline blocking script for zero FOUC - executes before first paint */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_CODE }} />
       </head>
-      <body className={`${montserrat.variable} ${cairo.variable} antialiased font-sans`}>
+      <body className={`${montserrat.variable} ${cairo.variable} font-sans antialiased`}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[10000] bg-primary-400 text-white p-3 rounded-md shadow-lg"
+          className="sr-only z-[10000] rounded-md bg-primary-400 p-3 text-white shadow-lg focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
         >
           Skip to content
         </a>

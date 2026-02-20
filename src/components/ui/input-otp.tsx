@@ -1,12 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
-import { MinusIcon } from "@components/shared/Icon/constant"
+import * as React from "react";
+import { OTPInput, OTPInputContext } from "input-otp";
+import { MinusIcon } from "@components/shared/Icon/constant";
 
-import { cn } from "@/lib/utils/cn"
+import { cn } from "@/lib/utils/cn";
 
-type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown
+  ? Omit<T, K>
+  : never;
 
 function InputOTP({
   className,
@@ -14,8 +16,8 @@ function InputOTP({
   size = "default",
   ...props
 }: DistributiveOmit<React.ComponentProps<typeof OTPInput>, "size"> & {
-  containerClassName?: string
-  size?: "default" | "sm" | "lg"
+  containerClassName?: string;
+  size?: "default" | "sm" | "lg";
 }) {
   return (
     <OTPInput
@@ -24,22 +26,18 @@ function InputOTP({
         "input-otp-container",
         size === "sm" && "input-otp-sm",
         size === "lg" && "input-otp-lg",
-        containerClassName
+        containerClassName,
       )}
       className={cn("input-otp", className)}
       {...props}
     />
-  )
+  );
 }
 
 function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
-      data-slot="input-otp-group"
-      className={cn("input-otp-group", className)}
-      {...props}
-    />
-  )
+    <div data-slot="input-otp-group" className={cn("input-otp-group", className)} {...props} />
+  );
 }
 
 function InputOTPSlot({
@@ -47,10 +45,10 @@ function InputOTPSlot({
   className,
   ...props
 }: React.ComponentProps<"div"> & {
-  index: number
+  index: number;
 }) {
-  const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}
+  const inputOTPContext = React.useContext(OTPInputContext);
+  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 
   return (
     <div
@@ -66,7 +64,7 @@ function InputOTPSlot({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
@@ -74,7 +72,7 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
     <div data-slot="input-otp-separator" role="separator" {...props}>
       <MinusIcon />
     </div>
-  )
+  );
 }
 
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator };

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { CircleIcon } from "@components/shared/Icon/constant"
-import { RadioGroup as RadioGroupPrimitive } from "radix-ui"
+import * as React from "react";
+import { CircleIcon } from "@components/shared/Icon/constant";
+import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils/cn"
+import { cn } from "@/lib/utils/cn";
 
 function RadioGroup({
   className,
@@ -16,7 +16,7 @@ function RadioGroup({
       className={cn("radio-group", className)}
       {...props}
     />
-  )
+  );
 }
 
 function RadioGroupItem({
@@ -36,7 +36,7 @@ function RadioGroupItem({
         <CircleIcon className="radio-group-indicator-icon" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
-  )
+  );
 }
 
-export { RadioGroup, RadioGroupItem }
+export { RadioGroup, RadioGroupItem };

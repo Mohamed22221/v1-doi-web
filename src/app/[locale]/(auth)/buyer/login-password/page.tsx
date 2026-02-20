@@ -1,32 +1,27 @@
-import type { Locale } from "@/lib/i18n/config"
+import type { Locale } from "@/lib/i18n/config";
 
 // Layouts & Components
-import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout"
-import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar"
-import BuyerLoginPasswordForm from "@/features/auth/buyer/login/buyer-login-password-form"
+import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
+import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
+import BuyerLoginPasswordForm from "@/features/auth/buyer/login/buyer-login-password-form";
 
 interface PageProps {
-    params: Promise<{ locale: string }>
+  params: Promise<{ locale: string }>;
 }
 
 /**
  * BuyerLoginPasswordPage
- * 
+ *
  * Page for buyers to login using their phone number and password.
  * Uses the same split layout and sidebar as the main login page.
  */
 export default async function BuyerLoginPasswordPage({ params }: PageProps) {
-    const { locale } = await params
+  const { locale } = await params;
 
-    return (
-        <AuthSplitLayout
-            formContent={<BuyerLoginPasswordForm />}
-            sidebarContent={
-                <BuyerSidebar
-                    locale={locale as Locale}
-                    variant="buyer-login"
-                />
-            }
-        />
-    )
+  return (
+    <AuthSplitLayout
+      formContent={<BuyerLoginPasswordForm />}
+      sidebarContent={<BuyerSidebar locale={locale as Locale} variant="buyer-login" />}
+    />
+  );
 }

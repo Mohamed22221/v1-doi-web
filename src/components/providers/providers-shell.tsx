@@ -5,8 +5,8 @@ import { ThemeSync } from "@/components/shared/theme/theme-sync";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ProvidersShellProps {
-    children: React.ReactNode;
-    locale: Locale;
+  children: React.ReactNode;
+  locale: Locale;
 }
 
 /**
@@ -15,16 +15,16 @@ interface ProvidersShellProps {
  * to prevent 'Blocking Route' errors and enable PPR.
  */
 export async function ProvidersShell({ children, locale }: ProvidersShellProps) {
-    const cookieStore = await cookies();
-    const theme = cookieStore.get("theme")?.value || "light";
-    const resources = await getResources(locale);
+  const cookieStore = await cookies();
+  const theme = cookieStore.get("theme")?.value || "light";
+  const resources = await getResources(locale);
 
-    return (
-        <>
-            <ThemeSync theme={theme} />
-            <I18nProvider locale={locale} resources={resources}>
-                {children}
-            </I18nProvider>
-        </>
-    );
+  return (
+    <>
+      <ThemeSync theme={theme} />
+      <I18nProvider locale={locale} resources={resources}>
+        {children}
+      </I18nProvider>
+    </>
+  );
 }

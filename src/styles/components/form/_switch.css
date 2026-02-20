@@ -1,33 +1,33 @@
 @layer components {
-    .switch {
-        @apply inline-flex shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none;
-        @apply data-[state=checked]:bg-primary data-[state=unchecked]:bg-input;
-        @apply dark:data-[state=unchecked]:bg-input/80;
-        @apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px];
-        @apply disabled:cursor-not-allowed disabled:opacity-50;
-    }
+  .switch {
+    @apply inline-flex shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none;
+    @apply data-[state=checked]:bg-primary data-[state=unchecked]:bg-input;
+    @apply dark:data-[state=unchecked]:bg-input/80;
+    @apply focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+  }
 
-    .switch-size-default {
-        @apply h-[1.15rem] w-8;
-    }
+  .switch-size-default {
+    @apply h-[1.15rem] w-8;
+  }
 
-    .switch-size-sm {
-        @apply h-3.5 w-6;
-    }
+  .switch-size-sm {
+    @apply h-3.5 w-6;
+  }
 
-    .switch-thumb {
-        @apply pointer-events-none block rounded-full ring-0 transition-transform;
-        @apply bg-background;
-        @apply dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground;
-        @apply data-[state=checked]:translate-x-[calc(100%-2px)] rtl:data-[state=checked]:-translate-x-[calc(100%-2px)];
-        @apply data-[state=unchecked]:translate-x-0 rtl:data-[state=unchecked]:-translate-x-0;
-    }
+  .switch-thumb {
+    @apply pointer-events-none block rounded-full ring-0 transition-transform;
+    @apply bg-background;
+    @apply dark:data-[state=checked]:bg-primary-foreground dark:data-[state=unchecked]:bg-foreground;
+    @apply data-[state=checked]:translate-x-[calc(100%-2px)] rtl:data-[state=checked]:-translate-x-[calc(100%-2px)];
+    @apply data-[state=unchecked]:translate-x-0 rtl:data-[state=unchecked]:-translate-x-0;
+  }
 
-    .switch-thumb-default {
-        /* Moved to TSX due to @apply limitations */
-    }
+  .switch-thumb-default {
+    /* Moved to TSX due to @apply limitations */
+  }
 
-    .switch-thumb-sm {
-        /* Moved to TSX due to @apply limitations */
-    }
+  .switch-thumb-sm {
+    /* Moved to TSX due to @apply limitations */
+  }
 }

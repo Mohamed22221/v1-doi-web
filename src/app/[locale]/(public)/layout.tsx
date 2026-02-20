@@ -17,7 +17,7 @@ export default async function RootLayout({
     <>
       <SellerNav roles={["guest"]} locale={locale} />
       <main>
-        <PageContainer variant="full" className="pt-1 pb-20 md:py-20 ">
+        <PageContainer variant="full" className="pt-1 pb-20 md:py-20">
           {children}
         </PageContainer>
       </main>

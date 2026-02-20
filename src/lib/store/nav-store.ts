@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface NavState {
-    activeHref: string;
-    setActiveHref: (href: string) => void;
+  activeHref: string;
+  setActiveHref: (href: string) => void;
 }
 
 export const useNavStore = create<NavState>((set) => ({
-    activeHref: '/',
-    setActiveHref: (href) => set({ activeHref: href }),
+  activeHref: "/",
+  setActiveHref: (href) => set({ activeHref: href }),
 }));

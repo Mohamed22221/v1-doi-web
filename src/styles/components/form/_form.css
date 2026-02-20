@@ -1,17 +1,17 @@
 @layer components {
-    .form-item {
-        @apply grid gap-2;
-    }
+  .form-item {
+    @apply grid gap-2;
+  }
 
-    .form-label {
-        @apply data-[error=true]:text-destructive;
-    }
+  .form-label {
+    @apply data-[error=true]:text-destructive;
+  }
 
-    .form-description {
-        @apply text-sm text-muted-foreground;
-    }
+  .form-description {
+    @apply text-sm text-muted-foreground;
+  }
 
-    .form-message {
-        @apply text-sm text-destructive;
-    }
+  .form-message {
+    @apply text-sm text-destructive;
+  }
 }

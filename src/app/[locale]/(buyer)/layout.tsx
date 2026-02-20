@@ -5,25 +5,25 @@ import { PageContainer } from "@components/template/container/page-container";
 import type { Locale } from "@lib/i18n/config";
 
 export default async function NavLayout({
-    children,
-    params,
+  children,
+  params,
 }: Readonly<{
-    children: React.ReactNode;
-    params: Promise<{ locale: string }>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
-    const { locale: rawLocale } = await params;
-    const locale = rawLocale as Locale;
+  const { locale: rawLocale } = await params;
+  const locale = rawLocale as Locale;
 
-    return (
-        <>
-            <Header role="buyer" />
-            <BuyerNav roles={["buyer"]} locale={locale} />
-            <main>
-                <PageContainer variant="full" className="pt-22 pb-22 md:pt-9 md:pb-10">
-                    {children}
-                </PageContainer>
-            </main>
-            <MobileNav roles={["buyer"]} locale={locale} />
-        </>
-    );
+  return (
+    <>
+      <Header role="buyer" />
+      <BuyerNav roles={["buyer"]} locale={locale} />
+      <main>
+        <PageContainer variant="full" className="pt-22 pb-22 md:pt-9 md:pb-10">
+          {children}
+        </PageContainer>
+      </main>
+      <MobileNav roles={["buyer"]} locale={locale} />
+    </>
+  );
 }

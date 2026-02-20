@@ -1,15 +1,15 @@
 @theme {
-    /* Border Radius Tokens */
-    --radius-xs: 8px;
-    /* Tag / Badge */
-    --radius-sm: 12px;
-    /* Input fields */
-    --radius-md: 16px;
-    /* Dropdown / Select / Popups */
-    --radius-lg: 24px;
-    /* Cards / Products */
-    --radius-xl: 32px;
-    /* Web purposes */
-    --radius-full: 100px;
-    /* Image / Avatar */
+  /* Border Radius Tokens */
+  --radius-xs: 8px;
+  /* Tag / Badge */
+  --radius-sm: 12px;
+  /* Input fields */
+  --radius-md: 16px;
+  /* Dropdown / Select / Popups */
+  --radius-lg: 24px;
+  /* Cards / Products */
+  --radius-xl: 32px;
+  /* Web purposes */
+  --radius-full: 100px;
+  /* Image / Avatar */
 }
