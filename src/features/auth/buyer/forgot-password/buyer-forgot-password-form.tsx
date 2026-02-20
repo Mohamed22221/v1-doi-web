@@ -9,19 +9,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { getForgotPasswordSchema, type ForgotPasswordValues } from "./schema";
 
 // UI Components
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Form } from "@/components/ui/form";
-import { RHFPhoneInput } from "@/components/forms/rhf-phone-input";
-import Icon from "@/components/shared/icon-base";
-import { ArrowIcon } from "@/components/shared/icon-base/constant";
+import { Button } from "@components/ui/button";
+import { Card } from "@components/ui/card";
+import { Form } from "@components/ui/form";
+import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
+import Icon from "@components/shared/icon-base";
+import { ArrowIcon } from "@components/shared/icon-base/constant";
 
 // Auth Components
-import Logo from "@/components/template/nav/logo";
+import { Logo } from "@components/template/nav/logo";
 import HeaderSidebar from "../../components/header-sidebar";
 
 // i18n
-import { useTranslation } from "@/lib/i18n/client";
+import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 
 export default function BuyerForgotPasswordForm() {

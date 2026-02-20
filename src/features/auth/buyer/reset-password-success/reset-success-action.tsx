@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 import type { Locale } from "@/lib/i18n/config";
-import { getTranslation } from "@/lib/i18n/server";
+import { getTranslation } from "@lib/i18n/server";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 

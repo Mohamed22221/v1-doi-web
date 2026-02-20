@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useParams } from "next/navigation";
 // i18n
-import { useTranslation } from "@/lib/i18n/client";
+import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 
 /**

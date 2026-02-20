@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 
 const Drawer = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.Drawer), {
   ssr: false,

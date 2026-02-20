@@ -3,7 +3,7 @@ import type { Locale } from "@lib/i18n/config";
 import { NavLinksContainer } from "./nav-links-container";
 import { BellIcon } from "@components/shared/icon-base/constant";
 import Icon from "@components/shared/icon-base";
-import Logo from "@components/template/nav/logo";
+import { Logo } from "@components/template/nav/logo";
 import { Button } from "@components/ui/button";
 import { UserAvatar } from "@components/template/nav/user-avatar";
 import { PageContainer } from "@components/template/container/page-container";

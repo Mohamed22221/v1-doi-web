@@ -8,7 +8,7 @@ import {
 } from "@components/shared/icon-base/constant";
 import { DayPicker, getDefaultClassNames, type DayButton } from "react-day-picker";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 import { Button } from "@/components/ui/button";
 
 function Calendar({

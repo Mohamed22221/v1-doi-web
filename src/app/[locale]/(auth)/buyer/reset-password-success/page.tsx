@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n/config";
+import type { Locale } from "@lib/i18n/config";
 
 // Layouts & Components
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";

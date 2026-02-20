@@ -3,11 +3,11 @@
 import { useParams } from "next/navigation";
 
 // UI Components
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card } from "@components/ui/card";
+import { Button } from "@components/ui/button";
 
 // i18n
-import { useTranslation } from "@/lib/i18n/client";
+import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 
 interface BuyerVerifyOtpActionsProps {
@@ -46,11 +46,10 @@ export default function BuyerVerifyOtpActions({
           type="button"
           onClick={onResend}
           disabled={timeLeft > 0}
-          className={`font-bold transition-colors ${
-            timeLeft > 0
-              ? "cursor-not-allowed text-neutral-300 dark:text-neutral-600"
-              : "text-primary-500 hover:text-primary-600 dark:text-primary-300"
-          }`}
+          className={`font-bold transition-colors ${timeLeft > 0
+            ? "cursor-not-allowed text-neutral-300 dark:text-neutral-600"
+            : "text-primary-500 hover:text-primary-600 dark:text-primary-300"
+            }`}
         >
           {t("buyer-verify-otp.resendNow")}
         </button>

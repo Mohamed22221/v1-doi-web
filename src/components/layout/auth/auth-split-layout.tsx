@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 import { PageContainer } from "@/components/template/container/page-container";
 import type { AuthSplitLayoutProps, ChildernLayoutProps } from "@/types/auth-layout";
 

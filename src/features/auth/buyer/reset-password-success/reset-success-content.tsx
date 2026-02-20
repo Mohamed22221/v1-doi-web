@@ -3,11 +3,11 @@ import Image from "next/image";
 
 // i18n
 import type { Locale } from "@/lib/i18n/config";
-import { getTranslation } from "@/lib/i18n/server";
+import { getTranslation } from "@lib/i18n/server";
 
 // Components
-import Logo from "@/components/template/nav/logo";
-import HeaderSidebar from "@/features/auth/components/header-sidebar";
+import { Logo } from "@components/template/nav/logo";
+import HeaderSidebar from "../../components/header-sidebar";
 
 interface ResetSuccessContentProps {
   locale: Locale;

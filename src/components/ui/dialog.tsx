@@ -4,7 +4,7 @@ import * as React from "react";
 import { XIcon } from "@components/shared/icon-base/constant";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 import { Button } from "@/components/ui/button";
 import Icon from "../shared/icon-base";
 

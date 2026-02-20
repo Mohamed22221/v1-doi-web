@@ -1,4 +1,4 @@
-import Logo from "@components/template/nav/logo";
+import { Logo } from "@components/template/nav/logo";
 import { HeaderActions } from "./header-actions";
 import { DeliveryLocation } from "@components/template/nav/delivery-location";
 import type { HeaderActionRole } from "@config/header-actions-config";

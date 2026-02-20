@@ -6,7 +6,28 @@
   "home": "Home",
   "about": "About",
   "contact": "Contact",
+  "auth-dashboard": {
+    "title": "Authentication Dashboard",
+    "subtitle": "Access and test all authentication flows from a single location.",
+    "footer": "Built with Next.js 16 & shadcn/ui",
+    "sections": {
+      "buyer": "Buyer Auth",
+      "recovery": "Password Recovery",
+      "success": "Success States"
+    },
+    "links": {
+      "login-phone": "Login (Phone)",
+      "login-password": "Login (Password)",
+      "register": "Register",
+      "forgot": "Forgot Password",
+      "verify": "Verify OTP",
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success"
+    }
+  },
   "nav": {
+    "primary": "Primary Navigation",
     "home": "Home",
     "search": "Discover",
     "sell": "Sell",
@@ -16,5 +37,12 @@
     "products": "My Products",
     "buy": "Buy",
     "ratings": "Ratings"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "delivery": {
+    "to": "Delivery to",
+    "defaultLocation": "Riyadh - Al Narjis District"
   }
 }

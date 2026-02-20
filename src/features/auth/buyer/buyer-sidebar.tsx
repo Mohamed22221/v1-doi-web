@@ -2,13 +2,13 @@ import { cacheLife } from "next/cache";
 import Image from "next/image";
 
 // i18n
+import { getTranslation } from "@lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
-import { getTranslation } from "@/lib/i18n/server";
 
 // Components
-import Logo from "@/components/template/nav/logo";
-import HeaderSidebar from "@/features/auth/components/header-sidebar";
-import PointsSidebar from "@/features/auth/components/points-sidebar";
+import { Logo } from "@components/template/nav/logo";
+import HeaderSidebar from "../components/header-sidebar";
+import PointsSidebar from "../components/points-sidebar";
 
 interface BuyerSidebarProps {
   locale: Locale;

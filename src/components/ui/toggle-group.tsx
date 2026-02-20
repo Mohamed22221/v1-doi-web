@@ -4,7 +4,7 @@ import * as React from "react";
 import { type VariantProps } from "class-variance-authority";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 import { toggleVariants } from "@/components/ui/toggle";
 
 const ToggleGroupContext = React.createContext<
@@ -71,10 +71,10 @@ function ToggleGroupItem({
       data-spacing={context.spacing}
       className={cn(
         !className?.includes("toggle-button-item") &&
-          toggleVariants({
-            variant: context.variant || variant,
-            size: context.size || size,
-          }),
+        toggleVariants({
+          variant: context.variant || variant,
+          size: context.size || size,
+        }),
         "toggle-button-item w-auto min-w-0 shrink-0 focus:z-10 focus-visible:z-10",
         "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-s-md data-[spacing=0]:last:rounded-e-md data-[spacing=0]:data-[variant=outline]:border-s-0 data-[spacing=0]:data-[variant=outline]:first:border-s",
         className,

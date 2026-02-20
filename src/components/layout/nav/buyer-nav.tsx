@@ -1,6 +1,6 @@
 import type { Role } from "@defs/nav";
 import type { Locale } from "@lib/i18n/config";
-import { getTranslation } from "@/lib/i18n/server";
+import { getTranslation } from "@lib/i18n/server";
 import { NavLinksContainer } from "./nav-links-container";
 
 interface BuyerNavProps {

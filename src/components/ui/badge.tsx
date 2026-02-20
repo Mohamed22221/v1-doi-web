@@ -2,9 +2,9 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 
-const badgeVariants = cva("badge", {
+export const badgeVariants = cva("badge", {
   variants: {
     variant: {
       default: "badge-default",
@@ -22,7 +22,7 @@ const badgeVariants = cva("badge", {
   },
 });
 
-function Badge({
+export function Badge({
   className,
   variant = "default",
   asChild = false,
@@ -39,5 +39,3 @@ function Badge({
     />
   );
 }
-
-export { Badge, badgeVariants };

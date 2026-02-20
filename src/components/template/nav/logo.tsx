@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { APP_NAME } from "@/constants/app.constant";
 import type { CommonProps } from "@/types/common";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 import { useThemeStore } from "@/lib/store/theme-store";
 
 interface LogoProps extends CommonProps {
@@ -17,7 +17,7 @@ interface LogoProps extends CommonProps {
 
 const LOGO_SRC_PATH = "/img/";
 
-const Logo = (props: LogoProps) => {
+export function Logo(props: LogoProps) {
   const {
     type = "full",
     mode: modeProp,
@@ -44,6 +44,4 @@ const Logo = (props: LogoProps) => {
       />
     </div>
   );
-};
-
-export default Logo;
+}

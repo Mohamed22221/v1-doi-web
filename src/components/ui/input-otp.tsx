@@ -4,7 +4,7 @@ import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "@components/shared/icon-base/constant";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@utils/cn";
 
 type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown
   ? Omit<T, K>
