@@ -5,7 +5,7 @@ import { cn } from "@utils/cn";
 import { useNavStore } from "@lib/store/nav-store";
 import { isNavItemActive } from "@lib/nav/utils";
 import { useTranslation } from "@/lib/i18n/client";
-import { Locale } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/i18n/config";
 
 interface NavItemProps {
   href: string;

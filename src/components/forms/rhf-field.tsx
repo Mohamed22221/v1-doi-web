@@ -10,7 +10,7 @@ import {
     FormMessage,
 } from "@components/ui/form"
 import { cn } from "@utils/cn"
-import { useFormLayout, FormLayout, FormSize } from "./form-layout"
+import { useFormLayout, type FormLayout, type FormSize } from "./form-layout"
 
 interface RHFFieldProps<
     TFieldValues extends FieldValues = FieldValues,

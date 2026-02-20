@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { FieldPath, FieldValues } from "react-hook-form"
+import type { FieldPath, FieldValues } from "react-hook-form"
 import { RHFField } from "./rhf-field"
 import { Checkbox } from "@components/ui/checkbox"
 import { Label } from "@components/ui/label"
-import { BaseRHFProps } from "./rhf-types"
+import type { BaseRHFProps } from "./rhf-types"
 import { cn } from "@utils/cn"
 
 interface RHFCheckboxProps<
@@ -69,6 +69,7 @@ export function RHFCheckbox<
                                 field.onChange(!field.value)
                                 labelProps?.onClick?.(e)
                             }}
+
                             {...labelProps}
                         >
                             {checkboxLabel}

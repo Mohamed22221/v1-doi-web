@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { APP_NAME } from '@/constants/app.constant'
 import type { CommonProps } from '@/types/common'
 import { cn } from '@/lib/utils/cn'
-import { useTheme } from '@/hooks/use-theme'
+import { useThemeStore } from '@/lib/store/theme-store'
 
 interface LogoProps extends CommonProps {
     type?: 'full' | 'streamline'
@@ -29,7 +29,7 @@ const Logo = (props: LogoProps) => {
         typeImg = 'png',
     } = props
 
-    const theme = useTheme()
+    const theme = useThemeStore((state) => state.theme)
     const mode = modeProp || theme
 
     return (

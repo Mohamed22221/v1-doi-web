@@ -1,4 +1,4 @@
-import { NavItem, NavVisibilityRules } from "@/types/nav"
+import type { NavItem, NavVisibilityRules } from "@/types/nav"
 import {
     HomeNavIcon,
     ProductsNavIcon,

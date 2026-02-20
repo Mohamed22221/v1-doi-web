@@ -34,11 +34,14 @@ export function LanguageSwitcher() {
         });
     };
 
+    const { t } = i18next;
+
     return (
         <select
             value={locale}
             onChange={(e) => handleLocaleChange(e.target.value as Locale)}
             disabled={isPending}
+            aria-label={t("common.language")}
             className={`px-3 py-2 border rounded-md bg-background text-foreground transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : ''}`}
         >
             {locales.map((loc) => (

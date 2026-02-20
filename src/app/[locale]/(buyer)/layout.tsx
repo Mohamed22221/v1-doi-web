@@ -2,7 +2,7 @@ import { Header } from "@components/layout/headers/header";
 import { BuyerNav } from "@components/layout/nav/buyer-nav";
 import { MobileNav } from "@components/layout/nav/mobile-nav";
 import { PageContainer } from "@components/template/container/page-container";
-import { Locale } from "@lib/i18n/config";
+import type { Locale } from "@lib/i18n/config";
 
 export default async function NavLayout({
     children,

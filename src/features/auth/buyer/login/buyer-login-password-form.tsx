@@ -7,7 +7,7 @@ import { useParams, useRouter } from "next/navigation"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getLoginPasswordSchema, LoginPasswordValues } from "./schema"
+import { getLoginPasswordSchema, type LoginPasswordValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
@@ -46,7 +46,7 @@ export default function BuyerLoginPasswordForm() {
     })
 
     function onSubmit(values: LoginPasswordValues) {
-        console.log(values)
+        console.info(values)
         // TODO: Implement password login logic
     }
 

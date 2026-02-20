@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { FieldPath, FieldValues } from "react-hook-form"
+import type { FieldPath, FieldValues } from "react-hook-form"
 import { RHFField } from "./rhf-field"
 import { Textarea } from "@components/ui/textarea"
-import { BaseRHFProps } from "./rhf-types"
+import type { BaseRHFProps } from "./rhf-types"
 
 interface RHFTextareaProps<
     TFieldValues extends FieldValues = FieldValues,

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { HeaderAction, HeaderActionRole } from "@config/header-actions-config"
+import type { HeaderAction, HeaderActionRole } from "@config/header-actions-config"
 import { ClientActionItem } from "./client-action-item"
 import { UserAvatar } from "@components/template/nav/user-avatar"
 import Icon from "@components/shared/Icon"

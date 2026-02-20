@@ -1,20 +1,21 @@
 "use client"
 
 import * as React from "react"
-import { FieldPath, FieldValues } from "react-hook-form"
+import type { FieldPath, FieldValues } from "react-hook-form"
 import { RHFField } from "./rhf-field"
 import dynamic from "next/dynamic"
-const Calendar = dynamic(() => import("@components/ui/calendar").then((mod) => mod.Calendar), {
-    loading: () => <div className="h-[300px] w-[280px] animate-pulse bg-muted rounded-md" />,
-    ssr: false,
-})
 import { Popover, PopoverContent, PopoverTrigger } from "@components/ui/popover"
 import { Button } from "@components/ui/button"
 import { CalendarIcon } from "@components/shared/Icon/constant"
 import Icon from "@components/shared/Icon"
 import { format } from "date-fns"
 import { cn } from "@utils/cn"
-import { BaseRHFProps } from "./rhf-types"
+import type { BaseRHFProps } from "./rhf-types"
+
+const Calendar = dynamic(() => import("@components/ui/calendar").then((mod) => mod.Calendar), {
+    loading: () => <div className="h-[300px] w-[280px] animate-pulse bg-muted rounded-md" />,
+    ssr: false,
+})
 
 interface RHFDatePickerProps<
     TFieldValues extends FieldValues = FieldValues,

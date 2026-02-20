@@ -7,7 +7,7 @@ export function DeliveryLocation() {
     return (
         <div
             className="flex items-center gap-3 cursor-pointer group select-none"
-            onClick={() => console.log("Change location clicked")}
+            onClick={() => console.info("Change location clicked")}
         >
             {/* Icon Container with specific dot style */}
             <div className="relative shrink-0">

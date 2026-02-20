@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { FieldPath, FieldValues } from "react-hook-form"
+import type { FieldPath, FieldValues } from "react-hook-form"
 import { EyeIcon, EyeOffIcon } from "@components/shared/Icon/constant"
 import Icon from "@components/shared/Icon"
 import { RHFField } from "./rhf-field"
 import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupButton } from "@components/ui/input-group"
-import { BaseRHFProps } from "./rhf-types"
+import type { BaseRHFProps } from "./rhf-types"
 import { cn } from "@utils/cn"
 
 interface RHFPasswordProps<

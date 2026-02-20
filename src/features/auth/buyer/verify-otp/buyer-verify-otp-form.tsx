@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getVerifyOtpSchema, VerifyOtpValues } from "./schema"
+import { getVerifyOtpSchema, type VerifyOtpValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
@@ -60,7 +60,7 @@ export default function BuyerVerifyOtpForm() {
     }
 
     function onSubmit(values: VerifyOtpValues) {
-        console.log(values)
+        console.info(values)
         // TODO: Implement verify OTP logic
     }
 

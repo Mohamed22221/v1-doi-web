@@ -1,7 +1,7 @@
 import Logo from "@components/template/nav/logo"
 import { HeaderActions } from "./header-actions"
 import { DeliveryLocation } from "@components/template/nav/delivery-location"
-import { HeaderActionRole } from "@config/header-actions-config"
+import type { HeaderActionRole } from "@config/header-actions-config"
 import { cn } from "@utils/cn"
 import { PageContainer } from "@components/template/container/page-container"
 

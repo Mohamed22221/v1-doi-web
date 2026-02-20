@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Role } from "@/types/nav"
+import type { Role } from "@/types/nav"
 
 export function useRoles() {
     const [roles, setRoles] = React.useState<Role[]>(["guest"])

@@ -1,4 +1,4 @@
-import { getDirection, type Locale, locales } from "@lib/i18n/config";
+import { type Locale, locales } from "@lib/i18n/config";
 import { LanguageSwitcher } from "@components/shared/language/language-switcher";
 import { NavSync } from "@components/layout/nav/nav-sync";
 import { Suspense } from "react";
@@ -21,7 +21,6 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
     const { locale: rawLocale } = await params;
     const locale = rawLocale as Locale;
-    const direction = getDirection(locale);
 
     return (
         <>
@@ -31,10 +30,17 @@ export default async function LocaleLayout({
                     <Suspense fallback={null}>
                         <NavSync />
                     </Suspense>
-                    <main>
+                    <main id="main-content" tabIndex={-1} className="outline-none">
                         {children}
                     </main>
-                    <div className="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2 scale-75 md:scale-100 origin-bottom-left">
+                    <footer role="contentinfo" className="sr-only">
+                        Doi Web Application
+                    </footer>
+                    <div
+                        role="region"
+                        aria-label="Settings"
+                        className="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2 scale-75 md:scale-100 origin-bottom-left"
+                    >
                         <Suspense fallback={null}>
                             <ThemeToggle />
                             <LanguageSwitcher />

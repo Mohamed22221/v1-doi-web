@@ -7,7 +7,7 @@ import { useParams, useRouter } from "next/navigation"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getLoginSchema, LoginValues } from "./schema"
+import { getLoginSchema, type LoginValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
@@ -44,7 +44,7 @@ export default function BuyerLoginForm() {
     })
 
     function onSubmit(values: LoginValues) {
-        console.log(values)
+        console.info(values)
         // TODO: distinct implementation for login logic
     }
 
@@ -53,7 +53,7 @@ export default function BuyerLoginForm() {
             {/* Main Login Card */}
             <Card className="p-6 w-full">
                 {/* Back Navigation */}
-                <Button variant="outline" rounded="sm" size="icon" onClick={() => router.back()}>
+                <Button variant="outline" rounded="sm" size="icon" onClick={() => router.back()} aria-label={t("common.back")}>
                     <Icon icon={ArrowIcon} className="text-neutral-300 dark:text-neutral-50 ltr:rotate-180" />
                 </Button>
 

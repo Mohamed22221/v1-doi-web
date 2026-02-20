@@ -22,7 +22,7 @@ const initI18next = cache(async (lng: Locale, ns?: string) => {
 export async function getResources(lng: Locale, ns: string | string[] = ["common"]) {
     'use cache';
     const namespaces = Array.isArray(ns) ? ns : [ns];
-    const resources: Record<string, any> = {};
+    const resources: Record<string, Record<string, string>> = {};
 
     for (const n of namespaces) {
         const i18nInstance = await initI18next(lng, n);

@@ -28,6 +28,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_CODE }} />
       </head>
       <body className={`${montserrat.variable} ${cairo.variable} antialiased font-sans`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[10000] bg-primary-400 text-white p-3 rounded-md shadow-lg"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

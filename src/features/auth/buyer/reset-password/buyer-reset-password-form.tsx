@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getPasswordRulesSchema, ResetPasswordValues } from "./schema"
+import { getPasswordRulesSchema, type ResetPasswordValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
@@ -43,10 +43,11 @@ export default function BuyerResetPasswordForm() {
         mode: "onChange", // Enable live validation feedback
     })
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const passwordValue = form.watch("password")
 
     function onSubmit(values: ResetPasswordValues) {
-        console.log("Form submitted successfully:", values)
+        console.info("Form submitted successfully:", values)
         router.push(`/${locale}/buyer/reset-password-success`)
     }
 

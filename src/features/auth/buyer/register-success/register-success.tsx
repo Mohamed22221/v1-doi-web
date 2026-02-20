@@ -8,7 +8,6 @@ import { getTranslation } from '@/lib/i18n/server'
 // Components
 import Logo from '@/components/template/nav/logo'
 import HeaderSidebar from '@/features/auth/components/header-sidebar'
-import { Button } from '@/components/ui/button'
 
 interface RegisterSuccessProps {
     locale: Locale

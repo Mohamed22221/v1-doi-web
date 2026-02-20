@@ -1,4 +1,4 @@
-import * as z from "zod"
+import type * as z from "zod"
 import { getPasswordRulesSchema } from "@/lib/validation/password-rules-schema"
 
 export { getPasswordRulesSchema }

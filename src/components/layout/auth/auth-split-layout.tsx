@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils/cn"
 import { PageContainer } from "@/components/template/container/page-container"
-import { AuthSplitLayoutProps, ChildernLayoutProps } from "@/types/auth-layout"
+import type { AuthSplitLayoutProps, ChildernLayoutProps } from "@/types/auth-layout"
 
 /**
  * AuthSplitLayout

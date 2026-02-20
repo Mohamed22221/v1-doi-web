@@ -13,6 +13,7 @@ export const getPasswordRulesSchema = (t: (key: string) => string) =>
             confirmPassword: z.string().min(1, t("buyer-login.form.validation.passwordRequired")),
         })
         .superRefine(({ confirmPassword, password }, ctx) => {
+            // eslint-disable-next-line security/detect-possible-timing-attacks
             if (confirmPassword !== password) {
                 ctx.addIssue({
                     code: "custom",

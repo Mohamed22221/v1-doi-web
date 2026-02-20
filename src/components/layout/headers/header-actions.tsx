@@ -1,4 +1,4 @@
-import { HEADER_ACTIONS, HeaderActionRole } from "@config/header-actions-config"
+import { HEADER_ACTIONS, type HeaderActionRole } from "@config/header-actions-config"
 import { HeaderActionItem } from "./header-action-item"
 import { cn } from "@utils/cn"
 

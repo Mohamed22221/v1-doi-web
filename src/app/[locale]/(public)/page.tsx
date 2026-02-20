@@ -279,7 +279,7 @@ export default function Home() {
                       required
                       textareaProps={{ placeholder: " ", rows: 4 }}
                     />
-                    <Button type="button" className="w-full" onClick={() => floatingForm.handleSubmit((data) => console.log(data))()}>
+                    <Button type="button" className="w-full" >
                       Submit Form
                     </Button>
                   </FormLayoutProvider>

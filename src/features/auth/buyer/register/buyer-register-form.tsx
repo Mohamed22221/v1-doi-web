@@ -7,13 +7,13 @@ import Link from "next/link"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getRegisterSchema, RegisterValues } from "./schema"
+import { getRegisterSchema, type RegisterValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Form } from "@/components/ui/form"
-import { RHFField } from "@/components/forms/rhf-field"
+
 import { RHFPhoneInput } from "@/components/forms/rhf-phone-input"
 import { RHFPassword } from "@/components/forms/rhf-password"
 import { RHFCheckbox } from "@/components/forms/rhf-checkbox"
@@ -52,10 +52,11 @@ export default function BuyerRegisterForm() {
         mode: "onChange",
     })
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const passwordValue = form.watch("password")
 
     function onSubmit(values: RegisterValues) {
-        console.log("Registration submitted successfully:", values)
+        console.info("Registration submitted successfully:", values)
         // Redirection logic can be added here once API is ready
     }
 

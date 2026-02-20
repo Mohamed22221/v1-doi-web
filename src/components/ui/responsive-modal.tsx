@@ -13,6 +13,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import dynamic from "next/dynamic"
+import { cn } from "@/lib/utils/cn"
 
 const Drawer = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.Drawer), { ssr: false })
 const DrawerClose = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerClose), { ssr: false })
@@ -22,7 +23,6 @@ const DrawerFooter = dynamic(() => import("@/components/ui/drawer").then((mod) =
 const DrawerHeader = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerHeader), { ssr: false })
 const DrawerTitle = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerTitle), { ssr: false })
 const DrawerTrigger = dynamic(() => import("@/components/ui/drawer").then((mod) => mod.DrawerTrigger), { ssr: false })
-import { cn } from "@/lib/utils/cn"
 
 type ResponsiveModalProps = React.ComponentProps<typeof Dialog> & {
     fullScreenMobile?: boolean

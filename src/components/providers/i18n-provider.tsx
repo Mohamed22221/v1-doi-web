@@ -1,14 +1,14 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { i18next } from '@/lib/i18n/client';
-import { Locale } from '@/lib/i18n/config';
+import type { Locale } from '@/lib/i18n/config';
 
 interface I18nProviderProps {
     children: ReactNode;
     locale: Locale;
-    resources?: Record<string, any>;
+    resources?: Record<string, Record<string, string>>;
 }
 
 export function I18nProvider({ children, locale, resources }: I18nProviderProps) {

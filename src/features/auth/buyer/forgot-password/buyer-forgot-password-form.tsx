@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 // Forms
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { getForgotPasswordSchema, ForgotPasswordValues } from "./schema"
+import { getForgotPasswordSchema, type ForgotPasswordValues } from "./schema"
 
 // UI Components
 import { Button } from "@/components/ui/button"
@@ -41,7 +41,7 @@ export default function BuyerForgotPasswordForm() {
     })
 
     function onSubmit(values: ForgotPasswordValues) {
-        console.log(values)
+        console.info(values)
         // Redirect to verify-otp page (implementation path depends on business logic)
         router.push(`/${locale}/buyer/verify-otp`)
     }

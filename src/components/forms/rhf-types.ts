@@ -1,6 +1,6 @@
-import * as React from "react"
-import { FieldPath, FieldValues, Control, PathValue } from "react-hook-form"
-import { FormLayout, FormSize } from "./form-layout"
+import type * as React from "react"
+import type { FieldPath, FieldValues, Control, PathValue } from "react-hook-form"
+import type { FormLayout, FormSize } from "./form-layout"
 
 export interface BaseRHFProps<
     TFieldValues extends FieldValues = FieldValues,

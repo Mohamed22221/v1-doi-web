@@ -11,7 +11,7 @@ interface ClientActionItemProps {
 
 export function ClientActionItem({ id, children, className, variant = 'outline' }: ClientActionItemProps) {
     const handleClick = () => {
-        console.log(`Action ${id} clicked`)
+        console.info(`Action ${id} clicked`)
     }
 
     return (

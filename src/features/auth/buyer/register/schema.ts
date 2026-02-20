@@ -13,6 +13,7 @@ export const getRegisterSchema = (t: (key: string) => string) => {
             message: t("buyer-register.form.validation.termsRequired"),
         }),
     }).superRefine(({ confirmPassword, password }, ctx) => {
+        // eslint-disable-next-line security/detect-possible-timing-attacks
         if (confirmPassword !== password) {
             ctx.addIssue({
                 code: "custom",
