@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CheckIcon } from "@components/shared/icon/constant";
+import { CheckIcon } from "@components/shared/icon-base/constant";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import { cva, type VariantProps } from "class-variance-authority";
 

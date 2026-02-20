@@ -1,4 +1,4 @@
-import { BellIcon, ShoppingBagIcon, UserIcon } from "@components/shared/icon/constant";
+import { BellIcon, ShoppingBagIcon, UserIcon } from "@components/shared/icon-base/constant";
 
 export type HeaderActionType = "link" | "button";
 export type HeaderActionRole = "buyer" | "seller" | "guest";

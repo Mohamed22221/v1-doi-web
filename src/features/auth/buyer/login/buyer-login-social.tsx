@@ -6,8 +6,8 @@ import { useParams } from "next/navigation";
 // UI Components
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import Icon from "@/components/shared/icon";
-import { AppleIcon, GoogleIcon } from "@/components/shared/icon/constant";
+import Icon from "@/components/shared/icon-base";
+import { AppleIcon, GoogleIcon } from "@/components/shared/icon-base/constant";
 
 // i18n
 import { useTranslation } from "@/lib/i18n/client";

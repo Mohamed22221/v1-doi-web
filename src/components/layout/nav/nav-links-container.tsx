@@ -3,7 +3,7 @@ import { NavItem } from "./nav-item";
 import type { Role } from "@defs/nav";
 import { shouldShowNavItem } from "@lib/nav/utils";
 import type { Locale } from "@lib/i18n/config";
-import Icon from "@components/shared/icon";
+import Icon from "@components/shared/icon-base";
 
 interface NavLinksContainerProps {
   roles: Role[];
