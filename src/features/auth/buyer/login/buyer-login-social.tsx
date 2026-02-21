@@ -1,22 +1,27 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { cacheLife } from "next/cache";
 
 // UI Components
-import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
-import Icon from "@/components/shared/icon-base";
-import { AppleIcon, GoogleIcon } from "@/components/shared/icon-base/constant";
+import { BuyerSocialActions } from "./buyer-social-actions";
 
 // i18n
-import { useTranslation } from "@/lib/i18n/client";
+import { getTranslation } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
 
-export default function BuyerLoginSocial() {
-  const params = useParams();
-  const locale = params.locale as string;
-  const { t } = useTranslation(locale as Locale, "auth");
+interface BuyerLoginSocialProps {
+  locale: Locale;
+}
+
+/**
+ * BuyerLoginSocial
+ *
+ * Server Component that renders the social login section.
+ * Using "use cache" if applicable (not here as it depends on locale/params).
+ * The interactive parts are moved to BuyerSocialActions client component.
+ */
+export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps) {
+  const { t } = await getTranslation(locale, "auth");
 
   return (
     <Card className="w-full p-6 tablet:max-w-[550px] xl:max-w-[600px]">
@@ -24,24 +29,7 @@ export default function BuyerLoginSocial() {
         {t("buyer-login.form.orContinueWith")}
       </p>
 
-      <div className="flex w-full flex-col items-center justify-center gap-4 tablet:flex-row">
-        <Button
-          variant="outline"
-          className="h-[48px] min-w-full text-label tablet:h-[50px] tablet:min-w-[240px] tablet:text-body xl:h-[56px] xl:text-h5"
-          rounded="xl"
-        >
-          <Icon icon={GoogleIcon} />
-          <span className="font-semibold text-primary-800 dark:text-neutral-50">Google</span>
-        </Button>
-        <Button
-          variant="outline"
-          className="h-[48px] min-w-full text-label tablet:h-[50px] tablet:min-w-[240px] tablet:text-body xl:h-[56px] xl:text-h5"
-          rounded="xl"
-        >
-          <Icon icon={AppleIcon} className="text-neutral-950 dark:text-neutral-50" />
-          <span className="font-semibold text-primary-800 dark:text-neutral-50">Apple</span>
-        </Button>
-      </div>
+      <BuyerSocialActions locale={locale} />
 
       <div className="mt-1 text-center text-label text-neutral-400 tablet:text-body xl:text-h5 dark:text-neutral-300">
         {t("buyer-login.form.noAccount")}{" "}
@@ -55,3 +43,4 @@ export default function BuyerLoginSocial() {
     </Card>
   );
 }
+

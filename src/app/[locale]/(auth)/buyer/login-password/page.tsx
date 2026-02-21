@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
 import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
 import BuyerLoginPasswordForm from "@/features/auth/buyer/login/buyer-login-password-form";
+import BuyerLoginSocial from "@/features/auth/buyer/login/buyer-login-social";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -20,8 +21,14 @@ export default async function BuyerLoginPasswordPage({ params }: PageProps) {
 
   return (
     <AuthSplitLayout
-      formContent={<BuyerLoginPasswordForm />}
+      formContent={
+        <div className="flex flex-col gap-4 tablet:gap-6">
+          <BuyerLoginPasswordForm />
+          <BuyerLoginSocial locale={locale as Locale} />
+        </div>
+      }
       sidebarContent={<BuyerSidebar locale={locale as Locale} variant="buyer-login" />}
     />
   );
 }
+

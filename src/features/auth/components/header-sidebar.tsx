@@ -14,6 +14,7 @@ interface PropsHeader {
  * or as a header for mobile views.
  */
 export default function HeaderSidebar({ title, subtitle, className, classHeader }: PropsHeader) {
+
   return (
     <div className={cn("space-y-2 pt-5 md:pt-7", className)}>
       <h1

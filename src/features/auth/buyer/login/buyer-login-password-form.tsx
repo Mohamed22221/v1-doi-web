@@ -21,7 +21,7 @@ import { ArrowIcon } from "@components/shared/icon-base/constant";
 // Auth Components
 import { Logo } from "@components/template/nav/logo";
 import HeaderSidebar from "../../components/header-sidebar";
-import BuyerLoginSocial from "./buyer-login-social";
+
 
 // i18n
 import { useTranslation } from "@lib/i18n/client";
@@ -104,7 +104,7 @@ export default function BuyerLoginPasswordForm() {
                 </div>
             </Card>
 
-            <BuyerLoginSocial />
+
         </div>
     );
 }
