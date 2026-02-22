@@ -24,6 +24,7 @@
 
   .btn-secondary {
     @apply bg-primary-100 text-secondary-foreground hover:bg-primary-200;
+    @apply dark:border-primary-400 dark:bg-primary-400 dark:hover:bg-primary-300 dark:hover:text-primary-foreground;
   }
 
   .btn-success {

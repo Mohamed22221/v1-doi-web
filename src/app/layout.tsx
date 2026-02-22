@@ -31,9 +31,7 @@ export default function RootLayout({
         <a
           href="#main-content"
           className="sr-only z-[10000] rounded-md bg-primary-400 p-3 text-white shadow-lg focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
-        >
-          Skip to content
-        </a>
+        />
         {children}
       </body>
     </html>

@@ -46,10 +46,11 @@ export default function BuyerVerifyOtpActions({
           type="button"
           onClick={onResend}
           disabled={timeLeft > 0}
-          className={`font-bold transition-colors ${timeLeft > 0
-            ? "cursor-not-allowed text-neutral-300 dark:text-neutral-600"
-            : "text-primary-500 hover:text-primary-600 dark:text-primary-300"
-            }`}
+          className={`font-bold transition-colors ${
+            timeLeft > 0
+              ? "cursor-not-allowed text-neutral-300 dark:text-neutral-600"
+              : "text-primary-500 hover:text-primary-600 dark:text-primary-300"
+          }`}
         >
           {t("buyer-verify-otp.resendNow")}
         </button>

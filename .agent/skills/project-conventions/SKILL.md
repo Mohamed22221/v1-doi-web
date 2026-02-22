@@ -123,6 +123,7 @@ interface MyComponentProps {
 ## Path Aliases
 
 Always use the following path aliases:
+
 - `@/` -> `src/`
 - `@components/` -> `src/components/`
 - `@lib/` -> `src/lib/`

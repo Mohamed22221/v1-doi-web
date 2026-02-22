@@ -31,4 +31,3 @@ export default async function BuyerLoginPasswordPage({ params }: PageProps) {
     />
   );
 }
-

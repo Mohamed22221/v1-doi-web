@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
 
 // UI Components
 import { Card } from "@components/ui/card";
@@ -8,6 +7,7 @@ import { BuyerSocialActions } from "./buyer-social-actions";
 // i18n
 import { getTranslation } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
+import { cacheLife } from "next/cache";
 
 interface BuyerLoginSocialProps {
   locale: Locale;
@@ -17,10 +17,11 @@ interface BuyerLoginSocialProps {
  * BuyerLoginSocial
  *
  * Server Component that renders the social login section.
- * Using "use cache" if applicable (not here as it depends on locale/params).
  * The interactive parts are moved to BuyerSocialActions client component.
  */
 export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps) {
+  "use cache";
+  cacheLife("days");
   const { t } = await getTranslation(locale, "auth");
 
   return (
@@ -29,7 +30,7 @@ export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps
         {t("buyer-login.form.orContinueWith")}
       </p>
 
-      <BuyerSocialActions locale={locale} />
+      <BuyerSocialActions />
 
       <div className="mt-1 text-center text-label text-neutral-400 tablet:text-body xl:text-h5 dark:text-neutral-300">
         {t("buyer-login.form.noAccount")}{" "}
@@ -43,4 +44,3 @@ export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps
     </Card>
   );
 }
-

@@ -1,4 +1,10 @@
 {
   "title": "Welcome to Our Platform",
-  "subtitle": "Your trusted marketplace"
+  "seller_landing": {
+    "header": {
+      "title": "Start your journey as a seller on Doi",
+      "subtitle": "Turn your products into profits through Doi's trusted and smart auctions.",
+      "cta": "Start Now"
+    }
+  }
 }

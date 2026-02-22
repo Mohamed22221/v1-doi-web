@@ -16,7 +16,7 @@ import {
   KeyIcon,
   CheckCircle2Icon,
   ArrowRightIcon,
-  ShieldCheckIcon
+  ShieldCheckIcon,
 } from "@components/shared/icon-base/constant";
 
 export default function Home() {
@@ -28,32 +28,62 @@ export default function Home() {
     {
       title: t("auth-dashboard.sections.buyer"),
       links: [
-        { label: t("auth-dashboard.links.login-phone"), path: `/${locale}/buyer/login`, icon: UserIcon },
-        { label: t("auth-dashboard.links.login-password"), path: `/${locale}/buyer/login-password`, icon: ShieldCheckIcon },
-        { label: t("auth-dashboard.links.register"), path: `/${locale}/buyer/register`, icon: UserPlusIcon },
-      ]
+        {
+          label: t("auth-dashboard.links.login-phone"),
+          path: `/${locale}/buyer/login`,
+          icon: UserIcon,
+        },
+        {
+          label: t("auth-dashboard.links.login-password"),
+          path: `/${locale}/buyer/login-password`,
+          icon: ShieldCheckIcon,
+        },
+        {
+          label: t("auth-dashboard.links.register"),
+          path: `/${locale}/buyer/register`,
+          icon: UserPlusIcon,
+        },
+      ],
     },
     {
       title: t("auth-dashboard.sections.recovery"),
       links: [
-        { label: t("auth-dashboard.links.forgot"), path: `/${locale}/buyer/forgot-password`, icon: KeyIcon },
-        { label: t("auth-dashboard.links.verify"), path: `/${locale}/buyer/verify-otp`, icon: ShieldCheckIcon },
-        { label: t("auth-dashboard.links.reset"), path: `/${locale}/buyer/reset-password`, icon: KeyIcon },
-      ]
+        {
+          label: t("auth-dashboard.links.forgot"),
+          path: `/${locale}/buyer/forgot-password`,
+          icon: KeyIcon,
+        },
+        {
+          label: t("auth-dashboard.links.verify"),
+          path: `/${locale}/buyer/verify-otp`,
+          icon: ShieldCheckIcon,
+        },
+        {
+          label: t("auth-dashboard.links.reset"),
+          path: `/${locale}/buyer/reset-password`,
+          icon: KeyIcon,
+        },
+      ],
     },
     {
       title: t("auth-dashboard.sections.success"),
       links: [
-        { label: t("auth-dashboard.links.reg-success"), path: `/${locale}/buyer/register-success`, icon: CheckCircle2Icon },
-        { label: t("auth-dashboard.links.reset-success"), path: `/${locale}/buyer/reset-password-success`, icon: CheckCircle2Icon },
-      ]
-    }
+        {
+          label: t("auth-dashboard.links.reg-success"),
+          path: `/${locale}/buyer/register-success`,
+          icon: CheckCircle2Icon,
+        },
+        {
+          label: t("auth-dashboard.links.reset-success"),
+          path: `/${locale}/buyer/reset-password-success`,
+          icon: CheckCircle2Icon,
+        },
+      ],
+    },
   ];
 
   return (
-    <div >
-
-
+    <div>
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-50">
@@ -66,7 +96,10 @@ export default function Home() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {authSections.map((section) => (
-            <Card key={section.title} className="flex flex-col border-neutral-200/60 dark:border-neutral-800">
+            <Card
+              key={section.title}
+              className="flex flex-col border-neutral-200/60 dark:border-neutral-800"
+            >
               <div className="p-6">
                 <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50">
                   {section.title}
@@ -77,7 +110,7 @@ export default function Home() {
                     <Link
                       key={link.path}
                       href={link.path}
-                      className="group flex items-center justify-between rounded-lg border border-transparent p-2 transition-all hover:bg-neutral-100 hover:border-neutral-200 dark:hover:bg-neutral-800 dark:hover:border-neutral-700"
+                      className="group flex items-center justify-between rounded-lg border border-transparent p-2 transition-all hover:border-neutral-200 hover:bg-neutral-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
@@ -99,8 +132,6 @@ export default function Home() {
           ))}
         </div>
       </main>
-
-
     </div>
   );
 }

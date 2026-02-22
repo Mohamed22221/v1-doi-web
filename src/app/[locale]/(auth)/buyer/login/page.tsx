@@ -1,4 +1,3 @@
-
 import type { Locale } from "@/lib/i18n/config";
 // Layouts & Components
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
@@ -33,4 +32,3 @@ export default async function BuyerLoginPage({ params }: PageProps) {
     />
   );
 }
-
