@@ -5,6 +5,24 @@
       "title": "Start your journey as a seller on Doi",
       "subtitle": "Turn your products into profits through Doi's trusted and smart auctions.",
       "cta": "Start Now"
+    },
+    "steps": {
+      "title": "Simple steps to get started",
+      "subtitle": "Just three steps separate you from starting your selling journey",
+      "items": [
+        {
+          "title": "Activate your account as a seller",
+          "description": "Review your data and identity and ensure their correctness."
+        },
+        {
+          "title": "Add your products",
+          "description": "One product or a group of products, as you choose."
+        },
+        {
+          "title": "Start selling upon approval",
+          "description": "Your ads appear to buyers and the process begins."
+        }
+      ]
     }
   }
 }
