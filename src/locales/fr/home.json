@@ -1,4 +1,28 @@
 {
   "title": "Bienvenue sur notre plateforme",
-  "subtitle": "Votre marché de confiance"
+  "seller_landing": {
+    "header": {
+      "title": "Commencez votre parcours en tant que vendeur sur Doi",
+      "subtitle": "Transformez vos produits en profits grâce aux enchères fiables et intelligentes de Doi.",
+      "cta": "Commencer maintenant"
+    },
+    "steps": {
+      "title": "Des étapes simples pour commencer",
+      "subtitle": "Seulement trois étapes vous séparent du début de votre parcours de vente",
+      "items": [
+        {
+          "title": "Activez votre compte en tant que vendeur",
+          "description": "Vérifiez vos données et votre identité et assurez-vous de leur exactitude."
+        },
+        {
+          "title": "Ajoutez vos produits",
+          "description": "Un produit ou un groupe de produits, à votre guise."
+        },
+        {
+          "title": "Commencez à vendre après approbation",
+          "description": "Vos annonces apparaissent aux acheteurs et le processus commence."
+        }
+      ]
+    }
+  }
 }

@@ -1,10 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import { APP_NAME } from "@/constants/app.constant";
 import type { CommonProps } from "@/types/common";
 import { cn } from "@utils/cn";
-import { useThemeStore } from "@/lib/store/theme-store";
 
 interface LogoProps extends CommonProps {
   type?: "full" | "streamline";
@@ -29,19 +26,40 @@ export function Logo(props: LogoProps) {
     typeImg = "png",
   } = props;
 
-  const theme = useThemeStore((state) => state.theme);
-  const mode = modeProp || theme;
-
   return (
-    <div className={cn("logo", className)} style={{ width, height, ...style }}>
-      <Image
-        className={cn("h-full w-full object-contain", imgClass)}
-        src={`${LOGO_SRC_PATH}logo-${mode}-${type}.${typeImg}`}
-        alt={`${APP_NAME} logo`}
-        width={width}
-        height={height}
-        priority
-      />
+    <div className={cn("logo relative", className)} style={{ width, height, ...style }}>
+      {/* If mode is explicitly provided, render only that version */}
+      {modeProp ? (
+        <Image
+          className={cn("h-full w-full object-contain", imgClass)}
+          src={`${LOGO_SRC_PATH}logo-${modeProp}-${type}.${typeImg}`}
+          alt={`${APP_NAME} logo`}
+          width={width}
+          height={height}
+          priority
+        />
+      ) : (
+        <>
+          {/* Light Mode Logo - Visible by default, hidden in dark mode */}
+          <Image
+            className={cn("h-full w-full object-contain dark:hidden", imgClass)}
+            src={`${LOGO_SRC_PATH}logo-light-${type}.${typeImg}`}
+            alt={`${APP_NAME} logo`}
+            width={width}
+            height={height}
+            priority
+          />
+          {/* Dark Mode Logo - Hidden by default, visible in dark mode */}
+          <Image
+            className={cn("h-full w-full hidden object-contain dark:block", imgClass)}
+            src={`${LOGO_SRC_PATH}logo-dark-${type}.${typeImg}`}
+            alt={`${APP_NAME} logo`}
+            width={width}
+            height={height}
+            priority
+          />
+        </>
+      )}
     </div>
   );
 }

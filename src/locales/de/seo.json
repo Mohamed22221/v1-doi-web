@@ -1,7 +1,51 @@
 {
     "default": {
-        "title": "Doi - Die vertrauenswürdige intelligente Auktionsplattform",
-        "description": "Kaufen und verkaufen Sie Produkte über die vertrauenswürdigen und intelligenten Auktionen von Doi.",
+        "title": "Doi - Die vertrauenswürdige smarte Auktionsplattform",
+        "description": "Kaufen und verkaufen Sie Produkte über die vertrauenswürdigen und smarten Auktionen von Doi. Treten Sie unserer Community bei und starten Sie noch heute Ihre Reise.",
         "siteName": "Doi"
+    },
+    "home": {
+        "title": "Authentifizierungs-Dashboard | Doi",
+        "description": "Greifen Sie auf alle Authentifizierungsabläufe für Käufer und Verkäufer auf der Doi-Plattform zu und testen Sie diese."
+    },
+    "buyer-landing": {
+        "title": "Einkaufen mit Doi | Smarte Auktionen & vertrauenswürdige Angebote",
+        "description": "Entdecken Sie eine neue Art des Einkaufens. Treten Sie Doi als Käufer bei und nehmen Sie an smarten Auktionen für hochwertige Produkte teil."
+    },
+    "seller-landing": {
+        "title": "Verkaufen auf Doi | Starten Sie Ihre Reise als Verkäufer",
+        "description": "Verwandeln Sie Ihre Produkte in Gewinne durch die vertrauenswürdigen und smarten Auktionen von Doi. Beginnen Sie noch heute mit dem Verkauf."
+    },
+    "buyer-login": {
+        "title": "Käufer-Login | Doi",
+        "description": "Melden Sie sich bei Ihrem Doi-Käuferkonto an, um Ihre Auktionen, Gebote und Ihr Profil zu verwalten."
+    },
+    "buyer-login-password": {
+        "title": "Login mit Passwort | Doi",
+        "description": "Melden Sie sich mit Ihrer Telefonnummer und Ihrem Passwort bei Ihrem Doi-Käuferkonto an."
+    },
+    "buyer-register": {
+        "title": "Doi beitreten | Käuferkonto erstellen",
+        "description": "Registrieren Sie sich noch heute für ein Doi-Konto und nehmen Sie an smarten Auktionen teil."
+    },
+    "buyer-forgot-password": {
+        "title": "Passwort zurücksetzen | Doi",
+        "description": "Passwort vergessen? Geben Sie Ihre Telefonnummer ein, um das Passwort Ihres Doi-Kontos zurückzusetzen."
+    },
+    "buyer-verify-otp": {
+        "title": "Konto verifizieren | Doi",
+        "description": "Geben Sie den Verifizierungscode ein, der an Ihr Telefon gesendet wurde, um Ihr Doi-Konto zu sichern."
+    },
+    "buyer-reset-password": {
+        "title": "Neues Passwort erstellen | Doi",
+        "description": "Legen Sie ein neues Passwort für Ihr Doi-Konto fest, um wieder Zugriff zu erhalten."
+    },
+    "buyer-register-success": {
+        "title": "Registrierung erfolgreich | Willkommen bei Doi",
+        "description": "Ihr Konto wurde erfolgreich erstellt. Willkommen in der Doi-Community!"
+    },
+    "buyer-reset-password-success": {
+        "title": "Passwort-Reset erfolgreich | Doi",
+        "description": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich nun bei Ihrem Konto anmelden."
     }
 }

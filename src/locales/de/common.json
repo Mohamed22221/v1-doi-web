@@ -4,6 +4,45 @@
   "goodbye": "Auf Wiedersehen",
   "language": "Sprache",
   "home": "Startseite",
-  "about": "Über",
-  "contact": "Kontakt"
+  "about": "Über uns",
+  "contact": "Kontakt",
+  "auth-dashboard": {
+    "title": "Authentifizierungs-Dashboard",
+    "subtitle": "Greifen Sie auf alle Authentifizierungsabläufe von einem zentralen Ort aus zu und testen Sie diese.",
+    "footer": "Erstellt mit Next.js 16 & shadcn/ui",
+    "sections": {
+      "buyer": "Käufer-Auth",
+      "recovery": "Passwort-Wiederherstellung",
+      "success": "Erfolgsstatus"
+    },
+    "links": {
+      "login-phone": "Login (Telefon)",
+      "login-password": "Login (Passwort)",
+      "register": "Registrieren",
+      "forgot": "Passwort vergessen",
+      "verify": "OTP verifizieren",
+      "reset": "Passwort zurücksetzen",
+      "reg-success": "Registrierung erfolgreich",
+      "reset-success": "Reset erfolgreich"
+    }
+  },
+  "nav": {
+    "primary": "Hauptnavigation",
+    "home": "Startseite",
+    "search": "Entdecken",
+    "sell": "Verkaufen",
+    "pidding": "Meine Gebote",
+    "list": "Meine Liste",
+    "notifications": "Benachrichtigungen",
+    "products": "Meine Produkte",
+    "buy": "Kaufen",
+    "ratings": "Bewertungen"
+  },
+  "theme": {
+    "toggle": "Design umschalten"
+  },
+  "delivery": {
+    "to": "Lieferung an",
+    "defaultLocation": "Riad - Al Narjis Distrikt"
+  }
 }

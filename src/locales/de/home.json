@@ -1,4 +1,28 @@
 {
   "title": "Willkommen auf unserer Plattform",
-  "subtitle": "Ihr vertrauenswürdiger Marktplatz"
+  "seller_landing": {
+    "header": {
+      "title": "Starten Sie Ihre Reise als Verkäufer auf Doi",
+      "subtitle": "Verwandeln Sie Ihre Produkte in Gewinne durch die vertrauenswürdigen und smarten Auktionen von Doi.",
+      "cta": "Jetzt starten"
+    },
+    "steps": {
+      "title": "Einfache Schritte für den Einstieg",
+      "subtitle": "Nur drei Schritte trennen Sie vom Start Ihrer Verkaufsreise",
+      "items": [
+        {
+          "title": "Aktivieren Sie Ihr Konto als Verkäufer",
+          "description": "Überprüfen Sie Ihre Daten und Identität und stellen Sie deren Richtigkeit sicher."
+        },
+        {
+          "title": "Fügen Sie Ihre Produkte hinzu",
+          "description": "Ein Produkt oder eine Gruppe von Produkten, ganz nach Ihrer Wahl."
+        },
+        {
+          "title": "Starten Sie den Verkauf nach Genehmigung",
+          "description": "Ihre Anzeigen erscheinen für Käufer und der Prozess beginnt."
+        }
+      ]
+    }
+  }
 }

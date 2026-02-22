@@ -5,5 +5,44 @@
   "language": "Idioma",
   "home": "Inicio",
   "about": "Acerca de",
-  "contact": "Contacto"
+  "contact": "Contacto",
+  "auth-dashboard": {
+    "title": "Panel de autenticación",
+    "subtitle": "Accede y prueba todos los flujos de autenticación desde un solo lugar.",
+    "footer": "Construido con Next.js 16 y shadcn/ui",
+    "sections": {
+      "buyer": "Autenticación de comprador",
+      "recovery": "Recuperación de contraseña",
+      "success": "Estados de éxito"
+    },
+    "links": {
+      "login-phone": "Login (Teléfono)",
+      "login-password": "Login (Contraseña)",
+      "register": "Registrarse",
+      "forgot": "Olvidé mi contraseña",
+      "verify": "Verificar OTP",
+      "reset": "Restablecer contraseña",
+      "reg-success": "Registro exitoso",
+      "reset-success": "Restablecimiento exitoso"
+    }
+  },
+  "nav": {
+    "primary": "Navegación principal",
+    "home": "Inicio",
+    "search": "Descubrir",
+    "sell": "Vender",
+    "pidding": "Mis pujas",
+    "list": "Mi lista",
+    "notifications": "Notificaciones",
+    "products": "Mis productos",
+    "buy": "Comprar",
+    "ratings": "Calificaciones"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  },
+  "delivery": {
+    "to": "Entrega en",
+    "defaultLocation": "Riad - Distrito de Al Narjis"
+  }
 }

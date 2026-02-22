@@ -1,4 +1,28 @@
 {
   "title": "Bienvenido a nuestra plataforma",
-  "subtitle": "Tu mercado de confianza"
+  "seller_landing": {
+    "header": {
+      "title": "Comienza tu viaje como vendedor en Doi",
+      "subtitle": "Convierte tus productos en ganancias a través de las subastas confiables e inteligentes de Doi.",
+      "cta": "Empezar ahora"
+    },
+    "steps": {
+      "title": "Pasos sencillos para empezar",
+      "subtitle": "Solo tres pasos te separan de comenzar tu viaje de ventas",
+      "items": [
+        {
+          "title": "Activa tu cuenta como vendedor",
+          "description": "Revisa tus datos e identidad y asegura su corrección."
+        },
+        {
+          "title": "Añade tus productos",
+          "description": "Un producto o un grupo de productos, como tú elijas."
+        },
+        {
+          "title": "Empieza a vender tras la aprobación",
+          "description": "Tus anuncios aparecerán a los compradores y el proceso comenzará."
+        }
+      ]
+    }
+  }
 }

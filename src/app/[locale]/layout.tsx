@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { type Locale, locales } from "@lib/i18n/config";
-import { LanguageSwitcher } from "@components/shared/language/language-switcher";
 import { NavSync } from "@components/layout/nav/nav-sync";
 import { Suspense } from "react";
-import { ThemeToggle } from "@/components/shared/theme/theme-toggle";
+import dynamic from "next/dynamic";
 import { LocaleSync } from "@components/shared/language/locale-sync";
 import { ProvidersShell } from "@/components/providers/providers-shell";
+
+const ThemeToggle = dynamic(() => import("@/components/shared/theme/theme-toggle").then((mod) => mod.ThemeToggle), {
+  ssr: true,
+});
+
+const LanguageSwitcher = dynamic(
+  () => import("@components/shared/language/language-switcher").then((mod) => mod.LanguageSwitcher),
+  {
+    ssr: true,
+  },
+);
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

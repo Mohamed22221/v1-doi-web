@@ -1,7 +1,51 @@
 {
     "default": {
         "title": "Doi - Güvenilir Akıllı Müzayede Platformu",
-        "description": "Doi'nin güvenilir ve akıllı müzayedeleri aracılığıyla ürün alıp satın.",
+        "description": "Doi'nin güvenilir ve akıllı müzayedeleri aracılığıyla ürün alıp satın. Topluluğumuza katılın ve yolculuğunuza bugün başlayın.",
         "siteName": "Doi"
+    },
+    "home": {
+        "title": "Kimlik Doğrulama Paneli | Doi",
+        "description": "Doi platformundaki alıcılar ve satıcılar için tüm kimlik doğrulama akışlarına erişin ve bunları test edin."
+    },
+    "buyer-landing": {
+        "title": "Doi ile Alışveriş Yapın | Akıllı Müzayedeler ve Güvenilir Fırsatlar",
+        "description": "Alışveriş yapmanın yeni bir yolunu keşfedin. Doi'ye alıcı olarak katılın ve yüksek kaliteli ürünler için akıllı müzayedelere katılın."
+    },
+    "seller-landing": {
+        "title": "Doi'de Satın | Satıcı Olarak Yolculuğunuza Başlayın",
+        "description": "Doi'nin güvenilir ve akıllı müzayedeleri aracılığıyla ürünlerinizi kazanca dönüştürün. Bugün satışa başlayın."
+    },
+    "buyer-login": {
+        "title": "Alıcı Girişi | Doi",
+        "description": "Müzayedelerinizi, tekliflerinizi ve profilinizi yönetmek için Doi alıcı hesabınıza giriş yapın."
+    },
+    "buyer-login-password": {
+        "title": "Şifre ile Giriş Yap | Doi",
+        "description": "Telefon numaranız ve şifrenizle Doi alıcı hesabınıza giriş yapın."
+    },
+    "buyer-register": {
+        "title": "Doi'ye Katılın | Alıcı Hesabı Oluşturun",
+        "description": "Bugün bir Doi hesabına kaydolun ve akıllı müzayedelere katılmaya başlayın."
+    },
+    "buyer-forgot-password": {
+        "title": "Şifrenizi Sıfırlayın | Doi",
+        "description": "Şifrenizi mi unuttunuz? Doi hesabı şifrenizi sıfırlamak için telefon numaranızı girin."
+    },
+    "buyer-verify-otp": {
+        "title": "Hesabınızı Doğrulayın | Doi",
+        "description": "Doi hesabınızı korumak için telefonunuza gönderilen doğrulama kodunu girin."
+    },
+    "buyer-reset-password": {
+        "title": "Yeni Şifre Oluştur | Doi",
+        "description": "Erişimi yeniden kazanmak için Doi hesabınız için yeni bir şifre belirleyin."
+    },
+    "buyer-register-success": {
+        "title": "Kayıt Başarılı | Doi'ye Hoş Geldiniz",
+        "description": "Hesabınız başarıyla oluşturuldu. Doi topluluğuna hoş geldiniz!"
+    },
+    "buyer-reset-password-success": {
+        "title": "Şifre Sıfırlama Başarılı | Doi",
+        "description": "Şifreniz başarıyla sıfırlandı. Artık hesabınıza giriş yapabilirsiniz."
     }
 }

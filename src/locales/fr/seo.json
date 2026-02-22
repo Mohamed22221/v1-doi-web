@@ -1,7 +1,51 @@
 {
     "default": {
-        "title": "Doi - La plateforme d'enchères intelligente et fiable",
-        "description": "Achetez et vendez des produits via les enchères intelligentes et fiables de Doi.",
+        "title": "Doi - La Plateforme d'Enchères Intelligente et Fiable",
+        "description": "Achetez et vendez des produits via les enchères fiables et intelligentes de Doi. Rejoignez notre communauté et commencez votre parcours aujourd'hui.",
         "siteName": "Doi"
+    },
+    "home": {
+        "title": "Tableau de Bord d'Authentification | Doi",
+        "description": "Accédez et testez tous les flux d'authentification pour les acheteurs et les vendeurs sur la plateforme Doi."
+    },
+    "buyer-landing": {
+        "title": "Achetez avec Doi | Enchères Intelligentes & Offres Fiables",
+        "description": "Découvrez une nouvelle façon d'acheter. Rejoignez Doi en tant qu'acheteur et participez à des enchères intelligentes pour des produits de haute qualité."
+    },
+    "seller-landing": {
+        "title": "Vendez sur Doi | Commencez votre parcours en tant que vendeur",
+        "description": "Transformez vos produits en profits grâce aux enchères fiables et intelligentes de Doi. Commencez à vendre aujourd'hui."
+    },
+    "buyer-login": {
+        "title": "Connexion Acheteur | Doi",
+        "description": "Connectez-vous à votre compte acheteur Doi pour gérer vos enchères, offres et profil."
+    },
+    "buyer-login-password": {
+        "title": "Connexion avec Mot de Passe | Doi",
+        "description": "Connectez-vous à votre compte acheteur Doi avec votre numéro de téléphone et mot de passe."
+    },
+    "buyer-register": {
+        "title": "Rejoindre Doi | Créer un Compte Acheteur",
+        "description": "Inscrivez-vous sur Doi aujourd'hui et commencez à participer aux enchères intelligentes."
+    },
+    "buyer-forgot-password": {
+        "title": "Réinitialiser Votre Mot de Passe | Doi",
+        "description": "Mot de passe oublié ? Entrez votre numéro de téléphone pour réinitialiser le mot de passe de votre compte Doi."
+    },
+    "buyer-verify-otp": {
+        "title": "Vérifiez Votre Compte | Doi",
+        "description": "Entrez le code de vérification envoyé à votre téléphone pour sécuriser votre compte Doi."
+    },
+    "buyer-reset-password": {
+        "title": "Créer un Nouveau Mot de Passe | Doi",
+        "description": "Définissez un nouveau mot de passe pour votre compte Doi afin de retrouver l'accès."
+    },
+    "buyer-register-success": {
+        "title": "Inscription Réussie | Bienvenue sur Doi",
+        "description": "Votre compte a été créé avec succès. Bienvenue dans la communauté Doi !"
+    },
+    "buyer-reset-password-success": {
+        "title": "Réinitialisation du Mot de Passe Réussie | Doi",
+        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter à votre compte."
     }
 }

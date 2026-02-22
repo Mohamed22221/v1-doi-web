@@ -1,7 +1,51 @@
 {
     "default": {
-        "title": "Doi - La plataforma de subastas inteligente y confiable",
-        "description": "Compre y venda productos a través de las subastas inteligentes y confiables de Doi.",
+        "title": "Doi - La plataforma de subastas inteligentes y confiables",
+        "description": "Compra y vende productos a través de las subastas confiables e inteligentes de Doi. Únete a nuestra comunidad y comienza tu viaje hoy.",
         "siteName": "Doi"
+    },
+    "home": {
+        "title": "Panel de autenticación | Doi",
+        "description": "Accede y prueba todos los flujos de autenticación para compradores y vendedores en la plataforma Doi."
+    },
+    "buyer-landing": {
+        "title": "Compra con Doi | Subastas inteligentes y ofertas confiables",
+        "description": "Descubre una nueva forma de comprar. Únete a Doi como comprador y participa en subastas inteligentes de productos de alta calidad."
+    },
+    "seller-landing": {
+        "title": "Vende en Doi | Comienza tu viaje como vendedor",
+        "description": "Convierte tus productos en ganancias a través de las subastas confiables e inteligentes de Doi. Empieza a vender hoy."
+    },
+    "buyer-login": {
+        "title": "Inicio de sesión de comprador | Doi",
+        "description": "Inicia sesión en tu cuenta de comprador de Doi para gestionar tus subastas, pujas y perfil."
+    },
+    "buyer-login-password": {
+        "title": "Iniciar sesión con contraseña | Doi",
+        "description": "Inicia sesión en tu cuenta de comprador de Doi con tu número de teléfono y contraseña."
+    },
+    "buyer-register": {
+        "title": "Únete a Doi | Crea una cuenta de comprador",
+        "description": "Regístrate para obtener una cuenta de Doi hoy mismo y comienza a participar en subastas inteligentes."
+    },
+    "buyer-forgot-password": {
+        "title": "Restablecer tu contraseña | Doi",
+        "description": "¿Olvidaste tu contraseña? Introduce tu número de teléfono para restablecer la contraseña de tu cuenta de Doi."
+    },
+    "buyer-verify-otp": {
+        "title": "Verifica tu cuenta | Doi",
+        "description": "Introduce el código de verificación enviado a tu teléfono para asegurar tu cuenta de Doi."
+    },
+    "buyer-reset-password": {
+        "title": "Crear nueva contraseña | Doi",
+        "description": "Establece una nueva contraseña para tu cuenta de Doi para recuperar el acceso."
+    },
+    "buyer-register-success": {
+        "title": "Registro exitoso | Bienvenido a Doi",
+        "description": "Tu cuenta ha sido creada con éxito. ¡Bienvenido a la comunidad de Doi!"
+    },
+    "buyer-reset-password-success": {
+        "title": "Restablecimiento de contraseña exitoso | Doi",
+        "description": "Tu contraseña se ha restablecido correctamente. Ahora puedes iniciar sesión en tu cuenta."
     }
 }

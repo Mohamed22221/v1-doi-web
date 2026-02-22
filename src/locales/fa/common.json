@@ -4,6 +4,45 @@
   "goodbye": "خداحافظ",
   "language": "زبان",
   "home": "خانه",
-  "about": "درباره",
-  "contact": "تماس"
+  "about": "درباره ما",
+  "contact": "تماس با ما",
+  "auth-dashboard": {
+    "title": "داشبورد احراز هویت",
+    "subtitle": "از یک مکان واحد به تمامی گردش‌های احراز هویت دسترسی داشته و آن‌ها را تست کنید.",
+    "footer": "ساخته شده با Next.js 16 و shadcn/ui",
+    "sections": {
+      "buyer": "احراز هویت خریدار",
+      "recovery": "بازیابی رمز عبور",
+      "success": "حالات موفقیت"
+    },
+    "links": {
+      "login-phone": "ورود (تلفن)",
+      "login-password": "ورود (رمز عبور)",
+      "register": "ثبت‌نام",
+      "forgot": "فراموشی رمز عبور",
+      "verify": "تایید OTP",
+      "reset": "بازیابی رمز عبور",
+      "reg-success": "ثبت‌نام موفق",
+      "reset-success": "بازیابی موفق"
+    }
+  },
+  "nav": {
+    "primary": "ناوبری اصلی",
+    "home": "خانه",
+    "search": "کشف کنید",
+    "sell": "فروش",
+    "pidding": "پیشنهادات من",
+    "list": "لیست من",
+    "notifications": "اعلان‌ها",
+    "products": "محصولات من",
+    "buy": "خرید",
+    "ratings": "امتیازدهی"
+  },
+  "theme": {
+    "toggle": "تغییر تم"
+  },
+  "delivery": {
+    "to": "ارسال به",
+    "defaultLocation": "ریاض - منطقه النرجس"
+  }
 }

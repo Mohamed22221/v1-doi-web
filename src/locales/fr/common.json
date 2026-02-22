@@ -5,5 +5,44 @@
   "language": "Langue",
   "home": "Accueil",
   "about": "À propos",
-  "contact": "Contact"
+  "contact": "Contact",
+  "auth-dashboard": {
+    "title": "Tableau de Bord d'Authentification",
+    "subtitle": "Accédez et testez tous les flux d'authentification depuis un seul endroit.",
+    "footer": "Construit avec Next.js 16 & shadcn/ui",
+    "sections": {
+      "buyer": "Auth Acheteur",
+      "recovery": "Récupération de Mot de Passe",
+      "success": "États de Succès"
+    },
+    "links": {
+      "login-phone": "Connexion (Téléphone)",
+      "login-password": "Connexion (Mot de Passe)",
+      "register": "S'inscrire",
+      "forgot": "Mot de Passe Oublié",
+      "verify": "Vérifier OTP",
+      "reset": "Réinitialiser le Mot de Passe",
+      "reg-success": "Succès d'Inscription",
+      "reset-success": "Succès de Réinitialisation"
+    }
+  },
+  "nav": {
+    "primary": "Navigation Principale",
+    "home": "Accueil",
+    "search": "Découvrir",
+    "sell": "Vendre",
+    "pidding": "Mes Offres",
+    "list": "Ma Liste",
+    "notifications": "Notifications",
+    "products": "Mes Produits",
+    "buy": "Acheter",
+    "ratings": "Évaluations"
+  },
+  "theme": {
+    "toggle": "Changer le thème"
+  },
+  "delivery": {
+    "to": "Livraison à",
+    "defaultLocation": "Riyad - Quartier Al Narjis"
+  }
 }

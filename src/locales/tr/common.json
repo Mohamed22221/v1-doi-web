@@ -1,9 +1,48 @@
 {
   "hello": "Merhaba",
   "welcome": "Hoş geldiniz",
-  "goodbye": "Güle güle",
+  "goodbye": "Hoşça kalın",
   "language": "Dil",
-  "home": "Ana sayfa",
-  "about": "Hakkında",
-  "contact": "İletişim"
+  "home": "Anasayfa",
+  "about": "Hakkımızda",
+  "contact": "İletişim",
+  "auth-dashboard": {
+    "title": "Kimlik Doğrulama Paneli",
+    "subtitle": "Tüm kimlik doğrulama akışlarına tek bir konumdan erişin ve bunları test edin.",
+    "footer": "Next.js 16 ve shadcn/ui ile oluşturuldu",
+    "sections": {
+      "buyer": "Alıcı Doğrulaması",
+      "recovery": "Şifre Kurtarma",
+      "success": "Başarı Durumları"
+    },
+    "links": {
+      "login-phone": "Giriş (Telefon)",
+      "login-password": "Giriş (Şifre)",
+      "register": "Kayıt Ol",
+      "forgot": "Şifremi Unuttum",
+      "verify": "OTP Doğrula",
+      "reset": "Şifre Sıfırla",
+      "reg-success": "Kayıt Başarılı",
+      "reset-success": "Sıfırlama Başarılı"
+    }
+  },
+  "nav": {
+    "primary": "Birincil Gezinme",
+    "home": "Anasayfa",
+    "search": "Keşfet",
+    "sell": "Sat",
+    "pidding": "Tekliflerim",
+    "list": "Listem",
+    "notifications": "Bildirimler",
+    "products": "Ürünlerim",
+    "buy": "Satın Al",
+    "ratings": "Değerlendirmeler"
+  },
+  "theme": {
+    "toggle": "Temayı değiştir"
+  },
+  "delivery": {
+    "to": "Teslimat adresi",
+    "defaultLocation": "Riyad - Al Narjis Bölgesi"
+  }
 }

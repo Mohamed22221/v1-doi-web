@@ -1,4 +1,28 @@
 {
-  "title": "Platformumuza hoş geldiniz",
-  "subtitle": "Güvenilir pazaryeriniz"
+  "title": "Platformumuza Hoş Geldiniz",
+  "seller_landing": {
+    "header": {
+      "title": "Doi'de satıcı olarak yolculuğunuza başlayın",
+      "subtitle": "Doi'nin güvenilir ve akıllı müzayedeleri aracılığıyla ürünlerinizi kazanca dönüştürün.",
+      "cta": "Hemen Başla"
+    },
+    "steps": {
+      "title": "Başlamak için basit adımlar",
+      "subtitle": "Satış yolculuğunuza başlamaktan sadece üç adım uzaktasınız",
+      "items": [
+        {
+          "title": "Satıcı olarak hesabınızı etkinleştirin",
+          "description": "Verilerinizi ve kimliğinizi gözden geçirin ve doğruluklarından emin olun."
+        },
+        {
+          "title": "Ürünlerinizi ekleyin",
+          "description": "Seçiminize göre bir ürün veya bir grup ürün."
+        },
+        {
+          "title": "Onaylandıktan sonra satışa başlayın",
+          "description": "Reklamlarınız alıcılara görünür ve süreç başlar."
+        }
+      ]
+    }
+  }
 }
