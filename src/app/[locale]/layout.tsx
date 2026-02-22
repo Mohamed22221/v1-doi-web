@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { type Locale, locales } from "@lib/i18n/config";
 import { LanguageSwitcher } from "@components/shared/language/language-switcher";
 import { NavSync } from "@components/layout/nav/nav-sync";
@@ -8,6 +10,15 @@ import { ProvidersShell } from "@/components/providers/providers-shell";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generateLocalizedMetadata({
+    locale: locale as Locale,
+    pageKey: "default",
+    pathname: "",
+  });
 }
 
 interface LocaleLayoutProps {

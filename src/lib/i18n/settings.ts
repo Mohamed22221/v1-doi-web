@@ -2,7 +2,7 @@ import type { Locale } from "./config";
 
 export const fallbackLng: Locale = "en";
 export const defaultNS = "common";
-export const namespaces = ["common", "home"] as const;
+export const namespaces = ["common", "home", "seo"] as const;
 
 export function getOptions(lng: Locale = fallbackLng, ns: string = defaultNS) {
   return {

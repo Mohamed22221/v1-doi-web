@@ -1,4 +1,6 @@
-import type { Locale } from "@/lib/i18n/config";
+import type { Metadata } from "next";
+import { type Locale } from "@/lib/i18n/config";
+import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 
 // Layouts & Components
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
@@ -7,6 +9,15 @@ import BuyerVerifyOtpForm from "@/features/auth/buyer/verify-otp/buyer-verify-ot
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generateLocalizedMetadata({
+    locale: locale as Locale,
+    pageKey: "buyer-verify-otp",
+    pathname: "/buyer/verify-otp",
+  });
 }
 
 /**

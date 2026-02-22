@@ -1,4 +1,6 @@
-import type { Locale } from "@lib/i18n/config";
+import type { Metadata } from "next";
+import { type Locale } from "@lib/i18n/config";
+import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 
 // Layouts & Components
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";
@@ -7,6 +9,15 @@ import ResetSuccessContent from "@/features/auth/buyer/reset-password-success/re
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return generateLocalizedMetadata({
+    locale: locale as Locale,
+    pageKey: "buyer-reset-password-success",
+    pathname: "/buyer/reset-password-success",
+  });
 }
 
 /**

@@ -1,0 +1,51 @@
+{
+    "default": {
+        "title": "Doi - The Trusted Smart Auction Platform",
+        "description": "Buy and sell products through Doi's trusted and smart auctions. Join our community and start your journey today.",
+        "siteName": "Doi"
+    },
+    "home": {
+        "title": "Authentication Dashboard | Doi",
+        "description": "Access and test all authentication flows for buyers and sellers on the Doi platform."
+    },
+    "buyer-landing": {
+        "title": "Shop with Doi | Smart Auctions & Trusted Deals",
+        "description": "Discover a new way to shop. Join Doi as a buyer and participate in smart auctions for high-quality products."
+    },
+    "seller-landing": {
+        "title": "Sell on Doi | Start Your Journey as a Seller",
+        "description": "Turn your products into profits through Doi's trusted and smart auctions. Start selling today."
+    },
+    "buyer-login": {
+        "title": "Buyer Login | Doi",
+        "description": "Log in to your Doi buyer account to manage your auctions, bids, and profile."
+    },
+    "buyer-login-password": {
+        "title": "Login with Password | Doi",
+        "description": "Log in to your Doi buyer account using your phone number and password."
+    },
+    "buyer-register": {
+        "title": "Join Doi | Create a Buyer Account",
+        "description": "Sign up for a Doi account today and start participating in smart auctions."
+    },
+    "buyer-forgot-password": {
+        "title": "Reset Your Password | Doi",
+        "description": "Forgot your password? Enter your phone number to reset your Doi account password."
+    },
+    "buyer-verify-otp": {
+        "title": "Verify Your Account | Doi",
+        "description": "Enter the verification code sent to your phone to secure your Doi account."
+    },
+    "buyer-reset-password": {
+        "title": "Create New Password | Doi",
+        "description": "Set a new password for your Doi account to regain access."
+    },
+    "buyer-register-success": {
+        "title": "Registration Successful | Welcome to Doi",
+        "description": "Your account has been successfully created. Welcome to the Doi community!"
+    },
+    "buyer-reset-password-success": {
+        "title": "Password Reset Successful | Doi",
+        "description": "Your password has been reset successfully. You can now log in to your account."
+    }
+}
