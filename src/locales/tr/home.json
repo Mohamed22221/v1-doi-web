@@ -45,6 +45,13 @@
           "description": "Platformda güçlü bir itibara ulaşın"
         }
       ]
+    },
+    "cta": {
+      "title": "Satışa başlamaya hazır mısınız?",
+      "subtitle": "Hesabınızı hemen etkinleştirin ve akıllı müzayedeler dünyasındaki yolculuğunuza başlayın",
+      "primary_cta": "Satıcı hesabını etkinleştir",
+      "secondary_cta": "Satış koşullarını öğren",
+      "note": "Doğrulama işlemi 5 dakikadan az sürer"
     }
   }
 }

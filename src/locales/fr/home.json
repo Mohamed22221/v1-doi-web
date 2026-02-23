@@ -45,6 +45,13 @@
           "description": "Bâtissez une solide réputation sur la plateforme"
         }
       ]
+    },
+    "cta": {
+      "title": "Prêt à commencer à vendre ?",
+      "subtitle": "Activez votre compte maintenant et commencez votre parcours dans le monde des enchères intelligentes",
+      "primary_cta": "Activer le compte vendeur",
+      "secondary_cta": "Connaître les conditions de vente",
+      "note": "Le processus de vérification prend moins de 5 minutes"
     }
   }
 }

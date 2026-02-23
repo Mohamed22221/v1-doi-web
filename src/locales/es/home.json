@@ -45,6 +45,13 @@
           "description": "Construye una reputación sólida en la plataforma"
         }
       ]
+    },
+    "cta": {
+      "title": "¿Listo para empezar a vender?",
+      "subtitle": "Activa tu cuenta ahora y comienza tu viaje en el mundo de las subastas inteligentes",
+      "primary_cta": "Activar cuenta de vendedor",
+      "secondary_cta": "Conocer términos de venta",
+      "note": "El proceso de verificación tarda menos de 5 minutos"
     }
   }
 }

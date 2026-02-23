@@ -45,6 +45,13 @@
           "description": "Build a strong reputation on the platform"
         }
       ]
+    },
+    "cta": {
+      "title": "Ready to Start Selling?",
+      "subtitle": "Activate your account now and begin your journey in the world of smart auctions",
+      "primary_cta": "Activate Seller Account",
+      "secondary_cta": "Learn Selling Terms",
+      "note": "The verification process takes less than 5 minutes"
     }
   }
 }

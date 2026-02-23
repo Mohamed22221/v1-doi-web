@@ -45,6 +45,13 @@
           "description": "Aufbau eines starken Rufes auf der Plattform"
         }
       ]
+    },
+    "cta": {
+      "title": "Bereit, mit dem Verkauf zu beginnen?",
+      "subtitle": "Aktivieren Sie Ihr Konto jetzt und starten Sie Ihre Reise in der Welt der smarten Auktionen",
+      "primary_cta": "Verkäuferkonto aktivieren",
+      "secondary_cta": "Verkaufsbedingungen kennenlernen",
+      "note": "Der Verifizierungsprozess dauert weniger als 5 Minuten"
     }
   }
 }
