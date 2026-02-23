@@ -23,6 +23,28 @@
           "description": "Reklamlarınız alıcılara görünür ve süreç başlar."
         }
       ]
+    },
+    "cash": {
+      "title": "Doi'de Satışın Avantajları",
+      "subtitle": "Akıllı müzaþyede platformuna katılın ve özel ayrıcalıklardan yararlanın",
+      "items": [
+        {
+          "title": "Binlerce alıcıya ulaşın",
+          "description": "Aktif alıcılardan oluşan geniş bir taban"
+        },
+        {
+          "title": "Günlük müzaþye karları artırır",
+          "description": "Adil rekabet ve daha iyi fiyatlar"
+        },
+        {
+          "title": "İlanlarınızı ve cüzdanınızı kolayca yönetin",
+          "description": "Basit ve etkili kontrol paneli"
+        },
+        {
+          "title": "Puanlama sistemi güveninizi artırır",
+          "description": "Platformda güçlü bir itibara ulaşın"
+        }
+      ]
     }
   }
 }

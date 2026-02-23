@@ -23,6 +23,28 @@
           "description": "Tus anuncios aparecerán a los compradores y el proceso comenzará."
         }
       ]
+    },
+    "cash": {
+      "title": "Ventajas de vender en Doi",
+      "subtitle": "Une a la plataforma de subastas inteligentes y disfruta de ventajas exclusivas",
+      "items": [
+        {
+          "title": "Accede a miles de compradores",
+          "description": "Una amplia base de compradores activos"
+        },
+        {
+          "title": "Las subastas diarias aumentan las ganancias",
+          "description": "Competencia justa y mejores precios"
+        },
+        {
+          "title": "Gestiona fácilmente anuncios y cartera",
+          "description": "Panel sencillo y eficaz"
+        },
+        {
+          "title": "El sistema de valoración mejora tu confianza",
+          "description": "Construye una reputación sólida en la plataforma"
+        }
+      ]
     }
   }
 }

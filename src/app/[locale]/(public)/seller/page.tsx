@@ -3,6 +3,7 @@ import { SellerHeader } from "@/features/seller/home/seller-header";
 import { SellerSteps } from "@/features/seller/home/seller-steps";
 import type { Locale } from "@/lib/i18n/config";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
+import { SellerFeatures } from "@/features/seller/home/seller-features";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -30,6 +31,7 @@ export default async function SellerLandingPage({ params }: PageProps) {
     <>
       <SellerHeader locale={locale} />
       <SellerSteps locale={locale} />
+      <SellerFeatures locale={locale} />
     </>
   );
 }

@@ -37,9 +37,9 @@ export async function SellerSteps({ locale }: SellerStepsProps) {
         variant="dashboard"
         className="rounded-md bg-card py-4 md:rounded-[0rem] md:bg-transparent md:py-0"
       >
-        {/* Section Header */}
+
         <div className="mb-6 space-y-2 text-center md:mb-10 md:space-y-4">
-          <h2 className="text-h3 font-extrabold tracking-tight text-primary-500 md:text-h1 dark:text-primary-100">
+          <h2 className="text-h4 font-extrabold tracking-tight text-primary-500 md:text-h1 dark:text-primary-100">
             {t("seller_landing.steps.title")}
           </h2>
           <p className="text-caption text-neutral-400 md:text-h3 md:font-bold dark:text-neutral-300">
@@ -48,7 +48,7 @@ export async function SellerSteps({ locale }: SellerStepsProps) {
         </div>
 
         {/* Mobile View: Vertical Steps */}
-        <div className="flex flex-col px-1 md:hidden">
+        <div className="flex flex-col px-1 pb-2 md:hidden">
           {steps.map((step, index) => (
             <StepItem
               key={index}

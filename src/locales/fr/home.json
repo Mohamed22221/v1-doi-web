@@ -23,6 +23,28 @@
           "description": "Vos annonces apparaissent aux acheteurs et le processus commence."
         }
       ]
+    },
+    "cash": {
+      "title": "Les avantages de vendre sur Doi",
+      "subtitle": "Rejoignez la plateforme d'enchères intelligente et profitez d'avantages exclusifs",
+      "items": [
+        {
+          "title": "Atteignez des milliers d'acheteurs",
+          "description": "Une large base d'acheteurs actifs"
+        },
+        {
+          "title": "Les enchères quotidiennes augmentent les profits",
+          "description": "Concurrence loyale et meilleurs prix"
+        },
+        {
+          "title": "Gérez facilement vos annonces et portefeuille",
+          "description": "Tableau de bord simple et efficace"
+        },
+        {
+          "title": "Le système d'évaluation renforce votre confiance",
+          "description": "Bâtissez une solide réputation sur la plateforme"
+        }
+      ]
     }
   }
 }

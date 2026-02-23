@@ -23,6 +23,28 @@
           "description": "Your ads appear to buyers and the process begins."
         }
       ]
+    },
+    "cash": {
+      "title": "Why Sell on Doi",
+      "subtitle": "Join the smart auction platform and enjoy exclusive seller benefits",
+      "items": [
+        {
+          "title": "Reach Thousands of Buyers",
+          "description": "A wide base of active buyers"
+        },
+        {
+          "title": "Daily Auctions Boost Profit",
+          "description": "Fair competition and better prices"
+        },
+        {
+          "title": "Manage Listings & Wallet Easily",
+          "description": "A simple and powerful dashboard"
+        },
+        {
+          "title": "Rating System Builds Your Trust",
+          "description": "Build a strong reputation on the platform"
+        }
+      ]
     }
   }
 }

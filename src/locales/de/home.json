@@ -23,6 +23,28 @@
           "description": "Ihre Anzeigen erscheinen für Käufer und der Prozess beginnt."
         }
       ]
+    },
+    "cash": {
+      "title": "Vorteile des Verkaufs bei Doi",
+      "subtitle": "Treten Sie der intelligenten Auktionsplattform bei und profitieren Sie von exklusiven Vorteilen",
+      "items": [
+        {
+          "title": "Tausende Käufer erreichen",
+          "description": "Eine breite Basis aktiver Käufer"
+        },
+        {
+          "title": "Tägliche Auktionen steigern Gewinne",
+          "description": "Fairer Wettbewerb und bessere Preise"
+        },
+        {
+          "title": "Anzeigen & Wallet einfach verwalten",
+          "description": "Einfaches und effektives Dashboard"
+        },
+        {
+          "title": "Bewertungssystem stärkt Ihr Vertrauen",
+          "description": "Aufbau eines starken Rufes auf der Plattform"
+        }
+      ]
     }
   }
 }
