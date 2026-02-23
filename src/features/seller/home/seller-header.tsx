@@ -1,15 +1,15 @@
 import { cacheLife } from "next/cache";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { getTranslation } from "@lib/i18n/server";
 import type { Locale } from "@lib/i18n/config";
 import { PageContainer } from "@/components/template/container/page-container";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@components/template/nav/logo";
+import Icon from "@/components/shared/icon-base";
+import { ArrowIcon } from "@/components/shared/icon-base/constant";
+import { cn } from "@/lib/utils/cn";
+import Link from "next/link";
 
-const BackButton = dynamic(() => import("../components/back-button").then((mod) => mod.BackButton), {
-    ssr: false,
-});
 
 interface SellerHeaderProps {
     locale: Locale;
@@ -57,7 +57,17 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
 
                     {/* Back Button - Top Right (RTL aware) */}
                     <div className="me-auto">
-                        <BackButton className="h-[45px] w-[45px]" />
+                        <Button
+                            variant="outline"
+                            rounded="md"
+                            size="icon"
+
+                            className={cn("hover:bg-white/20", "h-[45px] w-[45px]")}
+                        >
+                            <Link href="/" >
+                                <Icon icon={ArrowIcon} className="text-white ltr:rotate-180" />
+                            </Link>
+                        </Button>
                     </div>
                 </div>
 
