@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@components/template/nav/logo";
 
 const BackButton = dynamic(() => import("../components/back-button").then((mod) => mod.BackButton), {
-    ssr: true,
+    ssr: false,
 });
 
 interface SellerHeaderProps {
