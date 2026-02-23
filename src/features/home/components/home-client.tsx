@@ -17,6 +17,7 @@ import {
     CheckCircle2Icon,
     ArrowRightIcon,
     ShieldCheckIcon,
+    HomeNavIcon,
 } from "@components/shared/icon-base/constant";
 
 export function HomeClient({ locale }: { locale: Locale }) {
@@ -75,6 +76,36 @@ export function HomeClient({ locale }: { locale: Locale }) {
                     label: t("auth-dashboard.links.reset-success"),
                     path: `/${locale}/buyer/reset-password-success`,
                     icon: CheckCircle2Icon,
+                },
+            ],
+        },
+        {
+            title: t("auth-dashboard.sections.landing"),
+            links: [
+                {
+                    label: t("auth-dashboard.links.seller-landing"),
+                    path: `/${locale}/seller`,
+                    icon: HomeNavIcon,
+                },
+                {
+                    label: t("auth-dashboard.links.buyer-landing"),
+                    path: `/${locale}/buyer`,
+                    icon: HomeNavIcon,
+                },
+            ],
+        },
+        {
+            title: t("auth-dashboard.sections.dashboard"),
+            links: [
+                {
+                    label: t("auth-dashboard.links.seller-dashboard"),
+                    path: `/${locale}/dashboard/seller`,
+                    icon: ShieldCheckIcon,
+                },
+                {
+                    label: t("auth-dashboard.links.buyer-dashboard"),
+                    path: `/${locale}/dashboard/buyer`,
+                    icon: UserIcon,
                 },
             ],
         },

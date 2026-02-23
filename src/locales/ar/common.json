@@ -13,7 +13,9 @@
     "sections": {
       "buyer": "مصادقة المشتري",
       "recovery": "استعادة كلمة المرور",
-      "success": "حالات النجاح"
+      "success": "حالات النجاح",
+      "landing": "صفحات الهبوط",
+      "dashboard": "لوحات التحكم"
     },
     "links": {
       "login-phone": "تسجيل الدخول (هاتف)",
@@ -23,7 +25,11 @@
       "verify": "التحقق من الرمز",
       "reset": "تعيين كلمة المرور",
       "reg-success": "نجاح التسجيل",
-      "reset-success": "نجاح التعيين"
+      "reset-success": "نجاح التعيين",
+      "seller-landing": "صفحة هبوط البائع",
+      "buyer-landing": "صفحة هبوط المشتري",
+      "seller-dashboard": "لوحة تحكم البائع",
+      "buyer-dashboard": "لوحة تحكم المشتري"
     }
   },
   "nav": {

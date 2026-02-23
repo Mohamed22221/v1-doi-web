@@ -11,9 +11,11 @@
     "subtitle": "Accede y prueba todos los flujos de autenticación desde un solo lugar.",
     "footer": "Construido con Next.js 16 y shadcn/ui",
     "sections": {
-      "buyer": "Autenticación de comprador",
-      "recovery": "Recuperación de contraseña",
-      "success": "Estados de éxito"
+      "buyer": "Buyer Auth",
+      "recovery": "Password Recovery",
+      "success": "Success States",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "Login (Teléfono)",
@@ -23,7 +25,11 @@
       "verify": "Verificar OTP",
       "reset": "Restablecer contraseña",
       "reg-success": "Registro exitoso",
-      "reset-success": "Restablecimiento exitoso"
+      "reset-success": "Restablecimiento exitoso",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {

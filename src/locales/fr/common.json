@@ -13,7 +13,9 @@
     "sections": {
       "buyer": "Auth Acheteur",
       "recovery": "Récupération de Mot de Passe",
-      "success": "États de Succès"
+      "success": "États de Succès",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "Connexion (Téléphone)",
@@ -21,9 +23,13 @@
       "register": "S'inscrire",
       "forgot": "Mot de Passe Oublié",
       "verify": "Vérifier OTP",
-      "reset": "Réinitialiser le Mot de Passe",
-      "reg-success": "Succès d'Inscription",
-      "reset-success": "Succès de Réinitialisation"
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {

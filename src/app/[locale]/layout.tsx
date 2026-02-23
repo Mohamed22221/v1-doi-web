@@ -7,16 +7,7 @@ import dynamic from "next/dynamic";
 import { LocaleSync } from "@components/shared/language/locale-sync";
 import { ProvidersShell } from "@/components/providers/providers-shell";
 
-const ThemeToggle = dynamic(() => import("@/components/shared/theme/theme-toggle").then((mod) => mod.ThemeToggle), {
-  ssr: true,
-});
-
-const LanguageSwitcher = dynamic(
-  () => import("@components/shared/language/language-switcher").then((mod) => mod.LanguageSwitcher),
-  {
-    ssr: true,
-  },
-);
+import { SettingsContainer } from "@/components/shared/settings/settings-container";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -54,16 +45,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <footer role="contentinfo" className="sr-only">
             Doi Web Application
           </footer>
-          <div
-            role="region"
-            aria-label="Settings"
-            className="fixed bottom-4 left-4 z-[9999] flex origin-bottom-left scale-75 flex-col gap-2 md:scale-100"
-          >
-            <Suspense fallback={null}>
-              <ThemeToggle />
-              <LanguageSwitcher />
-            </Suspense>
-          </div>
+          <SettingsContainer />
         </ProvidersShell>
       </Suspense>
     </>

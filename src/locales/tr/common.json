@@ -13,7 +13,9 @@
     "sections": {
       "buyer": "Alıcı Doğrulaması",
       "recovery": "Şifre Kurtarma",
-      "success": "Başarı Durumları"
+      "success": "Başarı Durumları",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "Giriş (Telefon)",
@@ -21,9 +23,13 @@
       "register": "Kayıt Ol",
       "forgot": "Şifremi Unuttum",
       "verify": "OTP Doğrula",
-      "reset": "Şifre Sıfırla",
-      "reg-success": "Kayıt Başarılı",
-      "reset-success": "Sıfırlama Başarılı"
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {

@@ -17,7 +17,7 @@ interface ProvidersShellProps {
 export async function ProvidersShell({ children, locale }: ProvidersShellProps) {
   const cookieStore = await cookies();
   const theme = cookieStore.get("theme")?.value || "light";
-  const resources = await getResources(locale);
+  const resources = await getResources(locale, ["common", "home", "seo", "auth"]);
 
   return (
     <>

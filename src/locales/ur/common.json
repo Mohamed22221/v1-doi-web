@@ -11,9 +11,11 @@
     "subtitle": "ایک ہی جگہ سے تمام تصدیق کے عمل تک رسائی حاصل کریں اور ان کی جانچ کریں۔",
     "footer": "Next.js 16 اور shadcn/ui کے ساتھ بنایا گیا",
     "sections": {
-      "buyer": "خریدار کی تصدیق",
-      "recovery": "پاس ورڈ کی بازیابی",
-      "success": "کامیابی کی حالتیں"
+      "buyer": "Buyer Auth",
+      "recovery": "Password Recovery",
+      "success": "Success States",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "لاگ ان (فون)",
@@ -21,9 +23,13 @@
       "register": "رجسٹر کریں",
       "forgot": "پاس ورڈ بھول گئے",
       "verify": "او ٹی پی کی تصدیق",
-      "reset": "پاس ورڈ ری سیٹ کریں",
-      "reg-success": "رجسٹریشن کامیاب",
-      "reset-success": "ری سیٹ کامیاب"
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {

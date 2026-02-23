@@ -13,7 +13,9 @@
     "sections": {
       "buyer": "احراز هویت خریدار",
       "recovery": "بازیابی رمز عبور",
-      "success": "حالات موفقیت"
+      "success": "حالات موفقیت",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "ورود (تلفن)",
@@ -21,9 +23,13 @@
       "register": "ثبت‌نام",
       "forgot": "فراموشی رمز عبور",
       "verify": "تایید OTP",
-      "reset": "بازیابی رمز عبور",
-      "reg-success": "ثبت‌نام موفق",
-      "reset-success": "بازیابی موفق"
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {

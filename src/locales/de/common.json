@@ -13,7 +13,9 @@
     "sections": {
       "buyer": "Käufer-Auth",
       "recovery": "Passwort-Wiederherstellung",
-      "success": "Erfolgsstatus"
+      "success": "Erfolgsstatus",
+      "landing": "Landing Pages",
+      "dashboard": "Dashboards"
     },
     "links": {
       "login-phone": "Login (Telefon)",
@@ -21,9 +23,13 @@
       "register": "Registrieren",
       "forgot": "Passwort vergessen",
       "verify": "OTP verifizieren",
-      "reset": "Passwort zurücksetzen",
-      "reg-success": "Registrierung erfolgreich",
-      "reset-success": "Reset erfolgreich"
+      "reset": "Reset Password",
+      "reg-success": "Registration Success",
+      "reset-success": "Reset Success",
+      "seller-landing": "Seller Landing",
+      "buyer-landing": "Buyer Landing",
+      "seller-dashboard": "Seller Dashboard",
+      "buyer-dashboard": "Buyer Dashboard"
     }
   },
   "nav": {
