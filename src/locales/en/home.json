@@ -52,6 +52,13 @@
       "primary_cta": "Activate Seller Account",
       "secondary_cta": "Learn Selling Terms",
       "note": "The verification process takes less than 5 minutes"
+    },
+    "footer": {
+      "mission": "Smart Auction Platform",
+      "faq": "FAQ",
+      "support": "Support",
+      "terms": "Selling Terms",
+      "copyright": "© {{year}} Doi. All rights reserved."
     }
   }
 }

@@ -52,6 +52,13 @@
       "primary_cta": "Activar cuenta de vendedor",
       "secondary_cta": "Conocer términos de venta",
       "note": "El proceso de verificación tarda menos de 5 minutos"
+    },
+    "footer": {
+      "mission": "Plataforma de Subastas Inteligentes",
+      "faq": "Preguntas Frecuentes",
+      "support": "Soporte",
+      "terms": "Términos de Venta",
+      "copyright": "© {{year}} Doi. Todos los derechos reservados."
     }
   }
 }

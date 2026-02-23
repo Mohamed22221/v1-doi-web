@@ -52,6 +52,13 @@
       "primary_cta": "Satıcı hesabını etkinleştir",
       "secondary_cta": "Satış koşullarını öğren",
       "note": "Doğrulama işlemi 5 dakikadan az sürer"
+    },
+    "footer": {
+      "mission": "Akıllı Müzayede Platformu",
+      "faq": "SSS",
+      "support": "Destek",
+      "terms": "Satış Koşulları",
+      "copyright": "© {{year}} Doi. Tüm hakları saklıdır."
     }
   }
 }

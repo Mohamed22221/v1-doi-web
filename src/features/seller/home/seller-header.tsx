@@ -29,7 +29,7 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
     const { t } = await getTranslation(locale, "home");
 
     return (
-        <div className="px-3 md:px-0">
+        <div className="px-3 md:px-0 mt-5 md:mt-0">
             <section className="relative my-3 flex h-[200px] min-h-[200px] w-full items-end justify-center overflow-hidden rounded-md md:my-0 md:min-h-[100vh] md:rounded-[0rem] md:bg-transparent 3xl:min-h-[80vh]">
                 {/* Background Image Container */}
                 <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
