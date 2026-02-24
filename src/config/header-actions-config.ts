@@ -1,43 +1,47 @@
 import { BellIcon, ShoppingBagIcon, UserIcon } from "@components/shared/icon-base/constant";
 
-export type HeaderActionType = "link" | "button";
+export type HeaderActionType = "link" | "button" | "avatar" | "text-link";
 export type HeaderActionRole = "buyer" | "seller" | "guest";
 export type HeaderActionVisibility = "mobile" | "desktop" | "both";
 
 export interface HeaderAction {
   id: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   roleIcons?: Partial<Record<HeaderActionRole, React.ComponentType<React.SVGProps<SVGSVGElement>>>>;
-  translationKey: string;
+  translationKey?: string;
   roles: HeaderActionRole[];
   visibility: HeaderActionVisibility;
   type: HeaderActionType;
   href?: string;
-  variant?: "outline" | "ghost";
+  variant?: "outline" | "ghost" | "default";
+  src?: string;
+  label?: string;
 }
 
 export const HEADER_ACTIONS: HeaderAction[] = [
+  // --- Buyer actions ---
   {
     id: "notifications",
     icon: BellIcon,
     translationKey: "header.notifications",
-    roles: ["buyer", "seller"],
+    roles: ["buyer", "seller", "guest"],
     visibility: "both",
-    type: "button",
+    type: "link",
+    href: "/notifications",
     variant: "outline",
   },
   {
     id: "cart",
     icon: ShoppingBagIcon,
     translationKey: "header.cart",
-    roles: ["buyer"],
+    roles: ["buyer", "guest"],
     visibility: "both",
     type: "link",
     href: "/cart",
     variant: "outline",
   },
   {
-    id: "profile",
+    id: "buyer-profile",
     icon: UserIcon,
     translationKey: "header.profile",
     roles: ["buyer"],
@@ -46,14 +50,23 @@ export const HEADER_ACTIONS: HeaderAction[] = [
     href: "/buyer/profile",
     variant: "outline",
   },
+
+  // --- Seller & Guest actions ---
   {
-    id: "profile",
-    icon: UserIcon,
-    translationKey: "header.profile",
-    roles: ["seller"],
-    visibility: "both",
-    type: "link",
+    id: "seller-profile",
+    type: "avatar",
     href: "/seller/profile",
-    variant: "outline",
+    src: "/avatars/thumb-2.jpg",
+    roles: ["seller", "guest"],
+    visibility: "both",
+  },
+  {
+    id: "login",
+    type: "text-link",
+    href: "/buyer/login",
+    translationKey: "buyer-register.form.loginNow",
+    roles: ["guest"],
+    visibility: "both",
+    variant: "default",
   },
 ];

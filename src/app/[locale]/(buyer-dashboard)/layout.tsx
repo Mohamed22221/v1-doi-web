@@ -1,5 +1,5 @@
+import { NavLinks } from "@/components/layout/nav/nav-links";
 import { Header } from "@components/layout/headers/header";
-import { BuyerNav } from "@components/layout/nav/buyer-nav";
 import { MobileNav } from "@components/layout/nav/mobile-nav";
 import { PageContainer } from "@components/template/container/page-container";
 import type { Locale } from "@lib/i18n/config";
@@ -17,7 +17,9 @@ export default async function NavLayout({
   return (
     <>
       <Header role="buyer" />
-      <BuyerNav roles={["buyer"]} locale={locale} />
+      <NavLinks config="buyer" locale={locale} />
+
+      {/* <BuyerNav roles={["buyer"]} locale={locale} /> */}
       <main>
         <PageContainer variant="full" className="pt-22 pb-22 md:pt-9 md:pb-10">
           {children}

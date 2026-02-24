@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
     // Update i18next client-side (fire and forget — page is reloading anyway)
     void i18next.changeLanguage(newLocale);
 
-    window.location.href = "/";
+    window.location.assign(newPath);
   };
 
   const { t } = i18next;

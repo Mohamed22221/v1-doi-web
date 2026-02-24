@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Settings2, ChevronRight, ChevronLeft, Globe, Moon, Sun, Check } from "lucide-react";
+import { Settings2, ChevronRight, Globe, Moon, Sun, Check } from "lucide-react";
 import { Button } from "@components/ui/button";
 import {
     Drawer,
@@ -37,7 +37,7 @@ export function FloatingSettings() {
         // Fire and forget — page is reloading anyway
         void i18next.changeLanguage(newLocale);
 
-        window.location.href = newPath;
+        window.location.assign(newPath);
     };
 
     const getLocaleLabel = (loc: Locale): string => {

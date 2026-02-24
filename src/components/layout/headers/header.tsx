@@ -1,17 +1,39 @@
 import { Logo } from "@components/template/nav/logo";
 import { HeaderActions } from "./header-actions";
 import { DeliveryLocation } from "@components/template/nav/delivery-location";
-import type { HeaderActionRole } from "@config/header-actions-config";
+import { HEADER_ACTIONS, type HeaderActionRole } from "@config/header-actions-config";
 import { cn } from "@utils/cn";
 import { PageContainer } from "@components/template/container/page-container";
+import type { Locale } from "@lib/i18n/config";
+import { getTranslation } from "@lib/i18n/server";
 
 interface HeaderProps {
   role: HeaderActionRole;
   showDelivery?: boolean;
   className?: string;
+  locale?: Locale;
 }
 
-export function Header({ role, showDelivery = true, className }: HeaderProps) {
+export async function Header({ role, showDelivery = true, className, locale }: HeaderProps) {
+  // Resolve translation labels for text-link actions server-side
+  let resolvedLabels: Record<string, string> | undefined;
+
+  if (locale) {
+    const textLinkActions = HEADER_ACTIONS.filter(
+      (a) => a.type === "text-link" && a.translationKey && a.roles.includes(role),
+    );
+
+    if (textLinkActions.length > 0) {
+      resolvedLabels = {};
+      const { t } = await getTranslation(locale, "auth");
+      for (const action of textLinkActions) {
+        if (action.translationKey) {
+          resolvedLabels[action.id] = t(action.translationKey as Parameters<typeof t>[0]);
+        }
+      }
+    }
+  }
+
   return (
     <header
       className={cn(
@@ -35,8 +57,8 @@ export function Header({ role, showDelivery = true, className }: HeaderProps) {
           )}
         </div>
         {/* Left Side: Dynamic Actions */}
-        <HeaderActions role={role} variant="mobile" className="md:hidden" />
-        <HeaderActions role={role} variant="desktop" className="hidden md:flex" />
+        <HeaderActions role={role} variant="mobile" className="md:hidden" resolvedLabels={resolvedLabels} locale={locale} />
+        <HeaderActions role={role} variant="desktop" className="hidden md:flex" resolvedLabels={resolvedLabels} locale={locale} />
         {/* Right Side: Logo */}
       </PageContainer>
     </header>

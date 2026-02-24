@@ -23,20 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
     icon: HomeNavIcon,
     rules: { roles: ["guest"] },
   },
-  {
-    id: "buyerHome",
-    href: "/dashboard/buyer",
-    translationKey: "nav.products",
-    icon: ProductsNavIcon,
-    rules: { roles: ["guest"] },
-  },
-  {
-    id: "sellerHome",
-    href: "/dashboard/seller",
-    translationKey: "nav.sell",
-    icon: SellNavIcon,
-    rules: { roles: ["guest"] },
-  },
+
   //buyer links
   {
     id: "buyer",
@@ -50,28 +37,28 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/dashboard/buyer/search",
     translationKey: "nav.search",
     icon: SearchNavIcon,
-    rules: { roles: ["buyer"], requiresAuth: true },
+    rules: { roles: ["buyer", "guest"] },
   },
   {
     id: "sell",
     href: "/dashboard/buyer/sell",
     translationKey: "nav.sell",
     icon: SellNavIcon,
-    rules: { roles: ["buyer"], requiresAuth: true },
+    rules: { roles: ["buyer", "guest"] },
   },
   {
     id: "pidding",
     href: "/dashboard/buyer/pidding",
     translationKey: "nav.pidding",
     icon: PiddingNavIcon,
-    rules: { roles: ["buyer"], requiresAuth: true },
+    rules: { roles: ["buyer", "guest"] },
   },
   {
     id: "list",
     href: "/dashboard/buyer/list",
     translationKey: "nav.list",
     icon: ListNavIcon,
-    rules: { roles: ["buyer"], requiresAuth: true },
+    rules: { roles: ["buyer", "guest"] },
   },
   //seller links
   {
