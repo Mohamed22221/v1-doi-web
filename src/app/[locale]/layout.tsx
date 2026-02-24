@@ -3,7 +3,6 @@ import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { type Locale, locales } from "@lib/i18n/config";
 import { NavSync } from "@components/layout/nav/nav-sync";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import { LocaleSync } from "@components/shared/language/locale-sync";
 import { ProvidersShell } from "@/components/providers/providers-shell";
 

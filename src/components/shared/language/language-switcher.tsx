@@ -1,37 +1,35 @@
 "use client";
 
-import { useTransition } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useLocaleStore } from "@store/locale-store";
 import { i18next } from "@lib/i18n/client";
 import { locales, type Locale } from "@lib/i18n/config";
 
 export function LanguageSwitcher() {
-  const router = useRouter();
   const pathname = usePathname();
   const { locale, setLocale } = useLocaleStore();
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
 
-  const handleLocaleChange = async (newLocale: Locale) => {
-    if (newLocale === locale) return;
+  const handleLocaleChange = (newLocale: Locale) => {
+    if (newLocale === locale || isPending) return;
 
-    // 1. Update Zustand store (prepares state + cookie)
+    setIsPending(true);
+
+    // 1. Write cookie + Zustand so server picks up new locale on reload
     setLocale(newLocale);
 
-    // 2. Await language change (fetches JSON if needed)
-    // This prevents the "flash" of old language during navigation
-    await i18next.changeLanguage(newLocale);
-
-    // 3. Navigate to same route with new locale
+    // 2. Build new path and hard-navigate
+    //    Hard nav avoids async event-handler + Suspense re-suspension
+    //    that freeze scroll on mobile
     const currentLocale = pathname.split("/")[1];
-    // Optimized path calculation as suggested by user
     const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "") || "/";
     const newPath = `/${newLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
 
-    startTransition(() => {
-      // Use replace for a smoother experience as suggested
-      router.replace(newPath);
-    });
+    // Update i18next client-side (fire and forget — page is reloading anyway)
+    void i18next.changeLanguage(newLocale);
+
+    window.location.href = "/";
   };
 
   const { t } = i18next;

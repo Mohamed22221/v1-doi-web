@@ -14,30 +14,30 @@ import { useThemeStore } from "@/lib/store/theme-store";
 import { useLocaleStore } from "@/lib/store/locale-store";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { i18next } from "@/lib/i18n/client";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@utils/cn";
 
 export function FloatingSettings() {
     const [open, setOpen] = React.useState(false);
+    const [isPending, setIsPending] = React.useState(false);
     const { theme, toggleTheme } = useThemeStore();
     const { locale, setLocale } = useLocaleStore();
-    const router = useRouter();
     const pathname = usePathname();
-    const [isPending, startTransition] = React.useTransition();
 
-    const handleLocaleChange = async (newLocale: Locale) => {
-        if (newLocale === locale) return;
+    const handleLocaleChange = (newLocale: Locale) => {
+        if (newLocale === locale || isPending) return;
+
+        setIsPending(true);
         setLocale(newLocale);
-        await i18next.changeLanguage(newLocale);
 
         const currentLocale = pathname.split("/")[1];
         const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "") || "/";
         const newPath = `/${newLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
 
-        startTransition(() => {
-            router.replace(newPath);
-            setOpen(false);
-        });
+        // Fire and forget — page is reloading anyway
+        void i18next.changeLanguage(newLocale);
+
+        window.location.href = newPath;
     };
 
     const getLocaleLabel = (loc: Locale): string => {
