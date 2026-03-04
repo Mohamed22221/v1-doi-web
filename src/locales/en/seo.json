@@ -47,5 +47,9 @@
     "buyer-reset-password-success": {
         "title": "Password Reset Successful | Doi",
         "description": "Your password has been reset successfully. You can now log in to your account."
+    },
+    "seller-start": {
+        "title": "Identity Verification | Doi",
+        "description": "Verify your identity as a seller in Doi to ensure safety and integrity for all community members."
     }
 }

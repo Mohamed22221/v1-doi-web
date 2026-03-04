@@ -28,17 +28,18 @@ export default async function RegisterSuccess({ locale }: RegisterSuccessProps) 
   const { t } = await getTranslation(locale, "auth");
 
   return (
-    <div className="flex flex-col items-center gap-6 text-center">
+    <div className="flex flex-col items-center gap-4 text-center">
       {/* Brand Logo */}
       <Logo imgClass="w-[100px] h-[56px]" className="mb-2" />
 
       {/* Illustration */}
-      <div className="relative aspect-square max-h-[375px] w-full max-w-[375px]">
+      <div className="relative aspect-square max-h-[325px] w-full max-w-[325px]">
         <Image
           src="/img/Confirmed-bro.png"
           alt="Success illustration"
           fill
           className="object-contain"
+          priority
         />
       </div>
 
@@ -46,8 +47,7 @@ export default async function RegisterSuccess({ locale }: RegisterSuccessProps) 
       <HeaderSidebar
         title={t("buyer-register-success.title")}
         subtitle={t("buyer-register-success.subtitle")}
-        className="mt-0 space-y-2 !pt-0"
-        classHeader="!text-primary-500 dark:!text-primary-400 text-[24px] md:text-[32px]"
+        className="mt-0 space-y-1 pt-0"
       />
     </div>
   );

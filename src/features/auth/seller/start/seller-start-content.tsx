@@ -2,54 +2,54 @@ import { cacheLife } from "next/cache";
 import Image from "next/image";
 
 // i18n
-import type { Locale } from "@/lib/i18n/config";
+import type { Locale } from "@lib/i18n/config";
 import { getTranslation } from "@lib/i18n/server";
 
 // Components
 import { Logo } from "@components/template/nav/logo";
 import HeaderSidebar from "../../components/header-sidebar";
 
-interface ResetSuccessContentProps {
+interface SellerStartContentProps {
   locale: Locale;
 }
 
 /**
- * ResetSuccessContent
+ * SellerStartContent
  *
- * Displays a success message after a user successfully resets their password.
- * Includes a celebratory illustration and a link to return to the login page.
+ * Displays the initial verification screen for sellers.
+ * Includes an illustration and message explaining the need for verification.
  *
  * Note: This component is a Server Component and uses 'use cache'.
  */
-export default async function ResetSuccessContent({ locale }: ResetSuccessContentProps) {
+export default async function SellerStartContent({ locale }: SellerStartContentProps) {
   "use cache";
   cacheLife("days");
 
   const { t } = await getTranslation(locale, "auth");
 
   return (
-    <div className="flex flex-col items-center gap-4 text-center">
+    <section className="flex flex-col items-center gap-3 text-center md:gap-4">
       {/* Brand Logo */}
-      <Logo imgClass="w-[100px] h-[56px]" className="mb-2" />
+      <Logo className="hidden md:inline-block" imgClass="w-[90px] h-[50px]" />
 
       {/* Illustration */}
       <div className="relative aspect-square max-h-[325px] w-full max-w-[325px]">
         <Image
-          src="/img/authentication-bro.png"
-          alt="Success illustration"
+          src="/img/authentication-start.png"
+          alt={t("seller-start.illustrationAlt")}
           fill
           className="object-contain"
           priority
         />
       </div>
 
-      {/* Success Message */}
+      {/* Message */}
       <HeaderSidebar
-        title={t("buyer-reset-password-success.title")}
-        subtitle={t("buyer-reset-password-success.subtitle")}
-        className="mt-0 space-y-1 !pt-1 md:!pt-2"
+        title={t("seller-start.title")}
+        subtitle={t("seller-start.description")}
+        className="mt-0 space-y-1 pt-1 text-neutral-600 md:pt-2"
         classHeader="!text-primary-500 dark:!text-primary-400 text-h3 md:text-h2"
       />
-    </div>
+    </section>
   );
 }
