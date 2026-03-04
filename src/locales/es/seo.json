@@ -59,5 +59,9 @@
     "seller-success": {
         "title": "Activado con Éxito | Doi",
         "description": "¡Felicidades! Su cuenta de vendedor ha sido activada con éxito. Empiece a añadir sus productos ahora."
+    },
+    "seller-rejected": {
+        "title": "Verificación Rechazada | Doi",
+        "description": "Tu solicitud de verificación no ha sido aceptada. Por favor, comprueba tu información e inténtalo de nuevo."
     }
 }

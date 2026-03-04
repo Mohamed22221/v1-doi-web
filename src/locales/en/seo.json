@@ -57,7 +57,11 @@
         "description": "Your identity verification is currently being reviewed by our team. We will notify you once it's completed."
     },
     "seller-success": {
-        "title": "Activated Successfully | Doi",
+        "title": "Successfully Activated | Doi",
         "description": "Congratulations! Your seller account has been successfully activated. Start adding your products now."
+    },
+    "seller-rejected": {
+        "title": "Verification Rejected | Doi",
+        "description": "Your verification request was not accepted. Please check your information and try again."
     }
 }

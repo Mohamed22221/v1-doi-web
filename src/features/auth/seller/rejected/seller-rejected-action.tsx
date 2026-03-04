@@ -8,20 +8,20 @@ import type { Locale } from "@lib/i18n/config";
 // Components
 import { buttonVariants } from "@components/ui/button";
 
-interface SellerSuccessActionProps {
+interface SellerRejectedActionProps {
   locale: Locale;
 }
 
 /**
- * SellerSuccessAction
+ * SellerRejectedAction
  *
- * Provides action buttons for the seller success page:
- * 1. Add first product (Primary)
- * 2. Back to home (Secondary)
+ * Provides action buttons for the rejected verification screen:
+ * 1. Retry (Primary) - Redirects back to the verification start page.
+ * 2. Contact Support (Secondary) - Redirects to the homepage or support.
  *
  * Note: This component is a Server Component and uses 'use cache'.
  */
-export default async function SellerSuccessAction({ locale }: SellerSuccessActionProps) {
+export default async function SellerRejectedAction({ locale }: SellerRejectedActionProps) {
   "use cache";
   cacheLife("days");
 
@@ -29,8 +29,9 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
 
   return (
     <section className="flex w-full flex-col-reverse items-center gap-3 md:mx-auto md:max-w-md md:flex-row-reverse md:justify-center md:gap-4">
+      {/* Retry Button (Primary) */}
       <Link
-        href={`/${locale}`}
+        href={`/${locale}/seller/start`}
         className={buttonVariants({
           variant: "secondary",
           size: "lg",
@@ -38,10 +39,12 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
             "h-[50px] w-full text-label font-bold text-primary-500 md:flex-1 md:px-0 md:text-body tablet:h-[50px] xl:h-[56px] xl:text-h5",
         })}
       >
-        {t("seller-success.secondary")}
+        {t("seller-rejected.submit")}
       </Link>
+
+      {/* Contact Support Button (Secondary) */}
       <Link
-        href={`/${locale}/seller/products/new`}
+        href={`/${locale}`}
         className={buttonVariants({
           variant: "default",
           size: "lg",
@@ -49,7 +52,7 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
             "h-[50px] w-full text-label font-bold md:flex-1 md:px-0 md:text-body tablet:h-[50px] xl:h-[56px] xl:text-h5",
         })}
       >
-        {t("seller-success.submit")}
+        {t("seller-rejected.secondary")}
       </Link>
     </section>
   );

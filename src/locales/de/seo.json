@@ -59,5 +59,9 @@
     "seller-success": {
         "title": "Erfolgreich Aktiviert | Doi",
         "description": "Herzlichen Glückwunsch! Ihr Verkäuferkonto wurde erfolgreich aktiviert. Fangen Sie jetzt an, Ihre Produkte hinzuzufügen."
+    },
+    "seller-rejected": {
+        "title": "Verifizierung Abgelehnt | Doi",
+        "description": "Ihre Verifizierungsanfrage wurde nicht akzeptiert. Bitte überprüfen Sie Ihre Informationen und versuchen Sie es erneut."
     }
 }

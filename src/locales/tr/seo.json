@@ -59,5 +59,9 @@
     "seller-success": {
         "title": "Başarıyla Etkinleştirildi | Doi",
         "description": "Tebrikler! Satıcı hesabınız başarıyla etkinleştirildi. Şimdi ürünlerinizi eklemeye başlayın."
+    },
+    "seller-rejected": {
+        "title": "Doğrulama Reddedildi | Doi",
+        "description": "Doğrulama talebiniz kabul edilmedi. Lütfen bilgilerinizi kontrol edin ve tekrar deneyin."
     }
 }
