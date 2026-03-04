@@ -53,5 +53,22 @@
   },
   "a11y": {
     "skipLink": "Zum Hauptinhalt springen"
+  },
+  "upload": {
+    "product": "Produktbilder hochladen",
+    "identity": "Ausweis-Foto hochladen",
+    "profile": "Profilbild ändern",
+    "dropHere": "Dateien hierher ziehen oder zum Auswählen klicken",
+    "firstIsCover": "Das erste Bild wird das Hauptbild",
+    "minRecommended": "Füge mindestens {{count}} Bilder hinzu (max. {{max}}), um dein Produkt besser zu präsentieren.",
+    "uploading": "Hochladen...",
+    "success": "Erfolgreich hochgeladen",
+    "error": "Hochladen fehlgeschlagen",
+    "errorTooLarge": "Die Dateigröße überschreitet das erlaubte Limit.",
+    "errorInvalidType": "Dateityp wird nicht unterstützt.",
+    "errorTooMany": "Maximale Dateianzahl überschritten.",
+    "remove": "Datei entfernen",
+    "upload": "Dateien hochladen",
+    "maxSize": "Max. Größe pro Datei: {{size}} MB"
   }
 }

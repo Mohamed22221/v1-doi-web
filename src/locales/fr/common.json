@@ -53,5 +53,22 @@
   },
   "a11y": {
     "skipLink": "Passer au contenu principal"
+  },
+  "upload": {
+    "product": "Importer des images produit",
+    "identity": "Importer une photo d'identité",
+    "profile": "Changer la photo de profil",
+    "dropHere": "Glissez les fichiers ici ou cliquez pour sélectionner",
+    "firstIsCover": "La première image sera la couverture principale",
+    "minRecommended": "Ajoutez au moins {{count}} images (max {{max}}) pour mieux présenter votre produit.",
+    "uploading": "Import en cours...",
+    "success": "Importé avec succès",
+    "error": "Echec de l'importation",
+    "errorTooLarge": "La taille du fichier dépasse la limite autorisée.",
+    "errorInvalidType": "Type de fichier non supporté.",
+    "errorTooMany": "Nombre maximum de fichiers dépassé.",
+    "remove": "Supprimer le fichier",
+    "upload": "Importer les fichiers",
+    "maxSize": "Taille max par fichier : {{size}} Mo"
   }
 }

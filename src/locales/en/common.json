@@ -53,5 +53,22 @@
   },
   "a11y": {
     "skipLink": "Skip to main content"
+  },
+  "upload": {
+    "product": "Upload Product Images",
+    "identity": "Upload Identity Image",
+    "profile": "Change Profile Picture",
+    "dropHere": "Drag files here or click to select",
+    "firstIsCover": "First image will be the main cover",
+    "minRecommended": "Add at least {{count}} images (max {{max}}) to better display your product.",
+    "uploading": "Uploading...",
+    "success": "Uploaded successfully",
+    "error": "Upload failed",
+    "errorTooLarge": "File size exceeds the allowed limit.",
+    "errorInvalidType": "File type is not supported.",
+    "errorTooMany": "Maximum file count exceeded.",
+    "remove": "Remove file",
+    "upload": "Upload Files",
+    "maxSize": "Max size per file: {{size}} MB"
   }
 }

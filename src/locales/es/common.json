@@ -53,5 +53,22 @@
   },
   "a11y": {
     "skipLink": "Saltar al contenido principal"
+  },
+  "upload": {
+    "product": "Subir imágenes del producto",
+    "identity": "Subir foto de identidad",
+    "profile": "Cambiar foto de perfil",
+    "dropHere": "Arrastra los archivos aquí o haz clic para seleccionar",
+    "firstIsCover": "La primera imagen será la portada principal",
+    "minRecommended": "Añade al menos {{count}} imágenes (máx {{max}}) para mostrar mejor tu producto.",
+    "uploading": "Subiendo...",
+    "success": "Subido correctamente",
+    "error": "Error al subir",
+    "errorTooLarge": "El tamaño del archivo supera el límite permitido.",
+    "errorInvalidType": "Tipo de archivo no compatible.",
+    "errorTooMany": "Se ha superado el número máximo de archivos.",
+    "remove": "Eliminar archivo",
+    "upload": "Subir archivos",
+    "maxSize": "Tamaño máx por archivo: {{size}} MB"
   }
 }

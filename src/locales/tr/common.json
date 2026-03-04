@@ -53,5 +53,22 @@
   },
   "a11y": {
     "skipLink": "Ana içeriğe atla"
+  },
+  "upload": {
+    "product": "Rürn görüntlerini yükle",
+    "identity": "Kimlik fotoğrafı yükle",
+    "profile": "Profil resmini değiştir",
+    "dropHere": "Dosyaları buraya sürüin veya seçmek için tıklayın",
+    "firstIsCover": "Birinci görüntü ana kapak olacak",
+    "minRecommended": "En az {{count}} görüntü ekleyin (maks {{max}}) rürününüzü daha iyi göstermek için.",
+    "uploading": "Yüklüyor...",
+    "success": "Başarıyla yüklendin",
+    "error": "Yükleme başarısız",
+    "errorTooLarge": "Dosya boyutu izin verilen sınırı aşıyor.",
+    "errorInvalidType": "Dosya türü desteklenmiyor.",
+    "errorTooMany": "Maksimum dosya sayısı aşıldı.",
+    "remove": "Dosyayı kaldır",
+    "upload": "Dosyaları yükle",
+    "maxSize": "Dosya başına maks boyut: {{size}} MB"
   }
 }
