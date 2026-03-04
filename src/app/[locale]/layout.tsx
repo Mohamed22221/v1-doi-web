@@ -40,7 +40,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <>
       <a
         href="#main-content"
-        className="sr-only z-[10000] rounded-full bg-primary-400 p-3 text-white shadow-lg focus:not-sr-only focus:absolute focus:start-4 focus:top-4"
+        className="sr-only z-10000 rounded-full bg-primary-400 p-3 text-white shadow-lg focus:not-sr-only focus:absolute focus:start-4 focus:top-4"
       >
         {t("a11y.skipLink")}
       </a>

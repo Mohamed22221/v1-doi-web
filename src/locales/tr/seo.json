@@ -55,5 +55,9 @@
     "seller-pending": {
         "title": "Doğrulama İnceleniyor | Doi",
         "description": "Kimlik doğrulamanız şu anda ekibimiz tarafından inceleniyor. Tamamlandığında size haber vereceğiz."
+    },
+    "seller-success": {
+        "title": "Başarıyla Etkinleştirildi | Doi",
+        "description": "Tebrikler! Satıcı hesabınız başarıyla etkinleştirildi. Şimdi ürünlerinizi eklemeye başlayın."
     }
 }

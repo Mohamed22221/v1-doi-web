@@ -55,5 +55,9 @@
     "seller-pending": {
         "title": "Vérification en Cours d'Examen | Doi",
         "description": "Votre vérification d'identité est actuellement en cours d'examen par notre équipe. Nous vous informerons une fois qu'elle sera terminée."
+    },
+    "seller-success": {
+        "title": "Activé avec Succès | Doi",
+        "description": "Félicitations ! Votre compte vendeur a été activé avec succès. Commencez à ajouter vos produits maintenant."
     }
 }

@@ -55,5 +55,9 @@
     "seller-pending": {
         "title": "Verification Under Review | Doi",
         "description": "Your identity verification is currently being reviewed by our team. We will notify you once it's completed."
+    },
+    "seller-success": {
+        "title": "Activated Successfully | Doi",
+        "description": "Congratulations! Your seller account has been successfully activated. Start adding your products now."
     }
 }

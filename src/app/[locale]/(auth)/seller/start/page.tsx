@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { type Locale } from "@lib/i18n/config";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 
@@ -8,11 +7,9 @@ import { getTranslation } from "@lib/i18n/server";
 
 // Layouts & Components
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";
-import { buttonVariants } from "@/components/ui/button";
-import Icon from "@components/shared/icon-base";
-import { ArrowIcon } from "@components/shared/icon-base/constant";
 import SellerStartAction from "@/features/auth/seller/start/seller-start-action";
 import SellerStartContent from "@/features/auth/seller/start/seller-start-content";
+import { AuthCloseButton } from "@/features/auth/components/auth-close-button";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -39,31 +36,17 @@ export default async function SellerStartPage({ params }: PageProps) {
 
   return (
     <main className="relative">
-      {/* Close Button UI - positioned relative to the card area via layout or absolute if needed */}
       <AuthCenteredCardLayout
         // Action Area: Verify button and helper text
         actionContent={<SellerStartAction locale={locale as Locale} />}
         className="relative"
       >
         {/* Close Button at top-left of the card */}
-        <div className="absolute start-4 top-4 z-10 md:start-6 md:top-6">
-          <Link
-            href={`/${locale}/seller`}
-            aria-label={t("seller-start.closeLabel")}
-            className={buttonVariants({
-              variant: "ghost",
-              size: "icon-sm",
-              className:
-                "h-[40px] w-[40px] rounded-full border border-primary-50 dark:border-primary-400",
-            })}
-          >
-            <Icon
-              icon={ArrowIcon}
-              className="h-4 w-4 text-neutral-300 ltr:rotate-180 dark:text-neutral-50"
-            />
-            <span className="sr-only">{t("seller-start.closeLabel")}</span>
-          </Link>
-        </div>
+        <AuthCloseButton
+          href={`/${locale}/seller`}
+          ariaLabel={t("seller-start.closeLabel")}
+          variant="close"
+        />
 
         <SellerStartContent locale={locale as Locale} />
       </AuthCenteredCardLayout>

@@ -7,8 +7,8 @@ import { getTranslation } from "@lib/i18n/server";
 
 // Layouts & Components
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";
-import SellerPendingAction from "@/features/auth/seller/pending/seller-pending-action";
-import SellerPendingContent from "@/features/auth/seller/pending/seller-pending-content";
+import SellerSuccessAction from "@/features/auth/seller/success/seller-success-action";
+import SellerSuccessContent from "@/features/auth/seller/success/seller-success-content";
 import { AuthCloseButton } from "@/features/auth/components/auth-close-button";
 
 interface PageProps {
@@ -19,36 +19,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   return generateLocalizedMetadata({
     locale: locale as Locale,
-    pageKey: "seller-pending",
-    pathname: "/seller/pending",
+    pageKey: "seller-success",
+    pathname: "/seller/success",
   });
 }
 
 /**
- * SellerPendingPage
+ * SellerSuccessPage
  *
- * The page displayed when a seller's verification is pending.
- * Uses AuthCenteredCardLayout for a focused, centered UI.
+ * The page displayed when a seller's account activation is successful.
+ * Matches the design of seller/start and seller/pending.
  */
-export default async function SellerPendingPage({ params }: PageProps) {
+export default async function SellerSuccessPage({ params }: PageProps) {
   const { locale } = await params;
   const { t } = await getTranslation(locale as Locale, "auth");
 
   return (
     <main className="relative">
       <AuthCenteredCardLayout
-        // Action Area: Back to home button and helper text
-        actionContent={<SellerPendingAction locale={locale as Locale} />}
+        // Action Area: Add product and home buttons
+        actionContent={<SellerSuccessAction locale={locale as Locale} />}
         className="relative"
       >
         {/* Close Button at top-left of the card - redirects to home */}
         <AuthCloseButton
           href={`/${locale}`}
           ariaLabel={t("seller-pending.closeLabel")}
-          variant="arrow"
+          variant="close"
         />
 
-        <SellerPendingContent locale={locale as Locale} />
+        <SellerSuccessContent locale={locale as Locale} />
       </AuthCenteredCardLayout>
     </main>
   );

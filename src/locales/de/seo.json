@@ -55,5 +55,9 @@
     "seller-pending": {
         "title": "Prüfung läuft | Doi",
         "description": "Ihre Identitätsprüfung wird derzeit von unserem Team überprüft. Wir benachrichtigen Sie, sobald sie abgeschlossen ist."
+    },
+    "seller-success": {
+        "title": "Erfolgreich Aktiviert | Doi",
+        "description": "Herzlichen Glückwunsch! Ihr Verkäuferkonto wurde erfolgreich aktiviert. Fangen Sie jetzt an, Ihre Produkte hinzuzufügen."
     }
 }

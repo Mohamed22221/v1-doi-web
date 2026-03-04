@@ -55,5 +55,9 @@
     "seller-pending": {
         "title": "Verificación en Revisión | Doi",
         "description": "Su verificación de identidad está siendo revisada por nuestro equipo. Le notificaremos una vez que se haya completado."
+    },
+    "seller-success": {
+        "title": "Activado con Éxito | Doi",
+        "description": "¡Felicidades! Su cuenta de vendedor ha sido activada con éxito. Empiece a añadir sus productos ahora."
     }
 }
