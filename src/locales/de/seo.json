@@ -63,5 +63,9 @@
     "seller-rejected": {
         "title": "Verifizierung Abgelehnt | Doi",
         "description": "Ihre Verifizierungsanfrage wurde nicht akzeptiert. Bitte überprüfen Sie Ihre Informationen und versuchen Sie es erneut."
+    },
+    "seller-verify": {
+        "title": "Verkäufer-Verifizierung | Doi",
+        "description": "Verifizieren Sie Ihr Verkäuferkonto auf der Doi-Plattform, um mit dem Verkauf und der Teilnahme an Auktionen zu beginnen."
     }
 }

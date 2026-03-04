@@ -11,7 +11,8 @@
   }
 
   .form-item[data-layout="floating"]:focus-within .label-floating,
-  .form-item[data-layout="floating"][data-has-value="true"] .label-floating {
+  .form-item[data-layout="floating"][data-has-value="true"] .label-floating,
+  .form-item[data-layout="floating"]:has([data-active="true"]) .label-floating {
     @apply top-2 text-tag text-neutral-600 dark:text-neutral-400;
   }
 }

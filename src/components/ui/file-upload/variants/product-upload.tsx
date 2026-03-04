@@ -10,8 +10,6 @@ import type { FileUploadBaseProps } from "../file-upload-types";
 interface ProductUploadProps extends FileUploadBaseProps {
   /** Label shown above the dropzone */
   label?: string;
-  /** Helper text shown below the grid */
-  helperText?: string;
   /** Recommended minimum images hint */
   minRecommended?: number;
 }
@@ -27,7 +25,6 @@ interface ProductUploadProps extends FileUploadBaseProps {
  */
 export function ProductUpload({
   label = "ارفع صور المنتج",
-  helperText,
   minRecommended = 3,
   maxFiles = 10,
   maxSize = 10,

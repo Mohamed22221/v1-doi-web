@@ -7,16 +7,10 @@ import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { cn } from "@utils/cn";
 import { toggleVariants } from "@/components/ui/toggle";
 
-const ToggleGroupContext = React.createContext<
-  VariantProps<typeof toggleVariants> & {
-    spacing?: number;
-    rounded?: string;
-  }
->({
+const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants>>({
   size: "default",
   variant: "default",
-  spacing: 0,
-  rounded: "full",
+  rounded: "md",
 });
 
 function ToggleGroup({
@@ -24,13 +18,12 @@ function ToggleGroup({
   variant,
   size,
   spacing = 0,
-  rounded = "full",
+  rounded,
   children,
   ...props
 }: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &
   VariantProps<typeof toggleVariants> & {
     spacing?: number;
-    rounded?: string;
   }) {
   return (
     <ToggleGroupPrimitive.Root
@@ -40,13 +33,10 @@ function ToggleGroup({
       data-rounded={rounded}
       data-spacing={spacing}
       style={{ "--gap": spacing } as React.CSSProperties}
-      className={cn(
-        "group/toggle-group toggle-button-group flex w-fit items-center gap-3 data-[spacing=default]:data-[variant=outline]:shadow-xs",
-        className,
-      )}
+      className={cn("toggle-button-group flex w-fit items-center gap-(--gap)", className)}
       {...props}
     >
-      <ToggleGroupContext.Provider value={{ variant, size, spacing, rounded }}>
+      <ToggleGroupContext.Provider value={{ variant, size, rounded }}>
         {children}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive.Root>
@@ -58,6 +48,7 @@ function ToggleGroupItem({
   children,
   variant,
   size,
+  rounded,
   ...props
 }: React.ComponentProps<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof toggleVariants>) {
   const context = React.useContext(ToggleGroupContext);
@@ -67,16 +58,14 @@ function ToggleGroupItem({
       data-slot="toggle-group-item"
       data-variant={context.variant || variant}
       data-size={context.size || size}
-      data-rounded={context.rounded}
-      data-spacing={context.spacing}
+      data-rounded={context.rounded || rounded}
       className={cn(
-        !className?.includes("toggle-button-item") &&
-          toggleVariants({
-            variant: context.variant || variant,
-            size: context.size || size,
-          }),
+        toggleVariants({
+          variant: context.variant || variant,
+          size: context.size || size,
+          rounded: context.rounded || rounded,
+        }),
         "toggle-button-item w-auto min-w-0 shrink-0 focus:z-10 focus-visible:z-10",
-        "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-s-md data-[spacing=0]:last:rounded-e-md data-[spacing=0]:data-[variant=outline]:border-s-0 data-[spacing=0]:data-[variant=outline]:first:border-s",
         className,
       )}
       {...props}

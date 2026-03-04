@@ -63,5 +63,9 @@
     "seller-rejected": {
         "title": "Doğrulama Reddedildi | Doi",
         "description": "Doğrulama talebiniz kabul edilmedi. Lütfen bilgilerinizi kontrol edin ve tekrar deneyin."
+    },
+    "seller-verify": {
+        "title": "Satıcı Doğrulaması | Doi",
+        "description": "Satış yapmaya ve açık artırmalara katılmaya başlamak için Doi platformunda satıcı hesabınızı doğrulayın."
     }
 }

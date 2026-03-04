@@ -63,5 +63,9 @@
     "seller-rejected": {
         "title": "Verificación Rechazada | Doi",
         "description": "Tu solicitud de verificación no ha sido aceptada. Por favor, comprueba tu información e inténtalo de nuevo."
+    },
+    "seller-verify": {
+        "title": "Verificación de Vendedor | Doi",
+        "description": "Verifique su cuenta de vendedor en la plataforma Doi para comenzar a vender y participar en subastas."
     }
 }

@@ -63,5 +63,9 @@
     "seller-rejected": {
         "title": "Verification Rejected | Doi",
         "description": "Your verification request was not accepted. Please check your information and try again."
+    },
+    "seller-verify": {
+        "title": "Seller Verification | Doi",
+        "description": "Verify your seller account on Doi platform to start selling and participating in auctions."
     }
 }
