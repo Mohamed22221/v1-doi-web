@@ -11,8 +11,8 @@ import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-c
 import { buttonVariants } from "@/components/ui/button";
 import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
-import SellerStartAction from "@/features/auth/seller/start/seller-start-action";
-import SellerStartContent from "@/features/auth/seller/start/seller-start-content";
+import SellerPendingAction from "@/features/auth/seller/pending/seller-pending-action";
+import SellerPendingContent from "@/features/auth/seller/pending/seller-pending-content";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -22,50 +22,49 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   return generateLocalizedMetadata({
     locale: locale as Locale,
-    pageKey: "seller-start",
-    pathname: "/seller/start",
+    pageKey: "seller-pending",
+    pathname: "/seller/pending",
   });
 }
 
 /**
- * SellerStartPage
+ * SellerPendingPage
  *
- * The entry point for the seller identity verification start route.
+ * The page displayed when a seller's verification is pending.
  * Uses AuthCenteredCardLayout for a focused, centered UI.
  */
-export default async function SellerStartPage({ params }: PageProps) {
+export default async function SellerPendingPage({ params }: PageProps) {
   const { locale } = await params;
   const { t } = await getTranslation(locale as Locale, "auth");
 
   return (
     <main className="relative">
-      {/* Close Button UI - positioned relative to the card area via layout or absolute if needed */}
       <AuthCenteredCardLayout
-        // Action Area: Verify button and helper text
-        actionContent={<SellerStartAction locale={locale as Locale} />}
+        // Action Area: Back to home button and helper text
+        actionContent={<SellerPendingAction locale={locale as Locale} />}
         className="relative"
       >
-        {/* Close Button at top-left of the card */}
+        {/* Close Button at top-left of the card - redirects to home */}
         <div className="absolute start-4 top-4 z-10 md:start-6 md:top-6">
           <Link
-            href={`/${locale}/seller`}
-            aria-label={t("seller-start.closeLabel")}
+            href={`/${locale}`}
+            aria-label={t("seller-pending.closeLabel")}
             className={buttonVariants({
               variant: "ghost",
               size: "icon-sm",
               className:
-                "h-[40px] w-[40px] rounded-full border border-primary-50 dark:border-primary-400",
+                "h-[40px] w-[40px] rounded-md border border-primary-50 dark:border-primary-400",
             })}
           >
             <Icon
               icon={ArrowIcon}
               className="h-4 w-4 text-neutral-300 ltr:rotate-180 dark:text-neutral-50"
             />
-            <span className="sr-only">{t("seller-start.closeLabel")}</span>
+            <span className="sr-only">{t("seller-pending.closeLabel")}</span>
           </Link>
         </div>
 
-        <SellerStartContent locale={locale as Locale} />
+        <SellerPendingContent locale={locale as Locale} />
       </AuthCenteredCardLayout>
     </main>
   );
