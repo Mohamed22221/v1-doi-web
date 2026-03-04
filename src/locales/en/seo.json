@@ -51,5 +51,9 @@
     "seller-start": {
         "title": "Identity Verification | Doi",
         "description": "Verify your identity as a seller in Doi to ensure safety and integrity for all community members."
+    },
+    "seller-pending": {
+        "title": "Verification Under Review | Doi",
+        "description": "Your identity verification is currently being reviewed by our team. We will notify you once it's completed."
     }
 }

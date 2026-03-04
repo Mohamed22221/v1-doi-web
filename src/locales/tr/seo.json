@@ -47,5 +47,13 @@
     "buyer-reset-password-success": {
         "title": "Şifre Sıfırlama Başarılı | Doi",
         "description": "Şifreniz başarıyla sıfırlandı. Artık hesabınıza giriş yapabilirsiniz."
+    },
+    "seller-start": {
+        "title": "Kimlik Doğrulama | Doi",
+        "description": "Tüm topluluk üyeleri için güvenlik ve dürüstlüğü sağlamak amacıyla Doi'de satıcı olarak kimliğinizi doğrulayın."
+    },
+    "seller-pending": {
+        "title": "Doğrulama İnceleniyor | Doi",
+        "description": "Kimlik doğrulamanız şu anda ekibimiz tarafından inceleniyor. Tamamlandığında size haber vereceğiz."
     }
 }

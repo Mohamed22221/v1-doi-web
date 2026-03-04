@@ -50,5 +50,8 @@
   "delivery": {
     "to": "Teslimat adresi",
     "defaultLocation": "Riyad - Al Narjis Bölgesi"
+  },
+  "a11y": {
+    "skipLink": "Ana içeriğe atla"
   }
 }

@@ -47,5 +47,13 @@
     "buyer-reset-password-success": {
         "title": "Passwort-Reset erfolgreich | Doi",
         "description": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich nun bei Ihrem Konto anmelden."
+    },
+    "seller-start": {
+        "title": "Identitätsprüfung | Doi",
+        "description": "Verifizieren Sie Ihre Identität als Verkäufer bei Doi, um die Sicherheit und Integrität für alle Community-Mitglieder zu gewährleisten."
+    },
+    "seller-pending": {
+        "title": "Prüfung läuft | Doi",
+        "description": "Ihre Identitätsprüfung wird derzeit von unserem Team überprüft. Wir benachrichtigen Sie, sobald sie abgeschlossen ist."
     }
 }

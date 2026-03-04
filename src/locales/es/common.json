@@ -50,5 +50,8 @@
   "delivery": {
     "to": "Entrega en",
     "defaultLocation": "Riad - Distrito de Al Narjis"
+  },
+  "a11y": {
+    "skipLink": "Saltar al contenido principal"
   }
 }

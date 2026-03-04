@@ -50,5 +50,8 @@
   "delivery": {
     "to": "Delivery to",
     "defaultLocation": "Riyadh - Al Narjis District"
+  },
+  "a11y": {
+    "skipLink": "Skip to main content"
   }
 }

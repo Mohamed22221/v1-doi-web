@@ -45,7 +45,15 @@
         "description": "Tu cuenta ha sido creada con éxito. ¡Bienvenido a la comunidad de Doi!"
     },
     "buyer-reset-password-success": {
-        "title": "Restablecimiento de contraseña exitoso | Doi",
-        "description": "Tu contraseña se ha restablecido correctamente. Ahora puedes iniciar sesión en tu cuenta."
+        "title": "Restablecimiento de Contraseña Exitoso | Doi",
+        "description": "Su contraseña ha sido restablecida con éxito. Ahora puede iniciar sesión en su cuenta."
+    },
+    "seller-start": {
+        "title": "Verificación de Identidad | Doi",
+        "description": "Verifique su identidad como vendedor en Doi para garantizar la seguridad e integridad de todos los miembros de la comunidad."
+    },
+    "seller-pending": {
+        "title": "Verificación en Revisión | Doi",
+        "description": "Su verificación de identidad está siendo revisada por nuestro equipo. Le notificaremos una vez que se haya completado."
     }
 }

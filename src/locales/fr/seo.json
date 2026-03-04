@@ -47,5 +47,13 @@
     "buyer-reset-password-success": {
         "title": "Réinitialisation du Mot de Passe Réussie | Doi",
         "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter à votre compte."
+    },
+    "seller-start": {
+        "title": "Vérification de l'Identité | Doi",
+        "description": "Vérifiez votre identité en tant que vendeur sur Doi pour assurer la sécurité et l'intégrité de tous les membres de la communauté."
+    },
+    "seller-pending": {
+        "title": "Vérification en Cours d'Examen | Doi",
+        "description": "Votre vérification d'identité est actuellement en cours d'examen par notre équipe. Nous vous informerons une fois qu'elle sera terminée."
     }
 }

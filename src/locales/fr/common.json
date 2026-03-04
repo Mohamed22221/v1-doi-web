@@ -50,5 +50,8 @@
   "delivery": {
     "to": "Livraison à",
     "defaultLocation": "Riyad - Quartier Al Narjis"
+  },
+  "a11y": {
+    "skipLink": "Passer au contenu principal"
   }
 }
