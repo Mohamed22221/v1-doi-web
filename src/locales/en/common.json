@@ -9,12 +9,14 @@
   "auth-dashboard": {
     "title": "Authentication Dashboard",
     "subtitle": "Access and test all authentication flows from a single location.",
+    "dev-nav": "Development Navigation",
     "footer": "Built with Next.js 16 & shadcn/ui",
     "sections": {
       "buyer": "Buyer Auth",
       "recovery": "Password Recovery",
       "success": "Success States",
       "landing": "Landing Pages",
+      "seller": "Seller Onboarding",
       "dashboard": "Dashboards"
     },
     "links": {
@@ -28,8 +30,16 @@
       "reset-success": "Reset Success",
       "seller-landing": "Seller Landing",
       "buyer-landing": "Buyer Landing",
+      "seller-start": "Seller Start",
+      "seller-verify": "Seller Verify",
+      "seller-payment": "Seller Payment",
+      "seller-pending": "Seller Pending",
+      "seller-success": "Seller Success",
+      "seller-rejected": "Seller Rejected",
       "seller-dashboard": "Seller Dashboard",
-      "buyer-dashboard": "Buyer Dashboard"
+      "buyer-dashboard": "Buyer Dashboard",
+      "home-public": "Home (Public)",
+      "seller-public": "Seller (Public)"
     }
   },
   "nav": {

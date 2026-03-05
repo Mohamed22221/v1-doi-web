@@ -9,12 +9,14 @@
   "auth-dashboard": {
     "title": "لوحة تحكم المصادقة",
     "subtitle": "الوصول واختبار جميع مسارات المصادقة من مكان واحد.",
+    "dev-nav": "روابط التطوير",
     "footer": "تم بناؤه بواسطة Next.js 16 و shadcn/ui",
     "sections": {
       "buyer": "مصادقة المشتري",
       "recovery": "استعادة كلمة المرور",
       "success": "حالات النجاح",
       "landing": "صفحات الهبوط",
+      "seller": "توثيق البائع",
       "dashboard": "لوحات التحكم"
     },
     "links": {
@@ -28,8 +30,16 @@
       "reset-success": "نجاح التعيين",
       "seller-landing": "صفحة هبوط البائع",
       "buyer-landing": "صفحة هبوط المشتري",
+      "seller-start": "بداية البائع",
+      "seller-verify": "توثيق البائع",
+      "seller-payment": "وسائل الدفع",
+      "seller-pending": "بانتظار المراجعة",
+      "seller-success": "نجاح التوثيق",
+      "seller-rejected": "رفض التوثيق",
       "seller-dashboard": "لوحة تحكم البائع",
-      "buyer-dashboard": "لوحة تحكم المشتري"
+      "buyer-dashboard": "لوحة تحكم المشتري",
+      "home-public": "الرئيسية (عام)",
+      "seller-public": "البائع (عام)"
     }
   },
   "nav": {
