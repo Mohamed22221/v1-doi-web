@@ -44,7 +44,7 @@ export default async function SellerRejectedAction({ locale }: SellerRejectedAct
 
       {/* Contact Support Button (Secondary) */}
       <Link
-        href={`/${locale}`}
+        href={`/${locale}/seller`}
         className={buttonVariants({
           variant: "default",
           size: "lg",

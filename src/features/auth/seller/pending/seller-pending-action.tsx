@@ -31,7 +31,7 @@ export default async function SellerPendingAction({ locale }: SellerPendingActio
         {t("seller-pending.helper")}
       </p>
       <Link
-        href={`/${locale}`}
+        href={`/${locale}/seller`}
         className={buttonVariants({
           variant: "default",
           size: "lg",

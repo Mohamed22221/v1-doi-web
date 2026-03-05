@@ -30,7 +30,7 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
   return (
     <section className="flex w-full flex-col-reverse items-center gap-3 md:mx-auto md:max-w-md md:flex-row-reverse md:justify-center md:gap-4">
       <Link
-        href={`/${locale}`}
+        href={`/${locale}/seller`}
         className={buttonVariants({
           variant: "secondary",
           size: "lg",

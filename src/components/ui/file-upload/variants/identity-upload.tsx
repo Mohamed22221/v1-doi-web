@@ -1,3 +1,5 @@
+"use client";
+
 import { FileUp, X } from "lucide-react";
 
 import { cn } from "@utils/cn";

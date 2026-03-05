@@ -31,7 +31,7 @@ export default async function SellerStartAction({ locale }: SellerStartActionPro
         {t("seller-start.helper")}
       </p>
       <Link
-        href="#"
+        href={`/${locale}/seller/verify`}
         className={buttonVariants({
           variant: "default",
           size: "lg",

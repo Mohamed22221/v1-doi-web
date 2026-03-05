@@ -26,14 +26,12 @@ import Link from "next/link";
 const SellerIndividualFields = dynamic(
   () => import("./seller-individual-fields").then((mod) => mod.SellerIndividualFields),
   {
-    ssr: false,
     loading: () => <IndividualFieldsSkeleton />,
   },
 );
 const SellerCompanyFields = dynamic(
   () => import("./seller-company-fields").then((mod) => mod.SellerCompanyFields),
   {
-    ssr: false,
     loading: () => <CompanyFieldsSkeleton />,
   },
 );
@@ -100,7 +98,7 @@ export default function SellerVerificationForm({ onSubmit, header }: SellerVerif
     onSubmit?.(values);
     console.info("Verification form submitted:", values);
     // Simulate API delay and then redirect
-    router.push(`/${locale}/seller/pending`);
+    router.push(`/${locale}/seller/payment`);
   };
 
   return (
