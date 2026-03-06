@@ -68,7 +68,7 @@ export async function BuyerRatingsWidget({
         {/* Numeric rating */}
         <span className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">{rating}</span>
         {/* Count label */}
-        <span className="text-xs text-neutral-400 dark:text-neutral-500">{ratingCount}</span>
+        <span className="text-xs text-neutral-400 dark:text-neutral-300">{ratingCount}</span>
         {/* Stars (reversed so first star is leftmost) */}
         <div className="flex flex-row-reverse gap-0.5">
           {stars.map((filled, i) => (
