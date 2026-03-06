@@ -87,6 +87,19 @@
       "wallet": "Wallet",
       "offers": "Offers",
       "orders": "Orders"
+    },
+    "active_auctions": {
+      "title": "Your Active Auctions",
+      "view_all": "View All",
+      "empty_title": "You haven't added any products yet!",
+      "empty_subtitle": "Add your first product and let the selling begin"
+    },
+    "buyer_ratings": {
+      "title": "Latest Buyer Ratings",
+      "view_all": "View All",
+      "rating_count": "({{count}} reviews)",
+      "empty_title": "No ratings yet",
+      "empty_subtitle": "When you sell your first product or a buyer wins your auction, ratings will appear here."
     }
   }
 }

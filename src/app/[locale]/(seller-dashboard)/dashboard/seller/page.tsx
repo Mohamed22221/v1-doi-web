@@ -6,6 +6,7 @@ import { SellerGreeting } from "@/features/seller-dashboard/home/seller-greeting
 import { SellerGreetingSkeleton } from "@/features/seller-dashboard/components/skeleton/home/seller-greeting-skeleton";
 import { StatsGrid } from "@/features/seller-dashboard/home/stats-grid";
 import { ActionsBar } from "@/features/seller-dashboard/home/actions-bar";
+import { DashboardWidgetsGrid } from "@/features/seller-dashboard/home/dashboard-widgets-grid";
 import { SELLER_STATS, SELLER_ACTIONS } from "@/features/seller-dashboard/home/mock-data";
 import { getTranslation } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
@@ -86,6 +87,21 @@ export default async function SellerDashboardPage({ params }: PageProps) {
       <ActionsBar
         actions={translatedActions}
         ariaLabel={t("seller_dashboard.quick_actions.aria_label")}
+      />
+      <DashboardWidgetsGrid
+        activeAuctions={{
+          title: t("seller_dashboard.active_auctions.title"),
+          viewAllLabel: t("seller_dashboard.active_auctions.view_all"),
+          emptyTitle: t("seller_dashboard.active_auctions.empty_title"),
+          emptySubtitle: t("seller_dashboard.active_auctions.empty_subtitle"),
+        }}
+        buyerRatings={{
+          title: t("seller_dashboard.buyer_ratings.title"),
+          viewAllLabel: t("seller_dashboard.buyer_ratings.view_all"),
+          ratingCount: t("seller_dashboard.buyer_ratings.rating_count", { count: 0 }),
+          emptyTitle: t("seller_dashboard.buyer_ratings.empty_title"),
+          emptySubtitle: t("seller_dashboard.buyer_ratings.empty_subtitle"),
+        }}
       />
     </div>
   );
