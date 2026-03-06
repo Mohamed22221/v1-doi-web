@@ -60,5 +60,33 @@
       "terms": "شروط البيع",
       "copyright": "© {{year}} دُوي. جميع الحقوق محفوظة."
     }
+  },
+  "seller_dashboard": {
+    "greeting": "هلا، {{name}} 👋",
+    "change_location": "تغيير الموقع: {{location}}",
+    "stats": {
+      "aria_label": "إحصائيات البائع",
+      "sales": {
+        "title": "إجمالي المبيعات"
+      },
+      "active": {
+        "title": "المنشورات النشطة",
+        "subtitle": "مزادات شغّالة الآن"
+      },
+      "pending": {
+        "title": "المنشورات المعلّقة",
+        "subtitle": "إعلان"
+      },
+      "wallet": {
+        "title": "رصيد المحفظة"
+      }
+    },
+    "quick_actions": {
+      "aria_label": "إجراءات سريعة",
+      "add": "إضافة منتج",
+      "wallet": "المحفظة",
+      "offers": "العروض",
+      "orders": "الطلبات"
+    }
   }
 }

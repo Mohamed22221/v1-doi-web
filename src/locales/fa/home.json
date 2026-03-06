@@ -60,5 +60,9 @@
       "terms": "شرایط فروش",
       "copyright": "© {{year}} Doi. تمامی حقوق محفوظ است."
     }
+  },
+  "seller_dashboard": {
+    "greeting": "سلام، {{name}} 👋",
+    "change_location": "تغییر مکان: {{location}}"
   }
 }

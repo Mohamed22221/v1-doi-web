@@ -60,5 +60,33 @@
       "terms": "Selling Terms",
       "copyright": "© {{year}} Doi. All rights reserved."
     }
+  },
+  "seller_dashboard": {
+    "greeting": "Hello, {{name}} 👋",
+    "change_location": "Change location: {{location}}",
+    "stats": {
+      "aria_label": "Seller Statistics",
+      "sales": {
+        "title": "Total Sales"
+      },
+      "active": {
+        "title": "Active Listings",
+        "subtitle": "Auctions running now"
+      },
+      "pending": {
+        "title": "Pending Listings",
+        "subtitle": "Ad"
+      },
+      "wallet": {
+        "title": "Wallet Balance"
+      }
+    },
+    "quick_actions": {
+      "aria_label": "Quick Actions",
+      "add": "Add Product",
+      "wallet": "Wallet",
+      "offers": "Offers",
+      "orders": "Orders"
+    }
   }
 }

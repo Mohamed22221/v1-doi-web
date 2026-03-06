@@ -1,5 +1,6 @@
 @theme {
   /* ===== PRIMARY COLORS (Blue) ===== */
+  --color-primary-10: #62748E;
   --color-primary-50: #edf1f7;
   --color-primary-100: #dce3ef;
   --color-primary-200: #b9c7df;
@@ -10,6 +11,7 @@
   --color-primary-700: #304569;
   --color-primary-800: #202e46;
   --color-primary-900: #101723;
+
 
   /* ===== SECONDARY COLORS (Gold/Brown) ===== */
   --color-secondary-50: #f7f2ee;

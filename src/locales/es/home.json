@@ -60,5 +60,9 @@
       "terms": "Términos de Venta",
       "copyright": "© {{year}} Doi. Todos los derechos reservados."
     }
+  },
+  "seller_dashboard": {
+    "greeting": "Hola, {{name}} 👋",
+    "change_location": "Cambiar ubicación: {{location}}"
   }
 }

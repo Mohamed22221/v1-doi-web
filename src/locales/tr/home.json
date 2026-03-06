@@ -60,5 +60,9 @@
       "terms": "Satış Koşulları",
       "copyright": "© {{year}} Doi. Tüm hakları saklıdır."
     }
+  },
+  "seller_dashboard": {
+    "greeting": "Merhaba, {{name}} 👋",
+    "change_location": "Konumu değiştir: {{location}}"
   }
 }

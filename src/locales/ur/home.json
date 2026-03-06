@@ -60,5 +60,9 @@
       "terms": "فروخت کی شرائط",
       "copyright": "© {{year}} Doi۔ جملہ حقوق محفوظ ہیں۔"
     }
+  },
+  "seller_dashboard": {
+    "greeting": "ہیلو، {{name}} 👋",
+    "change_location": "مقام تبدیل کریں: {{location}}"
   }
 }
