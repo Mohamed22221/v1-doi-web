@@ -8,9 +8,11 @@ import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getLoginSchema, type LoginValues } from "./schema";
+import { useLogin } from "@api/hooks/use-auth";
 
 // UI Components
 import { Button } from "@components/ui/button";
+import { Spinner } from "@components/ui/spinner";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
@@ -32,8 +34,9 @@ export default function BuyerLoginForm() {
   const locale = params.locale as string;
   const { t } = useTranslation(locale as Locale, "auth");
 
-  // Memoize schema to prevent unnecessary recalculations on re-renders
   const loginSchema = useMemo(() => getLoginSchema(t), [t]);
+
+  const { login, isPending } = useLogin();
 
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
@@ -43,8 +46,7 @@ export default function BuyerLoginForm() {
   });
 
   function onSubmit(values: LoginValues) {
-    console.info(values);
-    // TODO: distinct implementation for login logic
+    login({ phone: `+${values.phone}` });
   }
 
   return (
@@ -82,8 +84,11 @@ export default function BuyerLoginForm() {
               type="submit"
               className="h-[48px] w-full text-label tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
               size="lg"
+              disabled={isPending}
+              aria-busy={isPending}
             >
               {t("buyer-login.form.next")}
+              {isPending && <Spinner data-icon="inline-start" />}
             </Button>
           </form>
         </Form>

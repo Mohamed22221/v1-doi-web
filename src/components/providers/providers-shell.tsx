@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { getResources } from "@lib/i18n/server";
 import { I18nProvider } from "./i18n-provider";
 import { ThemeSync } from "@/components/shared/theme/theme-sync";
+import { QueryProvider } from "./query-provider";
+import { Toaster } from "@/components/ui/sonner";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ProvidersShellProps {
@@ -22,9 +24,12 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
   return (
     <>
       <ThemeSync theme={theme} />
-      <I18nProvider locale={locale} resources={resources}>
-        {children}
-      </I18nProvider>
+      <QueryProvider>
+        <I18nProvider locale={locale} resources={resources}>
+          {children}
+        </I18nProvider>
+        <Toaster richColors closeButton position="top-center" />
+      </QueryProvider>
     </>
   );
 }
