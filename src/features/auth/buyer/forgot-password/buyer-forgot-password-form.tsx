@@ -23,12 +23,15 @@ import HeaderSidebar from "../../components/header-sidebar";
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
+import { useForgotPassword } from "@api/hooks/use-auth";
+import { Spinner } from "@components/ui/spinner";
 
 export default function BuyerForgotPasswordForm() {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale as string;
   const { t } = useTranslation(locale as Locale, "auth");
+  const { forgotPassword, isPending } = useForgotPassword();
 
   // Memoize schema
   const forgotPasswordSchema = useMemo(() => getForgotPasswordSchema(t), [t]);
@@ -41,9 +44,9 @@ export default function BuyerForgotPasswordForm() {
   });
 
   function onSubmit(values: ForgotPasswordValues) {
-    console.info(values);
-    // Redirect to verify-otp page (implementation path depends on business logic)
-    router.push(`/${locale}/buyer/verify-otp`);
+    forgotPassword({
+      phone: `+${values.phone}`,
+    });
   }
 
   return (
@@ -93,8 +96,9 @@ export default function BuyerForgotPasswordForm() {
           type="submit"
           className="h-[48px] w-full text-label tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
           size="lg"
-          disabled={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || isPending}
         >
+          {isPending && <Spinner data-icon="inline-start" />}
           {t("buyer-forgot-password.form.sendCode")}
         </Button>
       </Card>

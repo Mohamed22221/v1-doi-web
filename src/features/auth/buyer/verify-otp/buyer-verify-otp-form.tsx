@@ -25,6 +25,7 @@ import TitleForm from "../../components/title-form";
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
+import { useVerifyOtp, useResendOtp } from "@api/hooks/use-auth";
 import BuyerVerifyOtpActions from "./buyer-verify-otp-actions";
 
 export default function BuyerVerifyOtpForm() {
@@ -33,9 +34,13 @@ export default function BuyerVerifyOtpForm() {
   const locale = params.locale as Locale;
   const { t } = useTranslation(locale, "auth");
   const { otpData } = useAuthStore();
+  const { verifyOtp, isPending } = useVerifyOtp();
+  const { resendOtp, isPending: isResending } = useResendOtp({
+    onSuccess: () => setTimeLeft(60),
+  });
 
   // Timer state
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(0);
 
   // Memoize schema
   const verifyOtpSchema = useMemo(() => getVerifyOtpSchema(t), [t]);
@@ -65,14 +70,12 @@ export default function BuyerVerifyOtpForm() {
   }, [timeLeft]);
 
   const handleResend = () => {
-    if (timeLeft > 0) return;
-    setTimeLeft(60);
-    // TODO: Implement resend OTP logic
+    if (timeLeft > 0 || isPending || isResending) return;
+    resendOtp();
   };
 
-  function onSubmit(values: VerifyOtpValues) {
-    console.info(values);
-    // TODO: Implement verify OTP logic
+  async function onSubmit(values: VerifyOtpValues) {
+    verifyOtp(values.otp);
   }
 
   const subtitle = otpData?.phone
@@ -115,17 +118,24 @@ export default function BuyerVerifyOtpForm() {
                 layout="floating"
               />
 
-              <span className="flex items-center gap-2 text-label font-medium text-primary-500 tablet:text-body dark:text-primary-300">
-                {t("buyer-verify-otp.resendIn")}
-                <span className="text-danger-500">{formatTime(timeLeft)}</span>
-              </span>
+              {timeLeft > 0 && (
+                <span className="flex items-center gap-2 text-label font-medium text-primary-500 tablet:text-body dark:text-primary-300">
+                  {t("buyer-verify-otp.resendIn")}
+                  <span className="text-danger-500">{formatTime(timeLeft)}</span>
+                </span>
+              )}
             </div>
           </form>
         </Form>
       </Card>
 
       {/* Resend Actions Card */}
-      <BuyerVerifyOtpActions timeLeft={timeLeft} onResend={handleResend} formId="otp-form" />
+      <BuyerVerifyOtpActions
+        timeLeft={timeLeft}
+        onResend={handleResend}
+        formId="otp-form"
+        isPending={isPending || isResending}
+      />
     </div>
   );
 }

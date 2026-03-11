@@ -15,6 +15,14 @@ export type User = {
   language: string;
 };
 
+export type RegisterRequest = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password?: string;
+};
+
 export type LoginTokenResponse = {
   access_token: string;
   refresh_token: string;

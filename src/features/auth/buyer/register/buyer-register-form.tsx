@@ -13,6 +13,7 @@ import { getRegisterSchema, type RegisterValues } from "./schema";
 import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
+import { Spinner } from "@components/ui/spinner";
 
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
 import { RHFPassword } from "@components/forms/rhf-password";
@@ -26,6 +27,7 @@ import { PasswordRulesChecklist } from "../../components/password-rules-checklis
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
+import { useRegister } from "@api/hooks/use-auth";
 import { RHFInput } from "@components/forms/rhf-input";
 import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
@@ -35,6 +37,7 @@ export default function BuyerRegisterForm() {
   const params = useParams();
   const locale = params.locale as string;
   const { t } = useTranslation(locale as Locale, "auth");
+  const { register, isPending } = useRegister();
 
   // Memoize schema
   const registerSchema = useMemo(() => getRegisterSchema(t), [t]);
@@ -56,8 +59,17 @@ export default function BuyerRegisterForm() {
   const passwordValue = form.watch("password");
 
   function onSubmit(values: RegisterValues) {
-    console.info("Registration submitted successfully:", values);
-    // Redirection logic can be added here once API is ready
+    const nameParts = values.fullName.trim().split(/\s+/);
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || firstName; // Fallback if no last name
+
+    register({
+      firstName,
+      lastName,
+      email: values.email,
+      phone: `+${values.phone}`,
+      password: values.password,
+    });
   }
 
   return (
@@ -167,8 +179,9 @@ export default function BuyerRegisterForm() {
             type="submit"
             className="h-[48px] w-full text-label font-bold tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
             size="lg"
-            disabled={form.formState.isSubmitting}
+            disabled={form.formState.isSubmitting || isPending}
           >
+            {isPending && <Spinner data-icon="inline-start" />}
             {t("buyer-register.form.submit")}
           </Button>
 

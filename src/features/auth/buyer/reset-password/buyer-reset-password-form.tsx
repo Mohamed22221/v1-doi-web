@@ -24,12 +24,17 @@ import { PasswordRulesChecklist } from "../../components/password-rules-checklis
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
+import { useResetPassword } from "@api/hooks/use-auth";
+import { Spinner } from "@components/ui/spinner";
+import { useAuthStore } from "@store/auth-store";
 
 export default function BuyerResetPasswordForm() {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale as string;
   const { t } = useTranslation(locale as Locale, "auth");
+  const { resetPassword, isPending } = useResetPassword();
+  const { resetToken } = useAuthStore();
 
   // Memoize schema
   const resetPasswordSchema = useMemo(() => getPasswordRulesSchema(t), [t]);
@@ -47,8 +52,10 @@ export default function BuyerResetPasswordForm() {
   const passwordValue = form.watch("password");
 
   function onSubmit(values: ResetPasswordValues) {
-    console.info("Form submitted successfully:", values);
-    router.push(`/${locale}/buyer/reset-password-success`);
+    if (!resetToken) return;
+    resetPassword({
+      newPassword: values.password,
+    });
   }
 
   return (
@@ -113,8 +120,9 @@ export default function BuyerResetPasswordForm() {
           type="submit"
           className="h-[48px] w-full text-label font-bold tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
           size="lg"
-          disabled={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || isPending || !resetToken}
         >
+          {isPending && <Spinner data-icon="inline-start" />}
           {t("buyer-reset-password.form.submit")}
         </Button>
       </Card>

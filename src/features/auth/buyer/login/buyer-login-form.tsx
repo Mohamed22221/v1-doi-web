@@ -87,8 +87,8 @@ export default function BuyerLoginForm() {
               disabled={isPending}
               aria-busy={isPending}
             >
-              {t("buyer-login.form.next")}
               {isPending && <Spinner data-icon="inline-start" />}
+              {t("buyer-login.form.next")}
             </Button>
           </form>
         </Form>

@@ -17,6 +17,7 @@ export interface OtpData {
   otpCode?: string;
   otpSessionId?: string;
   phone?: string;
+  authFlow?: "registration" | "login" | "forgot-password";
 }
 
 interface AuthStore {
@@ -25,10 +26,13 @@ interface AuthStore {
   refreshToken: string | null;
   user: AuthUser | null;
   otpData: OtpData | null;
+  resetToken: string | null;
 
   // Actions
   setAuth: (accessToken: string, refreshToken: string, user?: AuthUser) => void;
   setOtp: (otpData: OtpData) => void;
+  setResetToken: (token: string) => void;
+  clearOtp: () => void;
   clearAuth: () => void;
 }
 
@@ -41,13 +45,16 @@ export const useAuthStore = create<AuthStore>()(
       refreshToken: null,
       user: null,
       otpData: null,
+      resetToken: null,
 
       setAuth: (accessToken, refreshToken, user) =>
         set({ accessToken, refreshToken, user, otpData: null }),
 
       setOtp: (otpData) => set({ otpData }),
-
-      clearAuth: () => set({ accessToken: null, refreshToken: null, user: null, otpData: null }),
+      setResetToken: (resetToken) => set({ resetToken }),
+      clearOtp: () => set({ otpData: null }),
+      clearAuth: () =>
+        set({ accessToken: null, refreshToken: null, user: null, otpData: null, resetToken: null }),
     }),
     {
       name: "auth-storage",
@@ -64,7 +71,11 @@ export const useAuthStore = create<AuthStore>()(
       }),
       // Only persist non-sensitive data client-side.
       // Real tokens live in httpOnly cookies set by the Server Action.
-      partialize: (state) => ({ user: state.user, otpData: state.otpData }),
+      partialize: (state) => ({
+        user: state.user,
+        otpData: state.otpData,
+        resetToken: state.resetToken,
+      }),
     },
   ),
 );

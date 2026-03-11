@@ -9,17 +9,20 @@ import { Button } from "@components/ui/button";
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
+import { Spinner } from "@/components/ui/spinner";
 
 interface BuyerVerifyOtpActionsProps {
   timeLeft: number;
   onResend: () => void;
   formId: string;
+  isPending?: boolean;
 }
 
 export default function BuyerVerifyOtpActions({
   timeLeft,
   onResend,
   formId,
+  isPending,
 }: BuyerVerifyOtpActionsProps) {
   const params = useParams();
   const locale = params.locale as string;
@@ -33,7 +36,9 @@ export default function BuyerVerifyOtpActions({
         form={formId}
         className="h-[48px] w-full text-label font-bold tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
         size="lg"
+        disabled={isPending}
       >
+        {isPending && <Spinner data-icon="inline-start" />}
         {t("buyer-verify-otp.confirm")}
       </Button>
 
@@ -45,11 +50,11 @@ export default function BuyerVerifyOtpActions({
         <button
           type="button"
           onClick={onResend}
-          disabled={timeLeft > 0}
+          disabled={timeLeft > 0 || isPending}
           className={`font-bold transition-colors ${
-            timeLeft > 0
+            timeLeft > 0 || isPending
               ? "cursor-not-allowed text-neutral-300 dark:text-neutral-600"
-              : "text-primary-500 hover:text-primary-600 dark:text-primary-300"
+              : "cursor-pointer text-primary-500 hover:text-primary-600 dark:text-primary-300"
           }`}
         >
           {t("buyer-verify-otp.resendNow")}

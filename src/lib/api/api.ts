@@ -86,7 +86,7 @@ class ApiClient {
 
         const data = (await res.json()) as { access_token: string };
         return data.access_token;
-      } catch (err) {
+      } catch (_err) {
         return null;
       } finally {
         refreshPromise = null;
