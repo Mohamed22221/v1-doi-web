@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 
 // Third-party
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
+import { showErrorToast, showSuccessToast } from "@/components/ui/toast/show-toast";
 
 // Internal logic
 import {
@@ -64,7 +64,11 @@ export function useLogin() {
           phone: payload.phone,
           authFlow: "login",
         });
-        toast.info(t("hooks.otpSent"));
+        showSuccessToast(t("hooks.otpSentTitle"), {
+          description: t("hooks.otpSentDescription"),
+          positionSm: "bottom-center",
+          className: " tablet:w-[545px] xl:w-[600px]",
+        });
         router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
         return;
       }
@@ -73,7 +77,10 @@ export function useLogin() {
       if ("access_token" in responseData) {
         clearOtp(); // Clear OTP data upon successful login with token
         setAuth(responseData.access_token, responseData.refresh_token, responseData.user);
-        toast.success(t("hooks.loginSuccess"));
+        showSuccessToast(t("hooks.loginSuccess"), {
+          positionSm: "bottom-center",
+          className: "md:w-[350px]",
+        });
         router.refresh();
         router.replace(`/${locale}${API_ROUTES.BUYER.HOME}`);
       }
@@ -81,7 +88,10 @@ export function useLogin() {
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message, {
+        positionSm: "bottom-center",
+        className: "tablet:w-[544px] xl:w-[600px]",
+      });
     },
   });
 
@@ -127,7 +137,6 @@ export function useVerifyOtp() {
       // Case A: Forgot Password Flow
       if ("resetToken" in responseData) {
         setResetToken(responseData.resetToken);
-        toast.success(t("hooks.verifySuccess"));
         router.push(`/${locale}${API_ROUTES.AUTH.RESET_PASSWORD}`);
         return;
       }
@@ -135,8 +144,6 @@ export function useVerifyOtp() {
       // Case B: Normal Auth Flow (Login/Register)
       // Update Zustand store
       setAuth(responseData.access_token, responseData.refresh_token || "", responseData.user);
-      toast.success(t("hooks.verifySuccess"));
-
       // Check for custom redirection
       const isRegistrationFlow = otpData?.authFlow === "registration";
 
@@ -154,14 +161,20 @@ export function useVerifyOtp() {
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message, {
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
     },
   });
 
   return {
     verifyOtp: (code: string) => {
       if (!otpData?.otpSessionId) {
-        toast.error(t("hooks.sessionIdMissing"));
+        showErrorToast(t("hooks.sessionIdMissing"), {
+          positionSm: "bottom-center",
+          className: " tablet:w-[545px] xl:w-[600px]",
+        });
         return;
       }
       verifyOtpMutation.mutate({
@@ -196,20 +209,30 @@ export function useResendOtp(options?: { onSuccess?: () => void }) {
         otpCode: responseData.code ? String(responseData.code) : otpData?.otpCode,
         otpSessionId: responseData.otpSessionId,
       });
-      toast.success(t("hooks.otpResent"));
+      showSuccessToast(t("hooks.otpSentTitle"), {
+        description: t("hooks.otpSentDescription"),
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
       options?.onSuccess?.();
     },
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message, {
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
     },
   });
 
   return {
     resendOtp: () => {
       if (!otpData?.otpSessionId) {
-        toast.error(t("hooks.sessionIdMissing"));
+        showErrorToast(t("hooks.sessionIdMissing"), {
+          positionSm: "bottom-center",
+          className: " tablet:w-[545px] xl:w-[600px]",
+        });
         return;
       }
       resendOtpMutation.mutate({
@@ -246,13 +269,20 @@ export function useRegister() {
         authFlow: "registration",
       });
 
-      toast.info(t("hooks.otpSent"));
+      showSuccessToast(t("hooks.otpSentTitle"), {
+        description: t("hooks.otpSentDescription"),
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
       router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
     },
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message, {
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
     },
   });
 
@@ -288,13 +318,20 @@ export function useForgotPassword() {
         authFlow: "forgot-password",
       });
 
-      toast.info(t("hooks.otpSent"));
+      showSuccessToast(t("hooks.otpSentTitle"), {
+        description: t("hooks.otpSentDescription"),
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
       router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
     },
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message, {
+        positionSm: "bottom-center",
+        className: " tablet:w-[545px] xl:w-[600px]",
+      });
     },
   });
 
@@ -329,14 +366,13 @@ export function useResetPassword() {
     },
 
     onSuccess: () => {
-      toast.success(t("hooks.resetSuccess"));
       clearAuth(); // Clear all auth data including resetToken
       router.push(`/${locale}${API_ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`);
     },
 
     onError: (error: Error) => {
       const message = getApiErrorMessage(error);
-      toast.error(message);
+      showErrorToast(message);
     },
   });
 

@@ -1,0 +1,53 @@
+/*
+ * Toaster container offset — mirrors PageContainer responsive padding
+ * so that left-positioned toasts align with the container's start edge.
+ *
+ * PageContainer: px-4 (mobile) → px-6 (lg) → mx-auto max-w-[1400px] (≥1400px)
+ */
+:root {
+  /* Mirroring PageContainer default mobile padding: px-4 (16px) */
+  --toaster-container-offset: 1rem;
+}
+
+/* 
+ * Breakpoint sm (640px) 
+ * PageContainer uses sm:px-1 (4px) but AuthSplitLayout uses sm:p-6 (24px).
+ * We follow the broader container behavior (px-6) for desktop consistency.
+ */
+@media (width >= 640px) {
+  :root {
+    --toaster-container-offset: 1.5rem; /* px-6 = 24px */
+  }
+}
+
+@media (width >= 1024px) {
+  :root {
+    --toaster-container-offset: 1.5rem; /* px-6 = 24px */
+  }
+}
+
+@media (width >= 1400px) {
+  :root {
+    /* 
+     * Container is centered: offset = (viewport - 1400px) / 2 + px-6
+     * This ensures left-side toasts align with the start of the 1400px container.
+     */
+    --toaster-container-offset: calc((100vw - 1400px) / 2 + 1.5rem);
+  }
+}
+
+[data-sonner-toaster] {
+  font-family: var(--font-sans) !important;
+}
+
+/* 
+ * Sonner mobile override
+ * Sonner by default switches to mobile layout (full width, centered) at 600px.
+ * We force this behavior to start at 900px (tablet breakpoint).
+ */
+@media (max-width: 900px) {
+    [data-sonner-toaster] [data-sonner-toast] {
+        left: 0 !important;
+        right: 0 !important;
+    }
+}

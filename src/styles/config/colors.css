@@ -48,6 +48,7 @@
   --color-neutral-950: #0d0d0d;
 
   /* ===== SUCCESS COLORS (Green) ===== */
+  --color-success-50: #f5fdf9;
   --color-success-100: #ecf9f2;
   --color-success-200: #b2e6ca;
   --color-success-300: #66cc96;
@@ -62,6 +63,7 @@
   --color-warning-500: #f2c94c;
 
   /* ===== DANGER COLORS (Red) ===== */
+  --color-danger-50: #fff5f5;
   --color-danger-100: #fbe9e9;
   --color-danger-200: #f1a7a7;
   --color-danger-300: #e34f4f;
