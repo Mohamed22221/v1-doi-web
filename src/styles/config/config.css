@@ -8,35 +8,22 @@
     @apply border-border outline-ring/50;
   }
 
-  /* Direction-based Font Switching */
-  :root[dir="ltr"],
-  body[dir="ltr"],
-  html[dir="ltr"] {
-    --font-sans: var(--font-montserrat), sans-serif;
-  }
-
-  :root[dir="rtl"],
-  body[dir="rtl"],
-  html[dir="rtl"] {
-    --font-sans: var(--font-cairo), sans-serif;
-  }
-
-  /* Apply fonts directly to ensure switching works */
-  html[dir="rtl"] body,
-  body[dir="rtl"] {
-    font-family: var(--font-cairo), sans-serif !important;
-  }
-
-  html[dir="ltr"] body,
-  body[dir="ltr"] {
-    font-family: var(--font-montserrat), sans-serif !important;
-  }
-
+  /* Direction-based font switching is handled in globals.css via html[dir] selectors */
   body {
     @apply bg-background text-foreground;
   }
 }
+html[dir="ltr"] {
+  --app-primary-font: var(--font-ltr);
+}
 
+html[dir="rtl"] {
+  --app-primary-font: var(--font-rtl);
+}
+
+body {
+  font-family: var(--app-primary-font), sans-serif;
+}
 /* ===== TYPOGRAPHY PROSE STYLES ===== */
 .prose {
   color: var(--color-neutral-600);

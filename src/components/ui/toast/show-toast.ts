@@ -46,7 +46,7 @@ export interface ShowToastOptions extends ExternalToast {
 export function showToast({
   title,
   description,
-  type = "info",
+  type = "success",
   action,
   className,
   inset,

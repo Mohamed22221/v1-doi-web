@@ -1,1 +1,4 @@
 @import "../styles/base.css";
+
+/* ── Direction-based font switching ──────────────────────────────────────── */
+/* Variables --font-ltr and --font-rtl are injected into <html> by next/font  */

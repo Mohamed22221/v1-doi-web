@@ -77,10 +77,6 @@ export function useLogin() {
       if ("access_token" in responseData) {
         clearOtp(); // Clear OTP data upon successful login with token
         setAuth(responseData.access_token, responseData.refresh_token, responseData.user);
-        showSuccessToast(t("hooks.loginSuccess"), {
-          positionSm: "bottom-center",
-          className: "md:w-[350px]",
-        });
         router.refresh();
         router.replace(`/${locale}${API_ROUTES.BUYER.HOME}`);
       }
