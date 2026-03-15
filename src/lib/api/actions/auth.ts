@@ -17,8 +17,9 @@ import type {
   VerifyForgotOtpResponse,
   RequestNewPassword,
 } from "@api/types/auth";
-import { type TAPIResponse } from "../types/api";
 import { ENV } from "@/config/env";
+import type { ActionState } from "../types/api";
+import { serverActionWrapper } from "../action-utils";
 
 // ─── Cookie helpers ─────────────────────────────────────────────────────────
 
@@ -45,68 +46,79 @@ async function setAuthCookies(accessToken: string, refreshToken: string) {
   });
 }
 
-// ─── Server Action ──────────────────────────────────────────────────────────
+// ─── Server Actions ──────────────────────────────────────────────────────────
 
-export async function loginAction(payload: LoginRequest): Promise<TAPIResponse<LoginResponse>> {
-  const response = await apiClient.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload);
-  if ("access_token" in response.data) {
-    await setAuthCookies(response.data.access_token, response.data.refresh_token);
-  }
-  return response;
+export async function loginAction(payload: LoginRequest): Promise<ActionState<LoginResponse>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload);
+    if ("access_token" in response.data) {
+      await setAuthCookies(response.data.access_token, response.data.refresh_token);
+    }
+    return response.data;
+  });
 }
 
 export async function verifyOtpAction(
   payload: VerifyOtpRequest,
-): Promise<TAPIResponse<VerifyOtpResponse>> {
-  const response = await apiClient.post<VerifyOtpResponse>(API_ENDPOINTS.AUTH.VERIFY_OTP, payload);
-
-  if ("access_token" in response.data) {
-    await setAuthCookies(
-      response.data.access_token,
-      response.data.refresh_token || "", // Handle optional refresh_token
+): Promise<ActionState<VerifyOtpResponse>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<VerifyOtpResponse>(
+      API_ENDPOINTS.AUTH.VERIFY_OTP,
+      payload,
     );
-  }
 
-  return response;
+    if ("access_token" in response.data) {
+      await setAuthCookies(response.data.access_token, response.data.refresh_token || "");
+    }
+    return response.data;
+  });
 }
 
 export async function resendOtpAction(
   payload: ResendOtpRequest,
-): Promise<TAPIResponse<LoginOtpResponse>> {
-  const response = await apiClient.post<LoginOtpResponse>(API_ENDPOINTS.AUTH.RESEND_OTP, payload);
-  return response;
+): Promise<ActionState<LoginOtpResponse>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<LoginOtpResponse>(API_ENDPOINTS.AUTH.RESEND_OTP, payload);
+    return response.data;
+  });
 }
 
 export async function registerAction(
   payload: RegisterRequest,
-): Promise<TAPIResponse<LoginOtpResponse>> {
-  const response = await apiClient.post<LoginOtpResponse>(API_ENDPOINTS.AUTH.REGISTER, payload);
-  return response;
+): Promise<ActionState<LoginOtpResponse>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<LoginOtpResponse>(API_ENDPOINTS.AUTH.REGISTER, payload);
+    return response.data;
+  });
 }
 
 export async function forgotPasswordAction(
   payload: RequestForgotPassword,
-): Promise<TAPIResponse<ResponseForgotPassword>> {
-  const response = await apiClient.post<ResponseForgotPassword>(
-    API_ENDPOINTS.AUTH.FORGOT_PASSWORD,
-    payload,
-  );
-  return response;
+): Promise<ActionState<ResponseForgotPassword>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<ResponseForgotPassword>(
+      API_ENDPOINTS.AUTH.FORGOT_PASSWORD,
+      payload,
+    );
+    return response.data;
+  });
 }
 
 export async function verifyForgotOtpAction(
   payload: VerifyForgotOtpRequest,
-): Promise<TAPIResponse<VerifyForgotOtpResponse>> {
-  const response = await apiClient.post<VerifyForgotOtpResponse>(
-    API_ENDPOINTS.AUTH.VERIFY_FORGOT_OTP,
-    payload,
-  );
-  return response;
+): Promise<ActionState<VerifyForgotOtpResponse>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<VerifyForgotOtpResponse>(
+      API_ENDPOINTS.AUTH.VERIFY_FORGOT_OTP,
+      payload,
+    );
+    return response.data;
+  });
 }
 
-export async function resetPasswordAction(
-  payload: RequestNewPassword,
-): Promise<TAPIResponse<void>> {
-  const response = await apiClient.post<void>(API_ENDPOINTS.AUTH.RESET_PASSWORD, payload);
-  return response;
+export async function resetPasswordAction(payload: RequestNewPassword): Promise<ActionState<void>> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.post<void>(API_ENDPOINTS.AUTH.RESET_PASSWORD, payload);
+    return response.data;
+  });
 }

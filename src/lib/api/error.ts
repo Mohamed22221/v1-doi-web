@@ -164,6 +164,5 @@ export function getApiErrorMessage(error: unknown, t?: (key: string) => string):
   if (normalized.status === 422 && normalized.details) {
     return `${normalized.message}: ${flattenFieldErrors(normalized.details)}`;
   }
-
   return normalized.message;
 }

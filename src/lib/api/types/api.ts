@@ -25,3 +25,5 @@ export type TPaginationSimple = {
   total: number;
   totalPages: number;
 };
+
+export type ActionState<T> = { success: true; data: T } | { success: false; error: string };

@@ -4,7 +4,7 @@
 import { useRouter, useParams } from "next/navigation";
 
 // Third-party
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { showErrorToast, showSuccessToast } from "@/components/ui/toast/show-toast";
 
 // Internal logic
@@ -29,13 +29,13 @@ import type {
   LoginResponse,
   VerifyOtpRequest,
   VerifyOtpResponse,
-  ResendOtpRequest,
   LoginOtpResponse,
   RegisterRequest,
   RequestForgotPassword,
   ResponseForgotPassword,
   VerifyForgotOtpResponse,
 } from "@api/types/auth";
+import { useAppMutation } from "../action-utils";
 
 /**
  * Hook to handle authentication flows (Login, OTP, etc.)
@@ -48,12 +48,7 @@ export function useLogin() {
   const queryClient = useQueryClient();
   const { setAuth, setOtp, clearOtp } = useAuthStore();
 
-  const loginMutation = useMutation({
-    mutationFn: async (payload: LoginRequest): Promise<LoginResponse> => {
-      const result = await loginAction(payload);
-      return result.data;
-    },
-
+  const loginMutation = useAppMutation(loginAction, {
     onSuccess: (responseData: LoginResponse, payload: LoginRequest) => {
       queryClient.clear();
       //Case A: OTP flow
@@ -67,7 +62,7 @@ export function useLogin() {
         showSuccessToast(t("hooks.otpSentTitle"), {
           description: t("hooks.otpSentDescription"),
           positionSm: "bottom-center",
-          className: " tablet:w-[545px] xl:w-[600px]",
+          className: "tablet:w-[545px] xl:w-[600px]",
         });
         router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
         return;
@@ -86,7 +81,7 @@ export function useLogin() {
       const message = getApiErrorMessage(error);
       showErrorToast(message, {
         positionSm: "bottom-center",
-        className: "tablet:w-[544px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
     },
   });
@@ -110,66 +105,62 @@ export function useVerifyOtp() {
   const queryClient = useQueryClient();
   const { setAuth, otpData, clearOtp, setResetToken } = useAuthStore();
 
-  const verifyOtpMutation = useMutation({
-    mutationFn: async (
-      payload: VerifyOtpRequest,
-    ): Promise<VerifyOtpResponse | VerifyForgotOtpResponse> => {
+  const verifyOtpMutation = useAppMutation(
+    async (payload: VerifyOtpRequest) => {
       if (otpData?.authFlow === "forgot-password") {
-        const result = await verifyForgotOtpAction({
+        return verifyForgotOtpAction({
           phone: otpData.phone || "",
           otp: payload.code,
           sessionId: payload.otpSessionId,
         });
-        return result.data;
       }
-      const result = await verifyOtpAction(payload);
-      return result.data;
+      return verifyOtpAction(payload);
     },
+    {
+      onSuccess: (responseData: VerifyOtpResponse | VerifyForgotOtpResponse) => {
+        // Clear TanStack Query cache
+        queryClient.clear();
 
-    onSuccess: (responseData: VerifyOtpResponse | VerifyForgotOtpResponse) => {
-      // Clear TanStack Query cache
-      queryClient.clear();
+        // Case A: Forgot Password Flow
+        if ("resetToken" in responseData) {
+          setResetToken(responseData.resetToken);
+          router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD}`);
+          return;
+        }
 
-      // Case A: Forgot Password Flow
-      if ("resetToken" in responseData) {
-        setResetToken(responseData.resetToken);
-        router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD}`);
-        return;
-      }
+        // Case B: Normal Auth Flow (Login/Register)
+        // Update Zustand store
+        setAuth(responseData.access_token, responseData.refresh_token || "", responseData.user);
+        // Check for custom redirection
+        const isRegistrationFlow = otpData?.authFlow === "registration";
 
-      // Case B: Normal Auth Flow (Login/Register)
-      // Update Zustand store
-      setAuth(responseData.access_token, responseData.refresh_token || "", responseData.user);
-      // Check for custom redirection
-      const isRegistrationFlow = otpData?.authFlow === "registration";
+        router.refresh();
 
-      router.refresh();
+        if (isRegistrationFlow) {
+          router.push(`/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`);
+        } else {
+          router.push(`/${locale}${ROUTES.PUBLIC.HOME}`);
+        }
+        // Clear OTP data (including authFlow)
+        clearOtp();
+      },
 
-      if (isRegistrationFlow) {
-        router.push(`/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`);
-      } else {
-        router.push(`/${locale}${ROUTES.PUBLIC.HOME}`);
-      }
-
-      // Clear OTP data (including authFlow)
-      clearOtp();
+      onError: (error: Error) => {
+        const message = getApiErrorMessage(error);
+        showErrorToast(message, {
+          positionSm: "bottom-center",
+          className: "tablet:w-[545px] xl:w-[600px]",
+        });
+      },
     },
-
-    onError: (error: Error) => {
-      const message = getApiErrorMessage(error);
-      showErrorToast(message, {
-        positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
-      });
-    },
-  });
+  );
 
   return {
     verifyOtp: (code: string) => {
       if (!otpData?.otpSessionId) {
         showErrorToast(t("hooks.sessionIdMissing"), {
           positionSm: "bottom-center",
-          className: " tablet:w-[545px] xl:w-[600px]",
+          className: "tablet:w-[545px] xl:w-[600px]",
         });
         return;
       }
@@ -193,12 +184,7 @@ export function useResendOtp(options?: { onSuccess?: () => void }) {
   const { t } = useTranslation(locale, "auth");
   const { setOtp, otpData } = useAuthStore();
 
-  const resendOtpMutation = useMutation({
-    mutationFn: async (payload: ResendOtpRequest): Promise<LoginOtpResponse> => {
-      const result = await resendOtpAction(payload);
-      return result.data;
-    },
-
+  const resendOtpMutation = useAppMutation(resendOtpAction, {
     onSuccess: (responseData: LoginOtpResponse) => {
       setOtp({
         ...otpData,
@@ -208,7 +194,7 @@ export function useResendOtp(options?: { onSuccess?: () => void }) {
       showSuccessToast(t("hooks.otpSentTitle"), {
         description: t("hooks.otpSentDescription"),
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
       options?.onSuccess?.();
     },
@@ -217,7 +203,7 @@ export function useResendOtp(options?: { onSuccess?: () => void }) {
       const message = getApiErrorMessage(error);
       showErrorToast(message, {
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
     },
   });
@@ -227,7 +213,7 @@ export function useResendOtp(options?: { onSuccess?: () => void }) {
       if (!otpData?.otpSessionId) {
         showErrorToast(t("hooks.sessionIdMissing"), {
           positionSm: "bottom-center",
-          className: " tablet:w-[545px] xl:w-[600px]",
+          className: "tablet:w-[545px] xl:w-[600px]",
         });
         return;
       }
@@ -251,12 +237,7 @@ export function useRegister() {
   const { t } = useTranslation(locale, "auth");
   const { setOtp } = useAuthStore();
 
-  const registerMutation = useMutation({
-    mutationFn: async (payload: RegisterRequest): Promise<LoginOtpResponse> => {
-      const result = await registerAction(payload);
-      return result.data;
-    },
-
+  const registerMutation = useAppMutation(registerAction, {
     onSuccess: (responseData: LoginOtpResponse, payload: RegisterRequest) => {
       setOtp({
         otpCode: responseData.code ? String(responseData.code) : "",
@@ -268,7 +249,7 @@ export function useRegister() {
       showSuccessToast(t("hooks.otpSentTitle"), {
         description: t("hooks.otpSentDescription"),
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
       router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
     },
@@ -277,7 +258,7 @@ export function useRegister() {
       const message = getApiErrorMessage(error);
       showErrorToast(message, {
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
     },
   });
@@ -300,12 +281,7 @@ export function useForgotPassword() {
   const { t } = useTranslation(locale, "auth");
   const { setOtp } = useAuthStore();
 
-  const forgotPasswordMutation = useMutation({
-    mutationFn: async (payload: RequestForgotPassword): Promise<ResponseForgotPassword> => {
-      const result = await forgotPasswordAction(payload);
-      return result.data;
-    },
-
+  const forgotPasswordMutation = useAppMutation(forgotPasswordAction, {
     onSuccess: (responseData: ResponseForgotPassword, payload: RequestForgotPassword) => {
       setOtp({
         otpCode: String(responseData.code),
@@ -317,7 +293,7 @@ export function useForgotPassword() {
       showSuccessToast(t("hooks.otpSentTitle"), {
         description: t("hooks.otpSentDescription"),
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
       router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
     },
@@ -326,7 +302,7 @@ export function useForgotPassword() {
       const message = getApiErrorMessage(error);
       showErrorToast(message, {
         positionSm: "bottom-center",
-        className: " tablet:w-[545px] xl:w-[600px]",
+        className: "tablet:w-[545px] xl:w-[600px]",
       });
     },
   });
@@ -351,26 +327,29 @@ export function useResetPassword() {
   const { t } = useTranslation(locale, "auth");
   const { resetToken, clearAuth } = useAuthStore();
 
-  const resetPasswordMutation = useMutation({
-    mutationFn: async (payload: { newPassword: string }): Promise<void> => {
+  const resetPasswordMutation = useAppMutation(
+    async (payload: { newPassword: string }) => {
       if (!resetToken) throw new Error(t("hooks.resetTokenMissing"));
-      const result = await resetPasswordAction({
+      return resetPasswordAction({
         token: resetToken,
         newPassword: payload.newPassword,
       });
-      return result.data;
     },
+    {
+      onSuccess: () => {
+        clearAuth(); // Clear all auth data including resetToken
+        router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`);
+      },
 
-    onSuccess: () => {
-      clearAuth(); // Clear all auth data including resetToken
-      router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`);
+      onError: (error: Error) => {
+        const message = getApiErrorMessage(error);
+        showErrorToast(message, {
+          positionSm: "bottom-center",
+          className: "tablet:w-[545px] xl:w-[600px]",
+        });
+      },
     },
-
-    onError: (error: Error) => {
-      const message = getApiErrorMessage(error);
-      showErrorToast(message);
-    },
-  });
+  );
 
   return {
     resetPassword: (payload: { newPassword: string }) => resetPasswordMutation.mutate(payload),
