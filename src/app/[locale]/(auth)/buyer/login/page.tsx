@@ -7,6 +7,7 @@ import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
 import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
 import BuyerLoginForm from "@/features/auth/buyer/login/buyer-login-form";
 import BuyerLoginSocial from "@/features/auth/buyer/login/buyer-login-social";
+import { Suspense } from "react";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -35,7 +36,10 @@ export default async function BuyerLoginPage({ params }: PageProps) {
       // Form Area: The main login form + social login
       formContent={
         <div className="flex flex-col gap-4 tablet:gap-6">
-          <BuyerLoginForm />
+          <Suspense>
+            <BuyerLoginForm />
+          </Suspense>
+
           <BuyerLoginSocial locale={locale as Locale} />
         </div>
       }

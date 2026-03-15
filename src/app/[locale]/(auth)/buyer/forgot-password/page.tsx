@@ -6,6 +6,7 @@ import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
 import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
 import BuyerForgotPasswordForm from "@/features/auth/buyer/forgot-password/buyer-forgot-password-form";
+import { Suspense } from "react";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -32,7 +33,11 @@ export default async function BuyerForgotPasswordPage({ params }: PageProps) {
   return (
     <AuthSplitLayout
       // Form Area: The forgot password form
-      formContent={<BuyerForgotPasswordForm />}
+      formContent={
+        <Suspense>
+          <BuyerForgotPasswordForm />
+        </Suspense>
+      }
       // Sidebar Area: Using the same buyer-login variant for consistency
       sidebarContent={<BuyerSidebar locale={locale as Locale} variant="buyer-login" />}
     />

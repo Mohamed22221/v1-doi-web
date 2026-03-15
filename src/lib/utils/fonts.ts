@@ -27,6 +27,7 @@ export const englishFont = localFont({
   variable: "--font-ltr",
   display: "swap",
   preload: false,
+
   src: [
     {
       path: "../../assets/fonts/ltr/Montserrat-Thin.woff2",

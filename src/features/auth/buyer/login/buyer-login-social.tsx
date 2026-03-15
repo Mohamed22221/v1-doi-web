@@ -8,6 +8,7 @@ import { BuyerSocialActions } from "./buyer-social-actions";
 import { getTranslation } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
 import { cacheLife } from "next/cache";
+import { Suspense } from "react";
 
 interface BuyerLoginSocialProps {
   locale: Locale;
@@ -29,8 +30,9 @@ export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps
       <p className="text-center text-label text-neutral-400 tablet:text-h5 dark:text-neutral-300">
         {t("buyer-login.form.orContinueWith")}
       </p>
-
-      <BuyerSocialActions />
+      <Suspense>
+        <BuyerSocialActions />
+      </Suspense>
 
       <div className="mt-1 text-center text-label text-neutral-400 tablet:text-body xl:text-h5 dark:text-neutral-300">
         {t("buyer-login.form.noAccount")}{" "}
