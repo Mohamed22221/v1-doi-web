@@ -20,7 +20,7 @@ import {
 import { useAuthStore } from "@store/auth-store";
 import { getApiErrorMessage } from "@api/error";
 import { useTranslation } from "@/lib/i18n/client";
-import API_ROUTES from "../constants/api-routes-constant";
+import { ROUTES } from "@/components/routes";
 
 // Types
 import type { Locale } from "@lib/i18n/config";
@@ -69,7 +69,7 @@ export function useLogin() {
           positionSm: "bottom-center",
           className: " tablet:w-[545px] xl:w-[600px]",
         });
-        router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
+        router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
         return;
       }
 
@@ -78,7 +78,7 @@ export function useLogin() {
         clearOtp(); // Clear OTP data upon successful login with token
         setAuth(responseData.access_token, responseData.refresh_token, responseData.user);
         router.refresh();
-        router.replace(`/${locale}${API_ROUTES.BUYER.HOME}`);
+        router.replace(`/${locale}${ROUTES.PUBLIC.HOME}`);
       }
     },
 
@@ -133,7 +133,7 @@ export function useVerifyOtp() {
       // Case A: Forgot Password Flow
       if ("resetToken" in responseData) {
         setResetToken(responseData.resetToken);
-        router.push(`/${locale}${API_ROUTES.AUTH.RESET_PASSWORD}`);
+        router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD}`);
         return;
       }
 
@@ -146,9 +146,9 @@ export function useVerifyOtp() {
       router.refresh();
 
       if (isRegistrationFlow) {
-        router.push(`/${locale}${API_ROUTES.AUTH.REGISTER_SUCCESS}`);
+        router.push(`/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`);
       } else {
-        router.push(`/${locale}${API_ROUTES.BUYER.HOME}`);
+        router.push(`/${locale}${ROUTES.PUBLIC.HOME}`);
       }
 
       // Clear OTP data (including authFlow)
@@ -270,7 +270,7 @@ export function useRegister() {
         positionSm: "bottom-center",
         className: " tablet:w-[545px] xl:w-[600px]",
       });
-      router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
+      router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
     },
 
     onError: (error: Error) => {
@@ -319,7 +319,7 @@ export function useForgotPassword() {
         positionSm: "bottom-center",
         className: " tablet:w-[545px] xl:w-[600px]",
       });
-      router.push(`/${locale}${API_ROUTES.AUTH.VERIFY_OTP}`);
+      router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
     },
 
     onError: (error: Error) => {
@@ -363,7 +363,7 @@ export function useResetPassword() {
 
     onSuccess: () => {
       clearAuth(); // Clear all auth data including resetToken
-      router.push(`/${locale}${API_ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`);
+      router.push(`/${locale}${ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`);
     },
 
     onError: (error: Error) => {

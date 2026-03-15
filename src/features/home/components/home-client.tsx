@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslation } from "@lib/i18n/client";
-import type { Locale } from "@lib/i18n/config";
+import { useTranslation } from "@/lib/i18n/client";
+import { ROUTES } from "@components/routes";
+import { type Locale } from "@/lib/i18n/config";
 
 // UI Components
 import { Card } from "@components/ui/card";
@@ -29,17 +30,17 @@ export function HomeClient({ locale }: { locale: Locale }) {
             links: [
                 {
                     label: t("auth-dashboard.links.login-phone"),
-                    path: `/${locale}/buyer/login`,
+                    path: `/${locale}${ROUTES.AUTH.LOGIN}`,
                     icon: UserIcon,
                 },
                 {
                     label: t("auth-dashboard.links.login-password"),
-                    path: `/${locale}/buyer/login-password`,
+                    path: `/${locale}${ROUTES.AUTH.LOGIN_PASSWORD}`,
                     icon: ShieldCheckIcon,
                 },
                 {
                     label: t("auth-dashboard.links.register"),
-                    path: `/${locale}/buyer/register`,
+                    path: `/${locale}${ROUTES.AUTH.REGISTER}`,
                     icon: UserPlusIcon,
                 },
             ],
@@ -49,17 +50,17 @@ export function HomeClient({ locale }: { locale: Locale }) {
             links: [
                 {
                     label: t("auth-dashboard.links.forgot"),
-                    path: `/${locale}/buyer/forgot-password`,
+                    path: `/${locale}${ROUTES.AUTH.FORGOT_PASSWORD}`,
                     icon: KeyIcon,
                 },
                 {
                     label: t("auth-dashboard.links.verify"),
-                    path: `/${locale}/buyer/verify-otp`,
+                    path: `/${locale}${ROUTES.AUTH.VERIFY_OTP}`,
                     icon: ShieldCheckIcon,
                 },
                 {
                     label: t("auth-dashboard.links.reset"),
-                    path: `/${locale}/buyer/reset-password`,
+                    path: `/${locale}${ROUTES.AUTH.RESET_PASSWORD}`,
                     icon: KeyIcon,
                 },
             ],
@@ -69,12 +70,12 @@ export function HomeClient({ locale }: { locale: Locale }) {
             links: [
                 {
                     label: t("auth-dashboard.links.reg-success"),
-                    path: `/${locale}/buyer/register-success`,
+                    path: `/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`,
                     icon: CheckCircle2Icon,
                 },
                 {
                     label: t("auth-dashboard.links.reset-success"),
-                    path: `/${locale}/buyer/reset-password-success`,
+                    path: `/${locale}${ROUTES.AUTH.RESET_PASSWORD_SUCCESS}`,
                     icon: CheckCircle2Icon,
                 },
             ],

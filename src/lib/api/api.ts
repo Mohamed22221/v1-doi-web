@@ -4,6 +4,7 @@ import { type z } from "zod";
 import { API_BASE_URL, API_ENDPOINTS, TOKEN_KEYS, TOKEN_TYPE } from "./constants";
 import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
+import { ROUTES } from "@components/routes";
 
 // Module-level mutex — shared across all ApiClient instances on the server
 let refreshPromise: Promise<string | null> | null = null;
@@ -78,7 +79,10 @@ class ApiClient {
 
         const res = await fetch(`${this.baseUrl}${API_ENDPOINTS.AUTH.REFRESH}`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${TOKEN_TYPE} ${refreshToken}`,
+          },
           body: JSON.stringify({ refresh_token: refreshToken }),
         });
 
@@ -100,13 +104,13 @@ class ApiClient {
 
   private handleAuthFailure(): never {
     if (typeof window !== "undefined") {
-      window.location.href = "/login";
+      window.location.href = ROUTES.AUTH.LOGIN;
       throw new ApiErrorClass({
         message: "Unauthorized. Redirecting to login.",
         status: 401,
       });
     }
-    redirect("/login");
+    redirect(ROUTES.AUTH.LOGIN);
   }
 
   // ── Cache Key Generation ──────────────────────────────────────────────────

@@ -9,89 +9,95 @@ import {
   BuyNavIcon,
   RatingsNavIcon,
 } from "@components/shared/icon-base/constant";
+import { ROUTES } from "@components/routes";
 
 export const NAV_VISIBILITY: NavVisibilityRules = {
-  hideNavbarOn: ["/auth", "/login", "/register", "/checkout", "/notifications"],
+  hideNavbarOn: [
+    ROUTES.AUTH.LOGIN,
+    ROUTES.AUTH.REGISTER,
+    "/checkout",
+    "/notifications",
+  ],
 };
 
 export const NAV_ITEMS: NavItem[] = [
   //guest links
   {
     id: "home",
-    href: "/",
+    href: ROUTES.PUBLIC.HOME,
     translationKey: "nav.home",
     icon: HomeNavIcon,
-    rules: { roles: ["guest"] },
+    rules: { roles: ["guest", "buyer-auth"] },
   },
 
   //buyer links
   {
     id: "buyer",
-    href: "/dashboard/buyer",
+    href: ROUTES.DASHBOARD.BUYER.ROOT,
     translationKey: "nav.home",
     icon: HomeNavIcon,
-    rules: { roles: ["buyer"], requiresAuth: true },
+    rules: { roles: ["buyer"] },
   },
   {
     id: "search",
-    href: "/dashboard/buyer/search",
+    href: ROUTES.DASHBOARD.BUYER.SEARCH,
     translationKey: "nav.search",
     icon: SearchNavIcon,
-    rules: { roles: ["buyer", "guest"] },
+    rules: { roles: ["buyer", "guest", "buyer-auth"] },
   },
   {
     id: "sell",
-    href: "/dashboard/buyer/sell",
+    href: ROUTES.DASHBOARD.BUYER.SELL,
     translationKey: "nav.sell",
     icon: SellNavIcon,
-    rules: { roles: ["buyer", "guest"] },
+    rules: { roles: ["buyer", "guest", "buyer-auth"] },
   },
   {
     id: "pidding",
-    href: "/dashboard/buyer/pidding",
+    href: ROUTES.DASHBOARD.BUYER.PIDDING,
     translationKey: "nav.pidding",
     icon: PiddingNavIcon,
-    rules: { roles: ["buyer", "guest"] },
+    rules: { roles: ["buyer", "guest", "buyer-auth"] },
   },
   {
     id: "list",
-    href: "/dashboard/buyer/list",
+    href: ROUTES.DASHBOARD.BUYER.LIST,
     translationKey: "nav.list",
     icon: ListNavIcon,
-    rules: { roles: ["buyer", "guest"] },
+    rules: { roles: ["buyer", "guest", "buyer-auth"] },
   },
   //seller links
   {
     id: "home",
-    href: "/dashboard/seller",
+    href: ROUTES.DASHBOARD.SELLER.ROOT,
     translationKey: "nav.home",
     icon: HomeNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },
   },
   {
     id: "products",
-    href: "/dashboard/seller/products",
+    href: ROUTES.DASHBOARD.SELLER.PRODUCTS,
     translationKey: "nav.products",
     icon: ProductsNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },
   },
   {
     id: "buy",
-    href: "/dashboard/seller/buy",
+    href: ROUTES.DASHBOARD.SELLER.BUY,
     translationKey: "nav.buy",
     icon: BuyNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },
   },
   {
     id: "ratings",
-    href: "/dashboard/seller/ratings",
+    href: ROUTES.DASHBOARD.SELLER.RATINGS,
     translationKey: "nav.ratings",
     icon: RatingsNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },
   },
   {
     id: "list",
-    href: "/dashboard/seller/list",
+    href: ROUTES.DASHBOARD.SELLER.LIST,
     translationKey: "nav.list",
     icon: ListNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },

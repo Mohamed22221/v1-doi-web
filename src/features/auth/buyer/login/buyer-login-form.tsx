@@ -13,6 +13,7 @@ import { useLogin } from "@api/hooks/use-auth";
 // UI Components
 import { Button } from "@components/ui/button";
 import { Spinner } from "@components/ui/spinner";
+import { ROUTES } from "@components/routes";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
@@ -95,7 +96,7 @@ export default function BuyerLoginForm() {
 
         <div className="mt-1 text-center">
           <Link
-            href={`/${locale}/buyer/login-password`}
+            href={`/${locale}${ROUTES.AUTH.LOGIN_PASSWORD}`}
             className="text-label text-primary-500 hover:text-primary-600 tablet:text-body xl:text-h5 dark:text-primary-300"
           >
             {t("buyer-login.form.loginWithPassword")}

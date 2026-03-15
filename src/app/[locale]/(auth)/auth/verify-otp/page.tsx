@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n/config";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
+import { ROUTES } from "@components/routes";
 
 // Layouts & Components
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
 import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
-import BuyerResetPasswordForm from "@/features/auth/buyer/reset-password/buyer-reset-password-form";
+import BuyerVerifyOtpForm from "@/features/auth/buyer/verify-otp/buyer-verify-otp-form";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -15,25 +16,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   return generateLocalizedMetadata({
     locale: locale as Locale,
-    pageKey: "buyer-reset-password",
-    pathname: "/buyer/reset-password",
+    pageKey: "buyer-verify-otp",
+    pathname: ROUTES.AUTH.VERIFY_OTP,
   });
 }
 
 /**
- * BuyerResetPasswordPage
+ * BuyerVerifyOtpPage
  *
- * The entry point for the buyer reset password route.
- * Assembles the `AuthSplitLayout` with `BuyerResetPasswordForm` and `BuyerSidebar`.
+ * The main entry point for the buyer OTP verification route.
+ * Assembles the `AuthSplitLayout` with the `BuyerVerifyOtpForm` and `BuyerSidebar`.
  */
-export default async function BuyerResetPasswordPage({ params }: PageProps) {
+export default async function BuyerVerifyOtpPage({ params }: PageProps) {
   const { locale } = await params;
 
   return (
     <AuthSplitLayout
-      // Form Area: The reset password form
-      formContent={<BuyerResetPasswordForm />}
-      // Sidebar Area: Using the same buyer-login variant for consistency
+      // Form Area: The main OTP verification form
+      formContent={<BuyerVerifyOtpForm />}
+      // Sidebar Area: Branding and context
       sidebarContent={<BuyerSidebar locale={locale as Locale} variant="buyer-login" />}
     />
   );

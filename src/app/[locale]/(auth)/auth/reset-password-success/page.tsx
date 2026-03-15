@@ -6,6 +6,7 @@ import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";
 import ResetSuccessAction from "@/features/auth/buyer/reset-password-success/reset-success-action";
 import ResetSuccessContent from "@/features/auth/buyer/reset-password-success/reset-success-content";
+import { ROUTES } from "@/components/routes";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generateLocalizedMetadata({
     locale: locale as Locale,
     pageKey: "buyer-reset-password-success",
-    pathname: "/buyer/reset-password-success",
+    pathname: ROUTES.AUTH.RESET_PASSWORD_SUCCESS,
   });
 }
 

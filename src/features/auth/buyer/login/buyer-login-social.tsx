@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "@components/routes";
 
 // UI Components
 import { Card } from "@components/ui/card";
@@ -37,7 +38,7 @@ export default async function BuyerLoginSocial({ locale }: BuyerLoginSocialProps
       <div className="mt-1 text-center text-label text-neutral-400 tablet:text-body xl:text-h5 dark:text-neutral-300">
         {t("buyer-login.form.noAccount")}{" "}
         <Link
-          href={`/${locale}/buyer/register`}
+          href={`/${locale}${ROUTES.AUTH.REGISTER}`}
           className="mx-1 font-bold text-primary-500 hover:underline dark:text-primary-300"
         >
           {t("buyer-login.form.registerNow")}

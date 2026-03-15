@@ -16,6 +16,7 @@ import { useLogin } from "@api/hooks/use-auth";
 import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
+import { ROUTES } from "@components/routes";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
 import { RHFPassword } from "@components/forms/rhf-password";
 import { Spinner } from "@components/ui/spinner";
@@ -107,7 +108,7 @@ export default function BuyerLoginPasswordForm() {
         </Form>
         <div className="mt-1 text-center">
           <Link
-            href={`/${locale}/buyer/forgot-password`}
+            href={`/${locale}${ROUTES.AUTH.FORGOT_PASSWORD}`}
             className="text-label text-primary-500 hover:text-primary-600 tablet:text-body xl:text-h5 dark:text-primary-300"
           >
             {t("buyer-login.form.forgotPassword")}

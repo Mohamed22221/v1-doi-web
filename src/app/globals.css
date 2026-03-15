@@ -2,3 +2,10 @@
 
 /* ── Direction-based font switching ──────────────────────────────────────── */
 /* Variables --font-ltr and --font-rtl are injected into <html> by next/font  */
+:root {
+  --current-font: var(--font-ltr);
+}
+
+[dir="rtl"] {
+  --current-font: var(--font-rtl);
+}

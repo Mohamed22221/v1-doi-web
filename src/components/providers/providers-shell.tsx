@@ -39,10 +39,10 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
             <Toaster
               closeButton
               position="bottom-center"
+              dir={dir}
               toastOptions={{
                 style: {
-                  // كلمة 'inherit' بتخلي التوست ياخد خط الـ Body بتاع الموقع
-                  fontFamily: "inherit",
+                  fontFamily: "var(--font-sans)",
                 },
               }}
             />
@@ -55,10 +55,10 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
             <Toaster
               closeButton
               position={toasterPosition}
+              dir={dir}
               toastOptions={{
                 style: {
-                  // كلمة 'inherit' بتخلي التوست ياخد خط الـ Body بتاع الموقع
-                  fontFamily: "inherit",
+                  fontFamily: "var(--font-sans)",
                 },
               }}
               offset={{

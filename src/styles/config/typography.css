@@ -1,7 +1,7 @@
 @theme {
   /* Fonts - LTR uses Montserrat | RTL uses RH-Zak (both via next/font/local) */
   /* Direction-aware switching is handled in globals.css via html[dir] selectors */
-  --font-sans: var(--font-ltr), sans-serif;
+  --font-sans: var(--current-font), sans-serif;
 
   /* ===== TYPOGRAPHY SCALE ===== */
   /* Usage: text-display, text-h1, text-body, etc. */

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 /* Modular Styles */
 @import "./config/config.css";
@@ -11,6 +10,7 @@
 @import "./config/shadows.css";
 @import "./config/border.css";
 @import "./config/radius.css";
+@import "./config/animations.css";
 /* Components */
 @import "./components/_button.css";
 @import "./components/_card.css";

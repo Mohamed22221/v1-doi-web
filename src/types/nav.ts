@@ -1,4 +1,4 @@
-export type Role = "guest" | "buyer" | "seller" | "admin";
+export type Role = "guest" | "buyer" | "seller" | "admin" | "buyer-auth" | "authenticated";
 
 export interface NavItemRules {
   roles?: Role[];

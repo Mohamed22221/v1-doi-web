@@ -6,6 +6,7 @@ import { cacheLife } from "next/cache";
 import Link from "next/link";
 import Icon from "@/components/shared/icon-base";
 import { ArrowIcon } from "@/components/shared/icon-base/constant";
+import { ROUTES } from "@components/routes";
 
 /**
  * SellerMobileHeader
@@ -26,7 +27,7 @@ export async function SellerMobileHeader() {
         >
             <PageContainer variant="full" className="flex h-full w-full items-center justify-between">
                 <Link
-                    href="/"
+                    href={ROUTES.PUBLIC.HOME}
                 >
                     <Icon icon={ArrowIcon} className="text-neutral-400 ltr:rotate-180 mx-2" />
                 </Link>

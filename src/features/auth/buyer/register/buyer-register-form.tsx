@@ -14,6 +14,7 @@ import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
 import { Spinner } from "@components/ui/spinner";
+import { ROUTES } from "@components/routes";
 
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
 import { RHFPassword } from "@components/forms/rhf-password";
@@ -188,7 +189,7 @@ export default function BuyerRegisterForm() {
           <div className="flex items-center gap-1 text-caption font-medium text-neutral-400 md:text-h5">
             <span>{t("buyer-register.form.haveAccount")}</span>
             <Link
-              href={`/${locale}/buyer/login`}
+              href={`/${locale}${ROUTES.AUTH.LOGIN}`}
               className="font-bold text-primary-500 underline dark:text-primary-400"
             >
               {t("buyer-register.form.loginNow")}

@@ -9,6 +9,7 @@ import Icon from "@/components/shared/icon-base";
 import { ArrowIcon } from "@/components/shared/icon-base/constant";
 import { cn } from "@/lib/utils/cn";
 import Link from "next/link";
+import { ROUTES } from "@components/routes";
 
 interface SellerHeaderProps {
   locale: Locale;
@@ -29,7 +30,7 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
 
   return (
     <div className="mt-5 px-3 md:mt-0 md:px-0">
-      <section className="relative my-3 flex h-[200px] min-h-[200px] w-full items-end justify-center overflow-hidden rounded-md md:my-0 md:min-h-[100vh] md:rounded-[0rem] md:bg-transparent 3xl:min-h-[80vh]">
+      <section className="relative my-3 flex h-[200px] min-h-[200px] w-full items-end justify-center overflow-hidden rounded-md md:my-0 md:min-h-screen md:rounded-none md:bg-transparent 3xl:min-h-[80vh]">
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
           {/* Hero Image */}
@@ -44,7 +45,7 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
           />
 
           {/* Custom Gradient Overlay matching #2A3D5D - Refactored to Tailwind */}
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-500/20 to-primary-500 dark:to-primary-800" />
+          <div className="absolute inset-0 bg-linear-to-b from-primary-500/20 to-primary-500 dark:to-primary-800" />
         </div>
 
         {/* Top Navigation Layer (Logo & Back Button) - Hidden on mobile */}
@@ -62,7 +63,7 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
               size="icon"
               className={cn("hover:bg-white/20", "h-[45px] w-[45px]")}
             >
-              <Link href="/">
+              <Link href={ROUTES.PUBLIC.HOME}>
                 <Icon icon={ArrowIcon} className="text-white ltr:rotate-180" />
               </Link>
             </Button>
@@ -85,7 +86,7 @@ export async function SellerHeader({ locale }: SellerHeaderProps) {
             </div>
 
             <div className="flex justify-center pt-0 md:pt-1">
-              <Link href={`/${locale}/seller/start`}>
+              <Link href={`/${locale}${ROUTES.AUTH.SELLER.START}`}>
                 <Button
                   size="lg"
                   variant="secondary"

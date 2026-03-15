@@ -3,12 +3,12 @@ import { getTranslation } from "../i18n/server";
 import { type Locale, locales } from "../i18n/config";
 
 interface SeoOptions {
-    locale: Locale;
-    pageKey: string;
-    pathname?: string;
-    ns?: string;
-    params?: Record<string, string>;
-    baseUrl?: string;
+  locale: Locale;
+  pageKey: string;
+  pathname?: string;
+  ns?: string;
+  params?: Record<string, string>;
+  baseUrl?: string;
 }
 
 /**
@@ -16,59 +16,59 @@ interface SeoOptions {
  * Pulls from the 'seo' namespace by default.
  */
 export async function generateLocalizedMetadata({
-    locale,
-    pageKey,
-    pathname = "",
-    ns = "seo",
-    params = {},
-    baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://doi.com",
+  locale,
+  pageKey,
+  pathname = "",
+  ns = "seo",
+  params = {},
+  baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://v1-doi-web.vercel.app",
 }: SeoOptions): Promise<Metadata> {
-    const { t } = await getTranslation(locale, ns);
+  const { t } = await getTranslation(locale, ns);
 
-    // Derive title and description with fallbacks
-    const title = t(`${pageKey}.title`, params) || t("default.title");
-    const description = t(`${pageKey}.description`, params) || t("default.description");
+  // Derive title and description with fallbacks
+  const title = t(`${pageKey}.title`, params) || t("default.title");
+  const description = t(`${pageKey}.description`, params) || t("default.description");
 
-    const url = `${baseUrl}/${locale}${pathname}`;
+  const url = `${baseUrl}/${locale}${pathname}`;
 
-    // Construct language alternates
-    const languages: Record<string, string> = {};
-    locales.forEach((l) => {
-        languages[l] = `${baseUrl}/${l}${pathname}`;
-    });
+  // Construct language alternates
+  const languages: Record<string, string> = {};
+  locales.forEach((l) => {
+    languages[l] = `${baseUrl}/${l}${pathname}`;
+  });
 
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: url,
-            languages,
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: t("default.siteName"),
+      locale: locale.replace("-", "_"),
+      type: "website",
+      images: [
+        {
+          url: `${baseUrl}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: title,
         },
-        openGraph: {
-            title,
-            description,
-            url,
-            siteName: t("default.siteName"),
-            locale: locale.replace("-", "_"),
-            type: "website",
-            images: [
-                {
-                    url: `${baseUrl}/og-image.jpg`,
-                    width: 1200,
-                    height: 630,
-                    alt: title,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [`${baseUrl}/og-image.jpg`],
-        },
-        robots: {
-            index: true,
-            follow: true,
-        },
-    };
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${baseUrl}/og-image.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }

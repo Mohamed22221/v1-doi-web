@@ -1,7 +1,8 @@
+import { ROUTES } from "@/components/routes";
 import { BellIcon, ShoppingBagIcon, UserIcon } from "@components/shared/icon-base/constant";
 
 export type HeaderActionType = "link" | "button" | "avatar" | "text-link";
-export type HeaderActionRole = "buyer" | "seller" | "guest";
+export type HeaderActionRole = "buyer" | "seller" | "guest" | "buyer-auth";
 export type HeaderActionVisibility = "mobile" | "desktop" | "both";
 
 export interface HeaderAction {
@@ -24,30 +25,30 @@ export const HEADER_ACTIONS: HeaderAction[] = [
     id: "notifications",
     icon: BellIcon,
     translationKey: "header.notifications",
-    roles: ["buyer", "seller", "guest"],
+    roles: ["buyer", "seller", "buyer-auth"],
     visibility: "both",
     type: "link",
-    href: "/notifications",
+    href: ROUTES.NOTIFICATIONS,
     variant: "outline",
   },
   {
     id: "cart",
     icon: ShoppingBagIcon,
     translationKey: "header.cart",
-    roles: ["buyer", "guest"],
+    roles: ["buyer", "buyer-auth"],
     visibility: "both",
     type: "link",
-    href: "/cart",
+    href: ROUTES.CART,
     variant: "outline",
   },
   {
     id: "buyer-profile",
     icon: UserIcon,
     translationKey: "header.profile",
-    roles: ["buyer"],
+    roles: ["buyer", "buyer-auth"],
     visibility: "both",
     type: "link",
-    href: "/buyer/profile",
+    href: ROUTES.DASHBOARD.BUYER.PROFILE,
     variant: "outline",
   },
 
@@ -55,15 +56,15 @@ export const HEADER_ACTIONS: HeaderAction[] = [
   {
     id: "seller-profile",
     type: "avatar",
-    href: "/seller/profile",
+    href: ROUTES.DASHBOARD.SELLER.PROFILE,
     src: "/avatars/thumb-2.jpg",
-    roles: ["seller", "guest"],
+    roles: ["seller"],
     visibility: "both",
   },
   {
     id: "login",
     type: "text-link",
-    href: "/buyer/login",
+    href: ROUTES.AUTH.LOGIN,
     translationKey: "buyer-register.form.loginNow",
     roles: ["guest"],
     visibility: "both",

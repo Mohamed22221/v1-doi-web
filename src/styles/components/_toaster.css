@@ -36,10 +36,6 @@
   }
 }
 
-[data-sonner-toaster] {
-  font-family: var(--font-sans) !important;
-}
-
 /* 
  * Sonner mobile override
  * Sonner by default switches to mobile layout (full width, centered) at 600px.
