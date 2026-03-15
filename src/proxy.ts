@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale, cookieName, isValidLocale } from "./lib/i18n/config";
 import type { Locale } from "./lib/i18n/config";
-import { API_BASE_URL, API_ENDPOINTS } from "./lib/api/constants";
-import { TOKEN_KEYS } from "./lib/api/constants/api-constant";
+import { API_ENDPOINTS } from "./lib/api/constants";
 import { isTokenExpired } from "./lib/utils/jwt";
 import { ROUTES } from "@components/routes";
+import { API_BASE_URL, ENV } from "./config/env";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -60,8 +60,8 @@ async function tryRefreshToken(
         response = NextResponse.next();
       }
 
-      response.cookies.delete(TOKEN_KEYS.ACCESS);
-      response.cookies.delete(TOKEN_KEYS.REFRESH);
+      response.cookies.delete(ENV.ACCESS_TOKEN_KEY);
+      response.cookies.delete(ENV.REFRESH_TOKEN_KEY);
       return response;
     }
 
@@ -77,7 +77,7 @@ async function tryRefreshToken(
     const nextRes = NextResponse.next();
 
     // Set the new access token in cookies
-    nextRes.cookies.set(TOKEN_KEYS.ACCESS, access_token, {
+    nextRes.cookies.set(ENV.ACCESS_TOKEN_KEY, access_token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -125,8 +125,8 @@ export async function proxy(request: NextRequest) {
     pathWithoutLocale.startsWith(ROUTES.DASHBOARD.BUYER.ROOT) ||
     pathWithoutLocale.startsWith(ROUTES.DASHBOARD.SELLER.ROOT);
 
-  const accessToken = request.cookies.get(TOKEN_KEYS.ACCESS)?.value;
-  const refreshToken = request.cookies.get(TOKEN_KEYS.REFRESH)?.value;
+  const accessToken = request.cookies.get(ENV.ACCESS_TOKEN_KEY)?.value;
+  const refreshToken = request.cookies.get(ENV.REFRESH_TOKEN_KEY)?.value;
   const isExpired = accessToken ? isTokenExpired(accessToken) : true;
 
   const isSeller = pathWithoutLocale.startsWith(ROUTES.DASHBOARD.SELLER.ROOT);

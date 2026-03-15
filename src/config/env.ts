@@ -5,14 +5,11 @@
  */
 
 export const ENV = {
-  API_URL: process.env.NEXT_PUBLIC_API_URL || process.env.VITE_API_URL || "https://doueh.com/api",
-  API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || process.env.VITE_API_VERSION || "v1",
-  ACCESS_TOKEN_KEY:
-    process.env.NEXT_PUBLIC_ACCESS_TOKEN_KEY || process.env.VITE_ACCESS_TOKEN_KEY || "access_token",
-  REFRESH_TOKEN_KEY:
-    process.env.NEXT_PUBLIC_REFRESH_TOKEN_KEY ||
-    process.env.VITE_REFRESH_TOKEN_KEY ||
-    "refresh_token",
+  API_URL: process.env.NEXT_PUBLIC_API_URL || "",
+  API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || "",
+  ACCESS_TOKEN_KEY: process.env.NEXT_PUBLIC_ACCESS_TOKEN_KEY || "",
+  REFRESH_TOKEN_KEY: process.env.NEXT_PUBLIC_REFRESH_TOKEN_KEY || "",
+  TOKEN_TYPE: process.env.NEXT_PUBLIC_TOKEN_TYPE || "",
 } as const;
 
 export const API_BASE_URL = `${ENV.API_URL}/${ENV.API_VERSION}`;

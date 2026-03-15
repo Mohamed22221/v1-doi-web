@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { type z } from "zod";
-import { API_BASE_URL, API_ENDPOINTS, TOKEN_KEYS, TOKEN_TYPE } from "./constants";
+import { API_ENDPOINTS } from "./constants";
 import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
 import { ROUTES } from "@components/routes";
+import { API_BASE_URL, ENV } from "@/config/env";
 
 // Module-level mutex — shared across all ApiClient instances on the server
 let refreshPromise: Promise<string | null> | null = null;
@@ -39,14 +40,14 @@ class ApiClient {
     if (typeof window === "undefined") {
       const cookieStore = await cookies();
       return {
-        accessToken: cookieStore.get(TOKEN_KEYS.ACCESS)?.value,
-        refreshToken: cookieStore.get(TOKEN_KEYS.REFRESH)?.value,
+        accessToken: cookieStore.get(ENV.ACCESS_TOKEN_KEY as string)?.value,
+        refreshToken: cookieStore.get(ENV.REFRESH_TOKEN_KEY as string)?.value,
       };
     }
 
     return {
-      accessToken: this.readClientCookie(TOKEN_KEYS.ACCESS),
-      refreshToken: this.readClientCookie(TOKEN_KEYS.REFRESH),
+      accessToken: this.readClientCookie(ENV.ACCESS_TOKEN_KEY as string),
+      refreshToken: this.readClientCookie(ENV.REFRESH_TOKEN_KEY as string),
     };
   }
 
@@ -81,9 +82,8 @@ class ApiClient {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${TOKEN_TYPE} ${refreshToken}`,
+            Authorization: `${ENV.TOKEN_TYPE} ${refreshToken}`,
           },
-          body: JSON.stringify({ refresh_token: refreshToken }),
         });
 
         if (!res.ok) throw new Error("Refresh failed");
@@ -169,7 +169,7 @@ class ApiClient {
       const headers = new Headers(fetchOptions.headers);
       headers.set("Content-Type", "application/json");
       headers.set("x-language", lang);
-      if (accessToken) headers.set("Authorization", `${TOKEN_TYPE} ${accessToken}`);
+      if (accessToken) headers.set("Authorization", `${ENV.TOKEN_TYPE} ${accessToken}`);
 
       // ── AbortController (timeout) ──────────────────────────────────────────
       const controller = new AbortController();
@@ -188,7 +188,7 @@ class ApiClient {
         if (response.status === 401) {
           const newToken = await this.refreshToken();
           if (newToken) {
-            headers.set("Authorization", `${TOKEN_TYPE} ${newToken}`);
+            headers.set("Authorization", `${ENV.TOKEN_TYPE} ${newToken}`);
             response = await fetch(`${this.baseUrl}${endpoint}`, { ...init, headers });
           } else {
             this.handleAuthFailure();

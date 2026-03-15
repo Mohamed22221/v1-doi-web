@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { apiClient } from "@api/api";
-import { API_ENDPOINTS, TOKEN_KEYS } from "@api/constants";
+import { API_ENDPOINTS } from "@api/constants";
 import type {
   LoginRequest,
   LoginResponse,
@@ -18,6 +18,7 @@ import type {
   RequestNewPassword,
 } from "@api/types/auth";
 import { type TAPIResponse } from "../types/api";
+import { ENV } from "@/config/env";
 
 // ─── Cookie helpers ─────────────────────────────────────────────────────────
 
@@ -34,11 +35,11 @@ async function setAuthCookies(accessToken: string, refreshToken: string) {
     path: "/",
   };
 
-  cookieStore.set(TOKEN_KEYS.ACCESS, accessToken, {
+  cookieStore.set(ENV.ACCESS_TOKEN_KEY, accessToken, {
     ...shared,
     maxAge: ACCESS_MAX_AGE,
   });
-  cookieStore.set(TOKEN_KEYS.REFRESH, refreshToken, {
+  cookieStore.set(ENV.REFRESH_TOKEN_KEY, refreshToken, {
     ...shared,
     maxAge: REFRESH_MAX_AGE,
   });

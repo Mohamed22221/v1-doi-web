@@ -7,9 +7,9 @@ import { NavLinks } from "@/components/layout/nav/nav-links";
 import { MobileNav } from "@/components/layout/nav/mobile-nav";
 import { Header } from "@/components/layout/headers/header";
 import { cookies } from "next/headers";
-import { TOKEN_KEYS } from "@lib/api/constants/api-constant";
 import type { HeaderActionRole } from "@config/header-actions-config";
 import { ROUTES } from "@components/routes";
+import { ENV } from "@/config/env";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -30,7 +30,7 @@ export default async function Home({ params }: PageProps) {
 
   // Detect user status from cookies
   const cookieStore = await cookies();
-  const accessToken = cookieStore.get(TOKEN_KEYS.ACCESS)?.value;
+  const accessToken = cookieStore.get(ENV.ACCESS_TOKEN_KEY)?.value;
   const role: HeaderActionRole = accessToken ? "buyer-auth" : "guest";
 
   return (
