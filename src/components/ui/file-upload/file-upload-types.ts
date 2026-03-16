@@ -1,4 +1,5 @@
-import type { UploadType, UploadFileType } from "@lib/api/upload-files";
+import type { UploadType, UploadFileType } from "@/lib/api/types/storage";
+import type { Locale } from "@/lib/i18n/config";
 
 export type { UploadType, UploadFileType };
 
@@ -18,6 +19,8 @@ export interface FileItem {
 }
 
 export interface FileUploadBaseProps {
+  /** The current language locale */
+  locale: Locale;
   /** Maps to the API `type` parameter */
   uploadType: UploadType;
   /** Maps to the API `fileType` parameter */

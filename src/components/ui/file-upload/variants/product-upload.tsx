@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Paperclip, X } from "lucide-react";
 
 import { cn } from "@utils/cn";
+import { useTranslation } from "@/lib/i18n/client";
 import { useDropzoneUpload } from "../use-dropzone-upload";
 import type { FileUploadBaseProps } from "../file-upload-types";
 
@@ -24,7 +25,7 @@ interface ProductUploadProps extends FileUploadBaseProps {
  * 3. Grid   — desktop cover + grid layout
  */
 export function ProductUpload({
-  label = "ارفع صور المنتج",
+  label,
   minRecommended = 3,
   maxFiles = 10,
   maxSize = 10,
@@ -34,9 +35,12 @@ export function ProductUpload({
   onUploadSuccess,
   onUploadError,
   className,
+  locale,
 }: ProductUploadProps) {
+  const { t } = useTranslation(locale, "common");
   const { files, isDragActive, isUploading, getRootProps, getInputProps, open, removeFile } =
     useDropzoneUpload({
+      locale,
       uploadType,
       fileType,
       maxFiles,
@@ -57,7 +61,9 @@ export function ProductUpload({
       <input {...getInputProps()} />
 
       {/* Header */}
-      <h2 className="text-end text-h5 font-bold text-neutral-900 dark:text-neutral-50">{label}</h2>
+      <h2 className="text-end text-h5 font-bold text-neutral-900 dark:text-neutral-50">
+        {label || t("upload.product")}
+      </h2>
 
       {/* Main Dropzone Area */}
       {!hasFiles ? (
@@ -94,7 +100,7 @@ export function ProductUpload({
                     e.stopPropagation();
                     removeFile(item.id);
                   }}
-                  aria-label={`إزالة ${item.file.name}`}
+                  aria-label={t("upload.removeName", { name: item.file.name })}
                   className="absolute -top-1 -right-1 rounded-full bg-white p-0.5 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700"
                 >
                   <X className="h-3.5 w-3.5 text-neutral-500" aria-hidden="true" />
@@ -201,16 +207,16 @@ export function ProductUpload({
       {/* Helper text */}
       <div className="text-end text-sm text-neutral-500 dark:text-neutral-400">
         {!hasFiles ? (
-          <p>أول صورة راح تكون الصورة الرئيسية</p>
+          <p>{t("upload.firstIsCover")}</p>
         ) : (
           <p>
-            أضف ما لا يقل عن {minRecommended} صور (وبحد أقصى {maxFiles} صور) لعرض منتجك بشكل أفضل.
+            {t("upload.minRecommended", { count: minRecommended, max: maxFiles })}
           </p>
         )}
       </div>
 
       {isUploading && (
-        <p className="animate-pulse text-end text-xs text-primary-500">جارٍ الرفع...</p>
+        <p className="animate-pulse text-end text-xs text-primary-500">{t("upload.uploading")}</p>
       )}
     </section>
   );

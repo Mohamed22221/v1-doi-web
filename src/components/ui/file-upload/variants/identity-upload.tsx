@@ -3,6 +3,7 @@
 import { FileUp, X } from "lucide-react";
 
 import { cn } from "@utils/cn";
+import { useTranslation } from "@/lib/i18n/client";
 import { useDropzoneUpload } from "../use-dropzone-upload";
 import type { FileUploadBaseProps } from "../file-upload-types";
 
@@ -40,9 +41,12 @@ export function IdentityUpload({
   onChange,
   className,
   isInvalid,
+  locale,
 }: IdentityUploadProps) {
+  const { t } = useTranslation(locale, "common");
   const { files, isDragActive, isUploading, getRootProps, getInputProps, open, removeFile } =
     useDropzoneUpload({
+      locale,
       uploadType,
       fileType,
       maxFiles,
@@ -85,6 +89,11 @@ export function IdentityUpload({
             <span className="truncate text-sm font-medium text-neutral-800 dark:text-neutral-200">
               {file.file.name}
             </span>
+            {isUploading && file.progress !== 100 && file.progress !== -1 && (
+              <span className="animate-pulse text-[10px] leading-none text-primary-500">
+                {t("upload.uploading")}
+              </span>
+            )}
             {file.progress > 0 && file.progress < 100 && (
               <div className="h-1 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700">
                 <div
@@ -97,19 +106,28 @@ export function IdentityUpload({
               <span className="text-[10px] leading-none text-red-500">{file.error}</span>
             )}
             {file.progress === 100 && (
-              <span className="text-[10px] leading-none text-emerald-500">تم الرفع</span>
+              <span className="text-[10px] leading-none text-emerald-500">
+                {t("upload.uploaded")}
+              </span>
             )}
           </div>
 
           <button
             type="button"
+            disabled={isUploading}
             onClick={(e) => {
+              if (isUploading) return;
               e.stopPropagation();
               removeFile(file.id);
               onChange?.("");
             }}
-            aria-label="إزالة الملف"
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neutral-100 transition-colors hover:bg-red-100 dark:bg-neutral-800 dark:hover:bg-red-900/50"
+            aria-label={t("upload.remove")}
+            className={cn(
+              "flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neutral-100 transition-colors dark:bg-neutral-800",
+              isUploading
+                ? "cursor-not-allowed opacity-50"
+                : "hover:bg-red-100 dark:hover:bg-red-900/50",
+            )}
           >
             <X className="h-4 w-4 text-neutral-500 dark:text-neutral-400" aria-hidden="true" />
           </button>

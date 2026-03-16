@@ -3,6 +3,7 @@
 import { UploadCloud, X } from "lucide-react";
 
 import { cn } from "@utils/cn";
+import { useTranslation } from "@/lib/i18n/client";
 import { useDropzoneUpload } from "../use-dropzone-upload";
 import type { FileUploadBaseProps } from "../file-upload-types";
 
@@ -20,7 +21,7 @@ interface SimpleBoxUploadProps extends FileUploadBaseProps {
  * Uses root dropzone + manual trigger logic for consistency.
  */
 export function SimpleBoxUpload({
-  title = "اسحب الملفات هنا أو انقر للاختيار",
+  title,
   description,
   maxFiles = 5,
   maxSize = 10,
@@ -30,7 +31,9 @@ export function SimpleBoxUpload({
   onUploadSuccess,
   onUploadError,
   className,
+  locale,
 }: SimpleBoxUploadProps) {
+  const { t } = useTranslation(locale, "common");
   const {
     files,
     isDragActive,
@@ -41,6 +44,7 @@ export function SimpleBoxUpload({
     removeFile,
     uploadAll,
   } = useDropzoneUpload({
+    locale,
     uploadType,
     fileType,
     maxFiles,
@@ -73,15 +77,17 @@ export function SimpleBoxUpload({
           )}
           aria-hidden="true"
         />
-        <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{title}</p>
+        <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
+          {title || t("upload.dropHere")}
+        </p>
         <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          {description || `الحد الأقصى لكل ملف: ${maxSize} ميجابايت`}
+          {description || t("upload.maxSize", { size: maxSize })}
         </p>
       </button>
 
       {/* File List */}
       {files.length > 0 && (
-        <ul className="flex flex-col gap-2" aria-label="الملفات المحددة">
+        <ul className="flex flex-col gap-2" aria-label={t("upload.selectedFiles")}>
           {files.map((item) => (
             <li
               key={item.id}
@@ -128,7 +134,7 @@ export function SimpleBoxUpload({
           disabled={isUploading}
           className="self-end rounded-xl bg-primary-500 px-6 py-2 text-sm font-bold text-white transition-colors hover:bg-primary-600 disabled:opacity-50"
         >
-          {isUploading ? "جارٍ الرفع..." : "رفع الملفات"}
+          {isUploading ? t("upload.uploading") : t("upload.upload")}
         </button>
       )}
     </section>

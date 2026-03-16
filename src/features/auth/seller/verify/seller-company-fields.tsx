@@ -51,6 +51,7 @@ export function SellerCompanyFields({ locale }: SellerCompanyFieldsProps) {
         uploadProps={{
           uploadType: "seller_document",
           fileType: "image",
+          locale,
         }}
       />
 
@@ -63,6 +64,7 @@ export function SellerCompanyFields({ locale }: SellerCompanyFieldsProps) {
         uploadProps={{
           uploadType: "seller_document",
           fileType: "image",
+          locale,
         }}
       />
     </>

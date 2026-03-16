@@ -10,4 +10,7 @@ export const API_ENDPOINTS = {
     VERIFY_FORGOT_OTP: "/auth/verify-forgot-otp",
     RESET_PASSWORD: "/auth/reset-password",
   },
+  STORAGE: {
+    UPLOAD: "/storage/uploads",
+  },
 } as const;

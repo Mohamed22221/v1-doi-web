@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Pencil } from "lucide-react";
 
 import { cn } from "@utils/cn";
+import { useTranslation } from "@/lib/i18n/client";
 import { useDropzoneUpload } from "../use-dropzone-upload";
 import type { FileUploadBaseProps } from "../file-upload-types";
 
@@ -22,7 +23,7 @@ interface ProfileUploadProps extends FileUploadBaseProps {
  */
 export function ProfileUpload({
   currentAvatarUrl,
-  avatarAlt = "الصورة الشخصية",
+  avatarAlt,
   maxFiles = 1,
   maxSize = 5,
   accept = { "image/*": [".jpg", ".jpeg", ".png", ".webp"] },
@@ -31,9 +32,12 @@ export function ProfileUpload({
   onUploadSuccess,
   onUploadError,
   className,
+  locale,
 }: ProfileUploadProps) {
+  const { t } = useTranslation(locale, "common");
   const { files, isDragActive, isUploading, getRootProps, getInputProps, open } = useDropzoneUpload(
     {
+      locale,
       uploadType,
       fileType,
       maxFiles,
@@ -58,7 +62,7 @@ export function ProfileUpload({
       <button
         type="button"
         onClick={open}
-        aria-label="تغيير الصورة الشخصية"
+        aria-label={t("upload.profile")}
         className={cn(
           "relative h-24 w-24 overflow-hidden rounded-full bg-neutral-200 ring-2 ring-white transition-all dark:bg-neutral-800 dark:ring-neutral-900",
           isDragActive && "scale-105 ring-primary-400",
@@ -66,7 +70,12 @@ export function ProfileUpload({
         )}
       >
         {preview ? (
-          <Image src={preview} alt={avatarAlt} fill className="object-cover" />
+          <Image
+            src={preview}
+            alt={avatarAlt || t("upload.profile")}
+            fill
+            className="object-cover"
+          />
         ) : (
           <svg
             viewBox="0 0 96 96"

@@ -34,6 +34,7 @@ export function SellerIndividualFields({ locale }: SellerIndividualFieldsProps) 
         uploadProps={{
           uploadType: "seller_document",
           fileType: "image",
+          locale,
         }}
       />
     </>

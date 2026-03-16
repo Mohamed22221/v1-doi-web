@@ -167,7 +167,12 @@ class ApiClient {
       const lang = locale ?? (await this.detectLocale());
 
       const headers = new Headers(fetchOptions.headers);
-      headers.set("Content-Type", "application/json");
+      const isFormData = body instanceof FormData;
+
+      if (!isFormData) {
+        headers.set("Content-Type", "application/json");
+      }
+
       headers.set("x-language", lang);
       if (accessToken) headers.set("Authorization", `${ENV.TOKEN_TYPE} ${accessToken}`);
 
@@ -179,7 +184,7 @@ class ApiClient {
         ...fetchOptions,
         headers,
         signal: controller.signal,
-        ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+        ...(body !== undefined ? { body: isFormData ? (body as FormData) : JSON.stringify(body) } : {}),
       };
 
       try {

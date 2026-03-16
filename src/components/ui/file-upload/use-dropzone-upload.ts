@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import type { FileRejection } from "react-dropzone";
 
-import { uploadFiles } from "@lib/api/upload-files";
+import { useStorage } from "@lib/api/hooks/storage";
+import { useTranslation } from "@/lib/i18n/client";
+import type { TUploadPayload } from "@lib/api/types/storage";
 import type { FileItem, FileUploadBaseProps } from "./file-upload-types";
 
 interface UseDropzoneUploadOptions extends FileUploadBaseProps {
@@ -31,6 +33,7 @@ interface UseDropzoneUploadReturn {
  * Handles: preview URL creation/revocation, per-file progress, upload state.
  */
 export function useDropzoneUpload({
+  locale,
   uploadType,
   fileType = "image",
   maxFiles = 1,
@@ -40,8 +43,10 @@ export function useDropzoneUpload({
   onUploadError,
   autoUpload = false,
 }: UseDropzoneUploadOptions): UseDropzoneUploadReturn {
+  const { t } = useTranslation(locale, "common");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const { uploadFilesAsync } = useStorage();
 
   // Revoke object URLs when component unmounts
   useEffect(() => {
@@ -60,22 +65,20 @@ export function useDropzoneUpload({
 
       for (const item of items) {
         try {
-          const response = await uploadFiles({
-            uploadType,
+          const payload: TUploadPayload = {
+            type: uploadType,
             fileType,
             files: [item.file],
-            onProgress: (progress) => {
-              setFiles((prev) => prev.map((f) => (f.id === item.id ? { ...f, progress } : f)));
-            },
-          });
+          };
 
+          const response = await uploadFilesAsync(payload);
           const url = response.urls[0] ?? "";
           results.push(url);
           setFiles((prev) =>
             prev.map((f) => (f.id === item.id ? { ...f, progress: 100, uploadedUrl: url } : f)),
           );
         } catch (err) {
-          const message = err instanceof Error ? err.message : "حدث خطأ أثناء الرفع.";
+          const message = err instanceof Error ? err.message : t("upload.status.error_general");
           errors.push(message);
           setFiles((prev) =>
             prev.map((f) => (f.id === item.id ? { ...f, progress: -1, error: message } : f)),
@@ -91,17 +94,17 @@ export function useDropzoneUpload({
         onUploadSuccess?.(results);
       }
     },
-    [uploadType, fileType, onUploadError, onUploadSuccess],
+    [uploadType, fileType, onUploadError, onUploadSuccess, uploadFilesAsync, t],
   );
 
   const onDrop = useCallback(
     (acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
       if (rejectedFiles.length > 0) {
         const firstCode = rejectedFiles[0]?.errors[0]?.code;
-        let errorMsg = "فشل رفع الملف.";
-        if (firstCode === "file-too-large") errorMsg = "حجم الملف أكبر من الحد المسموح.";
-        if (firstCode === "file-invalid-type") errorMsg = "نوع الملف غير مدعوم.";
-        if (firstCode === "too-many-files") errorMsg = "تجاوزت الحد الأقصى لعدد الملفات.";
+        let errorMsg = t("upload.errors.failed");
+        if (firstCode === "file-too-large") errorMsg = t("upload.errorTooLarge");
+        if (firstCode === "file-invalid-type") errorMsg = t("upload.errorInvalidType");
+        if (firstCode === "too-many-files") errorMsg = t("upload.errorTooMany");
 
         console.warn("Dropzone rejection:", rejectedFiles);
         onUploadError?.(errorMsg);
@@ -128,7 +131,7 @@ export function useDropzoneUpload({
         void uploadItems(newItems);
       }
     },
-    [files.length, maxFiles, autoUpload, uploadItems, onUploadError],
+    [files.length, maxFiles, autoUpload, uploadItems, onUploadError, t],
   );
 
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({

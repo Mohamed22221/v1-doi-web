@@ -54,14 +54,15 @@ export function RHFIdentityUpload<
     >
       {(field) => (
         <IdentityUpload
-          {...uploadProps}
           {...field}
+          {...uploadProps}
           value={field.value}
           isInvalid={!!error}
           onChange={(val) => {
             field.onChange(val);
           }}
           uploadType={uploadProps?.uploadType || "seller_document"}
+          locale={uploadProps?.locale || "ar"}
         />
       )}
     </RHFField>

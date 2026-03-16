@@ -73,12 +73,16 @@
     "minRecommended": "Add at least {{count}} images (max {{max}}) to better display your product.",
     "uploading": "Uploading...",
     "success": "Uploaded successfully",
+    "uploaded": "Uploaded",
     "error": "Upload failed",
+    "errorGeneral": "An error occurred during upload.",
     "errorTooLarge": "File size exceeds the allowed limit.",
     "errorInvalidType": "File type is not supported.",
     "errorTooMany": "Maximum file count exceeded.",
     "remove": "Remove file",
+    "removeName": "Remove {{name}}",
     "upload": "Upload Files",
-    "maxSize": "Max size per file: {{size}} MB"
+    "maxSize": "Max size per file: {{size}} MB",
+    "selectedFiles": "Selected Files"
   }
 }
