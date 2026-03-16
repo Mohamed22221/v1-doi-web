@@ -10,6 +10,7 @@ export interface AuthUser {
   email: string;
   phone: string;
   language: string;
+  role: string;
   name?: string;
 }
 

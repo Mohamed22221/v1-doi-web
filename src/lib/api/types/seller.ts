@@ -18,8 +18,19 @@ export interface TVerifySellerPayload {
   documents: (string | File)[];
 }
 
+export type TSellerApprovalStatus = "approved" | "rejected" | "pending";
+
 export interface TVerifySellerResponse {
   message: string;
   success: boolean;
   data?: unknown;
+}
+
+export interface TGetSellerVerificationResponse {
+  status: boolean;
+  message: string;
+  data: {
+    id: string;
+    approvalStatus: TSellerApprovalStatus;
+  };
 }

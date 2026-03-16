@@ -15,5 +15,6 @@ export const API_ENDPOINTS = {
   },
   SELLER: {
     VERIFY: "/sellers/register",
+    ME_VERIFICATION: "/sellers/me/verification",
   },
 } as const;

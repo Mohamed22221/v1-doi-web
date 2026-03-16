@@ -3,7 +3,11 @@
 import { apiClient } from "@api/api";
 import { API_ENDPOINTS } from "@api/constants";
 import { serverActionWrapper } from "../action-utils";
-import type { TVerifySellerPayload, TVerifySellerResponse } from "../types/seller";
+import type {
+  TVerifySellerPayload,
+  TVerifySellerResponse,
+  TGetSellerVerificationResponse,
+} from "../types/seller";
 import type { ActionState } from "../types/api";
 
 /**
@@ -35,6 +39,22 @@ export async function verifySellerAction(
     const response = await apiClient.post<TVerifySellerResponse>(
       API_ENDPOINTS.SELLER.VERIFY,
       jsonPayload,
+    );
+    return response.data;
+  });
+}
+
+/**
+ * getSellerVerificationStatusAction
+ *
+ * Server Action to fetch the current verification status of the seller.
+ */
+export async function getSellerVerificationStatusAction(): Promise<
+  ActionState<TGetSellerVerificationResponse>
+> {
+  return serverActionWrapper(async () => {
+    const response = await apiClient.get<TGetSellerVerificationResponse>(
+      API_ENDPOINTS.SELLER.ME_VERIFICATION,
     );
     return response.data;
   });
