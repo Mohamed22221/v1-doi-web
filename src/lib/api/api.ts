@@ -184,7 +184,9 @@ class ApiClient {
         ...fetchOptions,
         headers,
         signal: controller.signal,
-        ...(body !== undefined ? { body: isFormData ? (body as FormData) : JSON.stringify(body) } : {}),
+        ...(body !== undefined
+          ? { body: isFormData ? (body as FormData) : JSON.stringify(body) }
+          : {}),
       };
 
       try {

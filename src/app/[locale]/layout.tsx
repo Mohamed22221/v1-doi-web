@@ -9,6 +9,7 @@ import { SettingsContainer } from "@/components/shared/settings/settings-contain
 import { THEME_INIT_CODE } from "@/components/shared/scripts/theme-init-code";
 import { arabicFont, englishFont } from "@/lib/utils/fonts";
 import "@/app/globals.css";
+import { RefreshHandlerWrapper } from "@/features/auth/components/refresh-handler-wrapper";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -58,6 +59,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         </a>
         <Suspense fallback={null}>
           <ProvidersShell locale={locale}>
+            <Suspense fallback={null}>
+              <RefreshHandlerWrapper />
+            </Suspense>
             <Suspense fallback={null}>
               <NavSync />
             </Suspense>

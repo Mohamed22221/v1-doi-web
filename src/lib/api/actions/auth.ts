@@ -16,19 +16,35 @@ import type {
   VerifyForgotOtpRequest,
   VerifyForgotOtpResponse,
   RequestNewPassword,
+  RefreshTokenResponse,
+  RefreshActionState,
 } from "@api/types/auth";
 import { ENV } from "@/config/env";
+import { decodeUserToken } from "@/lib/utils/jwt";
 import type { ActionState } from "../types/api";
 import { serverActionWrapper } from "../action-utils";
 
 // ─── Cookie helpers ─────────────────────────────────────────────────────────
 
 const IS_PROD = process.env.NODE_ENV === "production";
-const ACCESS_MAX_AGE = 60 * 15; // 15 minutes
-const REFRESH_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
+const REFRESH_MAX_AGE_FALLBACK = 60 * 60 * 24 * 30; // 30 days
 
-async function setAuthCookies(accessToken: string, refreshToken: string, role: string) {
+export async function setAuthCookies(accessToken: string, refreshToken: string, role: string) {
   const cookieStore = await cookies();
+
+  // 1. Decode tokens to get real exp
+  const accessPayload = decodeUserToken(accessToken);
+  const refreshPayload = decodeUserToken(refreshToken);
+
+  const now = Math.floor(Date.now() / 1000);
+
+  // 2. Calculate MaxAge (seconds)
+  // If decode fails, use sensible defaults (Access: 15m, Refresh: 30d)
+  const accessMaxAge = accessPayload?.exp ? Math.max(accessPayload.exp - now, 0) : 60 * 15;
+  const refreshMaxAge = refreshPayload?.exp
+    ? Math.max(refreshPayload.exp - now, 0)
+    : REFRESH_MAX_AGE_FALLBACK;
+
   const shared = {
     httpOnly: true,
     secure: IS_PROD,
@@ -36,17 +52,21 @@ async function setAuthCookies(accessToken: string, refreshToken: string, role: s
     path: "/",
   };
 
+  console.info(
+    `[setAuthCookies] Setting cookies - Access MaxAge: ${accessMaxAge}s, Refresh MaxAge: ${refreshMaxAge}s`,
+  );
+
   cookieStore.set(ENV.ACCESS_TOKEN_KEY, accessToken, {
     ...shared,
-    maxAge: ACCESS_MAX_AGE,
+    maxAge: accessMaxAge,
   });
   cookieStore.set(ENV.REFRESH_TOKEN_KEY, refreshToken, {
     ...shared,
-    maxAge: REFRESH_MAX_AGE,
+    maxAge: refreshMaxAge,
   });
   cookieStore.set("user_role", role, {
     ...shared,
-    maxAge: REFRESH_MAX_AGE,
+    maxAge: refreshMaxAge,
   });
 }
 
@@ -135,3 +155,62 @@ export async function resetPasswordAction(payload: RequestNewPassword): Promise<
   });
 }
 
+export async function refreshSessionAction(): Promise<RefreshActionState> {
+  try {
+    const cookieStore = await cookies();
+    const refreshToken = cookieStore.get(ENV.REFRESH_TOKEN_KEY)?.value;
+    if (!refreshToken) {
+      await clearAuthCookies();
+      return { type: "UNAUTHORIZED" };
+    }
+
+    const baseUrl = `${ENV.API_URL}/${ENV.API_VERSION}`;
+    const url = `${baseUrl}${API_ENDPOINTS.AUTH.REFRESH}`;
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${ENV.TOKEN_TYPE} ${refreshToken}`,
+      },
+      body: JSON.stringify({}),
+      cache: "no-store",
+    });
+
+    if (res.ok) {
+      const result = await res.json();
+      const data = result.data as RefreshTokenResponse;
+
+      if (data?.access_token) {
+        const existingRole = cookieStore.get("user_role")?.value || "Buyer";
+
+        await setAuthCookies(data.access_token, data.refresh_token, existingRole);
+
+        return { type: "SUCCESS", accessToken: data.access_token };
+      }
+    }
+
+    await clearAuthCookies();
+    return { type: "UNAUTHORIZED" };
+  } catch (error: unknown) {
+    // Handling Next.js redirect internally if any (though fetch won't trigger it)
+    if (
+      error &&
+      typeof error === "object" &&
+      "digest" in error &&
+      typeof (error as { digest: unknown }).digest === "string" &&
+      (error as { digest: string }).digest.includes("NEXT_REDIRECT")
+    ) {
+      throw error; // Let Next.js redirects pass through
+    }
+    await clearAuthCookies();
+    return { type: "ERROR", message: "Failed to refresh session" };
+  }
+}
+
+async function clearAuthCookies() {
+  const cookieStore = await cookies();
+  cookieStore.delete(ENV.ACCESS_TOKEN_KEY);
+  cookieStore.delete(ENV.REFRESH_TOKEN_KEY);
+  cookieStore.delete("user_role");
+}

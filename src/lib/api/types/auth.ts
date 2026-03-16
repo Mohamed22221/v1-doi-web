@@ -92,3 +92,16 @@ export type RefreshTokenResponse = {
   access_token: string;
   refresh_token: string;
 };
+
+export interface TokenPayload {
+  exp: number;
+  iat: number;
+  sub: string;
+  role: string;
+}
+
+export type RefreshActionState =
+  | { type: "SUCCESS"; accessToken: string }
+  | { type: "UNAUTHORIZED" }
+  | { type: "ERROR"; message: string }
+  | { type: "IDLE" };
