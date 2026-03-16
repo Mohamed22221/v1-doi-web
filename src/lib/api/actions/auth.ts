@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { apiClient } from "@api/api";
 import { API_ENDPOINTS } from "@api/constants";
+import { getSellerVerificationStatusAction } from "./seller";
 import type {
   LoginRequest,
   LoginResponse,
@@ -75,12 +76,28 @@ export async function setAuthCookies(accessToken: string, refreshToken: string, 
 export async function loginAction(payload: LoginRequest): Promise<ActionState<LoginResponse>> {
   return serverActionWrapper(async () => {
     const response = await apiClient.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload);
+
     if ("access_token" in response.data) {
-      await setAuthCookies(
-        response.data.access_token,
-        response.data.refresh_token,
-        response.data.user.role,
-      );
+      const accessToken = response.data.access_token;
+      let finalRole = response.data.user.role;
+
+      // Check seller verification status if the returned role is a seller
+      try {
+        const sellerStatusRes = await apiClient.withAuthToken(accessToken, () =>
+          getSellerVerificationStatusAction(),
+        );
+
+        if (sellerStatusRes.success) {
+          const status = sellerStatusRes.data.approvalStatus;
+          if (status === "pending" || status === "rejected") {
+            finalRole = "buyer";
+          }
+        }
+      } catch (_error) {
+        finalRole = "buyer";
+      }
+
+      await setAuthCookies(accessToken, response.data.refresh_token, finalRole);
     }
     return response.data;
   });
@@ -96,11 +113,25 @@ export async function verifyOtpAction(
     );
 
     if ("access_token" in response.data) {
-      await setAuthCookies(
-        response.data.access_token,
-        response.data.refresh_token || "",
-        response.data.user.role,
-      );
+      const accessToken = response.data.access_token;
+      let finalRole = response.data.user.role;
+
+      // Check seller verification status if the returned role is a seller
+      try {
+        const sellerStatusRes = await apiClient.withAuthToken(accessToken, () =>
+          getSellerVerificationStatusAction(),
+        );
+        if (sellerStatusRes.success) {
+          const status = sellerStatusRes.data.approvalStatus;
+          if (status === "pending" || status === "rejected") {
+            finalRole = "buyer";
+          }
+        }
+      } catch (_error) {
+        finalRole = "buyer";
+      }
+
+      await setAuthCookies(accessToken, response.data.refresh_token || "", finalRole);
     }
     return response.data;
   });

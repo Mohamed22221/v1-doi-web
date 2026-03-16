@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { AsyncLocalStorage } from "node:async_hooks";
 import { type z } from "zod";
 import { API_ENDPOINTS } from "./constants";
 import { ApiErrorClass, normalizeApiError } from "./error";
@@ -33,6 +34,17 @@ class ApiClient {
   private readonly baseUrl: string = API_BASE_URL;
   private readonly cache = new Map<string, { data: unknown; expiresAt: number }>();
   private readonly pendingRequests = new Map<string, Promise<unknown>>();
+  
+  // Use AsyncLocalStorage for per-request authenticated context (e.g. login flow)
+  private static readonly tokenStorage = new AsyncLocalStorage<string>();
+
+  /** 
+   * Runs an action within an authenticated context using a manual token. 
+   * Useful when cookies are not yet effective (e.g. during login flow). 
+   */
+  async withAuthToken<T>(token: string, fn: () => Promise<T>): Promise<T> {
+    return ApiClient.tokenStorage.run(token, fn);
+  }
 
   // ─── Token Retrieval (Isomorphic) ─────────────────────────────────────────
 
@@ -163,7 +175,11 @@ class ApiClient {
     }
 
     const requestPromise = (async () => {
-      const { accessToken } = await this.getTokens();
+      // Prioritize per-request manual token (from AsyncLocalStorage), then cookies
+      const manualToken = ApiClient.tokenStorage.getStore();
+      const { accessToken: cookieToken } = await this.getTokens();
+      const accessToken = manualToken ?? cookieToken;
+      
       const lang = locale ?? (await this.detectLocale());
 
       const headers = new Headers(fetchOptions.headers);

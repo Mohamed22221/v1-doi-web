@@ -50,10 +50,10 @@ export async function verifySellerAction(
  * Server Action to fetch the current verification status of the seller.
  */
 export async function getSellerVerificationStatusAction(): Promise<
-  ActionState<TGetSellerVerificationResponse>
+  ActionState<TGetSellerVerificationResponse["data"]>
 > {
   return serverActionWrapper(async () => {
-    const response = await apiClient.get<TGetSellerVerificationResponse>(
+    const response = await apiClient.get<TGetSellerVerificationResponse["data"]>(
       API_ENDPOINTS.SELLER.ME_VERIFICATION,
     );
     return response.data;
