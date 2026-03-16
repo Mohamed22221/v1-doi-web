@@ -13,4 +13,7 @@ export const API_ENDPOINTS = {
   STORAGE: {
     UPLOAD: "/storage/uploads",
   },
+  SELLER: {
+    VERIFY: "/sellers/register",
+  },
 } as const;

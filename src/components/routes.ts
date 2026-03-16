@@ -84,4 +84,8 @@ export const PROTECTED_BUYER = [
   ROUTES.DASHBOARD.BUYER.PROFILE,
 ];
 
+/**
+ * Exported type for Next.js internal route validation and typed routes.
+ * DO NOT RENAME THIS TYPE as it is expected by the build process.
+ */
 export type AppRoutes = typeof ROUTES;

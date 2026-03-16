@@ -20,7 +20,7 @@ export function SellerCompanyFields({ locale }: SellerCompanyFieldsProps) {
     <>
       <RHFInput
         control={control}
-        name="companyName"
+        name="businessName"
         label={t("seller-verify.form.companyName")}
         required
         layout="floating"
@@ -28,7 +28,7 @@ export function SellerCompanyFields({ locale }: SellerCompanyFieldsProps) {
 
       <RHFPhoneInput
         control={control}
-        name="contactNumber"
+        name="businessPhone"
         label={t("seller-verify.form.contactNumber")}
         required
         layout="floating"
@@ -36,7 +36,7 @@ export function SellerCompanyFields({ locale }: SellerCompanyFieldsProps) {
 
       <RHFInput
         control={control}
-        name="crNumber"
+        name="commercialRegistrationNumber"
         label={t("seller-verify.form.crNumber")}
         required
         layout="floating"

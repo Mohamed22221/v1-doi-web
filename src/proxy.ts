@@ -4,7 +4,7 @@ import { defaultLocale, cookieName, isValidLocale } from "./lib/i18n/config";
 import type { Locale } from "./lib/i18n/config";
 import { API_ENDPOINTS } from "./lib/api/constants";
 import { isTokenExpired } from "./lib/utils/jwt";
-import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "@components/routes";
+import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "@/components/routes";
 import { API_BASE_URL, ENV } from "./config/env";
 
 function detectLocale(request: NextRequest): Locale {
@@ -290,8 +290,7 @@ export async function proxy(request: NextRequest) {
   const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
   const path = pathWithoutLocale as string;
   const isDashboardRoute = pathWithoutLocale.startsWith("/dashboard");
-  const isSellerLandingPage =
-    path === ROUTES.PUBLIC.SELLER || path === `${locale}${ROUTES.PUBLIC.SELLER}`;
+  const isSellerLandingPage = path === ROUTES.PUBLIC.SELLER || path === `${ROUTES.PUBLIC.SELLER}/`;
   const isSellerAuthPage = (AUTH_SELLER as readonly string[]).includes(path);
   const isAuthRoute = pathWithoutLocale.startsWith("/auth") || isSellerAuthPage;
 

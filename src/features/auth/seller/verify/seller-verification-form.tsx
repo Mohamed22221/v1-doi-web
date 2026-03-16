@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 // Forms
 import { useForm } from "react-hook-form";
@@ -23,6 +23,10 @@ import { useTranslation } from "@/lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 import Link from "next/link";
 
+// API
+import { useSeller } from "@/lib/api/hooks/use-seller";
+import type { TVerifySellerPayload, TSellerRole } from "@/lib/api/types/seller";
+
 const SellerIndividualFields = dynamic(
   () => import("./seller-individual-fields").then((mod) => mod.SellerIndividualFields),
   {
@@ -37,7 +41,6 @@ const SellerCompanyFields = dynamic(
 );
 
 interface SellerVerificationFormProps {
-  onSubmit?: (values: SellerVerificationValues) => void;
   header?: React.ReactNode;
 }
 
@@ -50,8 +53,7 @@ interface SellerVerificationFormProps {
  * - ToggleGroup to switch between account types.
  * - Split card design for better focus.
  */
-export default function SellerVerificationForm({ onSubmit, header }: SellerVerificationFormProps) {
-  const router = useRouter();
+export default function SellerVerificationForm({ header }: SellerVerificationFormProps) {
   const params = useParams();
   const locale = params.locale as string;
   const { t } = useTranslation(locale as Locale, "auth");
@@ -62,11 +64,11 @@ export default function SellerVerificationForm({ onSubmit, header }: SellerVerif
 
   const initialDefaultValues = {
     accountType: "individual" as const,
-    idNumber: "",
+    nationalIdNumber: "",
     idImage: "",
-    companyName: "",
-    contactNumber: "",
-    crNumber: "",
+    businessName: "",
+    businessPhone: "",
+    commercialRegistrationNumber: "",
     taxCertificate: "",
     crDocument: "",
     terms: false,
@@ -94,11 +96,32 @@ export default function SellerVerificationForm({ onSubmit, header }: SellerVerif
     }
   };
 
+  const { verifySeller, isPending } = useSeller();
+
   const onSubmitForm = (values: SellerVerificationValues) => {
-    onSubmit?.(values);
-    // console.info("Verification form submitted:", values);
-    // Simulate API delay and then redirect
-    router.push(`/${locale}/seller/payment`);
+    let payload: TVerifySellerPayload;
+
+    if (values.accountType === "individual") {
+      payload = {
+        role: "Individual Seller" as TSellerRole,
+        nationalIdNumber: values.nationalIdNumber,
+        documents: [values.idImage],
+        types: ["national_id"],
+        notes: ["front_side"],
+      };
+    } else {
+      payload = {
+        role: "Business Seller" as TSellerRole,
+        businessName: values.businessName,
+        businessPhone: values.businessPhone,
+        commercialRegistrationNumber: values.commercialRegistrationNumber,
+        documents: [values.crDocument, values.taxCertificate],
+        types: ["commercial_certificate", "tax_certificate"],
+        notes: ["CR_Document", "Tax_Card"],
+      };
+    }
+
+    verifySeller(payload);
   };
 
   return (
@@ -179,9 +202,9 @@ export default function SellerVerificationForm({ onSubmit, header }: SellerVerif
                 type="submit"
                 className="h-[48px] w-full text-label font-bold tablet:h-[50px] tablet:text-body xl:h-[56px] xl:text-lg"
                 size="lg"
-                disabled={form.formState.isSubmitting}
+                disabled={form.formState.isSubmitting || isPending}
               >
-                {t("seller-verify.form.submit")}
+                {isPending ? t("common.loading") : t("seller-verify.form.submit")}
               </Button>
             </div>
           </Card>

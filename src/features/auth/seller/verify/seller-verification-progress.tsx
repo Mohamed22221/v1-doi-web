@@ -27,11 +27,11 @@ export function SellerVerificationProgress({ locale }: SellerVerificationProgres
   const progress = useMemo(() => {
     const isIndividual = values.accountType === "individual";
     const fields = isIndividual
-      ? (["idNumber", "idImage", "terms"] as const)
+      ? (["nationalIdNumber", "idImage", "terms"] as const)
       : ([
-          "companyName",
-          "contactNumber",
-          "crNumber",
+          "businessName",
+          "businessPhone",
+          "commercialRegistrationNumber",
           "taxCertificate",
           "crDocument",
           "terms",

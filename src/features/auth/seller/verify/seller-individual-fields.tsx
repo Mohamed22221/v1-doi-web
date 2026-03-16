@@ -19,7 +19,7 @@ export function SellerIndividualFields({ locale }: SellerIndividualFieldsProps) 
     <>
       <RHFInput
         control={control}
-        name="idNumber"
+        name="nationalIdNumber"
         label={t("seller-verify.form.idNumber")}
         required
         layout="floating"

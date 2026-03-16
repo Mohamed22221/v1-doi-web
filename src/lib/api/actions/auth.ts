@@ -48,7 +48,6 @@ async function setAuthCookies(accessToken: string, refreshToken: string, role: s
     ...shared,
     maxAge: REFRESH_MAX_AGE,
   });
-  // console.info(`[AUTH_ACTION] User role stored: ${role}`);
 }
 
 // ─── Server Actions ──────────────────────────────────────────────────────────
@@ -135,3 +134,4 @@ export async function resetPasswordAction(payload: RequestNewPassword): Promise<
     return response.data;
   });
 }
+
