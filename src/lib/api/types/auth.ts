@@ -13,6 +13,7 @@ export type User = {
   email: string;
   phone: string;
   language: string;
+  role: string;
 };
 
 export type RegisterRequest = {

@@ -8,12 +8,12 @@ import { AppleIcon, GoogleIcon } from "@/components/shared/icon-base/constant";
 export function BuyerSocialActions() {
   const handleGoogleLogin = () => {
     // TODO: Implement Google Login logic
-    console.info("Google Login clicked");
+    // console.info("Google Login clicked");
   };
 
   const handleAppleLogin = () => {
     // TODO: Implement Apple Login logic
-    console.info("Apple Login clicked");
+    // console.info("Apple Login clicked");
   };
 
   return (

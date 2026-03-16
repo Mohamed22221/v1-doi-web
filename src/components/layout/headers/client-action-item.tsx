@@ -10,14 +10,14 @@ interface ClientActionItemProps {
 }
 
 export function ClientActionItem({
-  id,
+  // id,
   children,
   className,
   variant = "outline",
 }: ClientActionItemProps) {
-  const handleClick = () => {
-    console.info(`Action ${id} clicked`);
-  };
+  // const handleClick = () => {
+  //   console.info(`Action ${id} clicked`);
+  // };
 
   return (
     <Button
@@ -25,7 +25,7 @@ export function ClientActionItem({
       size="icon"
       rounded="full"
       className={className}
-      onClick={handleClick}
+      // onClick={handleClick}
     >
       {children}
     </Button>

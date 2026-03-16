@@ -78,7 +78,7 @@ export default function SellerPaymentForm({ onSubmit, header }: SellerPaymentFor
 
   const onSubmitForm = (values: SellerPaymentValues) => {
     onSubmit?.(values);
-    console.info("Payment form submitted:", values);
+    // console.info("Payment form submitted:", values);
     router.push(`/${locale}/seller/pending`);
   };
 

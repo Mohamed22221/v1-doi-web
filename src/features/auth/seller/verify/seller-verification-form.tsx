@@ -96,7 +96,7 @@ export default function SellerVerificationForm({ onSubmit, header }: SellerVerif
 
   const onSubmitForm = (values: SellerVerificationValues) => {
     onSubmit?.(values);
-    console.info("Verification form submitted:", values);
+    // console.info("Verification form submitted:", values);
     // Simulate API delay and then redirect
     router.push(`/${locale}/seller/payment`);
   };

@@ -74,6 +74,7 @@ export function useLogin() {
         setAuth(responseData.access_token, responseData.refresh_token, responseData.user);
         router.refresh();
         router.replace(`/${locale}${ROUTES.PUBLIC.HOME}`);
+        router.refresh();
       }
     },
 
@@ -134,13 +135,12 @@ export function useVerifyOtp() {
         // Check for custom redirection
         const isRegistrationFlow = otpData?.authFlow === "registration";
 
-        router.refresh();
-
         if (isRegistrationFlow) {
           router.push(`/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`);
         } else {
           router.push(`/${locale}${ROUTES.PUBLIC.HOME}`);
         }
+        router.refresh();
         // Clear OTP data (including authFlow)
         clearOtp();
       },

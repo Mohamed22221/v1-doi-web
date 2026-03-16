@@ -27,7 +27,7 @@ const IS_PROD = process.env.NODE_ENV === "production";
 const ACCESS_MAX_AGE = 60 * 15; // 15 minutes
 const REFRESH_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
-async function setAuthCookies(accessToken: string, refreshToken: string) {
+async function setAuthCookies(accessToken: string, refreshToken: string, role: string) {
   const cookieStore = await cookies();
   const shared = {
     httpOnly: true,
@@ -44,6 +44,11 @@ async function setAuthCookies(accessToken: string, refreshToken: string) {
     ...shared,
     maxAge: REFRESH_MAX_AGE,
   });
+  cookieStore.set("user_role", role, {
+    ...shared,
+    maxAge: REFRESH_MAX_AGE,
+  });
+  // console.info(`[AUTH_ACTION] User role stored: ${role}`);
 }
 
 // ─── Server Actions ──────────────────────────────────────────────────────────
@@ -52,7 +57,11 @@ export async function loginAction(payload: LoginRequest): Promise<ActionState<Lo
   return serverActionWrapper(async () => {
     const response = await apiClient.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload);
     if ("access_token" in response.data) {
-      await setAuthCookies(response.data.access_token, response.data.refresh_token);
+      await setAuthCookies(
+        response.data.access_token,
+        response.data.refresh_token,
+        response.data.user.role,
+      );
     }
     return response.data;
   });
@@ -68,7 +77,11 @@ export async function verifyOtpAction(
     );
 
     if ("access_token" in response.data) {
-      await setAuthCookies(response.data.access_token, response.data.refresh_token || "");
+      await setAuthCookies(
+        response.data.access_token,
+        response.data.refresh_token || "",
+        response.data.user.role,
+      );
     }
     return response.data;
   });
