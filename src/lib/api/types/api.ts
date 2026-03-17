@@ -1,5 +1,6 @@
 export type TAPIResponse<T> = {
   status: boolean;
+  success?: boolean;
   message: string;
   data: T;
   pagination?: TPaginationSimple;

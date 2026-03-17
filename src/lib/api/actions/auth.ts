@@ -24,52 +24,8 @@ import { ENV } from "@/config/env";
 import { decodeUserToken } from "@/lib/utils/jwt";
 import type { ActionState } from "../types/api";
 import { serverActionWrapper } from "../action-utils";
-
-// ─── Cookie helpers ─────────────────────────────────────────────────────────
-
-const IS_PROD = process.env.NODE_ENV === "production";
-const REFRESH_MAX_AGE_FALLBACK = 60 * 60 * 24 * 30; // 30 days
-
-export async function setAuthCookies(accessToken: string, refreshToken: string, role: string) {
-  const cookieStore = await cookies();
-
-  // 1. Decode tokens to get real exp
-  const accessPayload = decodeUserToken(accessToken);
-  const refreshPayload = decodeUserToken(refreshToken);
-
-  const now = Math.floor(Date.now() / 1000);
-
-  // 2. Calculate MaxAge (seconds)
-  // If decode fails, use sensible defaults (Access: 15m, Refresh: 30d)
-  const accessMaxAge = accessPayload?.exp ? Math.max(accessPayload.exp - now, 0) : 60 * 15;
-  const refreshMaxAge = refreshPayload?.exp
-    ? Math.max(refreshPayload.exp - now, 0)
-    : REFRESH_MAX_AGE_FALLBACK;
-
-  const shared = {
-    httpOnly: true,
-    secure: IS_PROD,
-    sameSite: "lax" as const,
-    path: "/",
-  };
-
-  console.info(
-    `[setAuthCookies] Setting cookies - Access MaxAge: ${accessMaxAge}s, Refresh MaxAge: ${refreshMaxAge}s`,
-  );
-
-  cookieStore.set(ENV.ACCESS_TOKEN_KEY, accessToken, {
-    ...shared,
-    maxAge: accessMaxAge,
-  });
-  cookieStore.set(ENV.REFRESH_TOKEN_KEY, refreshToken, {
-    ...shared,
-    maxAge: refreshMaxAge,
-  });
-  cookieStore.set("user_role", role, {
-    ...shared,
-    maxAge: refreshMaxAge,
-  });
-}
+import { revalidatePath } from "next/cache";
+import { setAuthCookies, clearAuthCookies } from "../auth-cookies";
 
 // ─── Server Actions ──────────────────────────────────────────────────────────
 
@@ -79,25 +35,10 @@ export async function loginAction(payload: LoginRequest): Promise<ActionState<Lo
 
     if ("access_token" in response.data) {
       const accessToken = response.data.access_token;
-      let finalRole = response.data.user.role;
+      const role = response.data.user.role;
+      const accountStatus = await getAccountStatusForRole(accessToken, role);
 
-      // Check seller verification status if the returned role is a seller
-      try {
-        const sellerStatusRes = await apiClient.withAuthToken(accessToken, () =>
-          getSellerVerificationStatusAction(),
-        );
-
-        if (sellerStatusRes.success) {
-          const status = sellerStatusRes.data.approvalStatus;
-          if (status === "pending" || status === "rejected") {
-            finalRole = "buyer";
-          }
-        }
-      } catch (_error) {
-        finalRole = "buyer";
-      }
-
-      await setAuthCookies(accessToken, response.data.refresh_token, finalRole);
+      await setAuthCookies(accessToken, response.data.refresh_token, role, accountStatus);
     }
     return response.data;
   });
@@ -114,24 +55,10 @@ export async function verifyOtpAction(
 
     if ("access_token" in response.data) {
       const accessToken = response.data.access_token;
-      let finalRole = response.data.user.role;
+      const role = response.data.user.role;
+      const accountStatus = await getAccountStatusForRole(accessToken, role);
 
-      // Check seller verification status if the returned role is a seller
-      try {
-        const sellerStatusRes = await apiClient.withAuthToken(accessToken, () =>
-          getSellerVerificationStatusAction(),
-        );
-        if (sellerStatusRes.success) {
-          const status = sellerStatusRes.data.approvalStatus;
-          if (status === "pending" || status === "rejected") {
-            finalRole = "buyer";
-          }
-        }
-      } catch (_error) {
-        finalRole = "buyer";
-      }
-
-      await setAuthCookies(accessToken, response.data.refresh_token || "", finalRole);
+      await setAuthCookies(accessToken, response.data.refresh_token || "", role, accountStatus);
     }
     return response.data;
   });
@@ -213,11 +140,17 @@ export async function refreshSessionAction(): Promise<RefreshActionState> {
       const data = result.data as RefreshTokenResponse;
 
       if (data?.access_token) {
-        const existingRole = cookieStore.get("user_role")?.value || "Buyer";
+        const accessToken = data.access_token;
+        const payload = decodeUserToken(accessToken);
+        const role = payload?.role || "buyer";
+        const accountStatus = await getAccountStatusForRole(accessToken, role);
 
-        await setAuthCookies(data.access_token, data.refresh_token, existingRole);
+        await setAuthCookies(accessToken, data.refresh_token, role, accountStatus);
 
-        return { type: "SUCCESS", accessToken: data.access_token };
+        // Revalidate the entire app to reflect role changes in Server Components
+        revalidatePath("/", "layout");
+
+        return { type: "SUCCESS", accessToken };
       }
     }
 
@@ -239,9 +172,24 @@ export async function refreshSessionAction(): Promise<RefreshActionState> {
   }
 }
 
-async function clearAuthCookies() {
-  const cookieStore = await cookies();
-  cookieStore.delete(ENV.ACCESS_TOKEN_KEY);
-  cookieStore.delete(ENV.REFRESH_TOKEN_KEY);
-  cookieStore.delete("user_role");
+/**
+ * Helper to determine account status based on role and backend verification status.
+ */
+async function getAccountStatusForRole(accessToken: string, role: string): Promise<string> {
+  const lowerRole = role.toLowerCase();
+  if (!lowerRole.includes("seller")) {
+    return "buyer-approved";
+  }
+
+  try {
+    const sellerStatusRes = await apiClient.withAuthToken(accessToken, () =>
+      getSellerVerificationStatusAction(),
+    );
+    if (sellerStatusRes.success) {
+      return `seller-${sellerStatusRes.data.approvalStatus}`;
+    }
+    return "seller-pending";
+  } catch (_error) {
+    return "seller-pending";
+  }
 }

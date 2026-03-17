@@ -2,6 +2,9 @@
 
 import { apiClient } from "@api/api";
 import { API_ENDPOINTS } from "@api/constants";
+import { cookies } from "next/headers";
+import { ENV } from "@/config/env";
+import { setAuthCookies, updateAccountStatus } from "../auth-cookies";
 import { serverActionWrapper } from "../action-utils";
 import type {
   TVerifySellerPayload,
@@ -40,7 +43,34 @@ export async function verifySellerAction(
       API_ENDPOINTS.SELLER.VERIFY,
       jsonPayload,
     );
+
+    // Sync cookies if submission was successful
+    if (response.success) {
+      const cookieStore = await cookies();
+      const accessToken = cookieStore.get(ENV.ACCESS_TOKEN_KEY)?.value;
+      const refreshToken = cookieStore.get(ENV.REFRESH_TOKEN_KEY)?.value;
+
+      if (accessToken && refreshToken) {
+        // Set specific seller role and pending status
+        await setAuthCookies(accessToken, refreshToken, payload.role, "seller-pending");
+      }
+    }
+
     return response.data;
+  });
+}
+
+/**
+ * updateAccountStatusAction
+ *
+ * Surgically update the account_status cookie without refreshing the entire session.
+ */
+export async function updateAccountStatusAction(
+  status: string,
+): Promise<ActionState<{ success: boolean }>> {
+  return serverActionWrapper(async () => {
+    await updateAccountStatus(status);
+    return { success: true };
   });
 }
 

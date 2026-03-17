@@ -2,10 +2,11 @@
 
 import { useRouter, useParams } from "next/navigation";
 import { useAppMutation } from "../action-utils";
-import { verifySellerAction } from "../actions/seller";
+import { useQuery } from "@tanstack/react-query";
+import { verifySellerAction, getSellerVerificationStatusAction } from "../actions/seller";
 import { getApiErrorMessage } from "@api/error";
 import { useTranslation } from "@/lib/i18n/client";
-import { showSuccessToast, showErrorToast } from "@/components/ui/toast/show-toast";
+import { showErrorToast } from "@/components/ui/toast/show-toast";
 import { ROUTES } from "@/components/routes";
 import type { Locale } from "@/lib/i18n/config";
 import type { TVerifySellerPayload } from "../types/seller";
@@ -17,15 +18,9 @@ export function useSeller() {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale as Locale;
-  const { t } = useTranslation(locale, "auth");
 
   const verifyMutation = useAppMutation(verifySellerAction, {
     onSuccess: () => {
-      showSuccessToast(t("seller-verify.form.success") || "Registration submitted successfully", {
-        positionSm: "bottom-center",
-        className: "tablet:w-[545px] xl:w-[600px]",
-      });
-      // Redirect to pending
       router.push(`/${locale}${ROUTES.AUTH.SELLER.PENDING}`);
     },
     onError: (error: Error) => {
@@ -49,4 +44,30 @@ export function useSeller() {
     data: verifyMutation.data,
     errorMessage: verifyMutation.error ? getApiErrorMessage(verifyMutation.error) : null,
   };
+}
+
+/**
+ * Hook to periodically fetch and monitor seller verification status.
+ *
+ * @param enabled - Whether the polling should be active
+ */
+export function useSellerStatus(enabled: boolean = true) {
+  const params = useParams();
+  const locale = params.locale as Locale;
+  const { t } = useTranslation(locale, "auth");
+
+  return useQuery({
+    queryKey: ["seller-verification-status"],
+    queryFn: async () => {
+      const result = await getSellerVerificationStatusAction();
+      if (!result.success) {
+        throw new Error(result.error || t("hooks.fetchStatusFailed"));
+      }
+      return result.data;
+    },
+    enabled,
+    refetchInterval: false, // Disable automatic polling
+    refetchOnWindowFocus: true, // Check only when user returns to tab
+    staleTime: 60000, // 1 minute stale time to prevent redundant calls
+  });
 }
