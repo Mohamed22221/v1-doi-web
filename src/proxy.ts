@@ -4,6 +4,7 @@ import { ENV } from "./config/env";
 import { cookieName, getLocaleFromPath, detectLocale } from "./lib/i18n/config";
 import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "./components/routes";
 import { decodeUserToken } from "./lib/utils/jwt";
+import { performRefresh } from "./lib/api/auth-utils";
 
 export async function proxy(request: NextRequest) {
   const { pathname, search: _search } = request.nextUrl;
@@ -20,8 +21,9 @@ export async function proxy(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-language", locale);
 
-  // 4. Lightweight Token Expiry Detection
-  handleTokenRotation(request, requestHeaders);
+  // 4. Lightweight Token Expiry Detection & Rotation
+  const rotationResponse = await handleTokenRotation(request, requestHeaders);
+  if (rotationResponse) return rotationResponse;
 
   // 5. Auth Guards (Protected Routes)
   const authRedirect = handleAuthGuards(request, pathname, locale);
@@ -37,6 +39,46 @@ export async function proxy(request: NextRequest) {
       headers: requestHeaders,
     },
   });
+
+  // 8. Handle Token Updates from rotation
+  const newAccessToken = requestHeaders.get("x-refresh-access-token");
+  const newRefreshToken = requestHeaders.get("x-refresh-refresh-token");
+
+  if (newAccessToken && newRefreshToken) {
+    const payload = decodeUserToken(newAccessToken);
+    
+    // 1. Determine role: payload -> existing cookie -> default
+    const existingRole = request.cookies.get("user_role")?.value;
+    const role = payload?.role || existingRole || "buyer";
+    
+    // 2. Determine account status: existing cookie -> default
+    // We preserve the existing status as we can't easily re-verify in middleware
+    const accountStatus = request.cookies.get("account_status")?.value || "buyer-approved";
+
+    const IS_PROD = process.env.NODE_ENV === "production";
+    const shared = {
+      httpOnly: true,
+      secure: IS_PROD,
+      sameSite: "lax" as const,
+      path: "/",
+    };
+
+    // Calculate MaxAge
+    const now = Math.floor(Date.now() / 1000);
+    const accessExp = payload?.exp ? Math.max(payload.exp - now, 0) : 60 * 15;
+    
+    // Use 30 days for refresh-related cookies
+    const refreshMaxAge = 60 * 60 * 24 * 30;
+
+    response.cookies.set(ENV.ACCESS_TOKEN_KEY, newAccessToken, { ...shared, maxAge: accessExp });
+    response.cookies.set(ENV.REFRESH_TOKEN_KEY, newRefreshToken, { ...shared, maxAge: refreshMaxAge });
+    response.cookies.set("user_role", role, { ...shared, maxAge: refreshMaxAge });
+    response.cookies.set("account_status", accountStatus, { ...shared, maxAge: refreshMaxAge });
+
+    // Clean up internal headers
+    response.headers.delete("x-refresh-access-token");
+    response.headers.delete("x-refresh-refresh-token");
+  }
 
   // 7. Synchronize locale cookie if needed
   const cookieLocale = request.cookies.get(cookieName)?.value;
@@ -177,27 +219,53 @@ export const config = {
   ],
 };
 
-function handleTokenRotation(request: NextRequest, headers: Headers) {
+async function handleTokenRotation(request: NextRequest, headers: Headers) {
   const accessKey = ENV.ACCESS_TOKEN_KEY || "access_token";
   const refreshKey = ENV.REFRESH_TOKEN_KEY || "refresh_token";
 
   const accessToken = request.cookies.get(accessKey)?.value;
   const refreshToken = request.cookies.get(refreshKey)?.value;
 
-  if (!refreshToken) return;
+  if (!refreshToken) return null;
+
+  let shouldRefresh = false;
 
   if (!accessToken) {
-    headers.set("x-should-refresh", "true");
-    return;
+    shouldRefresh = true;
+  } else {
+    const payload = decodeUserToken(accessToken);
+    if (!payload || !payload.exp) {
+      shouldRefresh = true;
+    } else {
+      const now = Math.floor(Date.now() / 1000);
+      const timeUntilExpiry = payload.exp - now;
+      if (timeUntilExpiry < 300) {
+        shouldRefresh = true;
+      }
+    }
   }
 
-  const payload = decodeUserToken(accessToken);
-  if (!payload || !payload.exp) return;
+  if (shouldRefresh) {
+    const data = await performRefresh(refreshToken);
+    if (data?.access_token) {
+      const newAccessToken = data.access_token;
+      const newRefreshToken = data.refresh_token;
 
-  const now = Math.floor(Date.now() / 1000);
-  const timeUntilExpiry = payload.exp - now;
+      // Update request headers for the current request
+      headers.set("Authorization", `${ENV.TOKEN_TYPE} ${newAccessToken}`);
 
-  if (timeUntilExpiry < 300) {
-    headers.set("x-should-refresh", "true");
+      // We need to return the new tokens in cookies, but since we are in middleware
+      // and want to proceed to the next response, we have a few options.
+      // The most reliable way for middleware to set cookies and proceed is to
+      // let the standard flow continue and attach cookies to the FINAL response.
+      // However, handleTokenRotation is called early.
+      
+      // Let's add a custom header that we can pick up at the end of proxy() 
+      // to set the cookies on the response.
+      headers.set("x-refresh-access-token", newAccessToken);
+      headers.set("x-refresh-refresh-token", newRefreshToken);
+    }
   }
+
+  return null;
 }

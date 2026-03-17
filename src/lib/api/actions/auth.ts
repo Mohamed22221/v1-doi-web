@@ -17,7 +17,6 @@ import type {
   VerifyForgotOtpRequest,
   VerifyForgotOtpResponse,
   RequestNewPassword,
-  RefreshTokenResponse,
   RefreshActionState,
 } from "@api/types/auth";
 import { ENV } from "@/config/env";
@@ -26,6 +25,7 @@ import type { ActionState } from "../types/api";
 import { serverActionWrapper } from "../action-utils";
 import { revalidatePath } from "next/cache";
 import { setAuthCookies, clearAuthCookies } from "../auth-cookies";
+import { performRefresh } from "../auth-utils";
 
 // ─── Server Actions ──────────────────────────────────────────────────────────
 
@@ -122,36 +122,20 @@ export async function refreshSessionAction(): Promise<RefreshActionState> {
       return { type: "UNAUTHORIZED" };
     }
 
-    const baseUrl = `${ENV.API_URL}/${ENV.API_VERSION}`;
-    const url = `${baseUrl}${API_ENDPOINTS.AUTH.REFRESH}`;
+    const data = await performRefresh(refreshToken);
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${ENV.TOKEN_TYPE} ${refreshToken}`,
-      },
-      body: JSON.stringify({}),
-      cache: "no-store",
-    });
+    if (data?.access_token) {
+      const accessToken = data.access_token;
+      const payload = decodeUserToken(accessToken);
+      const role = payload?.role || "buyer";
+      const accountStatus = await getAccountStatusForRole(accessToken, role);
 
-    if (res.ok) {
-      const result = await res.json();
-      const data = result.data as RefreshTokenResponse;
+      await setAuthCookies(accessToken, data.refresh_token, role, accountStatus);
 
-      if (data?.access_token) {
-        const accessToken = data.access_token;
-        const payload = decodeUserToken(accessToken);
-        const role = payload?.role || "buyer";
-        const accountStatus = await getAccountStatusForRole(accessToken, role);
+      // Revalidate the entire app to reflect role changes in Server Components
+      revalidatePath("/", "layout");
 
-        await setAuthCookies(accessToken, data.refresh_token, role, accountStatus);
-
-        // Revalidate the entire app to reflect role changes in Server Components
-        revalidatePath("/", "layout");
-
-        return { type: "SUCCESS", accessToken };
-      }
+      return { type: "SUCCESS", accessToken };
     }
 
     await clearAuthCookies();

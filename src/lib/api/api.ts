@@ -2,11 +2,11 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { type z } from "zod";
-import { API_ENDPOINTS } from "./constants";
 import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
 import { ROUTES } from "@components/routes";
 import { API_BASE_URL, ENV } from "@/config/env";
+import { performRefresh } from "./auth-utils";
 
 // Module-level mutex — shared across all ApiClient instances on the server
 let refreshPromise: Promise<string | null> | null = null;
@@ -90,18 +90,8 @@ class ApiClient {
         const { refreshToken } = await this.getTokens();
         if (!refreshToken) throw new Error("No refresh token");
 
-        const res = await fetch(`${this.baseUrl}${API_ENDPOINTS.AUTH.REFRESH}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${ENV.TOKEN_TYPE} ${refreshToken}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Refresh failed");
-
-        const data = (await res.json()) as { access_token: string };
-        return data.access_token;
+        const data = await performRefresh(refreshToken);
+        return data?.access_token || null;
       } catch (_err) {
         return null;
       } finally {
