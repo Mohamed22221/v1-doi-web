@@ -26,6 +26,7 @@ import Link from "next/link";
 // API
 import { useSeller } from "@/lib/api/hooks/use-seller";
 import type { TVerifySellerPayload, TSellerRole } from "@/lib/api/types/seller";
+import { Spinner } from "@/components/ui/spinner";
 
 const SellerIndividualFields = dynamic(
   () => import("./seller-individual-fields").then((mod) => mod.SellerIndividualFields),
@@ -204,7 +205,8 @@ export default function SellerVerificationForm({ header }: SellerVerificationFor
                 size="lg"
                 disabled={form.formState.isSubmitting || isPending}
               >
-                {isPending ? t("common.loading") : t("seller-verify.form.submit")}
+                {isPending && <Spinner data-icon="inline-start" />}
+                {t("seller-verify.form.submit")}
               </Button>
             </div>
           </Card>
