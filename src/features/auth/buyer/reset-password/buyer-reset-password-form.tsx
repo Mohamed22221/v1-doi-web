@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Forms
 import { useForm } from "react-hook-form";
@@ -17,8 +17,7 @@ import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
 
 // Auth Components
-import { Logo } from "@components/template/nav/logo";
-import HeaderSidebar from "../../components/header-sidebar";
+// (Logo and HeaderSidebar (mobile) are now passed as props from parent)
 import { PasswordRulesChecklist } from "../../components/password-rules-checklist";
 
 // i18n
@@ -27,12 +26,19 @@ import type { Locale } from "@/lib/i18n/config";
 import { useResetPassword } from "@api/hooks/use-auth";
 import { Spinner } from "@components/ui/spinner";
 import { useAuthStore } from "@store/auth-store";
+import HeaderSidebar from "../../components/header-sidebar";
 
-export default function BuyerResetPasswordForm() {
+interface BuyerResetPasswordFormProps {
+  locale: Locale;
+  staticHeader?: React.ReactNode;
+}
+
+export default function BuyerResetPasswordForm({
+  locale,
+  staticHeader,
+}: BuyerResetPasswordFormProps) {
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as string;
-  const { t } = useTranslation(locale as Locale, "auth");
+  const { t } = useTranslation(locale, "auth");
   const { resetPassword, isPending } = useResetPassword();
   const { resetToken } = useAuthStore();
 
@@ -67,11 +73,8 @@ export default function BuyerResetPasswordForm() {
           <Icon icon={ArrowIcon} className="text-neutral-300 ltr:rotate-180 dark:text-neutral-50" />
         </Button>
 
-        {/* Mobile Header (Logo + Sidebar content) */}
-        <div className="flex flex-col pt-4 tablet:hidden">
-          <Logo imgClass="w-[79px] h-[44px]" />
-          <HeaderSidebar title={t(`buyer-reset-password.title`)} subtitle="" className="mt-2" />
-        </div>
+        {/* Mobile Header (Rendered statically from parent) */}
+        {staticHeader}
 
         <HeaderSidebar
           title={t(`buyer-reset-password.title`)}

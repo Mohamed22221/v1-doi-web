@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Forms
 import { useForm } from "react-hook-form";
@@ -17,20 +17,26 @@ import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
 
 // Auth Components
-import { Logo } from "@components/template/nav/logo";
-import HeaderSidebar from "../../components/header-sidebar";
+// (Logo and HeaderSidebar (mobile) are now passed as props from the parent page)
 
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 import { useForgotPassword } from "@api/hooks/use-auth";
 import { Spinner } from "@components/ui/spinner";
+import HeaderSidebar from "../../components/header-sidebar";
 
-export default function BuyerForgotPasswordForm() {
+interface BuyerForgotPasswordFormProps {
+  locale: Locale;
+  staticHeader?: React.ReactNode;
+}
+
+export default function BuyerForgotPasswordForm({
+  locale,
+  staticHeader,
+}: BuyerForgotPasswordFormProps) {
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as string;
-  const { t } = useTranslation(locale as Locale, "auth");
+  const { t } = useTranslation(locale, "auth");
   const { forgotPassword, isPending } = useForgotPassword();
 
   // Memoize schema
@@ -58,14 +64,8 @@ export default function BuyerForgotPasswordForm() {
           <Icon icon={ArrowIcon} className="text-neutral-300 ltr:rotate-180 dark:text-neutral-50" />
         </Button>
 
-        {/* Mobile Header (Logo + Sidebar content) */}
-        <div className="flex flex-col tablet:hidden">
-          <Logo imgClass="w-[79px] h-[44px]" />
-          <HeaderSidebar
-            title={t(`buyer-forgot-password.title`)}
-            subtitle={t(`buyer-forgot-password.subtitle`)}
-          />
-        </div>
+        {/* Mobile Header (Rendered statically from Server Component) */}
+        {staticHeader}
 
         <HeaderSidebar
           title={t(`buyer-forgot-password.title`)}

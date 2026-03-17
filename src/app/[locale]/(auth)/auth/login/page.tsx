@@ -9,6 +9,9 @@ import BuyerSidebar from "@/features/auth/buyer/buyer-sidebar";
 import BuyerLoginForm from "@/features/auth/buyer/login/buyer-login-form";
 import BuyerLoginSocial from "@/features/auth/buyer/login/buyer-login-social";
 import { Suspense } from "react";
+import { getTranslation } from "@/lib/i18n/server";
+import { Logo } from "@components/template/nav/logo";
+import HeaderSidebar from "@/features/auth/components/header-sidebar";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -31,6 +34,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
  */
 export default async function BuyerLoginPage({ params }: PageProps) {
   const { locale } = await params;
+  const { t } = await getTranslation(locale as Locale, "auth");
+
+  const staticHeader = (
+    <div className="flex flex-col tablet:hidden">
+      <Logo imgClass="w-[79px] h-[44px]" />
+      <HeaderSidebar title={t(`buyer-login.title`)} subtitle={t(`buyer-login.subtitle`)} />
+    </div>
+  );
 
   return (
     <AuthSplitLayout
@@ -38,7 +49,7 @@ export default async function BuyerLoginPage({ params }: PageProps) {
       formContent={
         <div className="flex flex-col gap-4 tablet:gap-6">
           <Suspense>
-            <BuyerLoginForm />
+            <BuyerLoginForm locale={locale as Locale} staticHeader={staticHeader} />
           </Suspense>
 
           <BuyerLoginSocial locale={locale as Locale} />

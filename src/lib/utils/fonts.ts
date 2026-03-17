@@ -3,7 +3,8 @@ import localFont from "next/font/local";
 export const arabicFont = localFont({
   variable: "--font-rtl",
   display: "swap",
-  preload: false,
+  preload: true,
+  fallback: ["sans-serif"],
   src: [
     {
       path: "../../assets/fonts/rtl/RH-Zak Thin.woff2",
@@ -26,8 +27,8 @@ export const arabicFont = localFont({
 export const englishFont = localFont({
   variable: "--font-ltr",
   display: "swap",
-  preload: false,
-
+  preload: true,
+  fallback: ["sans-serif"],
   src: [
     {
       path: "../../assets/fonts/ltr/Montserrat-Regular.woff2",

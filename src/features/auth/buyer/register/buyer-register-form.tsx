@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 // Forms
@@ -19,11 +19,8 @@ import { ROUTES } from "@components/routes";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
 import { RHFPassword } from "@components/forms/rhf-password";
 import { RHFCheckbox } from "@components/forms/rhf-checkbox";
-
-// Auth Components
-import { Logo } from "@components/template/nav/logo";
-import HeaderSidebar from "../../components/header-sidebar";
 import { PasswordRulesChecklist } from "../../components/password-rules-checklist";
+import HeaderSidebar from "../../components/header-sidebar";
 
 // i18n
 import { useTranslation } from "@lib/i18n/client";
@@ -33,11 +30,14 @@ import { RHFInput } from "@components/forms/rhf-input";
 import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
 
-export default function BuyerRegisterForm() {
+interface BuyerRegisterFormProps {
+  locale: Locale;
+  staticHeader?: React.ReactNode;
+}
+
+export default function BuyerRegisterForm({ locale, staticHeader }: BuyerRegisterFormProps) {
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as string;
-  const { t } = useTranslation(locale as Locale, "auth");
+  const { t } = useTranslation(locale, "auth");
   const { register, isPending } = useRegister();
 
   // Memoize schema
@@ -82,16 +82,8 @@ export default function BuyerRegisterForm() {
           <Icon icon={ArrowIcon} className="text-neutral-300 ltr:rotate-180 dark:text-neutral-50" />
         </Button>
 
-        {/* Mobile Header */}
-        <div className="flex flex-col pt-4 tablet:hidden">
-          <Logo imgClass="w-[79px] h-[44px]" />
-          <HeaderSidebar
-            title={t(`buyer-register.sidebar.title`)}
-            subtitle={t(`buyer-register.sidebar.subtitle`)}
-            className="mt-2"
-            classHeader="text-h3"
-          />
-        </div>
+        {/* Mobile Header (Rendered statically from parent) */}
+        {staticHeader}
 
         <HeaderSidebar
           title={t(`buyer-register.title`)}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Forms
 import { useForm } from "react-hook-form";
@@ -18,8 +18,7 @@ import { ArrowIcon } from "@components/shared/icon-base/constant";
 
 // Auth Components
 import { useAuthStore } from "@store/auth-store";
-import { Logo } from "@components/template/nav/logo";
-import HeaderSidebar from "../../components/header-sidebar";
+// (Logo and HeaderSidebar (mobile) are now passed as props from parent)
 import TitleForm from "../../components/title-form";
 
 // i18n
@@ -28,10 +27,16 @@ import type { Locale } from "@/lib/i18n/config";
 import { useVerifyOtp, useResendOtp } from "@api/hooks/use-auth";
 import BuyerVerifyOtpActions from "./buyer-verify-otp-actions";
 
-export default function BuyerVerifyOtpForm() {
+interface BuyerVerifyOtpFormProps {
+  locale: Locale;
+  staticHeader?: React.ReactNode;
+}
+
+export default function BuyerVerifyOtpForm({
+  locale,
+  staticHeader,
+}: BuyerVerifyOtpFormProps) {
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as Locale;
   const { t } = useTranslation(locale, "auth");
   const { otpData } = useAuthStore();
   const { verifyOtp, isPending } = useVerifyOtp();
@@ -91,11 +96,8 @@ export default function BuyerVerifyOtpForm() {
           <Icon icon={ArrowIcon} className="text-neutral-300 ltr:rotate-180 dark:text-neutral-50" />
         </Button>
 
-        {/* Mobile Header */}
-        <div className="flex flex-col tablet:hidden">
-          <Logo imgClass="w-[79px] h-[44px]" />
-          <HeaderSidebar title={t("buyer-verify-otp.title")} subtitle={subtitle} />
-        </div>
+        {/* Mobile Header (Rendered statically from parent) */}
+        {staticHeader}
 
         <TitleForm title={t("buyer-verify-otp.title")} />
 

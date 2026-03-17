@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Forms
 import { useForm } from "react-hook-form";
@@ -24,18 +24,24 @@ import Icon from "@components/shared/icon-base";
 import { ArrowIcon } from "@components/shared/icon-base/constant";
 
 // Auth Components
-import { Logo } from "@components/template/nav/logo";
-import HeaderSidebar from "../../components/header-sidebar";
+// Auth Components
+// (Logo and HeaderSidebar are now passed as props from parent)
 import TitleForm from "../../components/title-form";
 
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
 
-export default function BuyerLoginPasswordForm() {
+interface BuyerLoginPasswordFormProps {
+  locale: Locale;
+  staticHeader?: React.ReactNode;
+}
+
+export default function BuyerLoginPasswordForm({
+  locale,
+  staticHeader,
+}: BuyerLoginPasswordFormProps) {
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as Locale;
   const { t } = useTranslation(locale, "auth");
 
   // Auth logic
@@ -67,14 +73,8 @@ export default function BuyerLoginPasswordForm() {
           <Icon icon={ArrowIcon} className="text-neutral-300 ltr:rotate-180 dark:text-neutral-50" />
         </Button>
 
-        {/* Mobile Header */}
-        <div className="flex flex-col tablet:hidden">
-          <Logo imgClass="w-[79px] h-[44px]" />
-          <HeaderSidebar
-            title={t("buyer-login.form.loginWithPassword")}
-            subtitle={t("buyer-login.subtitle")}
-          />
-        </div>
+        {/* Mobile Header (Rendered statically from parent) */}
+        {staticHeader}
 
         <TitleForm title={t("buyer-login.form.loginWithPassword")} className="mb-6" />
 
