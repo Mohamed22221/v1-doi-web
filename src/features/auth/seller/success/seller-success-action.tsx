@@ -7,6 +7,7 @@ import type { Locale } from "@lib/i18n/config";
 
 // Components
 import { buttonVariants } from "@components/ui/button";
+import { ROUTES } from "@/components/routes";
 
 interface SellerSuccessActionProps {
   locale: Locale;
@@ -30,7 +31,7 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
   return (
     <section className="flex w-full flex-col-reverse items-center gap-3 md:mx-auto md:max-w-md md:flex-row-reverse md:justify-center md:gap-4">
       <Link
-        href={`/${locale}/seller`}
+        href={ROUTES.PUBLIC.HOME}
         className={buttonVariants({
           variant: "secondary",
           size: "lg",
@@ -41,7 +42,7 @@ export default async function SellerSuccessAction({ locale }: SellerSuccessActio
         {t("seller-success.secondary")}
       </Link>
       <Link
-        href={`/${locale}/seller/products/new`}
+        href={ROUTES.DASHBOARD.SELLER.ROOT}
         className={buttonVariants({
           variant: "default",
           size: "lg",

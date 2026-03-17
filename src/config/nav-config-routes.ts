@@ -12,12 +12,7 @@ import {
 import { ROUTES } from "@components/routes";
 
 export const NAV_VISIBILITY: NavVisibilityRules = {
-  hideNavbarOn: [
-    ROUTES.AUTH.LOGIN,
-    ROUTES.AUTH.REGISTER,
-    "/checkout",
-    "/notifications",
-  ],
+  hideNavbarOn: [ROUTES.AUTH.LOGIN, ROUTES.AUTH.REGISTER, "/checkout", "/notifications"],
 };
 
 export const NAV_ITEMS: NavItem[] = [
@@ -47,7 +42,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     id: "sell",
-    href: ROUTES.DASHBOARD.BUYER.SELL,
+    href: ROUTES.DASHBOARD.SELLER.ROOT,
     translationKey: "nav.sell",
     icon: SellNavIcon,
     rules: { roles: ["buyer", "guest", "buyer-auth"] },
@@ -83,7 +78,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     id: "buy",
-    href: ROUTES.DASHBOARD.SELLER.BUY,
+    href: ROUTES.DASHBOARD.BUYER.ROOT,
     translationKey: "nav.buy",
     icon: BuyNavIcon,
     rules: { roles: ["seller"], requiresAuth: true },

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { ENV } from "./config/env";
 import { cookieName, getLocaleFromPath, detectLocale } from "./lib/i18n/config";
+import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "./components/routes";
 import { decodeUserToken } from "./lib/utils/jwt";
 
 export async function proxy(request: NextRequest) {
@@ -22,11 +23,15 @@ export async function proxy(request: NextRequest) {
   // 4. Lightweight Token Expiry Detection
   handleTokenRotation(request, requestHeaders);
 
-  // 5. Account Status RBAC Guards
+  // 5. Auth Guards (Protected Routes)
+  const authRedirect = handleAuthGuards(request, pathname, locale);
+  if (authRedirect) return authRedirect;
+
+  // 6. Account Status RBAC Guards
   const guardRedirect = handleAccountStatusGuards(request, pathname, locale);
   if (guardRedirect) return guardRedirect;
 
-  // 6. Proceed with next response
+  // 7. Proceed with next response
   const response = NextResponse.next({
     request: {
       headers: requestHeaders,
@@ -71,6 +76,60 @@ function handleMissingLocale(request: NextRequest) {
 }
 
 /**
+ * Enforces authentication for protected routes.
+ */
+function handleAuthGuards(request: NextRequest, pathname: string, locale: string) {
+  const refreshKey = ENV.REFRESH_TOKEN_KEY || "refresh_token";
+  const accessKey = ENV.ACCESS_TOKEN_KEY || "access_token";
+
+  const isLoggedIn =
+    !!request.cookies.get(refreshKey)?.value || !!request.cookies.get(accessKey)?.value;
+  const accountStatus = request.cookies.get("account_status")?.value;
+
+  // Get path without locale prefix for matching
+  const cleanPath = pathname.replace(new RegExp(`^/${locale}`), "");
+
+  // Check if current path starts with any restricted route
+  const isAuthAllRoute = AUTH_ALL.some((route) => cleanPath.startsWith(route));
+  const isAuthSellerRoute = AUTH_SELLER.some((route) => cleanPath.startsWith(route));
+  const isProtectedSellerRoute = PROTECTED_SELLER.some((route) => cleanPath.startsWith(route));
+  // const isPublicSellerLanding = cleanPath.startsWith(ROUTES.PUBLIC.SELLER);
+
+  // Case 1: Logged in users trying to access login/register pages
+  if (isLoggedIn && isAuthAllRoute) {
+    // Specific redirect for approved buyers
+    if (
+      accountStatus === "buyer-approved" ||
+      accountStatus === "seller-rejected" ||
+      accountStatus === "seller-pending"
+    ) {
+      return NextResponse.redirect(
+        new URL(`/${locale}${ROUTES.DASHBOARD.BUYER.ROOT}`, request.url),
+      );
+    }
+    // // Specific redirect for approved sellers
+    if (accountStatus === "seller-approved") {
+      return NextResponse.redirect(
+        new URL(`/${locale}${ROUTES.DASHBOARD.SELLER.ROOT}`, request.url),
+      );
+    }
+    return NextResponse.redirect(new URL(`/${locale}${ROUTES.PUBLIC.HOME}`, request.url));
+  }
+
+  // // Case 2: Approved sellers trying to access the public seller landing page
+  // if (isLoggedIn && accountStatus === "seller-approved" && isPublicSellerLanding) {
+  //   return NextResponse.redirect(new URL(`/${locale}${ROUTES.DASHBOARD.SELLER.ROOT}`, request.url));
+  // }
+
+  // Case 3: Logged out users trying to access protected seller routes
+  if (!isLoggedIn && (isAuthSellerRoute || isProtectedSellerRoute)) {
+    return NextResponse.redirect(new URL(`/${locale}${ROUTES.AUTH.LOGIN}`, request.url));
+  }
+
+  return null;
+}
+
+/**
  * Enforces RBAC rules based on the account_status cookie.
  */
 function handleAccountStatusGuards(request: NextRequest, pathname: string, locale: string) {
@@ -94,10 +153,10 @@ function handleAccountStatusGuards(request: NextRequest, pathname: string, local
     }
   }
 
-  // Rule: seller-pending can access onboarding but not dashboard
+  // Rule: seller-pending must be on the pending page
   if (accountStatus === "seller-pending") {
-    if (isSellerDashboard) {
-      return NextResponse.redirect(new URL(`/${locale}/seller/pending`, request.url));
+    if (!pathname.includes(ROUTES.AUTH.SELLER.PENDING)) {
+      return NextResponse.redirect(new URL(`/${locale}${ROUTES.AUTH.SELLER.PENDING}`, request.url));
     }
   }
 

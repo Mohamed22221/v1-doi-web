@@ -7,6 +7,7 @@ import type { Locale } from "@lib/i18n/config";
 
 // Components
 import { buttonVariants } from "@components/ui/button";
+import { ROUTES } from "@/components/routes";
 
 interface SellerPendingActionProps {
   locale: Locale;
@@ -31,7 +32,7 @@ export default async function SellerPendingAction({ locale }: SellerPendingActio
         {t("seller-pending.helper")}
       </p>
       <Link
-        href={`/${locale}/seller`}
+        href={ROUTES.PUBLIC.HOME}
         className={buttonVariants({
           variant: "default",
           size: "lg",
