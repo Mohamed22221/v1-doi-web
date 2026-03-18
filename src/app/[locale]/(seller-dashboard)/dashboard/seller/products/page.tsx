@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import type { Locale } from "@/lib/i18n/config";
-import { ProductsHeader } from "@/features/seller-dashboard/products/products-header";
-
-/**
- * Enable experimental Partial Prerendering (PPR) for this route.
- */
+import ProductsHeader from "@/features/seller-dashboard/products/products-header";
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;
@@ -30,13 +26,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
  * Orchestrates the seller products page using optimized Cache Components.
  * Leverage Partial Prerendering (PPR).
  */
-export default async function SellerProductsPage({
-  params: _params,
-  searchParams: _searchParams,
-}: PageProps) {
+export default async function SellerProductsPage({ params }: PageProps) {
+  const { locale } = await params;
+
   return (
     <div className="flex flex-col gap-3 md:gap-6">
-      <ProductsHeader />
+      <ProductsHeader locale={locale} />
       {/* Products list will go here */}
     </div>
   );

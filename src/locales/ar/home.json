@@ -63,6 +63,9 @@
   },
   "seller_dashboard": {
     "greeting": "هلا، {{name}} 👋",
+    "products_list": {
+      "title": "قائمة المنتجات"
+    },
     "change_location": "تغيير الموقع: {{location}}",
     "stats": {
       "aria_label": "إحصائيات البائع",

@@ -63,6 +63,9 @@
   },
   "seller_dashboard": {
     "greeting": "Hello, {{name}} 👋",
+    "products_list": {
+      "title": "Products List"
+    },
     "change_location": "Change location: {{location}}",
     "stats": {
       "aria_label": "Seller Statistics",
