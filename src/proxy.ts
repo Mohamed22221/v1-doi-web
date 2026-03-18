@@ -4,7 +4,7 @@ import { ENV } from "./config/env";
 import { cookieName, getLocaleFromPath, detectLocale } from "./lib/i18n/config";
 import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "./components/routes";
 import { decodeUserToken } from "./lib/utils/jwt";
-import { performRefresh } from "./lib/api/auth-utils";
+import { performRefresh } from "./lib/api/actions/auth";
 
 export async function proxy(request: NextRequest) {
   const { pathname, search: _search } = request.nextUrl;
@@ -46,11 +46,11 @@ export async function proxy(request: NextRequest) {
 
   if (newAccessToken && newRefreshToken) {
     const payload = decodeUserToken(newAccessToken);
-    
+
     // 1. Determine role: payload -> existing cookie -> default
     const existingRole = request.cookies.get("user_role")?.value;
     const role = payload?.role || existingRole || "buyer";
-    
+
     // 2. Determine account status: existing cookie -> default
     // We preserve the existing status as we can't easily re-verify in middleware
     const accountStatus = request.cookies.get("account_status")?.value || "buyer-approved";
@@ -66,12 +66,15 @@ export async function proxy(request: NextRequest) {
     // Calculate MaxAge
     const now = Math.floor(Date.now() / 1000);
     const accessExp = payload?.exp ? Math.max(payload.exp - now, 0) : 60 * 15;
-    
+
     // Use 30 days for refresh-related cookies
     const refreshMaxAge = 60 * 60 * 24 * 30;
 
     response.cookies.set(ENV.ACCESS_TOKEN_KEY, newAccessToken, { ...shared, maxAge: accessExp });
-    response.cookies.set(ENV.REFRESH_TOKEN_KEY, newRefreshToken, { ...shared, maxAge: refreshMaxAge });
+    response.cookies.set(ENV.REFRESH_TOKEN_KEY, newRefreshToken, {
+      ...shared,
+      maxAge: refreshMaxAge,
+    });
     response.cookies.set("user_role", role, { ...shared, maxAge: refreshMaxAge });
     response.cookies.set("account_status", accountStatus, { ...shared, maxAge: refreshMaxAge });
 
@@ -176,8 +179,12 @@ function handleAuthGuards(request: NextRequest, pathname: string, locale: string
  */
 function handleAccountStatusGuards(request: NextRequest, pathname: string, locale: string) {
   const accountStatus = request.cookies.get("account_status")?.value;
-  const isSellerDashboard = pathname.includes("/dashboard/seller");
-  const isSellerOnboarding = pathname.includes("/seller") && !pathname.endsWith("/seller");
+
+  // Get path without locale prefix for matching against our route constants
+  const cleanPath = pathname.replace(new RegExp(`^/${locale}`), "");
+
+  const isSellerDashboard = cleanPath.startsWith(ROUTES.DASHBOARD.SELLER.ROOT);
+  const isSellerOnboarding = AUTH_SELLER.some((route) => cleanPath.startsWith(route));
 
   if (!isSellerDashboard && !isSellerOnboarding) return null;
 
@@ -259,8 +266,8 @@ async function handleTokenRotation(request: NextRequest, headers: Headers) {
       // The most reliable way for middleware to set cookies and proceed is to
       // let the standard flow continue and attach cookies to the FINAL response.
       // However, handleTokenRotation is called early.
-      
-      // Let's add a custom header that we can pick up at the end of proxy() 
+
+      // Let's add a custom header that we can pick up at the end of proxy()
       // to set the cookies on the response.
       headers.set("x-refresh-access-token", newAccessToken);
       headers.set("x-refresh-refresh-token", newRefreshToken);

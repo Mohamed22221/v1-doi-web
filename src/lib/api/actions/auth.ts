@@ -18,6 +18,7 @@ import type {
   VerifyForgotOtpResponse,
   RequestNewPassword,
   RefreshActionState,
+  RefreshTokenResponse,
 } from "@api/types/auth";
 import { ENV } from "@/config/env";
 import { decodeUserToken } from "@/lib/utils/jwt";
@@ -25,7 +26,6 @@ import type { ActionState } from "../types/api";
 import { serverActionWrapper } from "../action-utils";
 import { revalidatePath } from "next/cache";
 import { setAuthCookies, clearAuthCookies } from "../auth-cookies";
-import { performRefresh } from "../auth-utils";
 
 // ─── Server Actions ──────────────────────────────────────────────────────────
 
@@ -111,6 +111,32 @@ export async function resetPasswordAction(payload: RequestNewPassword): Promise<
     const response = await apiClient.post<void>(API_ENDPOINTS.AUTH.RESET_PASSWORD, payload);
     return response.data;
   });
+}
+export async function performRefresh(refreshToken: string): Promise<RefreshTokenResponse | null> {
+  try {
+    const baseUrl = `${ENV.API_URL}/${ENV.API_VERSION}`;
+    const url = `${baseUrl}${API_ENDPOINTS.AUTH.REFRESH}`;
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${ENV.TOKEN_TYPE} ${refreshToken}`,
+      },
+      body: JSON.stringify({}),
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const result = await res.json();
+    return result.data as RefreshTokenResponse;
+  } catch (error) {
+    console.error("[performRefresh] Unexpected error:", error);
+    return null;
+  }
 }
 
 export async function refreshSessionAction(): Promise<RefreshActionState> {

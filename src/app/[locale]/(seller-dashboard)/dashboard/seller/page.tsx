@@ -13,6 +13,7 @@ import type { Locale } from "@/lib/i18n/config";
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 /**
@@ -53,7 +54,7 @@ async function getGreetingData(locale: Locale) {
  * Orchestrates the seller home dashboard using optimized Cache Components.
  * Leverage Partial Prerendering (PPR) for static shells and streaming dynamic content.
  */
-export default async function SellerDashboardPage({ params }: PageProps) {
+export default async function SellerDashboardPage({ params, searchParams: _searchParams }: PageProps) {
   const { locale } = await params;
 
   // Initiate data fetching without awaiting it here

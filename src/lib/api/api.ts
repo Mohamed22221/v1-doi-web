@@ -6,7 +6,7 @@ import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
 import { ROUTES } from "@components/routes";
 import { API_BASE_URL, ENV } from "@/config/env";
-import { performRefresh } from "./auth-utils";
+import { performRefresh } from "./actions/auth";
 
 // Module-level mutex — shared across all ApiClient instances on the server
 let refreshPromise: Promise<string | null> | null = null;
@@ -34,13 +34,13 @@ class ApiClient {
   private readonly baseUrl: string = API_BASE_URL;
   private readonly cache = new Map<string, { data: unknown; expiresAt: number }>();
   private readonly pendingRequests = new Map<string, Promise<unknown>>();
-  
+
   // Use AsyncLocalStorage for per-request authenticated context (e.g. login flow)
   private static readonly tokenStorage = new AsyncLocalStorage<string>();
 
-  /** 
-   * Runs an action within an authenticated context using a manual token. 
-   * Useful when cookies are not yet effective (e.g. during login flow). 
+  /**
+   * Runs an action within an authenticated context using a manual token.
+   * Useful when cookies are not yet effective (e.g. during login flow).
    */
   async withAuthToken<T>(token: string, fn: () => Promise<T>): Promise<T> {
     return ApiClient.tokenStorage.run(token, fn);
@@ -169,7 +169,7 @@ class ApiClient {
       const manualToken = ApiClient.tokenStorage.getStore();
       const { accessToken: cookieToken } = await this.getTokens();
       const accessToken = manualToken ?? cookieToken;
-      
+
       const lang = locale ?? (await this.detectLocale());
 
       const headers = new Headers(fetchOptions.headers);

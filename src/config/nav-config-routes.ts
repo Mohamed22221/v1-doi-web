@@ -31,7 +31,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: ROUTES.DASHBOARD.BUYER.ROOT,
     translationKey: "nav.home",
     icon: HomeNavIcon,
-    rules: { roles: ["buyer"] },
+    rules: { roles: ["buyer"], exact: true },
   },
   {
     id: "search",
@@ -67,14 +67,14 @@ export const NAV_ITEMS: NavItem[] = [
     href: ROUTES.DASHBOARD.SELLER.ROOT,
     translationKey: "nav.home",
     icon: HomeNavIcon,
-    rules: { roles: ["seller"], requiresAuth: true },
+    rules: { roles: ["seller"], requiresAuth: true, exact: true },
   },
   {
     id: "products",
     href: ROUTES.DASHBOARD.SELLER.PRODUCTS,
     translationKey: "nav.products",
     icon: ProductsNavIcon,
-    rules: { roles: ["seller"], requiresAuth: true },
+    rules: { roles: ["seller"] },
   },
   {
     id: "buy",
