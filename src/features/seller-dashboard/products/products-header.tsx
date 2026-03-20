@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 import { buttonVariants } from "@components/ui/button";
 import { Skeleton } from "@components/ui/skeleton";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@/config/routes";
 import { cn } from "@utils/cn";
 import { getTranslation } from "@lib/i18n/server";
 import type { Locale } from "@lib/i18n/config";
@@ -26,12 +26,8 @@ function ProductCountSkeleton() {
  * This will be streamed via PPR.
  */
 async function ProductCount() {
-  // Simulate a database/API fetch delay to demonstrate PPR
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-
   // In a real application, this would fetch from an API
   const count = 0;
-
   return (
     <span className="text-body font-medium whitespace-nowrap text-neutral-800 md:text-h2 md:text-primary-800 dark:text-neutral-200 md:dark:text-primary-100">
       ({count})

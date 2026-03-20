@@ -66,6 +66,14 @@
     "products_list": {
       "title": "قائمة المنتجات"
     },
+    "products_filter": {
+      "all": "الكل",
+      "auction": "المزادات",
+      "fixed": "السعر الثابت",
+      "draft": "المسودات",
+      "pending": "بانتظار الموافقة",
+      "sold": "مباع"
+    },
     "change_location": "تغيير الموقع: {{location}}",
     "stats": {
       "aria_label": "إحصائيات البائع",

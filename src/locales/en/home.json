@@ -66,6 +66,14 @@
     "products_list": {
       "title": "Products List"
     },
+    "products_filter": {
+      "all": "All",
+      "auction": "Auctions",
+      "fixed": "Fixed Price",
+      "draft": "Drafts",
+      "pending": "Pending Approval",
+      "sold": "Sold"
+    },
     "change_location": "Change location: {{location}}",
     "stats": {
       "aria_label": "Seller Statistics",

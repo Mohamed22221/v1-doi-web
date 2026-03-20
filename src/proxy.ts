@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { ENV } from "./config/env";
 import { cookieName, getLocaleFromPath, detectLocale } from "./lib/i18n/config";
-import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "./components/routes";
+import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "@/config/routes";
 import { decodeUserToken } from "./lib/utils/jwt";
 import { performRefresh } from "./lib/api/actions/auth";
 

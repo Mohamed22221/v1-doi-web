@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { type Locale } from "@/lib/i18n/config";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
 import { getTranslation } from "@/lib/i18n/server";
 import { Logo } from "@components/template/nav/logo";
@@ -22,7 +22,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     pathname: ROUTES.AUTH.RESET_PASSWORD,
   });
 }
-
 
 /**
  * BuyerResetPasswordPage

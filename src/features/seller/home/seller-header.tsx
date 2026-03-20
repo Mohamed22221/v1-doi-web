@@ -9,7 +9,7 @@ import Icon from "@/components/shared/icon-base";
 import { ArrowIcon } from "@/components/shared/icon-base/constant";
 import { cn } from "@/lib/utils/cn";
 import Link from "next/link";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@/config/routes";
 
 interface SellerHeaderProps {
   locale: Locale;

@@ -6,7 +6,7 @@ import { cacheLife } from "next/cache";
 import Link from "next/link";
 import Icon from "@/components/shared/icon-base";
 import { ArrowIcon } from "@/components/shared/icon-base/constant";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@/config/routes";
 
 /**
  * SellerMobileHeader

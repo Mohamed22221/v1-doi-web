@@ -9,7 +9,7 @@ import {
   BuyNavIcon,
   RatingsNavIcon,
 } from "@components/shared/icon-base/constant";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 
 export const NAV_VISIBILITY: NavVisibilityRules = {
   hideNavbarOn: [ROUTES.AUTH.LOGIN, ROUTES.AUTH.REGISTER, "/checkout", "/notifications"],

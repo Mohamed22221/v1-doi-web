@@ -8,7 +8,7 @@ import { MobileNav } from "@/components/layout/nav/mobile-nav";
 import { Header } from "@/components/layout/headers/header";
 import { cookies } from "next/headers";
 import type { HeaderActionRole } from "@config/header-actions-config";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 import { ENV } from "@/config/env";
 
 interface PageProps {

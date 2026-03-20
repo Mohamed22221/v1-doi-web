@@ -7,7 +7,7 @@ import type { Locale } from "@lib/i18n/config";
 
 // Components
 import { buttonVariants } from "@components/ui/button";
-import { ROUTES } from "@/components/routes";
+import { ROUTES } from "@/config/routes";
 
 interface SellerPendingActionProps {
   locale: Locale;

@@ -4,7 +4,7 @@ import { AsyncLocalStorage } from "node:async_hooks";
 import { type z } from "zod";
 import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@/config/routes";
 import { API_BASE_URL, ENV } from "@/config/env";
 import { performRefresh } from "./actions/auth";
 

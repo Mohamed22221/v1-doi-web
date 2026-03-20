@@ -16,7 +16,7 @@ import { useLogin } from "@api/hooks/use-auth";
 import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
 import { RHFPassword } from "@components/forms/rhf-password";
 import { Spinner } from "@components/ui/spinner";

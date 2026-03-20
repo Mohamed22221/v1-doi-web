@@ -20,7 +20,7 @@ import {
 import { useAuthStore } from "@store/auth-store";
 import { getApiErrorMessage } from "@api/error";
 import { useTranslation } from "@/lib/i18n/client";
-import { ROUTES } from "@/components/routes";
+import { ROUTES } from "@/config/routes";
 
 // Types
 import type { Locale } from "@lib/i18n/config";

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n/config";
 import { generateLocalizedMetadata } from "@/lib/seo/metadata";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 
 // Layouts & Components
 import { AuthSplitLayout } from "@/components/layout/auth/auth-split-layout";
@@ -24,7 +24,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     pathname: ROUTES.AUTH.FORGOT_PASSWORD,
   });
 }
-
 
 /**
  * BuyerForgotPasswordPage

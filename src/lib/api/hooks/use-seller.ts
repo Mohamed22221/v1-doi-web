@@ -7,7 +7,7 @@ import { verifySellerAction, getSellerVerificationStatusAction } from "../action
 import { getApiErrorMessage } from "@api/error";
 import { useTranslation } from "@/lib/i18n/client";
 import { showErrorToast } from "@/components/ui/toast/show-toast";
-import { ROUTES } from "@/components/routes";
+import { ROUTES } from "@/config/routes";
 import type { Locale } from "@/lib/i18n/config";
 import type { TVerifySellerPayload } from "../types/seller";
 

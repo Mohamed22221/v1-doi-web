@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 
 // UI Components
 import { Card } from "@components/ui/card";

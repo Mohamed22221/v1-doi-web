@@ -4,7 +4,7 @@ import { getTranslation } from "@lib/i18n/server";
 import type { Locale } from "@lib/i18n/config";
 import { PageContainer } from "@/components/template/container/page-container";
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/components/routes";
+import { ROUTES } from "@/config/routes";
 
 interface SellerCtaProps {
   locale: Locale;

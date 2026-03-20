@@ -6,7 +6,7 @@ import { generateLocalizedMetadata } from "@/lib/seo/metadata";
 import { AuthCenteredCardLayout } from "@/components/layout/auth/auth-centered-card-layout";
 import ResetSuccessAction from "@/features/auth/buyer/reset-password-success/reset-success-action";
 import ResetSuccessContent from "@/features/auth/buyer/reset-password-success/reset-success-content";
-import { ROUTES } from "@/components/routes";
+import { ROUTES } from "@config/routes";
 
 interface PageProps {
   params: Promise<{ locale: string }>;

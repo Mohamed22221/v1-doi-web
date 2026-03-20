@@ -13,7 +13,7 @@ import { useLogin } from "@api/hooks/use-auth";
 // UI Components
 import { Button } from "@components/ui/button";
 import { Spinner } from "@components/ui/spinner";
-import { ROUTES } from "@components/routes";
+import { ROUTES } from "@config/routes";
 import { Card } from "@components/ui/card";
 import { Form } from "@components/ui/form";
 import { RHFPhoneInput } from "@components/forms/rhf-phone-input";
