@@ -44,7 +44,7 @@ export default async function ProductsHeader({ locale }: { locale: Locale }) {
   const { t } = await getTranslation(locale, "home");
 
   return (
-    <header className="mt-1 flex w-full items-center justify-between">
+    <header className="mt-1 flex w-full items-center justify-between px-4 md:px-0">
       <h1 className="flex items-center gap-1.5 text-body font-bold text-neutral-800 md:text-h2 md:text-primary-800 dark:text-neutral-200 md:dark:text-primary-200">
         <span>{t("seller_dashboard.products_list.title")}</span>
         <Suspense fallback={<ProductCountSkeleton />}>
@@ -67,9 +67,9 @@ export default async function ProductsHeader({ locale }: { locale: Locale }) {
       <Link
         href={ROUTES.DASHBOARD.SELLER.PRODUCTS + "/add"}
         aria-label={t("seller_dashboard.quick_actions.add")}
-        className="block rounded-full border border-neutral-50 bg-transparent px-3 py-3 md:hidden"
+        className="block rounded-full border border-neutral-50 bg-transparent px-2 py-2 text-primary-400 md:hidden"
       >
-        <Plus className="size-5" aria-hidden="true" role="presentation" />
+        <Plus className="size-6" aria-hidden="true" role="presentation" />
       </Link>
     </header>
   );

@@ -117,7 +117,7 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
         setApi={handleSetApi}
         className="w-full"
       >
-        <CarouselContent className="ms-0 gap-2 ps-0">
+        <CarouselContent className="ms-0 gap-2 ps-4 md:ps-0">
           {FILTER_OPTIONS.map((option) => {
             const isActive = option.value === currentFilter;
             return (
@@ -135,7 +135,7 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
                   className={cn(
                     "px-5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors select-none",
                     !isActive &&
-                      "bg-white text-primary-800 hover:border-primary-300 hover:bg-primary-50 dark:bg-primary-900 dark:text-neutral-200 dark:hover:bg-primary-800",
+                      "bg-primary-50 bg-none font-thin text-primary-800 hover:border-primary-300 hover:bg-primary-50 md:bg-white dark:bg-primary-900 dark:text-neutral-200 dark:hover:bg-primary-800",
                   )}
                 >
                   {option.label}

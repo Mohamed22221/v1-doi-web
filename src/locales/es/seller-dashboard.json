@@ -1,0 +1,16 @@
+{
+  "products": {
+    "emptyTitle": "You haven't added any products yet",
+    "emptyDescription": "Start selling your products now and add your first product to show it to thousands of potential buyers.",
+    "status": {
+      "active": "Active",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "view": "View Product",
+      "delete": "Delete Product"
+    }
+  }
+}
