@@ -3,11 +3,16 @@
     "emptyTitle": "لم تقم بإضافة أي منتجات بعد",
     "emptyDescription": "ابدأ ببيع منتجاتك الآن وأضف أول منتج لك ليعرضه أمام آلاف المشترين المحتملين.",
     "status": {
-      "active": "نشط",
-      "pending": "قيد المراجعة",
+      "draft": "مسودة",
+      "pending_approval": "قيد المراجعة",
       "rejected": "مرفوض",
+      "active": "نشط",
       "inactive": "غير نشط",
-      "sold": "مباع"
+      "auction_scheduled": "مزاد مجدول",
+      "auction_live": "مزاد مباشر",
+      "auction_ended": "انتهى المزاد",
+      "sold": "مباع",
+      "hidden": "مخفي"
     },
     "actions": {
       "view": "عرض المنتج",
@@ -15,6 +20,15 @@
       "edit": "تعديل المنتج",
       "completeInfo": "تكملة المعلومات",
       "editAndRepublish": "تعديل وإعادة النشر"
+    },
+    "filter": {
+      "all": "الكل",
+      "fixed_price": "سعر ثابت",
+      "live_auction": "مزاد مباشر",
+      "period_auction": "مزاد بالمده",
+      "draft": "مسودة",
+      "pending": "قيد المراجعة",
+      "sold": "مباع"
     }
   }
 }

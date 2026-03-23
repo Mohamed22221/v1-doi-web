@@ -1,6 +1,7 @@
-import { cva, type VariantProps } from "class-variance-authority";
+"use client";
 
-import { getTranslation } from "@lib/i18n/server";
+import { cva, type VariantProps } from "class-variance-authority";
+import { useTranslation } from "@lib/i18n/client";
 import { type Locale } from "@lib/i18n/config";
 import { cn } from "@utils/cn";
 
@@ -44,25 +45,30 @@ interface StatusBadgeProps extends VariantProps<typeof statusBadgeVariants> {
  * StatusBadge
  *
  * Displays a semantically colored badge based on the product status.
- * Server Component — uses i18next server-side translations.
+ * Client Component (for compatibility with client-rendered lists)
  */
-export default async function StatusBadge({ status, locale, className }: StatusBadgeProps) {
-  const { t } = await getTranslation(locale, "seller-dashboard");
+export default function StatusBadge({ status, locale, className }: StatusBadgeProps) {
+  const { t } = useTranslation(locale, "seller-dashboard");
 
   // Map status to semantic variant
   const variantMap: Record<string, "success" | "warning" | "error" | "neutral" | "info"> = {
     active: "success",
-    pending: "warning",
+    pending_approval: "warning",
     rejected: "error",
     inactive: "neutral",
     sold: "info",
+    draft: "neutral",
+    auction_scheduled: "info",
+    auction_live: "success",
+    auction_ended: "neutral",
+    hidden: "neutral",
   };
 
-  const variant = variantMap[status.toLowerCase()] || "neutral";
+  const variant = variantMap[status?.toLowerCase()] || "neutral";
 
   return (
     <span className={cn(statusBadgeVariants({ variant }), className)}>
-      {t(`products.status.${status.toLowerCase()}`, { defaultValue: status })}
+      {t(`products.status.${status?.toLowerCase()}`, { defaultValue: status })}
     </span>
   );
 }

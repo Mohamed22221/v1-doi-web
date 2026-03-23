@@ -1,6 +1,6 @@
 "use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useRef, useState, useTransition } from "react";
+import { useCallback, useRef, useState } from "react";
+import { useQueryStates, parseAsString, parseAsInteger } from "nuqs";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@components/ui/carousel";
 import type { Locale } from "@lib/i18n/config";
 import { getDirection } from "@lib/i18n/config";
@@ -20,12 +20,14 @@ interface ProductsFilterProps {
   locale: Locale;
   labels: {
     all: string;
-    auction: string;
-    fixed: string;
+    fixed_price: string;
+    live_auction: string;
+    period_auction: string;
     draft: string;
     pending: string;
     sold: string;
   };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 // ---------------------------------------------------------------------------
@@ -38,17 +40,31 @@ interface ProductsFilterProps {
  * query parameter in the URL.
  *
  * Render Architecture: This is a Client Component because it needs:
- *  - useSearchParams / useRouter / usePathname (navigation)
+ *  - nuqs (for shallow URL management)
  *  - Embla carousel interaction (drag detection)
  */
-export default function ProductsFilter({ locale, labels }: ProductsFilterProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+export default function ProductsFilter({ locale, labels, searchParams }: ProductsFilterProps) {
   const localeDir = getDirection(locale);
-  const [_isPending, startTransition] = useTransition();
 
-  const currentFilter = searchParams.get("productSellType");
+  // Manage productSellType and page parameters using nuqs
+  const [query, setQuery] = useQueryStates(
+    {
+      productSellType: parseAsString.withDefault(""),
+      page: parseAsInteger,
+    },
+    {
+      shallow: true,
+      history: "replace",
+    },
+  );
+
+  // Use props during SSR to ensure consistency with URL
+  const isServer = typeof window === "undefined";
+  const productSellType = isServer
+    ? (searchParams?.productSellType as string) || ""
+    : query.productSellType;
+
+  const currentFilter = productSellType || null;
 
   // Track Embla API to detect dragging
   const [_api, setApi] = useState<CarouselApi>();
@@ -56,8 +72,9 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
 
   const FILTER_OPTIONS: FilterOption[] = [
     { label: labels.all, value: null },
-    { label: labels.auction, value: "auction" },
-    { label: labels.fixed, value: "fixed" },
+    { label: labels.fixed_price, value: "fixed_price" },
+    { label: labels.live_auction, value: "live_auction" },
+    { label: labels.period_auction, value: "period_auction" },
     { label: labels.draft, value: "draft" },
     { label: labels.pending, value: "pending" },
     { label: labels.sold, value: "sold" },
@@ -84,22 +101,20 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
         return;
       }
 
-      // If already on the same filter, skip to avoid redundant navigation
-      if (value === currentFilter) return;
+      const activeValue = value || "";
+      if (activeValue === query.productSellType) return;
 
-      const params = new URLSearchParams(searchParams.toString());
-      if (value === null) {
-        params.delete("productSellType");
-      } else {
-        params.set("productSellType", value);
-      }
-
-      // Trigger URL update in the background
-      startTransition(() => {
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      // Update URL instantly using nuqs
+      // Reset page to null/1 when filter changes
+      setQuery({
+        productSellType: value,
+        page: null,
       });
+
+      // Dispatch event to show loading skeleton in ProductsList instantly
+      window.dispatchEvent(new CustomEvent("navigation-start"));
     },
-    [isDragging, currentFilter, pathname, router, searchParams],
+    [isDragging, query.productSellType, setQuery],
   );
 
   return (

@@ -1,5 +1,4 @@
-"use client";
-
+import { cache } from "react";
 import { QueryClient } from "@tanstack/react-query";
 
 function makeQueryClient() {
@@ -17,16 +16,15 @@ function makeQueryClient() {
 }
 
 // ─── Singleton for the Server (RSC + prefetch) ─────────────────────────────
-// We use a module-level variable instead of React.cache to avoid issues
-// with the "use client" boundary — this file is kept as a utility.
-// For Server Components, import `getQueryClient` from `@/api/get-query-client`.
+// We use React.cache to ensure that the same QueryClient is reused
+// for the duration of a single request on the server.
+const getRequestQueryClient = cache(makeQueryClient);
 
 let browserQueryClient: QueryClient | undefined;
 
 export function getQueryClient() {
   if (typeof window === "undefined") {
-    // Always create a new client on the server to avoid cross-request sharing
-    return makeQueryClient();
+    return getRequestQueryClient();
   }
   // On the browser, reuse the singleton
   browserQueryClient ??= makeQueryClient();

@@ -4,7 +4,7 @@ import { ENV } from "./config/env";
 import { cookieName, getLocaleFromPath, detectLocale } from "./lib/i18n/config";
 import { ROUTES, AUTH_ALL, AUTH_SELLER, PROTECTED_SELLER } from "@/config/routes";
 import { decodeUserToken } from "./lib/utils/jwt";
-import { performRefresh } from "./lib/api/actions/auth";
+import { performRefresh } from "./lib/api/refresh-token";
 
 export async function proxy(request: NextRequest) {
   const { pathname, search: _search } = request.nextUrl;

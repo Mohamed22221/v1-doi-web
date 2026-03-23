@@ -1,7 +1,8 @@
-import Image from "next/image";
+"use client";
 
-import { getTranslation } from "@lib/i18n/server";
+import Image from "next/image";
 import { type Locale } from "@lib/i18n/config";
+import { useTranslation } from "@lib/i18n/client";
 import { type SellerProduct } from "@lib/api/types/seller-product";
 import StatusBadge from "@components/shared/status-badge";
 import { Button } from "@components/ui/button";
@@ -23,12 +24,12 @@ interface ProductCardProps {
  * - Desktop: Vertical layout with top image (max 434px wide).
  * - Mobile: Horizontal layout with left image (124px max height).
  *
- * Server Component
+ * Client Component (for dynamic rendering in ProductsList)
  */
-export default async function ProductCard({ product, locale }: ProductCardProps) {
-  const { t } = await getTranslation(locale, "seller-dashboard");
+export default function ProductCard({ product, locale }: ProductCardProps) {
+  const { t } = useTranslation(locale, "seller-dashboard");
 
-  const normalizedStatus = product.status?.toLowerCase() || "";
+  const normalizedStatus = product.effectiveStatus?.toLowerCase() || "";
   const actionText =
     normalizedStatus === "inactive"
       ? t("products.actions.completeInfo")
@@ -43,7 +44,7 @@ export default async function ProductCard({ product, locale }: ProductCardProps)
           {/* Image Section */}
           <div className="relative shrink-0 overflow-hidden rounded-lg bg-neutral-100 md:aspect-402/175 md:w-full dark:bg-primary-900 md:dark:bg-primary-800">
             <Image
-              src={product.imageUrl || "/img/product-placeholder.png"}
+              src={product.images[0]?.url || "/img/product-placeholder.png"}
               alt={product.title}
               fill
               className="object-cover transition-transform md:group-hover:scale-105"
@@ -63,15 +64,15 @@ export default async function ProductCard({ product, locale }: ProductCardProps)
                   {product.title}
                 </h3>
                 <StatusBadge
-                  status={product.status}
+                  status={product.effectiveStatus}
                   locale={locale}
                   className="shrink-0 rounded-sm px-3 py-2 font-[100px] md:px-4 md:py-2"
                 />
               </div>
 
-              {/* Category */}
+              {/* Description (was Category) */}
               <p className="truncate text-xs font-light text-neutral-600 md:mt-1 md:text-h5 dark:text-neutral-400">
-                {product.category}
+                {product.description}
               </p>
             </div>
 
@@ -79,9 +80,7 @@ export default async function ProductCard({ product, locale }: ProductCardProps)
             <div className="mt-auto md:mt-2">
               {/* Price */}
               <div className="flex items-center gap-1 text-neutral-950 md:gap-1.5 md:font-bold dark:text-neutral-10">
-                <span className="text-body leading-none md:text-h3">
-                  {product.price.toLocaleString(locale)}
-                </span>
+                <span className="text-body leading-none md:text-h3">{product.price}</span>
                 <Riyall
                   className="h-[27px] w-[25px] pb-2 md:h-[34px] md:w-[32px]"
                   aria-hidden="true"

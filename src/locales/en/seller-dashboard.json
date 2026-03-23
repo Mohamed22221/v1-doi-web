@@ -15,6 +15,15 @@
       "edit": "Edit Product",
       "completeInfo": "Complete Information",
       "editAndRepublish": "Edit & Republish"
+    },
+    "filter": {
+      "all": "All",
+      "fixed_price": "Fixed Price",
+      "live_auction": "Live Auction",
+      "period_auction": "Public Auction",
+      "draft": "Draft",
+      "pending": "Pending",
+      "sold": "Sold"
     }
   }
 }

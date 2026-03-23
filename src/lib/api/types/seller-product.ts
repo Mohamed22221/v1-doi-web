@@ -1,9 +1,35 @@
 /**
- * ProductStatus
+ * ProductEffectiveStatus
  *
  * Defines the possible states of a product in the inventory.
  */
-export type ProductStatus = 'active' | 'pending' | 'rejected' | 'inactive' | 'sold' | (string & {});
+export type ProductEffectiveStatus =
+  | "active"
+  | "pending"
+  | "rejected"
+  | "inactive"
+  | "sold"
+  | (string & {});
+
+/**
+ * ProductImage
+ *
+ * Represents a single image associated with a product.
+ */
+export interface ProductImage {
+  url: string;
+}
+
+/**
+ * SellerProductsFilters
+ *
+ * Parameters for filtering and paginating seller products.
+ */
+export interface SellerProductsFilters {
+  productSellType?: string;
+  page?: number;
+  limit?: number;
+}
 
 /**
  * SellerProduct
@@ -13,8 +39,8 @@ export type ProductStatus = 'active' | 'pending' | 'rejected' | 'inactive' | 'so
 export interface SellerProduct {
   id: string;
   title: string;
-  category: string;
+  description: string;
   price: number;
-  imageUrl: string | null;
-  status: ProductStatus;
+  effectiveStatus: ProductEffectiveStatus;
+  images: ProductImage[];
 }

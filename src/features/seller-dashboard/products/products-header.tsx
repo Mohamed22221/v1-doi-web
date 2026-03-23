@@ -1,54 +1,36 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import { buttonVariants } from "@components/ui/button";
-import { Skeleton } from "@components/ui/skeleton";
 import { ROUTES } from "@/config/routes";
 import { cn } from "@utils/cn";
 import { getTranslation } from "@lib/i18n/server";
 import type { Locale } from "@lib/i18n/config";
-
-/**
- * ProductCountSkeleton
- * Fallback UI for the product count while it's loading.
- */
-function ProductCountSkeleton() {
-  return (
-    <span className="flex items-center gap-1.5" aria-hidden="true">
-      (<Skeleton className="h-1 w-6 animate-pulse rounded-md bg-neutral-100" />)
-    </span>
-  );
-}
-
-/**
- * ProductCount
- * A dynamic server component that fetches the product count.
- * This will be streamed via PPR.
- */
-async function ProductCount() {
-  // In a real application, this would fetch from an API
-  const count = 0;
-  return (
-    <span className="text-body font-medium whitespace-nowrap text-neutral-800 md:text-h2 md:text-primary-800 dark:text-neutral-200 md:dark:text-primary-100">
-      ({count})
-    </span>
-  );
-}
+import ProductCount from "./product-count";
+import { Suspense } from "react";
 
 /**
  * ProductsHeader
  * Header for the products page with static title and actions,
- * and a dynamic product count using PPR.
+ * and a dynamic product count that updates in real-time.
+ *
+ * This is a Server Component. It must NOT export Client-only components
+ * or be imported by Client Components to avoid i18n build errors.
  */
-export default async function ProductsHeader({ locale }: { locale: Locale }) {
+export default async function ProductsHeader({
+  locale,
+  searchParams,
+}: {
+  locale: Locale;
+  searchParams: Record<string, string | string[] | undefined>;
+}) {
   const { t } = await getTranslation(locale, "home");
 
   return (
     <header className="mt-1 flex w-full items-center justify-between px-4 md:px-0">
       <h1 className="flex items-center gap-1.5 text-body font-bold text-neutral-800 md:text-h2 md:text-primary-800 dark:text-neutral-200 md:dark:text-primary-200">
         <span>{t("seller_dashboard.products_list.title")}</span>
-        <Suspense fallback={<ProductCountSkeleton />}>
-          <ProductCount />
+        <Suspense>
+          <ProductCount searchParams={searchParams} />
         </Suspense>
       </h1>
 

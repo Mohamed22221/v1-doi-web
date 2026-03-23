@@ -1,7 +1,8 @@
-import Image from "next/image";
+"use client";
 
-import { getTranslation } from "@lib/i18n/server";
+import Image from "next/image";
 import { type Locale } from "@lib/i18n/config";
+import { useTranslation } from "@lib/i18n/client";
 
 // ---------------------------------------------------------------------------
 // Component
@@ -15,15 +16,15 @@ interface EmptyProductsStateProps {
  * EmptyProductsState
  *
  * Displayed when the seller has no products yet.
- * Server Component — no interactivity or client-side state needed.
+ * Client Component (for compatibility with client-rendered lists)
  */
-export default async function EmptyProductsState({ locale }: EmptyProductsStateProps) {
-  const { t } = await getTranslation(locale, "seller-dashboard");
+export default function EmptyProductsState({ locale }: EmptyProductsStateProps) {
+  const { t } = useTranslation(locale, "seller-dashboard");
 
   return (
     <section
       aria-label={t("products.emptyTitle")}
-      className="flex flex-col items-center justify-center gap-4 py-16 text-center rtl"
+      className="rtl flex flex-col items-center justify-center gap-4 py-16 text-center"
     >
       <Image
         src="/img/empty-products.png"

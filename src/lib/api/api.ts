@@ -6,7 +6,7 @@ import { ApiErrorClass, normalizeApiError } from "./error";
 import type { TAPIResponse } from "@api/types/api";
 import { ROUTES } from "@/config/routes";
 import { API_BASE_URL, ENV } from "@/config/env";
-import { performRefresh } from "./actions/auth";
+import { performRefresh } from "./refresh-token";
 
 // Module-level mutex — shared across all ApiClient instances on the server
 let refreshPromise: Promise<string | null> | null = null;

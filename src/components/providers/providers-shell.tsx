@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { cookies } from "next/headers";
 import { getResources } from "@lib/i18n/server";
 import { I18nProvider } from "./i18n-provider";
@@ -5,7 +7,6 @@ import { ThemeSync } from "@/components/shared/theme/theme-sync";
 import { QueryProvider } from "./query-provider";
 import { Toaster } from "@/components/ui/toast/sonner";
 import { getDirection, type Locale } from "@/lib/i18n/config";
-import { Suspense } from "react";
 
 interface ProvidersShellProps {
   children: React.ReactNode;
@@ -20,13 +21,19 @@ interface ProvidersShellProps {
 export async function ProvidersShell({ children, locale }: ProvidersShellProps) {
   const cookieStore = await cookies();
   const theme = cookieStore.get("theme")?.value || "light";
-  const resources = await getResources(locale, ["common", "home", "seo", "auth"]);
+  const resources = await getResources(locale, [
+    "common",
+    "home",
+    "seo",
+    "auth",
+    "seller-dashboard",
+  ]);
 
   const dir = getDirection(locale);
   const toasterPosition = dir === "rtl" ? "top-left" : "top-right";
 
   return (
-    <>
+    <NuqsAdapter>
       <ThemeSync theme={theme} />
       <QueryProvider>
         <I18nProvider locale={locale} resources={resources}>
@@ -69,6 +76,6 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
           </Suspense>
         </div>
       </QueryProvider>
-    </>
+    </NuqsAdapter>
   );
 }
