@@ -4,12 +4,16 @@
  * Defines the possible states of a product in the inventory.
  */
 export type ProductEffectiveStatus =
-  | "active"
-  | "pending"
+  | "draft"
+  | "pending_approval"
   | "rejected"
+  | "active"
   | "inactive"
+  | "auction_scheduled"
+  | "auction_live"
+  | "auction_ended"
   | "sold"
-  | (string & {});
+  | "hidden";
 
 /**
  * ProductImage
@@ -27,6 +31,7 @@ export interface ProductImage {
  */
 export interface SellerProductsFilters {
   productSellType?: string;
+  status?: ProductEffectiveStatus;
   page?: number;
   limit?: number;
 }
@@ -39,8 +44,8 @@ export interface SellerProductsFilters {
 export interface SellerProduct {
   id: string;
   title: string;
-  description: string;
-  price: number;
+  description?: string;
+  price?: number;
   effectiveStatus: ProductEffectiveStatus;
   images: ProductImage[];
 }

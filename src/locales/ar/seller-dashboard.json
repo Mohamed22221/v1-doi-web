@@ -2,6 +2,14 @@
   "products": {
     "emptyTitle": "لم تقم بإضافة أي منتجات بعد",
     "emptyDescription": "ابدأ ببيع منتجاتك الآن وأضف أول منتج لك ليعرضه أمام آلاف المشترين المحتملين.",
+    "errorTitle": "حدث خطأ أثناء تحميل المنتجات",
+    "errorDescription": "نواجه مشكلة في عرض منتجاتك حالياً. يرجى المحاولة مرة أخرى.",
+    "noDescription": "لا يوجد وصف",
+    "emptyTitle_fixed_price": "لا يوجد منتجات بسعر ثابت",
+    "emptyTitle_live_auction": "لا يوجد مزادات مباشرة حالياً",
+    "emptyTitle_period_auction": "لا يوجد مزادات بالمده حالياً",
+    "emptyTitle_draft": "لا يوجد مسودات حالياً",
+    "emptyTitle_pending_approval": "لا يوجد منتجات بانتظار الموافقة",
     "status": {
       "draft": "مسودة",
       "pending_approval": "قيد المراجعة",
@@ -19,15 +27,17 @@
       "delete": "حذف المنتج",
       "edit": "تعديل المنتج",
       "completeInfo": "تكملة المعلومات",
-      "editAndRepublish": "تعديل وإعادة النشر"
+      "editAndRepublish": "تعديل وإعادة النشر",
+      "retry": "إعادة المحاولة"
     },
     "filter": {
       "all": "الكل",
       "fixed_price": "سعر ثابت",
       "live_auction": "مزاد مباشر",
-      "period_auction": "مزاد بالمده",
-      "draft": "مسودة",
-      "pending": "قيد المراجعة",
+      "period_auction": "مزادات بالمده",
+      "auctions": "مزادات مباشرة",
+      "draft": "المسودات",
+      "pending_approval": "بانتظار الموافقة",
       "sold": "مباع"
     }
   }

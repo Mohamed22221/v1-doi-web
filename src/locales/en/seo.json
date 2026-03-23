@@ -71,5 +71,9 @@
     "seller-dashboard": {
         "title": "Seller Dashboard | Doi",
         "description": "Easily manage your products, sales, and auctions on the Doi platform."
+    },
+    "seller-products": {
+        "title": "My Products | Seller Dashboard",
+        "description": "View and manage all your products, auctions, and drafts in your seller dashboard."
     }
 }

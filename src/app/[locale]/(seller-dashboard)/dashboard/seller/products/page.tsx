@@ -8,6 +8,7 @@ import { getTranslation } from "@/lib/i18n/server";
 import { getQueryClient } from "@/lib/api/query-client";
 import { getSellerProductsAction } from "@/lib/api/actions/products";
 import ReactQueryKeys from "@/lib/api/constants/api-keys-constant";
+import type { ProductEffectiveStatus, SellerProductsFilters } from "@/lib/api/types/seller-product";
 
 import ProductsHeader from "@/features/seller-dashboard/products/products-header";
 import ProductsFilter from "@/features/seller-dashboard/products/products-filter";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   return generateLocalizedMetadata({
     locale,
-    pageKey: "seller-dashboard",
+    pageKey: "seller-products",
     pathname: "/dashboard/seller/products",
   });
 }
@@ -46,16 +47,16 @@ export default async function SellerProductsPage({ params, searchParams }: PageP
   const filterLabels = {
     all: t("products.filter.all"),
     fixed_price: t("products.filter.fixed_price"),
-    live_auction: t("products.filter.live_auction"),
     period_auction: t("products.filter.period_auction"),
+    auctions: t("products.filter.auctions"),
     draft: t("products.filter.draft"),
-    pending: t("products.filter.pending"),
-    sold: t("products.filter.sold"),
+    pending_approval: t("products.filter.pending_approval"),
   };
 
   const productSellType = (sParams.productSellType as string) || undefined;
+  const status = (sParams.status as ProductEffectiveStatus) || undefined;
   const page = Number(sParams.page) || 1;
-  const filters = { productSellType, page, limit: 10 };
+  const filters: SellerProductsFilters = { productSellType, status, page, limit: 10 };
 
   // Prefetch data on the server
   const queryClient = getQueryClient();
@@ -76,7 +77,7 @@ export default async function SellerProductsPage({ params, searchParams }: PageP
         {/* Header & Filter Area - Transparent on desktop for background contrast */}
         <div className="flex flex-col gap-3 md:gap-6">
           <ProductsHeader locale={locale} searchParams={sParams} />
-          <ProductsFilter locale={locale} labels={filterLabels} searchParams={sParams} />
+          <ProductsFilter locale={locale} labels={filterLabels} />
         </div>
 
         {/* Main Content Area - Continuous in mobile, Sectioned in desktop */}

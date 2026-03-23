@@ -1,6 +1,4 @@
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { getSellerProductsAction } from "../actions/products";
 import ReactQueryKeys from "../constants/api-keys-constant";
 import type { SellerProductsFilters } from "../types/seller-product";
@@ -26,5 +24,38 @@ export function useSellerProductsQuery(filters: SellerProductsFilters) {
     },
     // staleTime is handled by the global default in query-client.ts (5s),
     // but these queries are specific to the seller's session.
+  });
+}
+
+/**
+ * useSellerProductsInfiniteQuery
+ *
+ * Custom hook to fetch seller products with infinite scrolling using TanStack Query.
+ * Wraps the getSellerProductsAction Server Action.
+ *
+ * @param filters - Parameters for filtering
+ */
+export function useSellerProductsInfiniteQuery(filters: SellerProductsFilters) {
+  return useInfiniteQuery({
+    queryKey: ReactQueryKeys.SELLER_PRODUCTS.list(filters),
+    initialPageParam: 1,
+    queryFn: async ({ pageParam = 1 }) => {
+      const result = await getSellerProductsAction({
+        ...filters,
+        page: pageParam as number,
+      });
+
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+
+      return result.data;
+    },
+    getNextPageParam: (lastPage) => {
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
+      }
+      return undefined;
+    },
   });
 }

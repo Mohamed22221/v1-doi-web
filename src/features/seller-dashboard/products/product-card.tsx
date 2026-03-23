@@ -72,7 +72,7 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
 
               {/* Description (was Category) */}
               <p className="truncate text-xs font-light text-neutral-600 md:mt-1 md:text-h5 dark:text-neutral-400">
-                {product.description}
+                {product.description || t("products.noDescription")}
               </p>
             </div>
 
@@ -80,7 +80,7 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
             <div className="mt-auto md:mt-2">
               {/* Price */}
               <div className="flex items-center gap-1 text-neutral-950 md:gap-1.5 md:font-bold dark:text-neutral-10">
-                <span className="text-body leading-none md:text-h3">{product.price}</span>
+                <span className="text-body leading-none md:text-h3">{product.price ?? 0}</span>
                 <Riyall
                   className="h-[27px] w-[25px] pb-2 md:h-[34px] md:w-[32px]"
                   aria-hidden="true"
@@ -91,13 +91,15 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
         </div>
         {/* Action Icons (UI Only for Phase 1) */}
         <div className="mt-2 flex items-center justify-end gap-2 md:mt-1">
-          <Button
-            rounded="sm"
-            variant="default"
-            className="h-9 flex-none px-5 text-sm font-medium md:h-10"
-          >
-            {actionText}
-          </Button>
+          {normalizedStatus !== "auction_ended" && (
+            <Button
+              rounded="sm"
+              variant="default"
+              className="h-9 flex-none px-5 text-sm font-medium md:h-10"
+            >
+              {actionText}
+            </Button>
+          )}
           <button
             type="button"
             className="flex size-9 cursor-pointer items-center justify-center rounded-sm border border-neutral-50 text-primary-400 transition-colors md:size-10 md:hover:bg-neutral-50 dark:border-primary-700 dark:text-neutral-400 md:dark:hover:bg-primary-800"

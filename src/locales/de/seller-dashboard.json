@@ -4,7 +4,7 @@
     "emptyDescription": "Start selling your products now and add your first product to show it to thousands of potential buyers.",
     "status": {
       "active": "Active",
-      "pending": "Pending",
+      "pending_approval": "Pending",
       "rejected": "Rejected",
       "inactive": "Inactive"
     },

@@ -10,16 +10,32 @@ import { useTranslation } from "@lib/i18n/client";
 
 interface EmptyProductsStateProps {
   locale: Locale;
+  productSellType?: string;
+  status?: string;
 }
 
 /**
  * EmptyProductsState
  *
- * Displayed when the seller has no products yet.
+ * Displayed when the seller has no products matching the current filter.
  * Client Component (for compatibility with client-rendered lists)
  */
-export default function EmptyProductsState({ locale }: EmptyProductsStateProps) {
+export default function EmptyProductsState({
+  locale,
+  productSellType,
+  status,
+}: EmptyProductsStateProps) {
   const { t } = useTranslation(locale, "seller-dashboard");
+
+  // Map filters to specific empty state titles
+  const getTitleKey = () => {
+    if (status) return `products.emptyTitle_${status}`;
+    if (productSellType) return `products.emptyTitle_${productSellType}`;
+    return "products.emptyTitle";
+  };
+
+  const titleKey = getTitleKey();
+  const hasFilter = !!(status || productSellType);
 
   return (
     <section
@@ -36,12 +52,14 @@ export default function EmptyProductsState({ locale }: EmptyProductsStateProps) 
       />
 
       <h2 className="mt-4 text-h3 font-bold text-primary-500 md:text-h2 dark:text-primary-200">
-        {t("products.emptyTitle")}
+        {t(titleKey)}
       </h2>
 
-      <p className="mt-2 max-w-sm text-body text-neutral-600 md:text-h5 dark:text-neutral-300">
-        {t("products.emptyDescription")}
-      </p>
+      {!hasFilter && (
+        <p className="mt-2 max-w-sm text-body text-neutral-600 md:text-h5 dark:text-neutral-300">
+          {t("products.emptyDescription")}
+        </p>
+      )}
     </section>
   );
 }

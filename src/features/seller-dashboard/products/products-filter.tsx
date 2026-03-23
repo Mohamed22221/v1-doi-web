@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 interface FilterOption {
   label: string;
   value: string | null;
+  type: "all" | "sellType" | "status";
 }
 
 interface ProductsFilterProps {
@@ -21,11 +22,10 @@ interface ProductsFilterProps {
   labels: {
     all: string;
     fixed_price: string;
-    live_auction: string;
     period_auction: string;
+    auctions: string;
     draft: string;
-    pending: string;
-    sold: string;
+    pending_approval: string;
   };
   searchParams?: Record<string, string | string[] | undefined>;
 }
@@ -43,13 +43,14 @@ interface ProductsFilterProps {
  *  - nuqs (for shallow URL management)
  *  - Embla carousel interaction (drag detection)
  */
-export default function ProductsFilter({ locale, labels, searchParams }: ProductsFilterProps) {
+export default function ProductsFilter({ locale, labels }: ProductsFilterProps) {
   const localeDir = getDirection(locale);
 
-  // Manage productSellType and page parameters using nuqs
+  // Manage productSellType, status and page parameters using nuqs
   const [query, setQuery] = useQueryStates(
     {
       productSellType: parseAsString.withDefault(""),
+      status: parseAsString.withDefault(""),
       page: parseAsInteger,
     },
     {
@@ -58,26 +59,17 @@ export default function ProductsFilter({ locale, labels, searchParams }: Product
     },
   );
 
-  // Use props during SSR to ensure consistency with URL
-  const isServer = typeof window === "undefined";
-  const productSellType = isServer
-    ? (searchParams?.productSellType as string) || ""
-    : query.productSellType;
-
-  const currentFilter = productSellType || null;
-
   // Track Embla API to detect dragging
   const [_api, setApi] = useState<CarouselApi>();
   const isDragging = useRef(false);
 
   const FILTER_OPTIONS: FilterOption[] = [
-    { label: labels.all, value: null },
-    { label: labels.fixed_price, value: "fixed_price" },
-    { label: labels.live_auction, value: "live_auction" },
-    { label: labels.period_auction, value: "period_auction" },
-    { label: labels.draft, value: "draft" },
-    { label: labels.pending, value: "pending" },
-    { label: labels.sold, value: "sold" },
+    { label: labels.all, value: null, type: "all" as const },
+    { label: labels.auctions, value: "live_auction", type: "sellType" as const },
+    { label: labels.period_auction, value: "period_auction", type: "sellType" as const },
+    { label: labels.fixed_price, value: "fixed_price", type: "sellType" as const },
+    { label: labels.draft, value: "draft", type: "status" as const },
+    { label: labels.pending_approval, value: "pending_approval", type: "status" as const },
   ];
 
   // Track drag state via Embla events
@@ -95,26 +87,25 @@ export default function ProductsFilter({ locale, labels, searchParams }: Product
 
   // Prevent click fire after a drag gesture
   const handleFilterClick = useCallback(
-    (value: string | null) => {
+    (option: (typeof FILTER_OPTIONS)[number]) => {
       if (isDragging.current) {
         isDragging.current = false;
         return;
       }
 
-      const activeValue = value || "";
-      if (activeValue === query.productSellType) return;
-
-      // Update URL instantly using nuqs
-      // Reset page to null/1 when filter changes
-      setQuery({
-        productSellType: value,
+      // Mutual exclusion logic: Reset one param when the other is set
+      const nextQuery = {
         page: null,
-      });
+        productSellType: option.type === "sellType" ? (option.value as string) : null,
+        status: option.type === "status" ? (option.value as string) : null,
+      };
+
+      setQuery(nextQuery);
 
       // Dispatch event to show loading skeleton in ProductsList instantly
       window.dispatchEvent(new CustomEvent("navigation-start"));
     },
-    [isDragging, query.productSellType, setQuery],
+    [isDragging, setQuery],
   );
 
   return (
@@ -134,7 +125,13 @@ export default function ProductsFilter({ locale, labels, searchParams }: Product
       >
         <CarouselContent className="ms-0 gap-2 ps-4 md:ps-0">
           {FILTER_OPTIONS.map((option) => {
-            const isActive = option.value === currentFilter;
+            const isActive =
+              option.type === "all"
+                ? !query.productSellType && !query.status
+                : option.type === "sellType"
+                  ? query.productSellType === option.value
+                  : query.status === option.value;
+
             return (
               <CarouselItem
                 key={option.value ?? "all"}
@@ -145,7 +142,7 @@ export default function ProductsFilter({ locale, labels, searchParams }: Product
                   type="button"
                   rounded="sm"
                   variant={isActive ? "default" : "outline"}
-                  onClick={() => handleFilterClick(option.value)}
+                  onClick={() => handleFilterClick(option)}
                   aria-pressed={isActive}
                   className={cn(
                     "px-5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors select-none",

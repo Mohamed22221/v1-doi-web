@@ -2,27 +2,42 @@
   "products": {
     "emptyTitle": "You haven't added any products yet",
     "emptyDescription": "Start selling your products now and add your first product to show it to thousands of potential buyers.",
+    "errorTitle": "Error Loading Products",
+    "errorDescription": "We're having trouble displaying your products right now. Please try again.",
+    "noDescription": "No description available",
+    "emptyTitle_fixed_price": "No fixed price products",
+    "emptyTitle_live_auction": "No live auctions currently",
+    "emptyTitle_period_auction": "No period auctions currently",
+    "emptyTitle_draft": "No drafts currently",
+    "emptyTitle_pending_approval": "No products pending approval",
     "status": {
-      "active": "Active",
-      "pending": "Pending",
+      "draft": "Draft",
+      "pending_approval": "Pending Approval",
       "rejected": "Rejected",
+      "active": "Active",
       "inactive": "Inactive",
-      "sold": "Sold"
+      "auction_scheduled": "Auction Scheduled",
+      "auction_live": "Auction Live",
+      "auction_ended": "Auction Ended",
+      "sold": "Sold",
+      "hidden": "Hidden"
     },
     "actions": {
       "view": "View Product",
       "delete": "Delete Product",
       "edit": "Edit Product",
       "completeInfo": "Complete Information",
-      "editAndRepublish": "Edit & Republish"
+      "editAndRepublish": "Edit & Republish",
+      "retry": "Retry"
     },
     "filter": {
       "all": "All",
       "fixed_price": "Fixed Price",
       "live_auction": "Live Auction",
       "period_auction": "Public Auction",
-      "draft": "Draft",
-      "pending": "Pending",
+      "auctions": "Live Auctions",
+      "draft": "Drafts",
+      "pending_approval": "Pending Approval",
       "sold": "Sold"
     }
   }
