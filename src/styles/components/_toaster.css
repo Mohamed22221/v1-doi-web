@@ -47,3 +47,30 @@
         right: 0 !important;
     }
 }
+
+/* 
+ * .toast-inline-full
+ * Custom class for toasts in full-width layouts (e.g., variant="full").
+ * Resets the --toaster-container-offset to standard padding using :has() 
+ * so the toast can be centered on the whole screen regardless of 1400px container.
+ */
+[data-sonner-toaster]:has(.toast-inline-full) {
+    --toaster-container-offset: 1rem !important;
+}
+
+@media (width >= 640px) {
+    [data-sonner-toaster]:has(.toast-inline-full) {
+        --toaster-container-offset: 1.5rem !important;
+    }
+}
+
+/* Base style for the toast itself when using this class */
+[data-sonner-toast].toast-inline-full {
+    width: 100% !important;
+}
+
+@media (width >= 768px) {
+    [data-sonner-toast].toast-inline-full {
+        width: 545px !important;
+    }
+}

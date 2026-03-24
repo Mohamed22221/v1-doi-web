@@ -1,5 +1,6 @@
 "use server";
 
+import { updateTag } from "next/cache";
 import { apiClient } from "@api/api";
 import { API_ENDPOINTS } from "@api/constants";
 import { serverActionWrapper } from "../action-utils";
@@ -35,7 +36,24 @@ export async function getSellerProductsAction(
     const queryString = new URLSearchParams(queryParams).toString();
     const endpoint = `${API_ENDPOINTS.SELLER.PRODUCTS.LIST}${queryString ? `?${queryString}` : ""}`;
 
-    const response = await apiClient.get<TAPIResponseItems<SellerProduct[]>["data"]>(endpoint);
+    const response = await apiClient.get<TAPIResponseItems<SellerProduct[]>["data"]>(endpoint, {
+      next: { tags: ["seller-products"] },
+    });
     return response.data;
+  });
+}
+
+/**
+ * deleteSellerProductAction
+ *
+ * Server Action to delete a seller product by ID.
+ *
+ * @param id - The ID of the product to delete
+ */
+export async function deleteSellerProductAction(id: string | number): Promise<ActionState<void>> {
+  return serverActionWrapper(async () => {
+    const endpoint = `${API_ENDPOINTS.SELLER.PRODUCTS.LIST}/${id}`;
+    await apiClient.delete(endpoint);
+    updateTag("seller-products");
   });
 }

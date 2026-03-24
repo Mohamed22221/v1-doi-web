@@ -20,9 +20,9 @@ export async function serverActionWrapper<T>(actionFn: () => Promise<T>): Promis
   }
 }
 
-export function useAppMutation<T, P>(
+export function useAppMutation<T, P, C = unknown>(
   action: (payload: P) => Promise<ActionState<T>>,
-  options?: UseMutationOptions<T, Error, P>,
+  options?: UseMutationOptions<T, Error, P, C>,
 ) {
   return useMutation({
     ...options,

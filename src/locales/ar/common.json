@@ -84,5 +84,16 @@
     "upload": "رفع الملفات",
     "maxSize": "الحد الأقصى لكل ملف: {{size}} ميجابايت",
     "selectedFiles": "الملفات المحددة"
+  },
+  "product-actions": {
+    "delete-confirm": "هل أنت متأكد من حذف هذا المنتج؟",
+    "delete-description": "بعد تأكيد الحذف، لن يظهر المنتج في المنصة، ولن تتمكن من استعادته لاحقًا.",
+    "delete-auction-title": "تأكيد حذف منتج في مزاد",
+    "delete-auction-description": "سيتم إلغاء المزاد وحذف المنتج من الصالة، هل تريد المتابعة؟",
+    "delete-auction-warning": "سوف تخسر مبلغ التأمين عند حذف المنتج",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء",
+    "deleting": "جاري الحذف...",
+    "delete-success": "تم حذف المنتج بنجاح"
   }
 }

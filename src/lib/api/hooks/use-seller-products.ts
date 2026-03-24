@@ -1,7 +1,13 @@
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
-import { getSellerProductsAction } from "../actions/products";
+import { useParams } from "next/navigation";
+import { useQuery, useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { getSellerProductsAction, deleteSellerProductAction } from "../actions/products";
 import ReactQueryKeys from "../constants/api-keys-constant";
 import type { SellerProductsFilters } from "../types/seller-product";
+import { useAppMutation } from "../action-utils";
+import { showErrorToast, showSuccessToast } from "@/components/ui/toast/show-toast";
+import { getApiErrorMessage } from "@api/error";
+import { useTranslation } from "@lib/i18n/client";
+import type { Locale } from "@lib/i18n/config";
 
 /**
  * useSellerProductsQuery
@@ -56,6 +62,43 @@ export function useSellerProductsInfiniteQuery(filters: SellerProductsFilters) {
         return lastPage.page + 1;
       }
       return undefined;
+    },
+  });
+}
+
+/**
+ * useDeleteProductMutation
+ *
+ * Custom hook to delete a seller product.
+ * Uses query invalidation to refetch data after server-side revalidation.
+ */
+export function useDeleteProductMutation() {
+  const queryClient = useQueryClient();
+  const params = useParams();
+  const locale = (params?.locale as Locale) || "en";
+  const { t } = useTranslation(locale, "common");
+
+  return useAppMutation<void, string | number>(deleteSellerProductAction, {
+    onSuccess: () => {
+      // Show translated success toast globally as requested by user
+      showSuccessToast(t("product-actions.delete-success"), {
+        positionSm: "top-center",
+        className: "toast-inline-full",
+      });
+    },
+
+    onError: (error: Error) => {
+      // Show error toast as requested by user
+      const message = getApiErrorMessage(error);
+      showErrorToast(message, {
+        positionSm: "top-center",
+        className: "toast-inline-full md:w-[550px]",
+      });
+    },
+
+    onSettled: () => {
+      // Always refetch after error or success to ensure we are in sync with the server
+      queryClient.invalidateQueries({ queryKey: ReactQueryKeys.SELLER_PRODUCTS.all() });
     },
   });
 }

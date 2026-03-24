@@ -84,5 +84,8 @@
     "upload": "Upload Files",
     "maxSize": "Max size per file: {{size}} MB",
     "selectedFiles": "Selected Files"
+  },
+  "product-actions": {
+    "delete-success": "Product deleted successfully"
   }
 }

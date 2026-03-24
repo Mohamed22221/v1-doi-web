@@ -222,7 +222,7 @@ class ApiClient {
           });
         }
 
-        const json = (await response.json()) as R;
+        const json = (response.status !== 204 ? await response.json().catch(() => ({})) : {}) as R;
 
         // ── Zod validation ─────────────────────────────────────────────────────
         // We validate the payload inside 'data' if a schema is provided.
