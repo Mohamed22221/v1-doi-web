@@ -42,8 +42,9 @@ export function useSellerProductsQuery(filters: SellerProductsFilters) {
  * @param filters - Parameters for filtering
  */
 export function useSellerProductsInfiniteQuery(filters: SellerProductsFilters) {
+  const { page: _page, ...baseFilters } = filters;
   return useInfiniteQuery({
-    queryKey: ReactQueryKeys.SELLER_PRODUCTS.list(filters),
+    queryKey: ReactQueryKeys.SELLER_PRODUCTS.list(baseFilters),
     initialPageParam: 1,
     queryFn: async ({ pageParam = 1 }) => {
       const result = await getSellerProductsAction({
@@ -78,7 +79,7 @@ export function useDeleteProductMutation() {
   const locale = (params?.locale as Locale) || "en";
   const { t } = useTranslation(locale, "common");
 
-  return useAppMutation<void, string | number>(deleteSellerProductAction, {
+  return useAppMutation<void, { id: string | number; locale: string }>(deleteSellerProductAction, {
     onSuccess: () => {
       // Show translated success toast globally as requested by user
       showSuccessToast(t("product-actions.delete-success"), {

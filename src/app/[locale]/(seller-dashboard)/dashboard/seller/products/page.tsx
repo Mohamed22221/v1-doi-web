@@ -58,35 +58,66 @@ export default async function SellerProductsPage({ params, searchParams }: PageP
   const page = Number(sParams.page) || 1;
   const filters: SellerProductsFilters = { productSellType, status, page, limit: 10 };
 
-  // Prefetch data on the server
+  return (
+    <div className="flex flex-col gap-3 rounded-xl bg-card py-4 md:gap-6 md:bg-transparent md:py-0">
+      {/* Header & Filter Area - Transparent on desktop for background contrast */}
+      <div className="flex flex-col gap-3 md:gap-6">
+        <ProductsHeader locale={locale} searchParams={sParams} />
+        <ProductsFilter locale={locale} labels={filterLabels} />
+      </div>
+
+      {/* Main Content Area - Continuous in mobile, Sectioned in desktop */}
+      <div className="flex-1 text-card-foreground md:rounded-xl md:bg-card md:p-4 lg:p-6">
+        <Suspense fallback={<ProductCardSkeletonGrid count={10} />}>
+          <PrefetchedProductsList locale={locale} filters={filters} searchParams={sParams} />
+        </Suspense>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * PrefetchedProductsList
+ *
+ * Async Server Component that handles prefetching and provides the HydrationBoundary.
+ */
+async function PrefetchedProductsList({
+  locale,
+  filters,
+  searchParams,
+}: {
+  locale: Locale;
+  filters: SellerProductsFilters;
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: ReactQueryKeys.SELLER_PRODUCTS.list(filters),
-    queryFn: async () => {
-      const result = await getSellerProductsAction(filters);
+  const { page: _page, ...baseFilters } = filters;
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ReactQueryKeys.SELLER_PRODUCTS.list(baseFilters),
+    initialPageParam: 1,
+    queryFn: async ({ pageParam = 1 }) => {
+      const result = await getSellerProductsAction({
+        ...baseFilters,
+        page: pageParam as number,
+      });
       if (!result.success) {
         throw new Error(result.error);
       }
       return result.data;
     },
+    getNextPageParam: (lastPage: { page: number; totalPages: number }) => {
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
+      }
+      return undefined;
+    },
+    pages: 1,
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex flex-col gap-3 rounded-xl bg-card py-4 md:gap-6 md:bg-transparent md:py-0">
-        {/* Header & Filter Area - Transparent on desktop for background contrast */}
-        <div className="flex flex-col gap-3 md:gap-6">
-          <ProductsHeader locale={locale} searchParams={sParams} />
-          <ProductsFilter locale={locale} labels={filterLabels} />
-        </div>
-
-        {/* Main Content Area - Continuous in mobile, Sectioned in desktop */}
-        <div className="flex-1 md:rounded-xl md:bg-card md:p-4 lg:p-6">
-          <Suspense fallback={<ProductCardSkeletonGrid count={10} />}>
-            <ProductsList locale={locale} searchParams={sParams} />
-          </Suspense>
-        </div>
-      </div>
+      <ProductsList locale={locale} searchParams={searchParams} />
     </HydrationBoundary>
   );
 }

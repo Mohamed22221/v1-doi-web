@@ -36,11 +36,14 @@ export default function DeleteProductContent({
     product.effectiveStatus === "auction_live" || product.effectiveStatus === "auction_scheduled";
 
   const handleDelete = () => {
-    deleteMutation.mutate(product.id, {
-      onSuccess: () => {
-        onCancel();
+    deleteMutation.mutate(
+      { id: product.id, locale },
+      {
+        onSuccess: () => {
+          onCancel();
+        },
       },
-    });
+    );
   };
 
   return (

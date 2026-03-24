@@ -28,6 +28,8 @@ export interface RequestOptions<T = unknown> extends Omit<RequestInit, "body" | 
   useCache?: boolean;
   /** Time To Live for the cache entry in milliseconds. Defaults to 300,000 (5 minutes). */
   ttl?: number;
+  /** Next.js specific fetch options (e.g. revalidate, tags) */
+  next?: RequestInit["next"];
 }
 
 class ApiClient {

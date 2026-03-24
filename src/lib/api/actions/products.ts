@@ -1,6 +1,6 @@
 "use server";
 
-import { updateTag } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { apiClient } from "@api/api";
 import { API_ENDPOINTS } from "@api/constants";
 import { serverActionWrapper } from "../action-utils";
@@ -50,10 +50,17 @@ export async function getSellerProductsAction(
  *
  * @param id - The ID of the product to delete
  */
-export async function deleteSellerProductAction(id: string | number): Promise<ActionState<void>> {
+export async function deleteSellerProductAction({
+  id,
+  locale,
+}: {
+  id: string | number;
+  locale: string;
+}): Promise<ActionState<void>> {
   return serverActionWrapper(async () => {
     const endpoint = `${API_ENDPOINTS.SELLER.PRODUCTS.LIST}/${id}`;
     await apiClient.delete(endpoint);
     updateTag("seller-products");
+    revalidatePath(`/${locale}/dashboard/seller/products`, "page");
   });
 }
