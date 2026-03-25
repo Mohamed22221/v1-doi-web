@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useMemo, memo } from "react";
 import { useQueryStates, parseAsString, parseAsInteger } from "nuqs";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@components/ui/carousel";
 import type { Locale } from "@lib/i18n/config";
@@ -29,6 +29,43 @@ interface ProductsFilterProps {
   };
   searchParams?: Record<string, string | string[] | undefined>;
 }
+
+// ---------------------------------------------------------------------------
+// FilterItem Component (Memoized for Static Caching)
+// ---------------------------------------------------------------------------
+
+const FilterItem = memo(({
+  option,
+  isActive,
+  onClick,
+}: {
+  option: FilterOption;
+  isActive: boolean;
+  onClick: (option: FilterOption) => void;
+}) => {
+  return (
+    <CarouselItem
+      className="basis-auto ps-0"
+      aria-roledescription="item"
+    >
+      <Button
+        type="button"
+        rounded="sm"
+        variant={isActive ? "default" : "outline"}
+        onClick={() => onClick(option)}
+        aria-pressed={isActive}
+        className={cn(
+          "px-5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors select-none",
+          !isActive &&
+            "bg-primary-50 bg-none font-thin text-primary-800 hover:border-primary-300 hover:bg-primary-50 md:bg-white dark:bg-primary-900 dark:text-neutral-200 dark:hover:bg-primary-800",
+        )}
+      >
+        {option.label}
+      </Button>
+    </CarouselItem>
+  );
+});
+FilterItem.displayName = "FilterItem";
 
 // ---------------------------------------------------------------------------
 // Component
@@ -63,14 +100,15 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
   const [_api, setApi] = useState<CarouselApi>();
   const isDragging = useRef(false);
 
-  const FILTER_OPTIONS: FilterOption[] = [
-    { label: labels.all, value: null, type: "all" as const },
-    { label: labels.auctions, value: "live_auction", type: "sellType" as const },
-    { label: labels.period_auction, value: "period_auction", type: "sellType" as const },
-    { label: labels.fixed_price, value: "fixed_price", type: "sellType" as const },
-    { label: labels.draft, value: "draft", type: "status" as const },
-    { label: labels.pending_approval, value: "pending_approval", type: "status" as const },
-  ];
+  // Memoize Filter Options (Static Cache)
+  const FILTER_OPTIONS = useMemo<FilterOption[]>(() => [
+    { label: labels.all, value: null, type: "all" },
+    { label: labels.auctions, value: "live_auction", type: "sellType" },
+    { label: labels.period_auction, value: "period_auction", type: "sellType" },
+    { label: labels.fixed_price, value: "fixed_price", type: "sellType" },
+    { label: labels.draft, value: "draft", type: "status" },
+    { label: labels.pending_approval, value: "pending_approval", type: "status" },
+  ], [labels]);
 
   // Track drag state via Embla events
   const handleSetApi = useCallback((carouselApi: CarouselApi) => {
@@ -133,26 +171,12 @@ export default function ProductsFilter({ locale, labels }: ProductsFilterProps) 
                   : query.status === option.value;
 
             return (
-              <CarouselItem
+              <FilterItem
                 key={option.value ?? "all"}
-                className="basis-auto ps-0"
-                aria-roledescription="item"
-              >
-                <Button
-                  type="button"
-                  rounded="sm"
-                  variant={isActive ? "default" : "outline"}
-                  onClick={() => handleFilterClick(option)}
-                  aria-pressed={isActive}
-                  className={cn(
-                    "px-5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors select-none",
-                    !isActive &&
-                      "bg-primary-50 bg-none font-thin text-primary-800 hover:border-primary-300 hover:bg-primary-50 md:bg-white dark:bg-primary-900 dark:text-neutral-200 dark:hover:bg-primary-800",
-                  )}
-                >
-                  {option.label}
-                </Button>
-              </CarouselItem>
+                option={option}
+                isActive={isActive}
+                onClick={handleFilterClick}
+              />
             );
           })}
         </CarouselContent>

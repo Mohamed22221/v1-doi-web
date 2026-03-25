@@ -39,7 +39,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
  */
 export default async function SellerProductsPage({ params, searchParams }: PageProps) {
   const { locale } = await params;
-  const sParams = await searchParams;
 
   // Fetch translation resources for client-side hydration
   const { t } = await getTranslation(locale, "seller-dashboard");
@@ -53,23 +52,18 @@ export default async function SellerProductsPage({ params, searchParams }: PageP
     pending_approval: t("products.filter.pending_approval"),
   };
 
-  const productSellType = (sParams.productSellType as string) || undefined;
-  const status = (sParams.status as ProductEffectiveStatus) || undefined;
-  const page = Number(sParams.page) || 1;
-  const filters: SellerProductsFilters = { productSellType, status, page, limit: 10 };
-
   return (
     <div className="flex flex-col gap-3 rounded-xl bg-card py-4 md:gap-6 md:bg-transparent md:py-0">
       {/* Header & Filter Area - Transparent on desktop for background contrast */}
       <div className="flex flex-col gap-3 md:gap-6">
-        <ProductsHeader locale={locale} searchParams={sParams} />
+        <ProductsHeader locale={locale} />
         <ProductsFilter locale={locale} labels={filterLabels} />
       </div>
 
       {/* Main Content Area - Continuous in mobile, Sectioned in desktop */}
       <div className="flex-1 text-card-foreground md:rounded-xl md:bg-card md:p-4 lg:p-6">
         <Suspense fallback={<ProductCardSkeletonGrid count={10} />}>
-          <PrefetchedProductsList locale={locale} filters={filters} searchParams={sParams} />
+          <PrefetchedProductsList locale={locale} searchParamsPromise={searchParams} />
         </Suspense>
       </div>
     </div>
@@ -83,13 +77,18 @@ export default async function SellerProductsPage({ params, searchParams }: PageP
  */
 async function PrefetchedProductsList({
   locale,
-  filters,
-  searchParams,
+  searchParamsPromise,
 }: {
   locale: Locale;
-  filters: SellerProductsFilters;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParamsPromise: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const sParams = await searchParamsPromise;
+
+  const productSellType = (sParams.productSellType as string) || undefined;
+  const status = (sParams.status as ProductEffectiveStatus) || undefined;
+  const page = Number(sParams.page) || 1;
+  const filters: SellerProductsFilters = { productSellType, status, page, limit: 10 };
+
   const queryClient = getQueryClient();
   const { page: _page, ...baseFilters } = filters;
 
@@ -117,7 +116,7 @@ async function PrefetchedProductsList({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProductsList locale={locale} searchParams={searchParams} />
+      <ProductsList locale={locale} searchParams={sParams} />
     </HydrationBoundary>
   );
 }

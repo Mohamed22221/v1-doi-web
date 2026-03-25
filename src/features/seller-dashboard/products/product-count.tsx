@@ -4,23 +4,15 @@ import { useQueryStates, parseAsString, parseAsInteger } from "nuqs";
 import { useSellerProductsQuery } from "@api/hooks/use-seller-products";
 import { Skeleton } from "@/components/ui/skeleton";
 
-interface ProductCountProps {
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
-export default function ProductCount({ searchParams }: ProductCountProps) {
+export default function ProductCount() {
   // Sync with filters
   const [query] = useQueryStates({
     productSellType: parseAsString.withDefault(""),
     page: parseAsInteger.withDefault(1),
   });
 
-  // Use props during SSR to ensure consistency with RSC prefetch
-  const isServer = typeof window === "undefined";
-  const productSellType = isServer
-    ? (searchParams?.productSellType as string) || ""
-    : query.productSellType;
-  const page = isServer ? Number(searchParams?.page) || 1 : query.page;
+  const productSellType = query.productSellType;
+  const page = query.page;
 
   const { data, isPending } = useSellerProductsQuery({
     productSellType: (productSellType as string) || undefined,

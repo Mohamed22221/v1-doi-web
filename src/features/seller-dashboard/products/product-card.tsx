@@ -6,10 +6,11 @@ import { type SellerProduct } from "@lib/api/types/seller-product";
 import StatusBadge from "@components/shared/status-badge";
 import { Button } from "@components/ui/button";
 import { EyeIcon, DeleteIcon, Riyall } from "@components/shared/icon-base/constant";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Dialog, DialogContent, DialogTitle } from "@components/ui/dialog";
-import { Drawer, DrawerContent, DrawerTitle } from "@components/ui/drawer";
-import DeleteProductContent from "./delete-product-content";
+import dynamic from "next/dynamic";
+
+const DeleteProductModal = dynamic(() => import("./delete-product-modal"), {
+  ssr: false,
+});
 
 // ---------------------------------------------------------------------------
 // Component
@@ -32,7 +33,11 @@ interface ProductCardProps {
 export default function ProductCard({ product, locale }: ProductCardProps) {
   const { t } = useTranslation(locale, "seller-dashboard");
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [isModalMounted, setIsModalMounted] = React.useState(false);
+
+  const handlePreloadModal = React.useCallback(() => {
+    setIsModalMounted(true);
+  }, []);
 
   const normalizedStatus = product.effectiveStatus?.toLowerCase() || "";
   const actionText =
@@ -114,7 +119,12 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
           </button>
           <button
             type="button"
-            onClick={() => setIsDeleteDialogOpen(true)}
+            onMouseEnter={handlePreloadModal}
+            onFocus={handlePreloadModal}
+            onClick={() => {
+              setIsModalMounted(true);
+              setIsDeleteDialogOpen(true);
+            }}
             className="dark:hover:bg-danger-900/20 flex size-9 cursor-pointer items-center justify-center rounded-sm border border-neutral-50 text-danger-400 transition-colors md:size-10 md:hover:bg-danger-50 dark:border-primary-700"
             aria-label={t("products.actions.delete")}
           >
@@ -123,29 +133,14 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
         </div>
       </article>
 
-      {/* Delete Confirmation Modal */}
-      {isMobile ? (
-        <Drawer open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-          <DrawerContent className="p-0 border-none outline-none">
-            <DrawerTitle className="sr-only">{t("products.actions.delete")}</DrawerTitle>
-            <DeleteProductContent
-              product={product}
-              locale={locale}
-              onCancel={() => setIsDeleteDialogOpen(false)}
-            />
-          </DrawerContent>
-        </Drawer>
-      ) : (
-        <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-          <DialogContent className="max-w-[600px] p-0 overflow-hidden border-none outline-none">
-            <DialogTitle className="sr-only">{t("products.actions.delete")}</DialogTitle>
-            <DeleteProductContent
-              product={product}
-              locale={locale}
-              onCancel={() => setIsDeleteDialogOpen(false)}
-            />
-          </DialogContent>
-        </Dialog>
+      {/* Delete Confirmation Modal Lazy Loaded */}
+      {isModalMounted && (
+        <DeleteProductModal
+          isOpen={isDeleteDialogOpen}
+          onOpenChange={setIsDeleteDialogOpen}
+          product={product}
+          locale={locale}
+        />
       )}
     </div>
   );

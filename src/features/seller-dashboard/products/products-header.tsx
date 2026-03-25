@@ -18,10 +18,8 @@ import { Suspense } from "react";
  */
 export default async function ProductsHeader({
   locale,
-  searchParams,
 }: {
   locale: Locale;
-  searchParams: Record<string, string | string[] | undefined>;
 }) {
   const { t } = await getTranslation(locale, "home");
 
@@ -30,7 +28,7 @@ export default async function ProductsHeader({
       <h1 className="flex items-center gap-1.5 text-body font-bold text-neutral-800 md:text-h2 md:text-primary-800 dark:text-neutral-200 md:dark:text-primary-200">
         <span>{t("seller_dashboard.products_list.title")}</span>
         <Suspense>
-          <ProductCount searchParams={searchParams} />
+          <ProductCount />
         </Suspense>
       </h1>
 
