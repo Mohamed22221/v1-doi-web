@@ -10,6 +10,7 @@ import { cookies } from "next/headers";
 import type { HeaderActionRole } from "@config/header-actions-config";
 import { ROUTES } from "@config/routes";
 import { ENV } from "@/config/env";
+import { ViewProductTestTrigger } from "@/features/seller-dashboard/products/details-product/view-product-test-trigger";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -169,6 +170,13 @@ export default async function Home({ params }: PageProps) {
             >
               {t("auth-dashboard.links.seller-dashboard")}
             </Link>
+          </div>
+          {/* UI Component Tests */}
+          <div className="flex flex-col gap-2">
+            <h2 className="mb-2 border-b pb-2 text-xl font-semibold">
+              🧪 UI Tests
+            </h2>
+            <ViewProductTestTrigger locale={locale as Locale} />
           </div>
         </div>
       </main>

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { type Locale } from "@lib/i18n/config";
 import { type SellerProduct } from "@lib/api/types/seller-product";
 import { Dialog, DialogContent, DialogTitle } from "@components/ui/dialog";

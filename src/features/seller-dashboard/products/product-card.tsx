@@ -12,6 +12,13 @@ const DeleteProductModal = dynamic(() => import("./delete-product-modal"), {
   ssr: false,
 });
 
+const ViewProductModal = dynamic(
+  () => import("./details-product/view-product-modal").then((mod) => mod.ViewProductModal),
+  {
+    ssr: false,
+  },
+);
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -33,6 +40,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, locale }: ProductCardProps) {
   const { t } = useTranslation(locale, "seller-dashboard");
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = React.useState(false);
   const [isModalMounted, setIsModalMounted] = React.useState(false);
 
   const handlePreloadModal = React.useCallback(() => {
@@ -112,6 +120,12 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
           )}
           <button
             type="button"
+            onMouseEnter={handlePreloadModal}
+            onFocus={handlePreloadModal}
+            onClick={() => {
+              setIsModalMounted(true);
+              setIsViewModalOpen(true);
+            }}
             className="flex size-9 cursor-pointer items-center justify-center rounded-sm border border-neutral-50 text-primary-400 transition-colors md:size-10 md:hover:bg-neutral-50 dark:border-primary-700 dark:text-neutral-400 md:dark:hover:bg-primary-800"
             aria-label={t("products.actions.view")}
           >
@@ -133,6 +147,16 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
         </div>
       </article>
 
+      {/* View Details Modal Lazy Loaded */}
+      {isModalMounted && (
+        <ViewProductModal
+          isOpen={isViewModalOpen}
+          onOpenChange={setIsViewModalOpen}
+          product={product}
+          locale={locale}
+        />
+      )}
+
       {/* Delete Confirmation Modal Lazy Loaded */}
       {isModalMounted && (
         <DeleteProductModal
@@ -143,5 +167,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
         />
       )}
     </div>
+
   );
 }

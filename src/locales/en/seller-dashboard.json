@@ -39,6 +39,38 @@
       "draft": "Drafts",
       "pending_approval": "Pending Approval",
       "sold": "Sold"
+    },
+    "details": {
+      "modal_title": "View Product",
+      "description_label": "Product Description",
+      "no_image": "No product images available",
+      "no_description": "No description available for this product",
+      "sections": {
+        "deal_info": "Deal Information",
+        "location": "Location",
+        "pricing": "Pricing",
+        "images": "Product Images",
+        "product_info": "Product Information"
+      },
+      "fields": {
+        "brand": "Brand",
+        "subcategory": "Subcategory",
+        "category": "Category",
+        "status": "Product Status",
+        "quantity": "Quantity",
+        "name": "Product Name",
+        "defects": "Defects",
+        "description": "Description",
+        "sell_type": "Sale Type",
+        "start_price": "Starting Price (Incl. Tax)",
+        "min_bid": "Minimum Bid",
+        "duration": "Duration",
+        "start_date": "Start Date & Time",
+        "min_increment": "Minimum Increment",
+        "address": "Primary",
+        "edit": "Edit Product"
+      },
+      "no_data": "—"
     }
   }
 }

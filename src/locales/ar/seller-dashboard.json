@@ -39,6 +39,38 @@
       "draft": "المسودات",
       "pending_approval": "بانتظار الموافقة",
       "sold": "مباع"
+    },
+    "details": {
+      "modal_title": "عرض المنتج",
+      "description_label": "وصف المنتج",
+      "no_image": "لا توجد صور للمنتج",
+      "no_description": "لا يوجد وصف لهذا المنتج",
+      "sections": {
+        "deal_info": "معلومات الصفقة",
+        "location": "الموقع",
+        "pricing": "التسعير",
+        "images": "صور المنتج",
+        "product_info": "معلومات المنتج"
+      },
+      "fields": {
+        "brand": "العلامة التجارية",
+        "subcategory": "الفئة الفرعية",
+        "category": "الفئة الاساسية",
+        "status": "حالة المنتج",
+        "quantity": "الكمية",
+        "name": "اسم المنتج",
+        "defects": "العيوب",
+        "description": "الوصف",
+        "sell_type": "نوع البيع",
+        "start_price": "سعر البداية شامل الضريبة",
+        "min_bid": "الحد الأدنى للمزايدة",
+        "duration": "المدة",
+        "start_date": "تاريخ ووقت البداية",
+        "min_increment": "الحد الأدنى للزيادة",
+        "address": "الرئيسي",
+        "edit": "تعديل المنتج"
+      },
+      "no_data": "—"
     }
   }
 }

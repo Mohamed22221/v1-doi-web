@@ -95,5 +95,10 @@
     "cancel": "إلغاء",
     "deleting": "جاري الحذف...",
     "delete-success": "تم حذف المنتج بنجاح"
+  },
+  "common": {
+    "currency": {
+      "sar": "ر.س"
+    }
   }
 }
