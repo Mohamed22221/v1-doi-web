@@ -52,7 +52,7 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
 
   return (
     <section
-      className="relative flex min-h-[610px] w-full min-w-6xl flex-col items-center justify-center gap-10 overflow-hidden px-4 py-8 3xl:min-h-[800px]"
+      className="relative flex min-h-[610px] w-full flex-col items-center justify-center gap-10 overflow-hidden px-4 py-8 3xl:min-h-[800px]"
       aria-labelledby="hero-heading"
     >
       {/* ── Background Image (LCP-priority) ── */}
@@ -66,11 +66,11 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
       <div className="flex flex-col items-center gap-4 text-center">
         <h1
           id="hero-heading"
-          className="max-w-4xl text-5xl font-bold tracking-wider text-primary-100 md:text-h1"
+          className="max-w-6xl text-5xl font-bold tracking-wider text-primary-100 md:text-h1"
         >
           {t("hero.headline")}
         </h1>
-        <p className="max-w-xl text-2xl font-bold tracking-wide text-primary-300">
+        <p className="max-w-5xl text-2xl font-bold tracking-wide text-primary-300">
           {t("hero.subheadline")}
         </p>
       </div>

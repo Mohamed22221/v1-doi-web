@@ -147,5 +147,26 @@
       "fashion": "أزياء",
       "electronics": "إلكترونيات"
     }
+  },
+  "auctions": {
+    "liveNow": "مباشر الآن",
+    "renewedEvery15Min": "الترتيب يتجدد كل 15 دقائق",
+    "headlinePrimary": "لا تفوّت الفرصة...",
+    "headlineSecondary": "كل ثانية تفرق في المزاد",
+    "nextAuctionIn": "المزاد التالي ينطلق بعد",
+    "joinAuction": "انضم للمزاد",
+    "viewHall": "عرض الصالة",
+    "time": {
+      "minutes": "دقيقة",
+      "seconds": "ثانية"
+    },
+    "promos": {
+      "continuousTitle": "مزادات مستمرة طوال الأسبوع",
+      "continuousBody": "عروض حصرية وقطع نادرة لمدة محدودة.",
+      "discoverNow": "اكتشف الآن",
+      "fixedPriceTitle": "لا تنتظر المزاد...",
+      "fixedPriceBody": "اشترِ فوراً بالسعر الثابت ووفر وقتك.",
+      "browseProducts": "تصفح المنتجات"
+    }
   }
-}
+}

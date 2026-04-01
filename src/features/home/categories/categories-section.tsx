@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import { CategoriesList } from "@/features/home/categories/categories-list";
 import { CategoriesSkeleton } from "@/features/home/categories/categories-skeleton";
+import { PageContainer } from "@/components/template/container/page-container";
 
 interface CategoriesSectionProps {
   locale: Locale;
@@ -15,13 +16,12 @@ interface CategoriesSectionProps {
  */
 export async function CategoriesSection({ locale }: CategoriesSectionProps) {
   return (
-    <section
-      aria-labelledby="categories-heading"
-      className="container mx-auto flex w-full flex-col gap-8 pt-12 pb-8"
-    >
+    <section aria-labelledby="categories-heading" className="pt-12 pb-8">
       {/* PPR constraint: Stream dynamic fetchers behind a Suspense boundary */}
       <Suspense fallback={<CategoriesSkeleton />}>
-        <CategoriesList locale={locale} />
+        <PageContainer variant="dashboard">
+          <CategoriesList locale={locale} />
+        </PageContainer>
       </Suspense>
     </section>
   );

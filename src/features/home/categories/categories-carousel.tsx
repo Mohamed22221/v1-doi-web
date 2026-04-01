@@ -32,7 +32,7 @@ export function CategoriesCarousel({ children, localeDir }: CategoriesCarouselPr
         // Negative margins pull the carousel beyond the parent's padding, allowing native edge cutoff
         className="w-full"
       >
-        <CarouselContent className="ms-8 gap-4 ps-4 pe-12 sm:gap-6 md:gap-10 md:ps-8 lg:gap-14">
+        <CarouselContent className="gap-4 ps-2 pe-0 sm:gap-6 md:gap-8 md:ps-4 lg:gap-8">
           {children}
         </CarouselContent>
       </Carousel>

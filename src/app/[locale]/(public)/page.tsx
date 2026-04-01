@@ -10,6 +10,7 @@ import type { HeaderActionRole } from "@config/header-actions-config";
 import { ENV } from "@/config/env";
 import HeroSection from "@/features/home/hero/hero-section";
 import { CategoriesSection } from "@/features/home/categories/categories-section";
+import { AuctionsSection } from "@/features/home/auctions-live/auctions-section";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -46,6 +47,7 @@ export default async function Home({ params }: PageProps) {
       {/* The rest of the page gets the specific card background */}
       <main className="bg-card dark:bg-primary-900">
         <CategoriesSection locale={locale as Locale} />
+        <AuctionsSection locale={locale as Locale} />
       </main>
 
       <MobileNav roles={[role]} locale={locale as Locale} />

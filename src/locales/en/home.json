@@ -147,5 +147,26 @@
       "fashion": "Fashion",
       "electronics": "Electronics"
     }
+  },
+  "auctions": {
+    "liveNow": "Live Now",
+    "renewedEvery15Min": "Ranking renewed every 15 mins",
+    "headlinePrimary": "Don't miss the chance...",
+    "headlineSecondary": "Every second counts in the auction",
+    "nextAuctionIn": "Next auction starts in",
+    "joinAuction": "Join Auction",
+    "viewHall": "View Hall",
+    "time": {
+      "minutes": "minutes",
+      "seconds": "seconds"
+    },
+    "promos": {
+      "continuousTitle": "Continuous Auctions All Week",
+      "continuousBody": "Exclusive offers and rare pieces for a limited time.",
+      "discoverNow": "Discover Now",
+      "fixedPriceTitle": "Don't Wait for the Auction...",
+      "fixedPriceBody": "Buy now at a fixed price and save your time.",
+      "browseProducts": "Browse Products"
+    }
   }
-}
+}

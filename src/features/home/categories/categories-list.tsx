@@ -13,8 +13,8 @@ interface CategoriesListProps {
 
 /**
  * CategoriesList - Server Component (Dynamic)
- * 
- * Simulated fetch for categories data. Passes fully Server-Rendered 
+ *
+ * Simulated fetch for categories data. Passes fully Server-Rendered
  * `<Link>` items into the Client `<CategoriesCarousel>` wrapper.
  */
 export async function CategoriesList({ locale }: CategoriesListProps) {
@@ -26,10 +26,18 @@ export async function CategoriesList({ locale }: CategoriesListProps) {
 
   // Derived from Figma nodes (node-id: 706-7588)
   const categories = [
-    { id: "electronics", label: t("categories.items.electronics"), href: `/${locale}/category/electronics` },
+    {
+      id: "electronics",
+      label: t("categories.items.electronics"),
+      href: `/${locale}/category/electronics`,
+    },
     { id: "fashion", label: t("categories.items.fashion"), href: `/${locale}/category/fashion` },
     { id: "home", label: t("categories.items.home"), href: `/${locale}/category/home` },
-    { id: "collectibles", label: t("categories.items.collectibles"), href: `/${locale}/category/collectibles` },
+    {
+      id: "collectibles",
+      label: t("categories.items.collectibles"),
+      href: `/${locale}/category/collectibles`,
+    },
     { id: "sports", label: t("categories.items.sports"), href: `/${locale}/category/sports` },
     { id: "toys", label: t("categories.items.toys"), href: `/${locale}/category/toys` },
     { id: "motors", label: t("categories.items.motors"), href: `/${locale}/category/motors` },
@@ -42,7 +50,7 @@ export async function CategoriesList({ locale }: CategoriesListProps) {
         <CarouselItem key={category.id} className="basis-auto ps-0">
           <Link
             href={category.href}
-            className="flex flex-col items-center gap-4 rounded-2xl group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            className="group flex flex-col items-center gap-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           >
             {/* The circular image container (160x160) */}
             <div className="flex size-[160px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-50 transition-colors group-hover:bg-primary-100 dark:bg-card dark:group-hover:bg-card/70">
