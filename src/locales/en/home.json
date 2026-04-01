@@ -112,5 +112,27 @@
       "empty_title": "No ratings yet",
       "empty_subtitle": "When you sell your first product or a buyer wins your auction, ratings will appear here."
     }
+  },
+  "hero": {
+    "headline": "Discover the Best Auctions & Deals Near You",
+    "subheadline": "Search by name, category, or city — and start exploring right away.",
+    "trust": {
+      "aria_label": "Platform advantages",
+      "secure_payment": "Secure Payment",
+      "buyer_protection": "Buyer Protection",
+      "reliable_shipping": "Reliable Shipping"
+    },
+    "search": {
+      "placeholder": "Search for a product or category…",
+      "location_label": "Choose your location",
+      "button_label": "Search"
+    },
+    "trending": {
+      "label": "Most Searched",
+      "iphone_15_pro": "iPhone 15 Pro",
+      "airpods": "AirPods",
+      "apple_watch": "New Apple Watch",
+      "rolex": "Rolex Watch"
+    }
   }
-}
+}
