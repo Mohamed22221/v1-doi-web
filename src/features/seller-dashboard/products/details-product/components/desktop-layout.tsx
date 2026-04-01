@@ -28,7 +28,7 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
       <div className="flex min-h-0 w-full flex-1 items-start gap-6">
         {/* RIGHT: Image gallery card */}
         <section
-          className="flex w-[335px] shrink-0 flex-col gap-6 rounded-2xl border border-neutral-50 bg-white p-6 shadow-[0px_2px_8px_0px_rgba(42,61,93,0.1)]"
+          className="flex w-[335px] shrink-0 flex-col gap-6 rounded-2xl border border-neutral-50 bg-white p-6 shadow-[0px_2px_8px_0px_rgba(42,61,93,0.1)] dark:border-border dark:bg-card dark:shadow-none"
           aria-labelledby="image-gallery-heading"
         >
           <div id="image-gallery-heading">
@@ -41,7 +41,7 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
           />
         </section>
         {/* LEFT: Deal info card */}
-        <div className="flex min-w-0 flex-1 flex-col gap-6 self-stretch overflow-y-auto rounded-3xl border border-neutral-50 bg-white p-6 shadow-[0px_2px_8px_0px_rgba(42,61,93,0.1)]">
+        <div className="flex min-w-0 flex-1 flex-col gap-6 self-stretch overflow-y-auto rounded-3xl border border-neutral-50 bg-white p-6 shadow-[0px_2px_8px_0px_rgba(42,61,93,0.1)] dark:border-border dark:bg-card dark:shadow-none">
           {/* Deal information section */}
           <section className="flex w-full flex-col gap-5" aria-labelledby="deal-info-heading">
             <div id="deal-info-heading">
@@ -86,7 +86,7 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
 
                 {/* Status cell (special – renders StatusBadge) */}
                 <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-2">
-                  <p className="text-h5 leading-none font-bold text-neutral-400">
+                  <p className="text-h5 leading-none font-bold text-neutral-400 dark:text-muted-foreground">
                     {t("products.details.fields.status")}
                   </p>
                   <StatusBadge
@@ -99,11 +99,13 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
               {/* Row 3: defects, description */}
               <div className="flex w-full items-start gap-2">
                 <div className="flex min-w-0 flex-1 flex-col items-start gap-2">
-                  <p className="text-h5 leading-none font-bold text-neutral-400">
+                  <p className="text-h5 leading-none font-bold text-neutral-400 dark:text-muted-foreground">
                     {t("products.details.fields.description")}
                   </p>
-                  <p className="w-full text-h5 font-thin wrap-break-word text-neutral-950">
-                    {product.description ?? <span className="text-neutral-300">{noData}</span>}
+                  <p className="w-full text-h5 font-thin wrap-break-word text-neutral-950 dark:text-foreground">
+                    {product.description ?? (
+                      <span className="text-neutral-300 dark:text-muted-foreground/30">{noData}</span>
+                    )}
                   </p>
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-2">
@@ -122,7 +124,7 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
             <div id="location-heading">
               <SectionHeading>{t("products.details.sections.location")}</SectionHeading>
             </div>
-            <div className="rounded-2xl bg-primary-50 p-4">
+            <div className="rounded-2xl bg-primary-50 p-4 dark:bg-secondary/20">
               <div className="flex items-center gap-6">
                 {/* House icon */}
                 <div className="flex size-[65px] shrink-0 items-center justify-center rounded-full">
@@ -135,17 +137,17 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
                 </div>
                 {/* Location text */}
                 <div className="flex flex-col gap-3">
-                  <p className="text-h5 leading-none font-bold text-neutral-950">
+                  <p className="text-h5 leading-none font-bold text-neutral-950 dark:text-foreground">
                     {t("products.details.fields.address")}
                   </p>
                   <div className="flex items-center gap-2">
                     <LocationIcon
-                      className="size-6 shrink-0 text-neutral-300"
+                      className="size-6 shrink-0 text-neutral-300 dark:text-muted-foreground/50"
                       aria-hidden="true"
                       focusable="false"
                       role="presentation"
                     />
-                    <p className="text-caption font-thin text-neutral-400">
+                    <p className="text-caption font-thin text-neutral-400 dark:text-muted-foreground">
                       الرياض، حي النخيل، شارع التخصصي
                     </p>
                   </div>
@@ -171,13 +173,13 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
                   />
                 </div>
                 <div className="r flex min-w-0 flex-1 flex-col gap-3">
-                  <p className="text-h5 leading-none font-bold text-neutral-400">
+                  <p className="text-h5 leading-none font-bold text-neutral-400 dark:text-muted-foreground">
                     {t("products.details.fields.start_price")}
                   </p>
                   <Amount value={product.price} />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col gap-3">
-                  <p className="text-h5 leading-none font-bold text-neutral-400">
+                  <p className="text-h5 leading-none font-bold text-neutral-400 dark:text-muted-foreground">
                     {t("products.details.fields.min_bid")}
                   </p>
                   <Amount value={product.price} />
@@ -200,7 +202,7 @@ export function DesktopLayout({ product, locale, t, noData }: DesktopLayoutProps
                   />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-2">
-                  <p className="text-h5 leading-none font-bold text-neutral-400">
+                  <p className="text-h5 leading-none font-bold text-neutral-400 dark:text-muted-foreground">
                     {t("products.details.fields.min_increment")}
                   </p>
                   <Amount value={50} />

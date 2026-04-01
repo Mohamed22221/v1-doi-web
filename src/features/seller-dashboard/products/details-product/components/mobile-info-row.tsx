@@ -11,13 +11,13 @@ export function MobileInfoRow({
   noData: string;
 }) {
   return (
-    <div className="flex items-start justify-between w-full" dir="rtl">
-      <div className="text-caption font-thin text-neutral-950 tracking-wide max-w-[60%]">
-        {value ?? <span className="text-neutral-300">{noData}</span>}
-      </div>
-      <p className="text-caption font-normal text-neutral-400 whitespace-nowrap shrink-0">
+    <div className="flex w-full items-start justify-between">
+      <p className="shrink-0 text-caption font-normal whitespace-nowrap text-neutral-400 dark:text-muted-foreground">
         {label}
       </p>
+      <div className="trxt-right max-w-[75%] text-caption font-thin tracking-wide text-neutral-950 dark:text-foreground">
+        {value ?? <span className="text-neutral-300 dark:text-muted-foreground/30">{noData}</span>}
+      </div>
     </div>
   );
 }
