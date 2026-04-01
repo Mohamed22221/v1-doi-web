@@ -52,7 +52,7 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
 
   return (
     <section
-      className="relative flex min-h-[600px] w-full min-w-6xl flex-col items-center justify-center gap-10 overflow-hidden px-4 py-8 3xl:min-h-[800px]"
+      className="relative flex min-h-[610px] w-full min-w-6xl flex-col items-center justify-center gap-10 overflow-hidden px-4 py-8 3xl:min-h-[800px]"
       aria-labelledby="hero-heading"
     >
       {/* ── Background Image (LCP-priority) ── */}

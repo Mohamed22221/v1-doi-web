@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import type { HeaderActionRole } from "@config/header-actions-config";
 import { ENV } from "@/config/env";
 import HeroSection from "@/features/home/hero/hero-section";
+import { CategoriesSection } from "@/features/home/categories/categories-section";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -33,14 +34,21 @@ export default async function Home({ params }: PageProps) {
   const role: HeaderActionRole = accessToken ? "buyer-auth" : "guest";
 
   return (
-    <>
+    <div className="min-h-screen flex-col">
       <Header role={role} showDelivery={false} className="md:hidden" locale={locale as Locale} />
       <NavLinks config={role} locale={locale as Locale} />
+
+      {/* Hero rendering with normal transparent background inheritance */}
       <div className="pt-21">
         <HeroSection locale={locale as Locale} />
       </div>
 
+      {/* The rest of the page gets the specific card background */}
+      <main className="bg-card dark:bg-primary-900">
+        <CategoriesSection locale={locale as Locale} />
+      </main>
+
       <MobileNav roles={[role]} locale={locale as Locale} />
-    </>
+    </div>
   );
 }

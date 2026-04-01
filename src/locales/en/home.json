@@ -134,5 +134,18 @@
       "apple_watch": "New Apple Watch",
       "rolex": "Rolex Watch"
     }
+  },
+  "categories": {
+    "title": "Shop by Category",
+    "items": {
+      "health": "Health & Beauty",
+      "motors": "Motors",
+      "toys": "Toys & Hobbies",
+      "sports": "Sports & Outdoors",
+      "collectibles": "Collectibles & Arts",
+      "home": "Home & Kitchen",
+      "fashion": "Fashion",
+      "electronics": "Electronics"
+    }
   }
-}
+}
