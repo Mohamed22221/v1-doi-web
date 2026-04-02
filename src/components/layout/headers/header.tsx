@@ -37,7 +37,7 @@ export async function Header({ role, showDelivery = true, className, locale }: H
   return (
     <header
       className={cn(
-        "text-neutral-90 fixed inset-x-0 top-0 z-50 flex h-[72px] items-center rounded-b-2xl bg-neutral-10 transition-all duration-300 md:relative md:h-[90px] md:rounded-none md:bg-primary-400 md:text-white dark:bg-card md:dark:bg-primary-700",
+        "text-neutral-90 fixed inset-x-0 top-0 z-50 flex h-[72px] items-center bg-neutral-10 transition-all duration-300 md:relative md:h-[90px] md:rounded-none md:bg-primary-400 md:text-white dark:bg-card md:dark:bg-primary-700",
         className,
       )}
     >
@@ -57,8 +57,20 @@ export async function Header({ role, showDelivery = true, className, locale }: H
           )}
         </div>
         {/* Left Side: Dynamic Actions */}
-        <HeaderActions role={role} variant="mobile" className="md:hidden" resolvedLabels={resolvedLabels} locale={locale} />
-        <HeaderActions role={role} variant="desktop" className="hidden md:flex" resolvedLabels={resolvedLabels} locale={locale} />
+        <HeaderActions
+          role={role}
+          variant="mobile"
+          className="md:hidden"
+          resolvedLabels={resolvedLabels}
+          locale={locale}
+        />
+        <HeaderActions
+          role={role}
+          variant="desktop"
+          className="hidden md:flex"
+          resolvedLabels={resolvedLabels}
+          locale={locale}
+        />
         {/* Right Side: Logo */}
       </PageContainer>
     </header>

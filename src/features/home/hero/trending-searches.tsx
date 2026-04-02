@@ -17,18 +17,23 @@ interface TrendingSearchesProps {
  */
 export function TrendingSearches({ tags, label }: TrendingSearchesProps) {
   return (
-    <div className="flex w-full max-w-[1000px] items-center justify-center gap-8">
+    <div className="flex max-w-[1000px] flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8 md:w-full">
       {/* "Most searched" label */}
-      <p className="shrink-0 text-lg font-normal tracking-wide text-primary-200">{label}</p>
+      <p className="hidden shrink-0 text-sm font-normal tracking-wide text-primary-200 sm:block sm:text-lg">
+        {label}
+      </p>
       {/* Tags list */}
-      <div className="flex flex-wrap items-center justify-center gap-[18px]" aria-label={label}>
+      <div
+        className="grid grid-cols-2 flex-wrap items-center justify-center gap-2 sm:flex sm:w-auto sm:gap-[18px]"
+        aria-label={label}
+      >
         {tags.map((tag) => (
           <a
             key={tag.label}
             href={tag.href}
-            className="flex items-center gap-2 rounded-2xl bg-primary-50 px-6 py-3 text-base text-primary-400 transition-colors hover:bg-primary-100 dark:bg-primary-600 dark:text-foreground dark:hover:bg-primary-500"
+            className="flex items-center justify-center gap-1.5 rounded-2xl bg-primary-50 px-2 py-1.5 text-sm text-primary-400 transition-colors hover:bg-primary-100 sm:gap-2 sm:px-6 sm:py-3 sm:text-base dark:bg-primary-600 dark:text-foreground dark:hover:bg-primary-500"
           >
-            <TrendingUpIcon className="size-7 shrink-0 text-primary-400 dark:text-foreground" />
+            <TrendingUpIcon className="size-5.5 shrink-0 pb-1 text-primary-400 sm:size-8 dark:text-foreground" />
             <span className="font-thin tracking-wide">{tag.label}</span>
           </a>
         ))}

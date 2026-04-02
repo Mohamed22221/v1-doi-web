@@ -50,11 +50,11 @@ export async function CategoriesList({ locale }: CategoriesListProps) {
         <CarouselItem key={category.id} className="basis-auto ps-0">
           <Link
             href={category.href}
-            className="group flex flex-col items-center gap-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            className="group flex flex-col items-center gap-2 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 md:gap-4"
           >
             {/* The circular image container (160x160) */}
-            <div className="flex size-[160px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-50 transition-colors group-hover:bg-primary-100 dark:bg-card dark:group-hover:bg-card/70">
-              <div className="relative size-[110px] shrink-0">
+            <div className="flex size-[75px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-50 transition-colors group-hover:bg-primary-100 md:size-[160px] dark:bg-card dark:group-hover:bg-card/70">
+              <div className="relative size-[50px] shrink-0 md:size-[110px]">
                 <Image
                   src="/img/home/fake-category-img.gif"
                   alt={category.label}
@@ -65,7 +65,7 @@ export async function CategoriesList({ locale }: CategoriesListProps) {
               </div>
             </div>
             {/* Category text (20px) */}
-            <span className="text-xl font-medium tracking-wide text-foreground">
+            <span className="text-tag font-medium tracking-wide text-foreground md:text-xl">
               {category.label}
             </span>
           </Link>

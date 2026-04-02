@@ -25,12 +25,12 @@ export function SearchContainer({
 
   return (
     <div
-      className="flex w-full max-w-[1000px] items-center gap-4 rounded-2xl border border-border bg-card px-4 py-1 shadow-sm"
+      className="flex w-full max-w-[1000px] items-center gap-2 rounded-2xl border border-border bg-card px-3 py-2 shadow-sm sm:gap-4 sm:px-4"
       role="search"
       aria-label={searchLabel}
     >
-      {/* Text input */}
-      <div className="flex min-w-0 flex-1 items-center text-start">
+      {/* Text input area */}
+      <div className="flex min-w-0 flex-[1.5] items-center gap-1.5 text-start sm:flex-1 sm:gap-2">
         <label htmlFor="hero-search-input" className="sr-only">
           {searchPlaceholder}
         </label>
@@ -40,40 +40,45 @@ export function SearchContainer({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={searchPlaceholder}
-          className="w-full bg-transparent text-start text-base text-neutral-500 outline-none placeholder:text-neutral-400 dark:text-neutral-50"
+          className="w-full bg-transparent text-start text-[10px] text-neutral-500 outline-none placeholder:text-neutral-400 sm:text-base dark:text-neutral-50"
           autoComplete="off"
         />
       </div>
       <span className="h-6 w-px shrink-0 bg-border" aria-hidden="true" />
 
-      {/* Location selector */}
+      {/* Location selector section */}
       <button
         type="button"
-        className="flex flex-1 items-center justify-start gap-2 text-start text-primary hover:opacity-80"
+        className="flex flex-1 items-center justify-start gap-1 text-start text-primary hover:opacity-80 sm:gap-2"
         aria-label={locationLabel}
       >
         <LocationIcon
-          className="size-7 shrink-0 text-primary-400"
+          className="size-4 shrink-0 text-primary-400 sm:size-7"
           aria-hidden="true"
           focusable="false"
         />
-        <span className="text-base font-bold tracking-wide">{locationLabel}</span>
+        <span className="text-[10px] font-bold tracking-wide sm:text-base">{locationLabel}</span>
       </button>
 
       {/* Vertical divider */}
       <span className="h-6 w-px shrink-0 bg-border" aria-hidden="true" />
+      <SearchNavIcon
+        className="size-5 shrink-0 text-primary-500 sm:hidden"
+        aria-hidden="true"
+        focusable="false"
+      />
 
-      {/* Search Button */}
+      {/* Search Button (Hidden on mobile) */}
       <Button
         variant="default"
         rounded="md"
         size="default"
         type="submit"
         aria-label={searchLabel}
-        className="flex shrink-0 items-center gap-2 px-4 py-5"
+        className="hidden shrink-0 items-center gap-2 sm:flex sm:px-4 sm:py-5"
       >
         <SearchNavIcon className="size-6 shrink-0" aria-hidden="true" focusable="false" />
-        <span className="hidden sm:inline">{searchLabel}</span>
+        <span className="hidden lg:inline">{searchLabel}</span>
       </Button>
     </div>
   );

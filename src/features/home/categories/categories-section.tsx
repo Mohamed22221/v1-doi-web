@@ -16,7 +16,7 @@ interface CategoriesSectionProps {
  */
 export async function CategoriesSection({ locale }: CategoriesSectionProps) {
   return (
-    <section aria-labelledby="categories-heading" className="pt-12 pb-8">
+    <section aria-labelledby="categories-heading" className="pt-5 pb-1 md:pt-12 md:pb-8">
       {/* PPR constraint: Stream dynamic fetchers behind a Suspense boundary */}
       <Suspense fallback={<CategoriesSkeleton />}>
         <PageContainer variant="dashboard">

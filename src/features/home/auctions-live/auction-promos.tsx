@@ -29,20 +29,20 @@ export async function AuctionPromos({ locale }: AuctionPromosProps) {
   return (
     <PageContainer
       variant="dashboard"
-      className="mt-8 grid w-full grid-cols-1 gap-8 md:grid-cols-2"
+      className="mt-4 grid w-full grid-cols-1 gap-4 md:mt-8 md:gap-8 md:grid-cols-2"
     >
       {/* ── Banner 2: Fixed Price (Warm Beige gradient) ── */}
       <div
-        className="relative flex h-[250px] w-full flex-col items-start overflow-hidden rounded-3xl p-9"
+        className="relative flex h-[160px] w-full flex-col items-end overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:items-start md:p-9"
         style={{ background: "linear-gradient(to right, #f4e9e3, #d4bca4)" }}
       >
-        {/* Text content — right-aligned (end) */}
-        <div className="relative z-10 flex flex-col items-start gap-4 text-start">
-          <p className="text-2xl font-bold tracking-wide text-primary-900">
+        {/* Text content */}
+        <div className="relative z-10 flex flex-col items-end gap-3 text-end md:items-start md:gap-4 md:text-start">
+          <p className="text-lg font-bold tracking-wide text-primary-900 md:text-2xl">
             {t("auctions.promos.fixedPriceTitle")}
           </p>
-          <p className="text-base text-[#3e2723]">{t("auctions.promos.fixedPriceBody")}</p>
-          <Button className="h-14 rounded-2xl px-8 text-base font-bold text-white">
+          <p className="text-xs text-[#3e2723] md:text-base">{t("auctions.promos.fixedPriceBody")}</p>
+          <Button className="h-9 rounded-xl px-4 text-sm font-bold text-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
             {t("auctions.promos.browseProducts")}
           </Button>
         </div>
@@ -61,16 +61,16 @@ export async function AuctionPromos({ locale }: AuctionPromosProps) {
       </div>
       {/* ── Banner 1: Continuous Auctions (Dark Navy gradient) ── */}
       <div
-        className="relative flex h-[250px] w-full flex-col items-start overflow-hidden rounded-3xl p-9"
+        className="relative flex h-[160px] w-full flex-col items-end overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:items-start md:p-9"
         style={{ background: "linear-gradient(to right, #202e46, #2a3d5d)" }}
       >
-        {/* Text content — right-aligned (end) */}
-        <div className="relative z-10 flex flex-col items-start gap-4 text-start">
-          <p className="text-2xl font-bold tracking-wide text-white">
+        {/* Text content */}
+        <div className="relative z-10 flex flex-col items-end gap-3 text-end md:items-start md:gap-4 md:text-start">
+          <p className="text-lg font-bold tracking-wide text-white md:text-2xl">
             {t("auctions.promos.continuousTitle")}
           </p>
-          <p className="text-base text-primary-100">{t("auctions.promos.continuousBody")}</p>
-          <Button className="h-14 rounded-2xl bg-primary-50 px-8 text-base font-bold text-primary-800 hover:bg-white">
+          <p className="text-xs text-primary-100 md:text-base">{t("auctions.promos.continuousBody")}</p>
+          <Button className="h-9 rounded-xl bg-primary-50 px-4 text-sm font-bold text-primary-800 hover:bg-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
             {t("auctions.promos.discoverNow")}
           </Button>
         </div>

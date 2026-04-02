@@ -44,12 +44,12 @@ export default async function Home({ params }: PageProps) {
       <NavLinks config={role} locale={locale as Locale} />
 
       {/* Hero rendering with normal transparent background inheritance */}
-      <div className="pt-21">
+      <div className="pt-18 md:pt-21">
         <HeroSection locale={locale as Locale} />
       </div>
 
       {/* The rest of the page gets the specific card background */}
-      <main className="pb-20px bg-card pb-[30px] dark:bg-primary-900">
+      <main className="sm:pb-40px bg-card pb-[55px] dark:bg-primary-900">
         <CategoriesSection locale={locale as Locale} />
         <AuctionsSection locale={locale as Locale} />
         <BuyNowSection locale={locale as Locale} />

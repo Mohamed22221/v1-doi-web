@@ -44,15 +44,15 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
   ] as const;
 
   const trendingTags = [
-    { label: t("hero.trending.iphone_15_pro"), href: "#" },
-    { label: t("hero.trending.airpods"), href: "#" },
     { label: t("hero.trending.apple_watch"), href: "#" },
     { label: t("hero.trending.rolex"), href: "#" },
+    { label: t("hero.trending.iphone_15_pro"), href: "#" },
+    { label: t("hero.trending.airpods"), href: "#" },
   ];
 
   return (
     <section
-      className="relative flex min-h-[610px] w-full flex-col items-center justify-center gap-10 overflow-hidden px-4 py-8 3xl:min-h-[800px]"
+      className="relative flex min-h-[400px] w-full flex-col items-center justify-center gap-6 overflow-hidden px-4 sm:min-h-[500px] sm:gap-8 md:min-h-[610px] md:gap-10 md:py-8 3xl:min-h-[800px]"
       aria-labelledby="hero-heading"
     >
       {/* ── Background Image (LCP-priority) ── */}
@@ -63,27 +63,30 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
       </div>
 
       {/* ── Headlines ── */}
-      <div className="flex flex-col items-center gap-4 text-center">
+      <div className="flex flex-col items-center gap-2 text-center sm:gap-4">
         <h1
           id="hero-heading"
-          className="max-w-6xl text-5xl font-bold tracking-wider text-primary-100 md:text-h1"
+          className="max-w-6xl text-2xl font-bold tracking-wider text-primary-100 sm:text-3xl md:text-5xl lg:text-h1"
         >
           {t("hero.headline")}
         </h1>
-        <p className="max-w-5xl text-2xl font-bold tracking-wide text-primary-300">
+        <p className="max-w-5xl text-sm font-bold tracking-wide text-primary-300 sm:text-base md:text-xl lg:text-2xl">
           {t("hero.subheadline")}
         </p>
       </div>
 
       {/* ── Trust Badges ── */}
       <div
-        className="flex flex-wrap items-center justify-center gap-12"
+        className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-6 sm:gap-y-4 md:gap-12"
         aria-label={t("hero.trust.aria_label")}
       >
         {trustBadges.map(({ key, label, Icon }) => (
-          <div key={key} className="flex items-center gap-4 rounded-2xl bg-white/5 px-6 py-4">
-            <Icon className="size-8 text-secondary-500" />
-            <span className="text-lg font-normal tracking-wide text-secondary-50 rtl:mt-1">
+          <div
+            key={key}
+            className="flex items-center gap-2 sm:gap-2 sm:rounded-2xl sm:bg-white/5 sm:px-4 sm:py-3 md:gap-4 md:px-6 md:py-4"
+          >
+            <Icon className="size-5 text-secondary-500 sm:size-8" />
+            <span className="text-[10px] font-normal tracking-wide text-secondary-50 sm:text-xs md:text-lg rtl:mt-1">
               {label}
             </span>
           </div>
