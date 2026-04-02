@@ -164,7 +164,7 @@
     "renewedEvery15Min": "Ranking renewed every 15 mins",
     "headlinePrimary": "Don't miss the chance...",
     "headlineSecondary": "Every second counts in the auction",
-    "nextAuctionIn": "Next auction starts in",
+    "next auction starts in": "Next auction starts in",
     "joinAuction": "Join Auction",
     "viewHall": "View Hall",
     "time": {
@@ -178,6 +178,24 @@
       "fixedPriceTitle": "Don't Wait for the Auction...",
       "fixedPriceBody": "Buy now at a fixed price and save your time.",
       "browseProducts": "Browse Products"
+    },
+    "featured": {
+      "title": "Top Live Auctions",
+      "viewAll": "View All",
+      "endsIn": "Auction ends in",
+      "currentPrice": "Current Price",
+      "bidNow": "Bid Now",
+      "liveNow": "Live Now",
+      "minutes": "minutes",
+      "seconds": "seconds"
     }
+  },
+  "featuredCategories": {
+    "title": "Featured Categories",
+    "liveNow": "Live Now",
+    "games": "Games",
+    "watches": "Watches",
+    "laptops": "Laptops",
+    "mobiles": "Mobiles"
   }
-}
+}

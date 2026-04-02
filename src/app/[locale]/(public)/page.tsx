@@ -11,6 +11,8 @@ import { ENV } from "@/config/env";
 import HeroSection from "@/features/home/hero/hero-section";
 import { CategoriesSection } from "@/features/home/categories/categories-section";
 import { AuctionsSection } from "@/features/home/auctions-live/auctions-section";
+import { FeaturedCategoriesSection } from "@/features/home/featured-categories/featured-categories-section";
+import { FeaturedAuctionsSection } from "@/features/home/featured-auctions/featured-auctions-section";
 import { BuyNowSection } from "@/features/home/buy-products/buy-now-section";
 import { SellPromoSection } from "@/features/home/sell-promo/sell-promo-section";
 
@@ -52,6 +54,8 @@ export default async function Home({ params }: PageProps) {
         <AuctionsSection locale={locale as Locale} />
         <BuyNowSection locale={locale as Locale} />
         <SellPromoSection locale={locale as Locale} />
+        <FeaturedAuctionsSection locale={locale as Locale} />
+        <FeaturedCategoriesSection locale={locale as Locale} />
       </main>
 
       <MobileNav roles={[role]} locale={locale as Locale} />

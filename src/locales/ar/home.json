@@ -178,6 +178,24 @@
       "fixedPriceTitle": "لا تنتظر المزاد...",
       "fixedPriceBody": "اشترِ فوراً بالسعر الثابت ووفر وقتك.",
       "browseProducts": "تصفح المنتجات"
+    },
+    "featured": {
+      "title": "أبرز المزادات الحالية",
+      "viewAll": "عرض الكل",
+      "endsIn": "ينتهي المزاد في",
+      "currentPrice": "السعر الحالي",
+      "bidNow": "زايد الان",
+      "liveNow": "مباشر الان",
+      "minutes": "دقيقة",
+      "seconds": "ثانية"
     }
+  },
+  "featuredCategories": {
+    "title": "الفئات المميزة",
+    "liveNow": "مباشر الان",
+    "games": "ألعاب",
+    "watches": "ساعات",
+    "laptops": "لابتوبات",
+    "mobiles": "موبايلات"
   }
-}
+}
