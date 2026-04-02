@@ -605,3 +605,75 @@ export function TagIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function ShareIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M23.1102 11.1111C25.0739 11.1111 26.6658 9.51923 26.6658 7.55555C26.6658 5.59188 25.0739 4 23.1102 4C21.1466 4 19.5547 5.59188 19.5547 7.55555C19.5547 9.51923 21.1466 11.1111 23.1102 11.1111Z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.88758 19.4075C10.8513 19.4075 12.4431 17.8156 12.4431 15.8519C12.4431 13.8883 10.8513 12.2964 8.88758 12.2964C6.92391 12.2964 5.33203 13.8883 5.33203 15.8519C5.33203 17.8156 6.92391 19.4075 8.88758 19.4075Z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23.1102 27.7039C25.0739 27.7039 26.6658 26.112 26.6658 24.1483C26.6658 22.1846 25.0739 20.5928 23.1102 20.5928C21.1466 20.5928 19.5547 22.1846 19.5547 24.1483C19.5547 26.112 21.1466 27.7039 23.1102 27.7039Z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.957 17.6416L20.0518 22.3586"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M20.04 9.34521L11.957 14.0622"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function MarkIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        opacity="0.5"
+        d="M28 14.7965V21.4544C28 25.5832 28 27.6476 27.0212 28.5496C26.5544 28.9798 25.9652 29.2501 25.3375 29.3218C24.0213 29.4725 22.4844 28.113 19.4104 25.3942C18.0517 24.1925 17.3723 23.5916 16.5863 23.4333C16.1992 23.3553 15.8008 23.3553 15.4137 23.4333C14.6277 23.5916 13.9483 24.1925 12.5895 25.3942C9.51564 28.113 7.97869 29.4725 6.66256 29.3218C6.03487 29.2501 5.44561 28.9798 4.97881 28.5496C4 27.6476 4 25.5832 4 21.4544V14.7965C4 9.07838 4 6.2193 5.75736 4.4429C7.51472 2.6665 10.3431 2.6665 16 2.6665C21.6568 2.6665 24.4853 2.6665 26.2427 4.4429C28 6.2193 28 9.07838 28 14.7965Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9H20C20.5523 9 21 8.55228 21 8C21 7.44772 20.5523 7 20 7H12Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

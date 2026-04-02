@@ -11,6 +11,8 @@ import { ENV } from "@/config/env";
 import HeroSection from "@/features/home/hero/hero-section";
 import { CategoriesSection } from "@/features/home/categories/categories-section";
 import { AuctionsSection } from "@/features/home/auctions-live/auctions-section";
+import { BuyNowSection } from "@/features/home/buy-products/buy-now-section";
+import { SellPromoSection } from "@/features/home/sell-promo/sell-promo-section";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -45,9 +47,11 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       {/* The rest of the page gets the specific card background */}
-      <main className="bg-card dark:bg-primary-900">
+      <main className="pb-20px bg-card pb-[30px] dark:bg-primary-900">
         <CategoriesSection locale={locale as Locale} />
         <AuctionsSection locale={locale as Locale} />
+        <BuyNowSection locale={locale as Locale} />
+        <SellPromoSection locale={locale as Locale} />
       </main>
 
       <MobileNav roles={[role]} locale={locale as Locale} />

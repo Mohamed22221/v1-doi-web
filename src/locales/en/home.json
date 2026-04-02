@@ -148,6 +148,17 @@
       "electronics": "Electronics"
     }
   },
+  "buyNow": {
+    "title": "Don't Wait, Buy Now!",
+    "viewAll": "View All",
+    "buyButton": "Buy Now",
+    "currency": "SAR"
+  },
+  "sellPromo": {
+    "headline": "Start selling in minutes and reach thousands of buyers",
+    "body": "List your products in minutes, join auctions or sell at a fixed price — easily and safely.",
+    "cta": "Add Your Product Now"
+  },
   "auctions": {
     "liveNow": "Live Now",
     "renewedEvery15Min": "Ranking renewed every 15 mins",
