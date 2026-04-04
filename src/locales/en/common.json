@@ -100,5 +100,19 @@
     "currency": {
       "sar": "SAR"
     }
+  },
+  "footer": {
+    "doueh": "Doueh",
+    "aboutUs": "About Us",
+    "startSelling": "Start Selling",
+    "faq": "FAQ",
+    "support": "Support and Information",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy",
+    "report": "Report a Problem",
+    "copyright": "© 2026 Doueh. All rights reserved.",
+    "language": "Language",
+    "arabic": "العربية",
+    "english": "English"
   }
 }

@@ -72,9 +72,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <main id="main-content" tabIndex={-1} className="outline-none">
               {children}
             </main>
-            <footer role="contentinfo" className="sr-only">
-              Doi Web Application
-            </footer>
+
             <SettingsContainer />
           </ProvidersShell>
         </Suspense>

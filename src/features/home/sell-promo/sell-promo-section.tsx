@@ -35,7 +35,7 @@ export async function SellPromoSection({ locale }: SellPromoSectionProps) {
   return (
     <PageContainer ria-labelledby="sell-promo-heading" className="py-6 md:py-9">
       {/* ── Banner wrapper (gradient background matching Figma) ── */}
-      <div className="relative flex min-h-fit w-full items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(to_right,#f4e9e3,#d4bca4)] px-6 py-10 md:min-h-[300px] md:justify-start md:rounded-3xl md:px-14 md:py-8 dark:bg-[linear-gradient(to_right,var(--color-primary-700),var(--color-primary-800))]">
+      <div className="relative flex min-h-fit w-full items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(to_right,#f4e9e3,#d4bca4)] px-6 py-5 md:min-h-[300px] md:justify-start md:rounded-3xl md:px-14 md:py-8 dark:bg-[linear-gradient(to_right,var(--color-primary-700),var(--color-primary-800))]">
         {/* ── Content block (end side) ── */}
         <div className="flex w-full flex-col items-center gap-4 text-center sm:w-auto md:items-start md:text-start">
           {/* Headline */}

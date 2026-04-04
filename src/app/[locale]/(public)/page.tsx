@@ -15,6 +15,8 @@ import { FeaturedCategoriesSection } from "@/features/home/featured-categories/f
 import { FeaturedAuctionsSection } from "@/features/home/featured-auctions/featured-auctions-section";
 import { BuyNowSection } from "@/features/home/buy-products/buy-now-section";
 import { SellPromoSection } from "@/features/home/sell-promo/sell-promo-section";
+import { AppDownloadSection } from "@/features/home/app-download/app-download-section";
+import { FooterSection } from "@/features/home/footer/footer-section";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -56,8 +58,9 @@ export default async function Home({ params }: PageProps) {
         <SellPromoSection locale={locale as Locale} />
         <FeaturedAuctionsSection locale={locale as Locale} />
         <FeaturedCategoriesSection locale={locale as Locale} />
+        <AppDownloadSection locale={locale as Locale} />
       </main>
-
+      <FooterSection locale={locale as Locale} />
       <MobileNav roles={[role]} locale={locale as Locale} />
     </div>
   );

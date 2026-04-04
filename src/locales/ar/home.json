@@ -197,5 +197,12 @@
     "watches": "ساعات",
     "laptops": "لابتوبات",
     "mobiles": "موبايلات"
+  },
+  "appDownload": {
+    "headline": "حمل تطبيق دوي",
+    "body": "حمل تطبيق منصة المزاد الإلكتروني لتجربة مزايدة سهلة وسريعة",
+    "downloadOn": "قم بالتنزيل على",
+    "googlePlay": "Google Play",
+    "appStore": "App Store"
   }
 }

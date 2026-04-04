@@ -197,5 +197,12 @@
     "watches": "Watches",
     "laptops": "Laptops",
     "mobiles": "Mobiles"
+  },
+  "appDownload": {
+    "headline": "Download Doi App",
+    "body": "Download the auction platform app for a smooth and fast bidding experience",
+    "downloadOn": "Download on the",
+    "googlePlay": "Google Play",
+    "appStore": "App Store"
   }
 }
