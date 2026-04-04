@@ -36,7 +36,7 @@ export async function AuctionInfo({ locale }: AuctionInfoProps) {
       {/* 2. Headline — Figma: text-[40px], bold, text-[#343432] */}
       <h2
         id="auctions-heading"
-        className="px-1 py-2 text-2xl leading-snug font-bold text-neutral-800 md:py-0 md:text-h1 md:leading-tight dark:text-primary-50"
+        className="px-1 py-2 text-2xl leading-snug font-bold text-neutral-800 md:py-0 md:text-h1 md:leading-tight md:ltr:text-2xl dark:text-primary-50"
       >
         {t("auctions.headlinePrimary")}
         <br />

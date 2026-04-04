@@ -3,16 +3,50 @@
   /* Direction-aware switching is handled in globals.css via html[dir] selectors */
   --font-sans: var(--current-font), sans-serif;
 
-  /* ===== TYPOGRAPHY SCALE ===== */
-  /* Usage: text-display, text-h1, text-body, etc. */
-  --text-display: 56px;
-  --text-h1: 40px;
-  --text-h2: 32px;
-  --text-h3: 24px;
-  --text-h4: 20px;
-  --text-h5: 18px;
-  --text-body: 16px;
-  --text-caption: 14px;
-  --text-label: 14px;
-  --text-tag: 12px;
+  /* ===== DYNAMIC TYPOGRAPHY SCALE ===== */
+  /* These reference the direction-aware variables defined below */
+  --text-display: var(--fs-display);
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-h3: var(--fs-h3);
+  --text-h4: var(--fs-h4);
+  --text-h5: var(--fs-h5);
+  --text-body: var(--fs-body);
+  --text-caption: var(--fs-caption);
+  --text-label: var(--fs-label);
+  --text-tag: var(--fs-tag);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Font Size Tokens (Direction-Aware)
+   Adjusting for visual balance: English (LTR) is slightly smaller to match 
+   the perceived scale of the Arabic (RTL) typeface.
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Base Scale (LTR/English) - Slightly Reduced */
+  --fs-display: 52px;
+  --fs-h1: 36px;
+  --fs-h2: 28px;
+  --fs-h3: 22px;
+  --fs-h4: 18px;
+  --fs-h5: 17px;
+  --fs-body: 15px;
+  --fs-caption: 13px;
+  --fs-label: 13px;
+  --fs-tag: 11px;
+}
+
+[dir="rtl"] {
+  /* Expanded Scale (RTL/Arabic) - Preserved Original Legibility */
+  --fs-display: 56px;
+  --fs-h1: 40px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-h5: 18px;
+  --fs-body: 16px;
+  --fs-caption: 14px;
+  --fs-label: 14px;
+  --fs-tag: 12px;
 }

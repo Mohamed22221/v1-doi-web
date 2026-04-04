@@ -41,7 +41,7 @@ export async function SellPromoSection({ locale }: SellPromoSectionProps) {
           {/* Headline */}
           <h2
             id="sell-promo-heading"
-            className="w-[232px] max-w-sm text-xl leading-snug font-bold tracking-wide text-primary md:w-[328px] md:text-3xl"
+            className="w-[372px] max-w-sm text-xl leading-snug font-bold tracking-wide text-primary md:w-[328px] md:text-3xl md:ltr:w-[488px]"
           >
             {t("sellPromo.headline")}
           </h2>

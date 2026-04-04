@@ -17,7 +17,7 @@ interface TrendingSearchesProps {
  */
 export function TrendingSearches({ tags, label }: TrendingSearchesProps) {
   return (
-    <div className="flex max-w-[1000px] flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8 md:w-full">
+    <div className="flex max-w-[1100px] flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8 md:w-full ltr:gap-2">
       {/* "Most searched" label */}
       <p className="hidden shrink-0 text-sm font-normal tracking-wide text-primary-200 sm:block sm:text-lg">
         {label}

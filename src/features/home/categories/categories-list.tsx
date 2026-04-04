@@ -65,7 +65,7 @@ export async function CategoriesList({ locale }: CategoriesListProps) {
               </div>
             </div>
             {/* Category text (20px) */}
-            <span className="text-tag font-medium tracking-wide text-foreground md:text-xl">
+            <span className="text-tag font-medium tracking-wide text-foreground md:text-xl ltr:md:text-base">
               {category.label}
             </span>
           </Link>

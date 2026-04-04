@@ -67,7 +67,10 @@ export function AuctionTimer({ targetDateStr, minutesLabel, secondsLabel }: Auct
   // To guarantee exact figma positioning regardless of direction, we use dir="ltr" on the timer itself
   // so that the physical DOM order (seconds | colon | minutes) maps to figma's visual order.
   return (
-    <div className="flex items-end gap-3 text-center md:gap-0" dir="ltr">
+    <div
+      className="flex items-end gap-3 text-center md:gap-0 ltr:flex-row-reverse rtl:flex-row"
+      dir="ltr"
+    >
       {/* Seconds cell — Figma: left cell */}
       <div className="flex w-[75px] flex-col items-center gap-3 rounded-xl px-2.5 py-2">
         <span className="font-[Montserrat,sans-serif] text-h3 leading-none font-bold text-primary-500 md:text-h1 dark:text-primary-200">
