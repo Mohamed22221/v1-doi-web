@@ -18,7 +18,7 @@ interface AuctionLiveHeroProps {
 export function AuctionLiveHero({ locale }: AuctionLiveHeroProps) {
   return (
     <PageContainer variant="dashboard" className="w-full overflow-hidden">
-      <div className="flex flex-col gap-2 rounded-3xl bg-primary-50 px-6 py-6 lg:flex-row lg:items-center lg:py-8 dark:bg-primary-800">
+      <div className="flex flex-col gap-2 rounded-3xl bg-primary-50 px-4 py-5 lg:flex-row lg:items-center lg:py-8 dark:bg-primary-800">
         {/* INFO PANEL — right side on RTL (renders second in DOM = end of flex row LTR, start of flex row RTL) */}
         {/* On mobile: comes first visually */}
         <div className="w-full shrink-0 lg:w-[420px]">
@@ -27,7 +27,7 @@ export function AuctionLiveHero({ locale }: AuctionLiveHeroProps) {
 
         {/* CARDS / CAROUSEL — left side on RTL, bleeds off the edge */}
         {/* negative margin on the start side lets cards bleed outside the container */}
-        <div className="min-w-0 flex-1 overflow-hidden">
+        <div className="min-w-0 flex-1 overflow-hidden pt-4 md:pt-0">
           <div className="lg:ms-0 lg:w-full">
             <AuctionCardsList locale={locale} />
           </div>

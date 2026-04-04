@@ -29,26 +29,28 @@ export async function AuctionPromos({ locale }: AuctionPromosProps) {
   return (
     <PageContainer
       variant="dashboard"
-      className="mt-4 grid w-full grid-cols-1 gap-4 md:mt-8 md:gap-8 md:grid-cols-2"
+      className="mt-4 grid w-full grid-cols-1 gap-4 md:mt-8 md:grid-cols-2 md:gap-8"
     >
       {/* ── Banner 2: Fixed Price (Warm Beige gradient) ── */}
       <div
-        className="relative flex h-[160px] w-full flex-col items-end overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:items-start md:p-9"
+        className="relative flex h-[160px] w-full flex-col items-start overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:p-9"
         style={{ background: "linear-gradient(to right, #f4e9e3, #d4bca4)" }}
       >
         {/* Text content */}
-        <div className="relative z-10 flex flex-col items-end gap-3 text-end md:items-start md:gap-4 md:text-start">
+        <div className="relative z-10 flex flex-col items-start gap-3 text-start md:gap-4">
           <p className="text-lg font-bold tracking-wide text-primary-900 md:text-2xl">
             {t("auctions.promos.fixedPriceTitle")}
           </p>
-          <p className="text-xs text-[#3e2723] md:text-base">{t("auctions.promos.fixedPriceBody")}</p>
-          <Button className="h-9 rounded-xl px-4 text-sm font-bold text-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
+          <p className="text-xs text-[#3e2723] md:text-base">
+            {t("auctions.promos.fixedPriceBody")}
+          </p>
+          <Button className="h-9 rounded-sm px-4 text-sm font-bold text-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
             {t("auctions.promos.browseProducts")}
           </Button>
         </div>
 
         {/* Illustration: stacked product images — bottom-start corner */}
-        <div className="absolute end-0 bottom-0 h-[275px] w-[289.62469482421875px]">
+        <div className="absolute end-0 bottom-0 h-[190px] w-[170px] md:h-[275px] md:w-[289.62469482421875px]">
           {/* Real image: <Image src="/img/home/promo-products.png" alt="" fill className="object-contain object-bottom" /> */}
           {/* Placeholder product stack */}
           <Image
@@ -61,24 +63,31 @@ export async function AuctionPromos({ locale }: AuctionPromosProps) {
       </div>
       {/* ── Banner 1: Continuous Auctions (Dark Navy gradient) ── */}
       <div
-        className="relative flex h-[160px] w-full flex-col items-end overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:items-start md:p-9"
+        className="relative flex h-[160px] w-full flex-col items-start overflow-hidden rounded-3xl px-6 py-4 md:h-[250px] md:p-9"
         style={{ background: "linear-gradient(to right, #202e46, #2a3d5d)" }}
       >
         {/* Text content */}
-        <div className="relative z-10 flex flex-col items-end gap-3 text-end md:items-start md:gap-4 md:text-start">
+        <div className="relative z-10 flex flex-col items-start gap-3 text-start md:gap-4">
           <p className="text-lg font-bold tracking-wide text-white md:text-2xl">
             {t("auctions.promos.continuousTitle")}
           </p>
-          <p className="text-xs text-primary-100 md:text-base">{t("auctions.promos.continuousBody")}</p>
-          <Button className="h-9 rounded-xl bg-primary-50 px-4 text-sm font-bold text-primary-800 hover:bg-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
+          <p className="text-xs text-primary-100 md:text-base">
+            {t("auctions.promos.continuousBody")}
+          </p>
+          <Button className="h-9 rounded-sm bg-primary-50 px-4 text-sm font-bold text-primary-800 hover:bg-white md:h-14 md:rounded-2xl md:px-8 md:text-base">
             {t("auctions.promos.discoverNow")}
           </Button>
         </div>
 
-        <div className="absolute end-0 bottom-0 h-[330px] w-[330px]">
+        <div className="absolute end-0 bottom-0 h-[190px] w-[170px] md:h-[330px] md:w-[330px]">
           {/* Real image: <Image src="/img/home/promo-products.png" alt="" fill className="object-contain object-bottom" /> */}
           {/* Placeholder product stack */}
-          <Image src="/img/home/bidding-war.png" alt="" fill className="object-contain" />
+          <Image
+            src="/img/home/bidding-war.png"
+            alt=""
+            fill
+            className="object-contain object-bottom"
+          />
         </div>
       </div>
     </PageContainer>

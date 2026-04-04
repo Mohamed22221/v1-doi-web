@@ -26,7 +26,7 @@ export function AuctionCarousel({ children, localeDir }: AuctionCarouselProps) {
         }}
         className="w-full"
       >
-        <CarouselContent className="ms-0 gap-4 pe-1 md:gap-1">{children}</CarouselContent>
+        <CarouselContent className="ms-0 gap-1 pe-1">{children}</CarouselContent>
       </Carousel>
     </div>
   );

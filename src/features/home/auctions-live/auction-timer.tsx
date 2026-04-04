@@ -67,24 +67,30 @@ export function AuctionTimer({ targetDateStr, minutesLabel, secondsLabel }: Auct
   // To guarantee exact figma positioning regardless of direction, we use dir="ltr" on the timer itself
   // so that the physical DOM order (seconds | colon | minutes) maps to figma's visual order.
   return (
-    <div className="flex items-end gap-0 text-center" dir="ltr">
+    <div className="flex items-end gap-3 text-center md:gap-0" dir="ltr">
       {/* Seconds cell — Figma: left cell */}
       <div className="flex w-[75px] flex-col items-center gap-3 rounded-xl px-2.5 py-2">
-        <span className="font-[Montserrat,sans-serif] text-h1 leading-none font-bold text-primary-500 dark:text-primary-200">
+        <span className="font-[Montserrat,sans-serif] text-h3 leading-none font-bold text-primary-500 md:text-h1 dark:text-primary-200">
           {s}
         </span>
-        <span className="text-base text-primary-400 dark:text-primary-300">{secondsLabel}</span>
+        <span className="text-tag text-primary-400 md:text-base dark:text-primary-300">
+          {secondsLabel}
+        </span>
       </div>
 
       {/* Colon separator */}
-      <span className="mb-9 text-2xl font-semibold text-primary-500 dark:text-primary-200">:</span>
+      <span className="mb-6 text-2xl font-semibold text-primary-500 md:mb-9 dark:text-primary-200">
+        :
+      </span>
 
       {/* Minutes cell — Figma: right cell */}
       <div className="flex w-[75px] flex-col items-center gap-3 rounded-xl px-2.5 py-2">
-        <span className="font-[Montserrat,sans-serif] text-h1 leading-none font-bold text-primary-500 dark:text-primary-200">
+        <span className="font-[Montserrat,sans-serif] text-h3 leading-none font-bold text-primary-500 md:text-h1 dark:text-primary-200">
           {m}
         </span>
-        <span className="text-base text-primary-400 dark:text-primary-300">{minutesLabel}</span>
+        <span className="text-tag text-primary-400 md:text-base dark:text-primary-300">
+          {minutesLabel}
+        </span>
       </div>
     </div>
   );
