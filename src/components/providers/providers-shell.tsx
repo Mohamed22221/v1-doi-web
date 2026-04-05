@@ -8,6 +8,8 @@ import { QueryProvider } from "./query-provider";
 import { Toaster } from "@/components/ui/toast/sonner";
 import { getDirection, type Locale } from "@/lib/i18n/config";
 
+import { AuthGuardWrapper } from "@/components/template/auth-guard-modal/auth-guard-wrapper";
+
 interface ProvidersShellProps {
   children: React.ReactNode;
   locale: Locale;
@@ -38,6 +40,7 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
       <QueryProvider>
         <I18nProvider locale={locale} resources={resources}>
           {children}
+          <AuthGuardWrapper />
         </I18nProvider>
         {/* Mobile: appears from the bottom */}
 

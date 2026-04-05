@@ -2,6 +2,7 @@ import { getTranslation } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
 import { AuctionTimer } from "@/features/home/auctions-live/auction-timer";
 import { Button } from "@/components/ui/button";
+import { ProtectedButton } from "@/components/shared/protected-action";
 
 interface AuctionInfoProps {
   locale: Locale;
@@ -57,9 +58,9 @@ export async function AuctionInfo({ locale }: AuctionInfoProps) {
       {/* 5. CTA Buttons — Figma: h-[56px], rounded-[16px], flex full-width */}
       <div className="flex w-full items-center gap-4">
         {/* Primary: انضم للمزاد — bg #2a3d5d */}
-        <Button className="h-[50px] flex-1 rounded-2xl bg-primary-500 text-label font-bold text-white hover:bg-primary-500/90 md:h-14 md:text-base dark:bg-primary-400 dark:hover:bg-primary-400/90">
+        <ProtectedButton intent="join_auction" className="h-[50px] flex-1 rounded-2xl bg-primary-500 text-label font-bold text-white hover:bg-primary-500/90 md:h-14 md:text-base dark:bg-primary-400 dark:hover:bg-primary-400/90">
           {t("auctions.joinAuction")}
-        </Button>
+        </ProtectedButton>
         {/* Secondary: عرض الصالة — bg #edf1f7 */}
         <Button
           variant="ghost"

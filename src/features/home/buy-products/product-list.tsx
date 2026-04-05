@@ -3,6 +3,7 @@ import type { Locale } from "@lib/i18n/config";
 import { getTranslation } from "@lib/i18n/server";
 import { Riyall } from "@/components/shared/icon-base/constant";
 import { ProductCardCarousel } from "./components/product-card-carousel";
+import { ProtectedLink } from "@/components/shared/protected-action";
 
 /** ── Figma image assets (node 706:7936) ─────────────────────────────── */
 const imgWatch = "/img/fake/Container.png";
@@ -90,12 +91,13 @@ export async function ProductList({ locale }: ProductListProps) {
             {/* ── Price + CTA bar ── */}
             <div className="flex items-center justify-between rounded-xl border border-border bg-card p-2 sm:rounded-2xl sm:p-4">
               {/* CTA link */}
-              <Link
+              <ProtectedLink
+                intent="buy_now"
                 href={product.href}
                 className="text-[10px] font-normal tracking-wide text-foreground transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none sm:text-lg"
               >
                 {buyLabel}
-              </Link>
+              </ProtectedLink>
 
               {/* Price with Riyal symbol */}
               <div className="flex items-center gap-1 sm:gap-2" dir="rtl">

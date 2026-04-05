@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Riyall } from "@/components/shared/icon-base/constant";
 import { AuctionCardCarousel } from "./auction-card-carousel";
 import { FeaturedAuctionTimer } from "./featured-auction-timer";
+import { ProtectedLink } from "@/components/shared/protected-action";
 
 export interface FeaturedAuctionCardProps {
   id: string;
@@ -97,13 +98,14 @@ export function FeaturedAuctionCard({
       </div>
 
       {/* ── Bid Now button ── */}
-      <Link
+      <ProtectedLink
+        intent="bid_now"
         aria-label={bidNowLabel}
         href={href}
         className="flex h-[50px] w-full items-center justify-center rounded-2xl bg-primary text-sm font-bold tracking-wide text-white transition-colors hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none md:text-h5"
       >
         {bidNowLabel}
-      </Link>
+      </ProtectedLink>
     </article>
   );
 }

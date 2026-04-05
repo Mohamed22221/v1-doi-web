@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 // i18n
 import { useTranslation } from "@lib/i18n/client";
 import type { Locale } from "@/lib/i18n/config";
@@ -14,16 +14,18 @@ import type { Locale } from "@/lib/i18n/config";
 export default function RegisterRedirectCard() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
   const locale = params.locale as Locale;
   const { t } = useTranslation(locale, "auth");
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/");
+      router.push(callbackUrl || "/");
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [router]);
+  }, [router, callbackUrl]);
 
   return (
     <div className="flex items-center justify-center py-1">

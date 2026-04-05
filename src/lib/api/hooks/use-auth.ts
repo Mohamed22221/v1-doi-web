@@ -1,7 +1,7 @@
 "use client";
 
 // Next.js
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 
 // Third-party
 import { useQueryClient } from "@tanstack/react-query";
@@ -47,6 +47,8 @@ export function useLogin() {
   const { t } = useTranslation(locale, "auth");
   const queryClient = useQueryClient();
   const { setAuth, setOtp, clearOtp } = useAuthStore();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const loginMutation = useAppMutation(loginAction, {
     onSuccess: (responseData: LoginResponse, payload: LoginRequest) => {
@@ -64,7 +66,10 @@ export function useLogin() {
           positionSm: "bottom-center",
           className: "tablet:w-[545px] xl:w-[600px]",
         });
-        router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
+        const destination = callbackUrl 
+          ? `/${locale}${ROUTES.AUTH.VERIFY_OTP}?callbackUrl=${encodeURIComponent(callbackUrl)}` 
+          : `/${locale}${ROUTES.AUTH.VERIFY_OTP}`;
+        router.push(destination);
         return;
       }
 
@@ -73,7 +78,7 @@ export function useLogin() {
         clearOtp(); // Clear OTP data upon successful login with token
         setAuth(responseData.access_token, responseData.refresh_token, responseData.user);
         router.refresh();
-        router.replace(`/${locale}${ROUTES.PUBLIC.HOME}`);
+        router.replace(callbackUrl || `/${locale}${ROUTES.PUBLIC.HOME}`);
         router.refresh();
       }
     },
@@ -105,6 +110,8 @@ export function useVerifyOtp() {
   const { t } = useTranslation(locale, "auth");
   const queryClient = useQueryClient();
   const { setAuth, otpData, clearOtp, setResetToken } = useAuthStore();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const verifyOtpMutation = useAppMutation(
     async (payload: VerifyOtpRequest) => {
@@ -136,9 +143,12 @@ export function useVerifyOtp() {
         const isRegistrationFlow = otpData?.authFlow === "registration";
 
         if (isRegistrationFlow) {
-          router.push(`/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`);
+          const destination = callbackUrl 
+            ? `/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}?callbackUrl=${encodeURIComponent(callbackUrl)}` 
+            : `/${locale}${ROUTES.AUTH.REGISTER_SUCCESS}`;
+          router.push(destination);
         } else {
-          router.push(`/${locale}${ROUTES.PUBLIC.HOME}`);
+          router.replace(callbackUrl || `/${locale}${ROUTES.PUBLIC.HOME}`);
         }
         router.refresh();
         // Clear OTP data (including authFlow)
@@ -236,6 +246,8 @@ export function useRegister() {
   const locale = params.locale as Locale;
   const { t } = useTranslation(locale, "auth");
   const { setOtp } = useAuthStore();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const registerMutation = useAppMutation(registerAction, {
     onSuccess: (responseData: LoginOtpResponse, payload: RegisterRequest) => {
@@ -251,7 +263,10 @@ export function useRegister() {
         positionSm: "bottom-center",
         className: "tablet:w-[545px] xl:w-[600px]",
       });
-      router.push(`/${locale}${ROUTES.AUTH.VERIFY_OTP}`);
+      const destination = callbackUrl 
+        ? `/${locale}${ROUTES.AUTH.VERIFY_OTP}?callbackUrl=${encodeURIComponent(callbackUrl)}` 
+        : `/${locale}${ROUTES.AUTH.VERIFY_OTP}`;
+      router.push(destination);
     },
 
     onError: (error: Error) => {

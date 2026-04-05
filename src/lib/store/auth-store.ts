@@ -68,7 +68,7 @@ export const useAuthStore = create<AuthStore>()(
             removeItem: () => {},
           };
         }
-        return window.sessionStorage;
+        return window.localStorage;
       }),
       // Only persist non-sensitive data client-side.
       // Real tokens live in httpOnly cookies set by the Server Action.
