@@ -3,28 +3,28 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 
 /**
  * CategoriesSkeleton - Server Component
- * 
+ *
  * Shown as the fallback UI during PPR streaming. Mimics the gap and
  * structure of the exact items from the Figma specs without logic.
  */
 export function CategoriesSkeleton() {
   return (
-    <div className="w-full overflow-hidden pb-8" aria-hidden="true">
+    <div className="w-full pb-1 md:pb-8" aria-hidden="true">
       <Carousel
         opts={{
           dragFree: true,
-          watchDrag: false, 
+          watchDrag: false,
         }}
-        className="w-full"
+        className="-mx-4 sm:-mx-1 lg:-mx-6"
       >
-        <CarouselContent className="ms-0 gap-14 ps-4 md:ps-10">
+        <CarouselContent className="gap-4 px-4 sm:gap-6 sm:px-1 md:gap-10 lg:px-6">
           {Array.from({ length: 8 }).map((_, i) => (
             <CarouselItem key={i} className="basis-auto ps-0">
-              <div className="flex flex-col items-center gap-4">
-                {/* Skeleton Circle (160x160) */}
-                <div className="size-[160px] animate-pulse rounded-full bg-primary-50 dark:bg-card/50" />
+              <div className="flex w-[75px] flex-col items-center gap-2 md:w-[160px] md:gap-4">
+                {/* Skeleton Circle (Match real sizes) */}
+                <div className="size-[75px] animate-pulse rounded-full bg-primary-50 md:size-[160px] dark:bg-card/50" />
                 {/* Skeleton Text */}
-                <div className="h-6 w-24 animate-pulse rounded-md bg-primary-50 dark:bg-card/50" />
+                <div className="h-5 w-16 animate-pulse rounded-md bg-primary-50 md:h-6 md:w-24 dark:bg-card/50" />
               </div>
             </CarouselItem>
           ))}

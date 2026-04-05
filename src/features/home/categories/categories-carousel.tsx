@@ -30,9 +30,9 @@ export function CategoriesCarousel({ children, localeDir }: CategoriesCarouselPr
           // Removed containScroll: "trimSnaps" to ensure the items natively bleed at the edges without snapping awkwardly
         }}
         // Negative margins pull the carousel beyond the parent's padding, allowing native edge cutoff
-        className="w-full"
+        className="-mx-4 sm:-mx-1 lg:-mx-6"
       >
-        <CarouselContent className="gap-3 ps-4 pe-5 sm:gap-6 md:gap-8 md:ps-4 lg:gap-8">
+        <CarouselContent className="gap-4 px-4 sm:gap-6 sm:px-1 md:gap-10 lg:px-6">
           {children}
         </CarouselContent>
       </Carousel>

@@ -222,7 +222,7 @@ function handleAccountStatusGuards(request: NextRequest, pathname: string, local
 export const config = {
   matcher: [
     // Skip Next.js internal paths and static files
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|json)$).*)",
   ],
 };
 
