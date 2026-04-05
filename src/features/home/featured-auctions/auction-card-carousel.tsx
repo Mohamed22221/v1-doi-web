@@ -2,12 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@components/ui/carousel";
 import { MarkIcon, ShareIcon } from "@/components/shared/icon-base/constant";
 import { cn } from "@utils/cn";
 
