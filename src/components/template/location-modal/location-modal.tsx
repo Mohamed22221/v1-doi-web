@@ -14,7 +14,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@utils/cn";
-import { ENV } from "@/config/env";
 import { showErrorToast } from "@/components/ui/toast/show-toast";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -53,10 +52,8 @@ export function LocationModal() {
   React.useEffect(() => {
     // Only check on client-side
     const locationCookie = Cookies.get("user_location");
-    const authToken = Cookies.get(ENV.ACCESS_TOKEN_KEY);
-
     // If no location set AND no auth token (Guest), show modal after a small delay
-    if (!locationCookie && !authToken) {
+    if (!locationCookie) {
       setIsOpen(true);
     }
   }, []);
