@@ -114,5 +114,14 @@
     "language": "اللغة",
     "arabic": "اللغة العربية",
     "english": "English"
+  },
+  "location_modal": {
+    "title": "حدد منطقتك لاستكشاف المنتجات والمزادات القريبة منك",
+    "subtitle": "اختيار المنطقة يساعدنا نعرض لك منتجات ومزادات مناسبة لموقعك.",
+    "location_label": "الموقع",
+    "search_placeholder": "ابحث عن اسم المدينة",
+    "use_current_location": "استخدام الموقع الحالي",
+    "confirm_region": "تأكيد المنطقة",
+    "popular_cities": "المدن الأكثر بحثاً"
   }
 }

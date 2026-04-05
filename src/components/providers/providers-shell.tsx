@@ -75,6 +75,7 @@ export async function ProvidersShell({ children, locale }: ProvidersShellProps) 
             />
           </Suspense>
         </div>
+
       </QueryProvider>
     </NuqsAdapter>
   );

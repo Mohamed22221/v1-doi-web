@@ -69,6 +69,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <Suspense fallback={null}>
               <NavSync />
             </Suspense>
+
             <main id="main-content" tabIndex={-1} className="outline-none">
               {children}
             </main>

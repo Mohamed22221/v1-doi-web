@@ -114,5 +114,14 @@
     "language": "Language",
     "arabic": "العربية",
     "english": "English"
+  },
+  "location_modal": {
+    "title": "Select your region to explore products and auctions near you",
+    "subtitle": "Choosing a region helps us show you products and auctions suitable for your location.",
+    "location_label": "Location",
+    "search_placeholder": "Search city name",
+    "use_current_location": "Use Current Location",
+    "confirm_region": "Confirm Region",
+    "popular_cities": "Popular Cities"
   }
 }
