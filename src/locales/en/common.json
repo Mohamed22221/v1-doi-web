@@ -123,5 +123,21 @@
     "use_current_location": "Use Current Location",
     "confirm_region": "Confirm Region",
     "popular_cities": "Popular Cities"
+  },
+  "notification_modal": {
+    "step1_title": "Do you want to receive important notifications?",
+    "step1_desc": "We'll notify you if someone outbids you, if you win an auction, or if your product is approved.",
+    "allow": "Allow Notifications",
+    "later": "Later",
+    "step2_title": "Notification Settings",
+    "step2_desc": "Choose the types of notifications you want to receive. You can turn each on or off independently.",
+    "toggle_auctions": "Auction Notifications",
+    "toggle_auctions_desc": "Alerts for auctions you follow or participate in.",
+    "toggle_sales": "Sale Notifications",
+    "toggle_sales_desc": "Alerts regarding your listed products, their review status, and condition.",
+    "toggle_general": "General Notifications",
+    "toggle_general_desc": "Alerts related to updates, offers, and app news.",
+    "confirm": "Confirm Settings",
+    "notification": "Notifications"
   }
 }

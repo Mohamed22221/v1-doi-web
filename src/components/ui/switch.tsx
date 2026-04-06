@@ -20,7 +20,7 @@ function Switch({
         "peer group/switch switch",
         size === "default" && "switch-size-default",
         size === "sm" && "switch-size-sm",
-        size === "lg" && "h-7 w-12",
+        size === "lg" && "switch-size-lg",
         className,
       )}
       {...props}
@@ -31,7 +31,7 @@ function Switch({
           "switch-thumb",
           size === "default" && "group-data-[size=default]/switch:size-4",
           size === "sm" && "group-data-[size=sm]/switch:size-3",
-          size === "lg" && "size-6 data-[state=checked]:translate-x-5",
+          size === "lg" && "group-data-[size=lg]/switch:size-6",
         )}
       />
     </SwitchPrimitive.Root>

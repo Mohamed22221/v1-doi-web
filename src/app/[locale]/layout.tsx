@@ -11,6 +11,7 @@ import { arabicFont, englishFont } from "@/lib/utils/fonts";
 import "@/app/globals.css";
 import { RefreshHandlerWrapper } from "@/features/auth/components/refresh-handler-wrapper";
 import { SellerStatusTrackerServer } from "@/features/auth/components/seller-status-tracker-server";
+import { NotificationModalWrapper } from "@/components/template/notification-modal/notification-wrapper";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -75,6 +76,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             </main>
 
             <SettingsContainer />
+            <Suspense fallback={null}>
+              <NotificationModalWrapper />
+            </Suspense>
           </ProvidersShell>
         </Suspense>
       </body>

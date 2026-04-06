@@ -15,6 +15,14 @@
     @apply h-3.5 w-6;
   }
 
+  .switch-size-md {
+    @apply h-4 w-7;
+  }
+
+  .switch-size-lg {
+    @apply h-7 w-12;
+  }
+
   .switch-thumb {
     @apply pointer-events-none block rounded-full ring-0 transition-transform;
     @apply bg-background;

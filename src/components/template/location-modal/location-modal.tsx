@@ -112,10 +112,10 @@ export function LocationModal() {
     <ResponsiveModal open={isOpen} onOpenChange={handleOpenChange}>
       <ResponsiveModalContent className="gap-4 px-5 py-0 pb-7 md:max-w-[540px] md:gap-6 md:py-6 md:pb-5">
         <ResponsiveModalHeader className="gap-3 px-0 py-1 md:p-4 md:text-center">
-          <ResponsiveModalTitle className="text-start text-xl font-bold tracking-tight text-neutral-800 md:mt-4 md:text-center md:text-h4">
+          <ResponsiveModalTitle className="text-start text-xl font-bold tracking-tight text-neutral-800 md:mt-4 md:text-center md:text-h4 dark:text-neutral-100">
             {t("location_modal.title", "حدد منطقتك لاستكشاف المنتجات والمزادات القريبة منك")}
           </ResponsiveModalTitle>
-          <ResponsiveModalDescription className="text-start text-tag font-bold tracking-[0.54px] text-neutral-600 opacity-75 md:text-center md:text-label">
+          <ResponsiveModalDescription className="text-start text-tag font-bold tracking-[0.54px] text-neutral-600 opacity-75 md:text-center md:text-label dark:text-neutral-300">
             {t(
               "location_modal.subtitle",
               "اختيار المنطقة يساعدنا نعرض لك منتجات ومزادات مناسبة لموقعك.",
