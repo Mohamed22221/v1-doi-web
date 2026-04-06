@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Locale } from "@lib/i18n/config";
 import { getTranslation } from "@lib/i18n/server";
 import { SearchContainer } from "@/features/home/hero/search-container";
+import { SearchDropdown } from "@/features/home/hero/search-dropdown";
 import { TrendingSearchesWrapper } from "@/features/home/hero/trending-searches-wrapper";
 import {
   ShippingIcon,
@@ -98,6 +99,12 @@ export default async function HeroSection({ locale }: HeroSectionProps) {
         searchPlaceholder={t("hero.search.placeholder")}
         locationLabel={t("hero.search.location_label")}
         searchLabel={t("hero.search.button_label")}
+        dropdownContent={
+          <SearchDropdown
+            recentLabel={t("hero.search.recent_searches")}
+            suggestionsLabel={t("hero.search.suggestions")}
+          />
+        }
       />
 
       {/* ── Trending Searches (Server + Suspense) ── */}

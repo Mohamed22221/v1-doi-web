@@ -122,11 +122,13 @@
       "buyer_protection": "حماية المشتري",
       "reliable_shipping": "شحن موثوق"
     },
-    "search": {
-      "placeholder": "ابحث عن منتج أو فئة…",
-      "location_label": "اختر موقعك",
-      "button_label": "بحث"
-    },
+      "search": {
+        "placeholder": "ابحث عن منتج أو فئة…",
+        "location_label": "اختر موقعك",
+        "button_label": "بحث",
+        "recent_searches": "آخر عمليات البحث",
+        "suggestions": "اقتراحات"
+      },
     "trending": {
       "label": "الأكثر بحثًا",
       "iphone_15_pro": "ايفون برو 15",

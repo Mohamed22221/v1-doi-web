@@ -122,11 +122,13 @@
       "buyer_protection": "Buyer Protection",
       "reliable_shipping": "Reliable Shipping"
     },
-    "search": {
-      "placeholder": "Search for a product or category…",
-      "location_label": "Choose location",
-      "button_label": "Search"
-    },
+      "search": {
+        "placeholder": "Search for a product or category…",
+        "location_label": "Choose location",
+        "button_label": "Search",
+        "recent_searches": "Recent Searches",
+        "suggestions": "Suggestions"
+      },
     "trending": {
       "label": "Most Searched",
       "iphone_15_pro": "iPhone 15 Pro",

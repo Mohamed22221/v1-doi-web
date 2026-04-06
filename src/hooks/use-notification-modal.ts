@@ -26,7 +26,10 @@ export const useNotificationModal = () => {
     // 2. User has a valid location set
     // 3. User has NOT interacted with the modal yet (no status)
     if (user && locationCookie && !notificationStatus) {
-      setIsOpen(true);
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 200);
+      return () => clearTimeout(timer);
     }
   }, [user]);
 
